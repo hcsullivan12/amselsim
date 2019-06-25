@@ -1,0 +1,33 @@
+#include "simulationservices.fcl"
+#include "larproperties.fcl"
+#include "detectorclocks.fcl"
+#include "largeantmodules.fcl"
+#include "singles.fcl"
+#include "magfield_larsoft.fcl"
+#include "amselsim_detproperties.fcl"
+#include "backtrackerservice.fcl"
+#include "particleinventoryservice.fcl"
+#include "seedservice.fcl"
+
+BEGIN_PROLOG
+
+amselsim_singlep: @local::standard_singlep
+amselsim_largeant: @local::standard_largeant
+
+amselsim_simulation_services:
+{
+ LArG4Parameters:              @local::standard_largeantparameters
+ LArVoxelCalculator:           @local::standard_larvoxelcalculator
+ MagneticField:                @local::no_mag_larsoft
+ #ExptGeoHelperInterface:       @local::amselsim_geometry_helper
+ Geometry:                     @local::amselsim_geo
+ #DetectorPropertiesService:    @local::amselsim_detproperties
+ LArPropertiesService:         @local::standard_properties
+ DetectorClocksService:        @local::standard_detectorclocks
+ BackTrackerService:           @local::standard_backtrackerservice
+ ParticleInventoryService:     @local::standard_particleinventoryservice
+ NuRandomService:              @local::random_NuRandomService
+}
+
+
+END_PROLOG
