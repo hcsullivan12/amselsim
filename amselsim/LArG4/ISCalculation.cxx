@@ -12,7 +12,7 @@
 // Framework includes
 #include "cetlib_except/exception.h"
 
-namespace larg4 {
+namespace amselg4 {
 
   //----------------------------------------------------------------------
   ISCalculation::ISCalculation()

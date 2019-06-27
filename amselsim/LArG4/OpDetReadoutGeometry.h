@@ -16,7 +16,7 @@
 // volume, we must define a readout geometry to identify which volumes are
 // contained within each OpDet.
 //
-// This class is heavily based on LArG4ReadoutGeometry by Bill Seligman,
+// This class is heavily based on AmSelG4ReadoutGeometry by Bill Seligman,
 // which is very well commented.  See that file for further reference.
 //
 
@@ -31,7 +31,7 @@
 #define OpDetReadoutGeometry_h
 
 
-namespace larg4
+namespace amselg4
 {
 
   class OpDetReadoutGeometry : public G4VUserParallelWorld

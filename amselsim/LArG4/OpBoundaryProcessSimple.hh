@@ -72,7 +72,7 @@
 // Class Definition
 /////////////////////
 
-namespace larg4 {
+namespace amselg4 {
 
   // Possible statuses of a particle after each step.
   enum OpBoundaryProcessSimpleStatus {  Undefined, NotAtBoundary, SimpleAbsorbedNoRefl,
@@ -85,7 +85,7 @@ namespace larg4 {
    * This class invokes a simplified model of optical reflections at
    * boundaries between different materials.  The relevant reflectivities
    * are ultimately read from `detinfo::LArProperties` via
-   * `larg4::MaterialPropertiesLoader`.
+   * `amselg4::MaterialPropertiesLoader`.
    *
    * The required parameters are total reflectance
    * (`detinfo::LArProperties::SurfaceReflectances()`)
@@ -99,7 +99,7 @@ namespace larg4 {
    * to the supplied probability.  All materials with no defined
    * reflectance are assumed to be black and absorb all incident photons.
    *
-   * This physics process is loaded in `larg4::OpticalPhysics` physics
+   * This physics process is loaded in `amselg4::OpticalPhysics` physics
    * constructor.
    *
    * This class is based on the `G4OpBoundaryProcess` class in Geant4 and was

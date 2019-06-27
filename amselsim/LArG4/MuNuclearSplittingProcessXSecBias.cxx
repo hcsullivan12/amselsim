@@ -39,7 +39,7 @@
 
 #include <TMath.h>
 
-namespace larg4 {
+namespace amselg4 {
 
 
 

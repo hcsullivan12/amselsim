@@ -18,7 +18,7 @@
 #include <algorithm> // std::find()
 #include <ctime>
 
-namespace larg4 {
+namespace amselg4 {
 
   AuxDetReadout::AuxDetReadout(std::string const& name,
 			       unsigned int       adNum,
@@ -151,4 +151,4 @@ namespace larg4 {
   void AuxDetReadout::DrawAll()  {}
   void AuxDetReadout::PrintAll() {}
 
-} // namespace larg4
+} // namespace amselg4

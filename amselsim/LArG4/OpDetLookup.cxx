@@ -18,7 +18,7 @@
 #include "larcorealg/Geometry/OpDetGeo.h"
 
 
-namespace larg4 {
+namespace amselg4 {
   OpDetLookup * TheOpDetLookup;
 
   //--------------------------------------------------

@@ -40,7 +40,7 @@
 #define OpDetLOOKUP_h 1
 
 
-namespace larg4 {
+namespace amselg4 {
   class OpDetLookup
     {
     public:

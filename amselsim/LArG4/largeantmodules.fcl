@@ -1,8 +1,8 @@
 BEGIN_PROLOG
 
-standard_largeant:
+amselsim_largeant:
 {
- module_type:            "LArG4"
+ module_type:            "AmSelG4"
  GeantCommandFile:       "LArG4.mac"
  CheckOverlaps:          false
  DumpParticleList:       false
@@ -13,12 +13,34 @@ standard_largeant:
 	                        # will shut off primary showering.
  KeepParticlesInVolumes:  [] #this will keep particles in all volumes
  
-# The following variables are not used anywhere in LArG4_module.cc.
+# The following variables are not used anywhere in AmSelG4_module.cc.
 # They has been moved to the LArG4Parameters_service and so should
 # not be included here.
 # DisableWireplanes:      false
 # UseModBoxRecomb:        false   # use Modified Box recombination model
 }
+
+standard_largeant:
+{
+ module_type:            "AmSelG4"
+ GeantCommandFile:       "AmSelG4.mac"
+ CheckOverlaps:          false
+ DumpParticleList:       false
+ DumpLArVoxelList:       false
+ DebugVoxelAccumulation: 0
+ VisualizeEvents:        false
+ SmartStacking:          0	# non-0 turns it on. The 0x4 bit 
+	                        # will shut off primary showering.
+ KeepParticlesInVolumes:  [] #this will keep particles in all volumes
+ 
+# The following variables are not used anywhere in AmSelG4_module.cc.
+# They has been moved to the LArG4Parameters_service and so should
+# not be included here.
+# DisableWireplanes:      false
+# UseModBoxRecomb:        false   # use Modified Box recombination model
+}
+
+
 argoneut_largeant:   @local::standard_largeant
 # The following line is already in largeantmodules_microboone.fcl
 # and so it should not also be included here, for clarity's sake.
@@ -33,7 +55,7 @@ standard_mergesimsources:
 
 standard_largeantana:
 {
- module_type:      "LArG4Ana"
+ module_type:      "AmSelG4Ana"
  GeantModuleLabel: "largeant"
  TruthModuleLabel: "generator"
  Ndaughters:        20

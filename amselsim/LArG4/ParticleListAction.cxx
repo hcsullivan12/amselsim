@@ -37,7 +37,7 @@
 double globalTime, velocity_G4, velocity_step;
 bool entra = true;
 
-namespace larg4 {
+namespace amselg4 {
 
   // Initialize static members.
   int ParticleListAction::fCurrentTrackID = sim::NoParticleId;
@@ -529,4 +529,4 @@ namespace larg4 {
 
   //----------------------------------------------------------------------------
 
-} // namespace LArG4
+} // namespace AmSelG4

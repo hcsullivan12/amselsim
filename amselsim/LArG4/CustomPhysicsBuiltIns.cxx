@@ -5,7 +5,7 @@
 ////////////////////////////////////////////////////////////////////////
 #include "amselsim/LArG4/CustomPhysicsBuiltIns.hh"
 
-namespace larg4 {
+namespace amselg4 {
 
   EmPhysicsFactory              f1;
   SynchrotronAndGN              f2;

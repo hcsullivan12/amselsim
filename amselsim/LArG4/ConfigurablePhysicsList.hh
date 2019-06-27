@@ -15,7 +15,7 @@
 // the relevant particles and interactions.  Then add the builder to the
 // GetPhysicsBuilders and GetDefaultSettings functions in this class,
 // using the name by which the builder will be referenced in the config
-// file.  Physics builders to be enabled are specified in the LArG4 config.
+// file.  Physics builders to be enabled are specified in the AmSelG4 config.
 //
 //
 
@@ -27,7 +27,7 @@
 #include "Geant4/globals.hh"
 #include "Geant4/CompileTimeConstraints.hh"
 
-namespace larg4 {
+namespace amselg4 {
 
   template<class T>
   class TConfigurablePhysicsList: public T
@@ -52,7 +52,7 @@ namespace larg4 {
 
 #include "amselsim/LArG4/ConfigurablePhysicsList.icc"
 
-namespace larg4 {
+namespace amselg4 {
   typedef TConfigurablePhysicsList<G4VModularPhysicsList> ConfigurablePhysicsList;
 }
 

@@ -17,7 +17,7 @@
 // If one is detected, a hit in the relevant optical detector at
 // an appropriate time (with ~20ns error bars for flight time) is
 // stored in this table, which is eventually read out at the end
-// of the event by LArG4_module and stored in the event.
+// of the event by AmSelG4_module and stored in the event.
 //
 // For slow scintillation / cerenkov processes, photons are
 // generated and stepped about the detector, and if one steps
@@ -53,7 +53,7 @@ namespace sim
   class SimEnergyDeposit;
 }
 
-namespace larg4 {
+namespace amselg4 {
   class OpDetPhotonTable
     {
     public:

@@ -19,7 +19,7 @@
 // Forward declarations.
 class G4Step;
 
-namespace larg4 {
+namespace amselg4 {
 
   class IonizationAndScintillationAction : public g4b::UserAction
   {
@@ -36,6 +36,6 @@ namespace larg4 {
 
   };
 
-} // namespace LArG4
+} // namespace AmSelG4
 
 #endif // LARG4_IONIZATIONANDSCINTILLATIONACTION_H

@@ -34,7 +34,7 @@
 
 #include "amselsim/LArG4/CustomPhysicsFactory.hh"
 
-namespace larg4 {
+namespace amselg4 {
 
   class EmPhysicsFactory : public CustomPhysicsFactory<G4EmStandardPhysics>
   {

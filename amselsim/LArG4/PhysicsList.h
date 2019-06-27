@@ -46,8 +46,8 @@
 /// CustomPhysicsBuiltIns.hh which is where various other physics lists can be included.
 ///
 
-#ifndef LArG4_PhysicsList_h
-#define LArG4_PhysicsList_h
+#ifndef AmSelG4_PhysicsList_h
+#define AmSelG4_PhysicsList_h
 
 #include "Geant4/G4VUserPhysicsList.hh"
 #include "Geant4/G4VModularPhysicsList.hh"
@@ -56,7 +56,7 @@
 #include "Geant4/globals.hh"
 #include "amselsim/LArG4/ConfigurablePhysicsList.hh"
 
-namespace larg4 {
+namespace amselg4 {
 
   // Under normal circumstances, there is no need to inherit a class
   // from G4VModularPhysicsList.  It's necessary here because we have
@@ -89,10 +89,10 @@ namespace larg4 {
 
   };
 
-  /// This typedef is what defines the name "larg4::PhysicsList" in
+  /// This typedef is what defines the name "amselg4::PhysicsList" in
   /// any class that includes this header.
   typedef TConfigurablePhysicsList<ModularPhysicsList> PhysicsList;
 
-} // namespace larg4
+} // namespace amselg4
 
-#endif // LArG4_PhysicsList_h
+#endif // AmSelG4_PhysicsList_h

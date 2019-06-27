@@ -8,7 +8,7 @@
 // and is called via the ProcessHits method every time a particle steps
 // within the volume.
 //
-// The detector owns a hit collection which is passed back to LArG4 at
+// The detector owns a hit collection which is passed back to AmSelG4 at
 // the end of the event.  One OpDetSensitiveDetector corresponds to a set
 // of OpDet's, which are looked up by their G4PhysicalVolume in the OpDetLookup class.
 //
@@ -34,7 +34,7 @@ namespace sim{
   class SimPhotonsCollection;
 }
 
-namespace larg4 {
+namespace amselg4 {
 
   class OpDetLookup;
   class OpDetPhotonTable;

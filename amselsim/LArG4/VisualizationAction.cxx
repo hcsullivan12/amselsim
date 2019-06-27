@@ -28,7 +28,7 @@
 #include <cmath>
 #include <cstring>
 
-namespace larg4 {
+namespace amselg4 {
 
   VisualizationAction::VisualizationAction()
   {
@@ -103,4 +103,4 @@ namespace larg4 {
 
 
 
-} // namespace LArG4
+} // namespace AmSelG4

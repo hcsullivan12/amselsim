@@ -34,7 +34,7 @@
 
 #include <TMath.h>
 
-namespace larg4 {
+namespace amselg4 {
 
 G4VParticleChange* MuNuclearSplittingProcess::PostStepDoIt(const G4Track& track, const G4Step& step)
 {

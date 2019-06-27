@@ -119,7 +119,7 @@ int DumpPhysicalVolume
 } // DumpPhysicalVolume()
 
 
-namespace larg4 {
+namespace amselg4 {
 
   // Constructor and destructor.
   LArVoxelReadoutGeometry::LArVoxelReadoutGeometry
@@ -127,7 +127,7 @@ namespace larg4 {
     : G4VUserParallelWorld(name)
     , fReadoutSetupData(setupData.readoutSetup)
   {
-    larg4::IonizationAndScintillation *ios = larg4::IonizationAndScintillation::Instance();
+    amselg4::IonizationAndScintillation *ios = amselg4::IonizationAndScintillation::Instance();
     auto fStepLimit = std::make_unique<G4UserLimits>(ios->StepSizeLimit());
   }
 
@@ -200,7 +200,7 @@ namespace larg4 {
     // a voxel that overlaps the LAr TPC.
     LArVoxelReadout* larVoxelReadout = new LArVoxelReadout("LArVoxelSD");
     larVoxelReadout->Setup(fReadoutSetupData);
-    if ((fGeo->Ncryostats() == 1) && (fGeo->Cryostat(0).NTPC() == 1))
+    if ((fGeo->provider()->Ncryostats() == 1) && (fGeo->provider()->NTPC() == 1))
       larVoxelReadout->SetSingleTPC(0, 0); // just one TPC in the detector...
 
     // Tell Geant4's sensitive-detector manager that the voxel SD
@@ -212,7 +212,7 @@ namespace larg4 {
     typedef std::map<VoxelSpecs_t, VoxelVolumes_t> VoxelCache_t;
     VoxelCache_t VoxelCache;
 
-    for(unsigned int c = 0; c < fGeo->Ncryostats(); ++c){
+    for(unsigned int c = 0; c < fGeo->provider()->Ncryostats(); ++c){
 
       // next get the cryostat
       daughterName = "volCryostat";
@@ -223,7 +223,7 @@ namespace larg4 {
                                                                   daughterName,
                                                                   c);
 
-      for(unsigned int t = 0; t < fGeo->Cryostat(c).NTPC(); ++t){
+      for(unsigned int t = 0; t < fGeo->provider()->NTPC(); ++t){
 
         // now for the TPC
         daughterName = "volTPC";
@@ -498,10 +498,10 @@ namespace larg4 {
       G4VPhysicalVolume* d = logicalVolume->GetDaughter(i);
 
     //  MF_LOG_DEBUG("LArVoxelReadoutGeometry") << d->GetName() << ":" << mother->GetName();
-
+      std::cout << logicalVolume->GetName() << " " << d->GetName() << " " << daughterName << std::endl;
       if(d->GetName().contains(daughterName)){
 
-        // check that this cryostat is the requested one using fCryostat
+        /*// check that this cryostat is the requested one using fCryostat
         G4ThreeVector translation = d->GetObjectTranslation();
         G4RotationMatrix rotation = d->GetObjectRotationValue();
         G4Transform3D transform(rotation, translation);
@@ -541,7 +541,8 @@ namespace larg4 {
         if(daughterNum == expectedNum){
           MF_LOG_DEBUG("LArVoxelReadoutGeometry") << "found the desired " << daughterName;
           return d;
-        }
+        }*/
+        return d;
       }// end if the volume has the right name
     }// end loop over volumes
 
@@ -553,4 +554,4 @@ namespace larg4 {
   }
 
 
-} // namespace larg4
+} // namespace amselg4

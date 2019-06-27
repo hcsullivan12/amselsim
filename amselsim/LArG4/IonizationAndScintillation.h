@@ -19,7 +19,7 @@
 
 namespace CLHEP { class HepRandomEngine; }
 
-namespace larg4 {
+namespace amselg4 {
 
   // The Ionization and Scintillation singleton
   class IonizationAndScintillation
@@ -44,7 +44,7 @@ namespace larg4 {
     IonizationAndScintillation(CLHEP::HepRandomEngine& engine);
     ~IonizationAndScintillation();
 
-    larg4::ISCalculation* fISCalc;             ///< object to calculate ionization and scintillation
+    amselg4::ISCalculation* fISCalc;             ///< object to calculate ionization and scintillation
                                                ///< produced by an energy deposition
     std::string           fISCalculator;       ///< name of calculator to use, NEST or Separate
     G4Step const*         fStep;               ///< pointer to the current G4 step
@@ -63,7 +63,7 @@ namespace larg4 {
     CLHEP::HepRandomEngine& fEngine;           ///< random engine
   };
 
-} // namespace larg4
+} // namespace amselg4
 
 
 #endif // LARG4_IONIZATIONANDSCINTILLATION

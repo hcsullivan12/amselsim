@@ -12,6 +12,7 @@
 
 // TODO verify the inclusion list
 #include "amselsim/LArG4/MaterialPropertyLoader.h"
+#include "amselsim/Geometry/AmSelGeometryService.h"
 #include "lardata/DetectorInfoServices/LArPropertiesService.h"
 #include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
 #include "Geant4/G4Material.hh"
@@ -20,7 +21,7 @@
 #include "Geant4/G4OpticalSurface.hh"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
-namespace larg4 {
+namespace amselg4 {
 
   //----------------------------------------------
   void MaterialPropertyLoader::SetMaterialProperty(std::string Material,
@@ -290,7 +291,8 @@ namespace larg4 {
   void MaterialPropertyLoader::GetPropertiesFromServices()
   {
     const detinfo::LArProperties* LarProp = lar::providerFrom<detinfo::LArPropertiesService>();
-    const detinfo::DetectorProperties* DetProp = lar::providerFrom<detinfo::DetectorPropertiesService>();
+    //const detinfo::DetectorProperties* DetProp = lar::providerFrom<detinfo::DetectorPropertiesService>();
+    amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
 
     // wavelength dependent quantities
 
@@ -308,12 +310,12 @@ namespace larg4 {
     SetMaterialConstProperty("LAr", "FASTTIMECONSTANT",    LarProp->ScintFastTimeConst(),   CLHEP::ns);
     SetMaterialConstProperty("LAr", "SLOWTIMECONSTANT",    LarProp->ScintSlowTimeConst(),   CLHEP::ns);
     SetMaterialConstProperty("LAr", "YIELDRATIO",          LarProp->ScintYieldRatio(),      1);
-    SetMaterialConstProperty("LAr", "ELECTRICFIELD",       DetProp->Efield(),               CLHEP::kilovolt/CLHEP::cm);
+    SetMaterialConstProperty("LAr", "ELECTRICFIELD",       geom->Efield(),               CLHEP::kilovolt/CLHEP::cm);
 
     SetBirksConstant("LAr",LarProp->ScintBirksConstant(), CLHEP::cm/CLHEP::MeV);
-    if(DetProp->SimpleBoundary())
-      SetReflectances("LAr", LarProp->SurfaceReflectances(), LarProp->SurfaceReflectanceDiffuseFractions());
-    else
+    //if(DetProp->SimpleBoundary())
+    //  SetReflectances("LAr", LarProp->SurfaceReflectances(), LarProp->SurfaceReflectanceDiffuseFractions());
+    //else
       SetReflectances(LarProp->SurfaceReflectances());
 
     // If we are using scint by particle type, load these

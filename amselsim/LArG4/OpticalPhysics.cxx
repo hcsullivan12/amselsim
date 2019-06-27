@@ -6,7 +6,7 @@
 // - Cerenkov light can be enabled or disabled as required
 //
 // - The default geant4 reflection process is swapped for a simpler
-//     custom boundary process in LArG4
+//     custom boundary process in AmSelG4
 //
 // Parameters relating to the physics in this constructor can be set
 // in the Utilities/LArParameters service.
@@ -105,7 +105,7 @@
 
 //Register optical physics in custom physics list
 
-namespace larg4 {
+namespace amselg4 {
 
   CustomPhysicsFactory<OpticalPhysics> optical_factory("Optical");
 

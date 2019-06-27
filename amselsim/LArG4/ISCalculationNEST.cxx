@@ -13,7 +13,7 @@
 
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
-namespace larg4{
+namespace amselg4{
 
   //----------------------------------------------------------------------------
   ISCalculationNEST::ISCalculationNEST(CLHEP::HepRandomEngine& engine)

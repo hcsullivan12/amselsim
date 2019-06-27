@@ -1,0 +1,12 @@
+
+BEGIN_PROLOG
+
+amselsim_geo:
+{
+ Name:     "amsel"
+ GDML:     "srcs/amselsim/amselsim/Geometry/gdml/amsel.gdml"
+ ROOT:     "srcs/amselsim/amselsim/Geometry/gdml/amsel.gdml"
+ ElectronLifetime: 1600
+}
+
+END_PROLOG

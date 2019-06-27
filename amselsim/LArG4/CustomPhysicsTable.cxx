@@ -12,7 +12,7 @@
 
 #include "Geant4/G4VPhysicsConstructor.hh"
 
-namespace larg4 {
+namespace amselg4 {
 
   static CustomPhysicsTable * TheCustomPhysicsTable;
 

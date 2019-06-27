@@ -12,6 +12,8 @@
 #include "Geant4/G4EmSaturation.hh"
 
 #include "amselsim/LArG4/ISCalculationSeparate.h"
+#include "amselsim/Geometry/AmSelGeometryService.h"
+
 #include "lardata/DetectorInfoServices/LArPropertiesService.h"
 #include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
 #include "larsim/Simulation/LArG4Parameters.h"
@@ -21,7 +23,7 @@
 #include "cetlib_except/exception.h"
 
 
-namespace larg4{
+namespace amselg4{
 
   //----------------------------------------------------------------------------
   ISCalculationSeparate::ISCalculationSeparate(CLHEP::HepRandomEngine&)
@@ -38,10 +40,10 @@ namespace larg4{
   {
     art::ServiceHandle<sim::LArG4Parameters const> lgpHandle;
     const detinfo::LArProperties* larp = lar::providerFrom<detinfo::LArPropertiesService>();
-    const detinfo::DetectorProperties* detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
+    amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider(); 
 
-    double density       = detprop->Density(detprop->Temperature());
-    fEfield       = detprop->Efield();
+    double density       = geom->Density(geom->Temperature());
+    fEfield              = geom->Efield();
     fScintByParticleType = larp->ScintByParticleType();
     fGeVToElectrons      = lgpHandle->GeVToElectrons();
 

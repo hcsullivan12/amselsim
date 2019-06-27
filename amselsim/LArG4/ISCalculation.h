@@ -10,7 +10,7 @@
 #include "Geant4/G4Step.hh"
 #include "Geant4/G4UserLimits.hh"
 
-namespace larg4{
+namespace amselg4{
 
  class ISCalculation{
 

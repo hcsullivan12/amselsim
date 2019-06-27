@@ -14,7 +14,7 @@
 // forward declaration
 namespace CLHEP { class HepRandomEngine; }
 
-namespace larg4 {
+namespace amselg4 {
 
   class ISCalculationNEST : public ISCalculation {
 

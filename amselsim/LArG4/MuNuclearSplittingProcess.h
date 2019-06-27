@@ -24,7 +24,7 @@
 
 #include "Geant4/G4DataQuestionaire.hh"
 
-namespace larg4 {
+namespace amselg4 {
 
 class MuNuclearSplittingProcess : public G4WrapperProcess {
 // Override PostStepDoIt method

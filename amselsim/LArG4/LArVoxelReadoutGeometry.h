@@ -23,8 +23,8 @@
 ///   readouts, so this mechanism is relatively easy to extend for
 ///   each type of readout.
 
-#ifndef LArG4_LArVoxelReadoutGeometry_h
-#define LArG4_LArVoxelReadoutGeometry_h
+#ifndef AmSelG4_LArVoxelReadoutGeometry_h
+#define AmSelG4_LArVoxelReadoutGeometry_h
 
 #include "amselsim/LArG4/LArVoxelReadout.h"
 #include "larcore/Geometry/Geometry.h"
@@ -37,7 +37,7 @@
 // Forward declarations
 namespace CLHEP { class HepRandomEngine; }
 
-namespace larg4 {
+namespace amselg4 {
 
   class LArVoxelReadoutGeometry : public G4VUserParallelWorld
   {
@@ -47,7 +47,7 @@ namespace larg4 {
     struct Setup_t {
 
       /// Set up data for `LArVoxelReadout`.
-      larg4::LArVoxelReadout::Setup_t readoutSetup;
+      amselg4::LArVoxelReadout::Setup_t readoutSetup;
 
     }; // struct Setup_t
 
@@ -68,15 +68,15 @@ namespace larg4 {
 					std::string&       daughterName,
 					unsigned int       expectedNum);
 
-    art::ServiceHandle<geo::Geometry const> fGeo;       ///< Handle to the geometry
+    art::ServiceHandle<amselgeo::AmSelGeometryService const> fGeo;
     std::unique_ptr<G4UserLimits>     fStepLimit; ///< G4 doesn't handle memory management,
                                                   ///< so we have to
 
     /// Data for `LArVoxelReadout` setup.
-    larg4::LArVoxelReadout::Setup_t fReadoutSetupData;
+    amselg4::LArVoxelReadout::Setup_t fReadoutSetupData;
 
   };
 
-} // namespace larg4
+} // namespace amselg4
 
-#endif // LArG4_LArVoxelReadoutGeometry_h
+#endif // AmSelG4_LArVoxelReadoutGeometry_h

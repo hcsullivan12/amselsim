@@ -22,7 +22,7 @@
 // C/C++ standard libraries
 #include <cassert>
 
-namespace larg4 {
+namespace amselg4 {
 
   static IonizationAndScintillation* gInstance = 0;
 
@@ -59,9 +59,9 @@ namespace larg4 {
     fISCalculator = lgp->IonAndScintCalculator();
 
     if(fISCalculator.compare("NEST") == 0)
-      fISCalc = new larg4::ISCalculationNEST(fEngine);
+      fISCalc = new amselg4::ISCalculationNEST(fEngine);
     else if(fISCalculator.compare("Separate") == 0)
-      fISCalc = new larg4::ISCalculationSeparate(fEngine);
+      fISCalc = new amselg4::ISCalculationSeparate(fEngine);
     else
       mf::LogWarning("IonizationAndScintillation") << "No ISCalculation set, this can't be good.";
 

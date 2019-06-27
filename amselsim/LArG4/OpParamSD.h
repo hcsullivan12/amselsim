@@ -50,7 +50,7 @@ namespace sim{
   class SimPhotonsCollection;
 }
 
-namespace larg4 {
+namespace amselg4 {
 
   class OpDetLookup;
   class OpDetPhotonTable;

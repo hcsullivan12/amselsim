@@ -9,14 +9,14 @@
 //
 
 // TODO uniform the header guard format to LArSoft common
-#ifndef LArG4_MaterialPropertyLoader_h
-#define LArG4_MaterialPropertyLoader_h
+#ifndef AmSelG4_MaterialPropertyLoader_h
+#define AmSelG4_MaterialPropertyLoader_h
 
 // TODO add <string> header
 #include "Geant4/G4LogicalVolumeStore.hh"
 #include <map>
 
-namespace larg4 {
+namespace amselg4 {
 
   /**
    * @brief Stores material properties and sends them to GEANT4 geometry.
@@ -38,7 +38,7 @@ namespace larg4 {
    * reflection fraction) are stored as properties of the `"LAr"` material,
    * with a name `"REFLECTANCE_<Material>"` and
    * `"DIFFUSE_REFLECTANCE_FRACTION_<Material>"`. This is the storage policy
-   * expected by `larg4::OpBoundaryProcessSimple`, which implements the simple
+   * expected by `amselg4::OpBoundaryProcessSimple`, which implements the simple
    * boundary model.
    *
    */
@@ -119,7 +119,7 @@ namespace larg4 {
     /// @name Setting of specific properties
     /// @{
 
-    // Method to set LArG4 Birks constant
+    // Method to set AmSelG4 Birks constant
     void SetBirksConstant( std::string, double, double );
 
 
@@ -207,7 +207,7 @@ namespace larg4 {
   }; // clas MaterialPropertyLoader
 
 
-} // namespace larg4
+} // namespace amselg4
 
 
-#endif // LArG4_MaterialPropertyLoader_h
+#endif // AmSelG4_MaterialPropertyLoader_h

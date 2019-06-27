@@ -9,10 +9,10 @@
 #include "Geant4/G4VPhysicsConstructor.hh"
 
 #ifndef CUSTOMPHYSICSTABLE_hh
-namespace larg4 { class CustomPhysicsTable; }
+namespace amselg4 { class CustomPhysicsTable; }
 #endif
 
-namespace larg4 {
+namespace amselg4 {
   class CustomPhysicsFactoryBase
   {
   public:
@@ -46,7 +46,7 @@ namespace larg4 {
 }
 #include "amselsim/LArG4/CustomPhysicsTable.hh"
 
-namespace larg4 {
+namespace amselg4 {
 
   template<class T> G4VPhysicsConstructor * CustomPhysicsFactory<T>::Build()
   {

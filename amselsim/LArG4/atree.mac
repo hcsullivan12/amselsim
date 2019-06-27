@@ -1,4 +1,4 @@
-# This is an example of alternative macro file to replace LArG4.mac
+# This is an example of alternative macro file to replace AmSelG4.mac
 # for debugging purposes.  It prints out a dump of the Geant4
 # geometry in text form.
 

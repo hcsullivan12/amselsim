@@ -27,7 +27,7 @@
 #include "Geant4/G4RandomTools.hh"
 
 
-namespace larg4{
+namespace amselg4{
 
 
   OpParamSD::OpParamSD(G4String DetectorUniqueName, std::string ModelName, int Orientation, std::vector<std::vector<double> > ModelParameters)

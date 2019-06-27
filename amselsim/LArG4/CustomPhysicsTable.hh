@@ -16,7 +16,7 @@
 // for each available physics module, and can provide the list of their names and
 // the constructor for each to the physics list.
 //
-// This means new physics modules can be enabled via the LArG4.xml file with no change to
+// This means new physics modules can be enabled via the AmSelG4.xml file with no change to
 // the physics list code
 //
 // See CustomPhysicsFactory.hh and CustomPhysicsFactory.cxx for more details.
@@ -27,13 +27,13 @@
 #define CUSTOMPHYSICSTABLE_hh 1
 
 #ifndef CUSTOMPHYSICSFACTORY_hh
-namespace larg4 { class CustomPhysicsFactoryBase; }
+namespace amselg4 { class CustomPhysicsFactoryBase; }
 #endif
 
 #include "Geant4/G4VPhysicsConstructor.hh"
 
 
-namespace larg4 {
+namespace amselg4 {
   class CustomPhysicsTable
   {
 

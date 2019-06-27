@@ -29,6 +29,7 @@
 // LArSoft code
 #include "amselsim/LArG4/LArVoxelReadout.h"
 #include "amselsim/LArG4/ParticleListAction.h"
+#include "amselsim/Geometry/AmSelGeometryService.h"
 #include "larevt/SpaceChargeServices/SpaceChargeService.h"
 #include "larcoreobj/SimpleTypesAndConstants/RawTypes.h" // raw::ChannelID_t
 
@@ -37,7 +38,7 @@
 #include "CLHEP/Random/RandPoisson.h"
 #include "CLHEP/Random/RandFlat.h"
 
-namespace larg4 {
+namespace amselg4 {
 
 
   //---------------------------------------------------------------------------------------
@@ -106,11 +107,12 @@ namespace larg4 {
   {
     // for c2: larp is unused
     //auto const * larp = lar::providerFrom<detinfo::LArPropertiesService>();
-    auto const * detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
-    fElectronLifetime      = detprop->ElectronLifetime();
+    amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
+    //auto const * detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
+    fElectronLifetime      = geom->ElectronLifetime();
     for (int i = 0; i<3; ++i)
-      fDriftVelocity[i]    = detprop->DriftVelocity(detprop->Efield(i),
-						    detprop->Temperature())/1000.;
+      fDriftVelocity[i]    = geom->DriftVelocity(geom->Efield(),
+						 geom->Temperature())/1000.;
 
     fElectronClusterSize   = fLgpHandle->ElectronClusterSize();
     fMinNumberOfElCluster  = fLgpHandle->MinNumberOfElCluster();
@@ -120,7 +122,7 @@ namespace larg4 {
     fSkipWireSignalInTPCs  = fLgpHandle->SkipWireSignalInTPCs();
 
     MF_LOG_DEBUG("LArVoxelReadout")  << " e lifetime: "        << fElectronLifetime
-                                  << "\n Temperature: "     << detprop->Temperature()
+                                  << "\n Temperature: "     << geom->Temperature()
                                   << "\n Drift velocity: "  << fDriftVelocity[0]
                                   <<" "<<fDriftVelocity[1]<<" "<<fDriftVelocity[2];
 
@@ -144,10 +146,10 @@ namespace larg4 {
 
   //--------------------------------------------------------------------------------------
   void LArVoxelReadout::ClearSimChannels() {
-    fChannelMaps.resize(fGeoHandle->Ncryostats());
+    fChannelMaps.resize(fGeoHandle->provider()->Ncryostats());
     size_t cryo = 0;
     for (auto& cryoData: fChannelMaps) { // each, a vector of maps
-      cryoData.resize(fGeoHandle->NTPC(cryo++));
+      cryoData.resize(fGeoHandle->provider()->NTPC());//cryo++));
       for (auto& channelsMap: cryoData) channelsMap.clear(); // each, a map
     } // for cryostats
   } // LArVoxelReadout::ClearSimChannels()
@@ -212,7 +214,7 @@ namespace larg4 {
 
       // Make sure we have the IonizationAndScintillation singleton
       // reset to this step
-      larg4::IonizationAndScintillation::Instance()->Reset(step);
+      amselg4::IonizationAndScintillation::Instance()->Reset(step);
       fNSteps++;
       if( !fDontDriftThem ){
 
@@ -238,7 +240,7 @@ namespace larg4 {
           const G4VTouchable* pTouchable = step->GetPreStepPoint()->GetTouchable();
           if (!pTouchable) {
             throw cet::exception
-              ("LArG4") << "Untouchable step in LArVoxelReadout::ProcessHits()";
+              ("AmSelG4") << "Untouchable step in LArVoxelReadout::ProcessHits()";
           }
 
           // one of the ancestors of the touched volume is supposed to be
@@ -263,7 +265,7 @@ namespace larg4 {
             // this is a fundamental error where the step does not happen in
             // any TPC; this should not happen in the readout geometry!
             throw cet::exception
-              ("LArG4") << "No TPC ID found in LArVoxelReadout::ProcessHits()";
+              ("AmSelG4") << "No TPC ID found in LArVoxelReadout::ProcessHits()";
           } // if
           MF_LOG_DEBUG("LArVoxelReadoutHit") << " hit in C=" << cryostat << " T=" << tpc;
         } // if more than one TPC
@@ -369,8 +371,8 @@ namespace larg4 {
 
     // Already know which TPC we're in because we have been told
 
-    try{
-      const geo::TPCGeo &tpcg = fGeoHandle->TPC(tpc, cryostat);
+ /*   try{
+      const geo::TPCGeo &tpcg = fGeoHandle->provider()->TPC(tpc, cryostat);
 
       // X drift distance - the drift direction can be either in
       // the positive or negative direction, so use std::abs
@@ -411,8 +413,8 @@ namespace larg4 {
       }
 
       const double lifetimecorrection = TMath::Exp(TDrift / LifetimeCorr_const);
-      const int    nIonizedElectrons  = larg4::IonizationAndScintillation::Instance()->NumberIonizationElectrons();
-      const double energy             = larg4::IonizationAndScintillation::Instance()->EnergyDeposit();
+      const int    nIonizedElectrons  = amselg4::IonizationAndScintillation::Instance()->NumberIonizationElectrons();
+      const double energy             = amselg4::IonizationAndScintillation::Instance()->EnergyDeposit();
 
       // if we have no electrons (too small energy or too large recombination)
       // we are done already here
@@ -518,7 +520,7 @@ namespace larg4 {
               xyz1[2] = landingPos.Z();
 
             } // if charge lands off plane
-            uint32_t channel = fGeoHandle->NearestChannel(xyz1, p, tpc, cryostat);
+            uint32_t channel = fGeoHandle->provider()->NearestChannel(xyz1, p, tpc, cryostat);
 
             /// \todo check on what happens if we allow the tdc value to be
             /// \todo beyond the end of the expected number of ticks
@@ -571,7 +573,7 @@ namespace larg4 {
     catch(cet::exception &e){
       MF_LOG_DEBUG("LArVoxelReadout") << "step cannot be found in a TPC\n"
                                         << e;
-    }
+    }*/
 
     return;
   }
@@ -581,4 +583,4 @@ namespace larg4 {
   void LArVoxelReadout::DrawAll()  {}
   void LArVoxelReadout::PrintAll() {}
 
-} // namespace larg4
+} // namespace amselg4

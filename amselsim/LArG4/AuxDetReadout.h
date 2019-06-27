@@ -10,10 +10,12 @@
 #include "Geant4/G4VSensitiveDetector.hh"
 #include "Geant4/globals.hh"
 
+#include "art/Framework/Services/Registry/ServiceHandle.h"
 #include "lardataobj/Simulation/AuxDetSimChannel.h"
-#include "larcore/Geometry/Geometry.h"
 #include "larcorealg/Geometry/AuxDetGeo.h"
 #include "larcorealg/Geometry/AuxDetSensitiveGeo.h"
+
+#include "amselsim/Geometry/AmSelGeometryService.h"
 
 #include <vector>
 
@@ -22,7 +24,7 @@ class G4HCofThisEvent;
 class G4TouchableHistory;
 class G4Step;
 
-namespace larg4 {
+namespace amselg4 {
 
   class AuxDetReadout : public G4VSensitiveDetector
   {
@@ -73,7 +75,7 @@ namespace larg4 {
     sim::AuxDetSimChannel const GetAuxDetSimChannel() const { return fAuxDetSimChannel; };
 
   private:
-    art::ServiceHandle<geo::Geometry const> fGeoHandle;        ///< Handle to the Geometry service
+    art::ServiceHandle<amselgeo::AmSelGeometryService const> fGeo;
     uint32_t                          fAuxDet;           ///< which AuxDet this AuxDetReadout corresponds to
     uint32_t                          fAuxDetSensitive;  ///< which sensitive volume of the AuxDet this AuxDetReadout corresponds to
     sim::AuxDetSimChannel             fAuxDetSimChannel; ///< Contains the sim::AuxDetSimChannel for this AuxDet

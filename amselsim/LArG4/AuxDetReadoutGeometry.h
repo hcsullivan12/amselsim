@@ -22,8 +22,8 @@
 ///   readouts, so this mechanism is relatively easy to extend for
 ///   each type of readout.
 
-#ifndef LArG4_AuxDetReadoutGeometry_h
-#define LArG4_AuxDetReadoutGeometry_h
+#ifndef AmSelG4_AuxDetReadoutGeometry_h
+#define AmSelG4_AuxDetReadoutGeometry_h
 
 #include "larcore/Geometry/Geometry.h"
 #include "Geant4/G4VUserParallelWorld.hh"
@@ -31,7 +31,9 @@
 #include "Geant4/G4Transform3D.hh"
 #include "Geant4/G4VPhysicalVolume.hh"
 
-namespace larg4 {
+#include "amselsim/Geometry/AmSelGeometryService.h"
+
+namespace amselg4 {
 
   class AuxDetReadoutGeometry : public G4VUserParallelWorld
   {
@@ -55,11 +57,11 @@ namespace larg4 {
 				    unsigned int depth,
 				    G4Transform3D DepthToWorld);
 
-    art::ServiceHandle<geo::Geometry const> fGeo;             ///< Handle to the geometry
+    art::ServiceHandle<amselgeo::AmSelGeometryService const> fGeo;
     uint32_t                          fNumSensitiveVol; ///< number of sensitive volumes
 
   };
 
-} // namespace larg4
+} // namespace amselg4
 
-#endif // LArG4_AuxDetReadoutGeometry_h
+#endif // AmSelG4_AuxDetReadoutGeometry_h

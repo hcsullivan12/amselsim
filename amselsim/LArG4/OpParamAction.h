@@ -32,7 +32,7 @@
 #ifndef OPPARAMACTION_H
 #define OPPARAMACTION_H
 
-namespace larg4
+namespace amselg4
 {
 
 

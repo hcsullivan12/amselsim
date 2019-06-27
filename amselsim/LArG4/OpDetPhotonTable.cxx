@@ -20,7 +20,7 @@
 
 #include "lardataobj/Simulation/SimEnergyDeposit.h"
 
-namespace larg4 {
+namespace amselg4 {
   OpDetPhotonTable * TheOpDetPhotonTable;
 
   //--------------------------------------------------

@@ -25,6 +25,7 @@
 //
 
 #include "amselsim/LArG4/LArStackingAction.h"
+#include "amselsim/Geometry/AmSelGeometryService.h"
 #include "larcore/Geometry/Geometry.h"
 
 #include "Geant4/G4SDManager.hh"
@@ -66,7 +67,7 @@ G4ClassificationOfNewTrack
 LArStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 {
   G4ClassificationOfNewTrack classification = fWaiting;
-  art::ServiceHandle<geo::Geometry const> geom;
+  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
   TString volName(InsideTPC(aTrack));
   Double_t buffer = 500; // Keep muNucl neutrals within 5m (for now) of larTPC.
 
@@ -169,8 +170,7 @@ LArStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 
 std::string LArStackingAction::InsideTPC(const G4Track * aTrack)
 {
-
-  art::ServiceHandle<geo::Geometry const> geom;
+  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
   const G4ThreeVector tr4Pos = aTrack->GetPosition();
 
   // G4 returns positions in mm, have to convert to cm for LArSoft coordinate systems

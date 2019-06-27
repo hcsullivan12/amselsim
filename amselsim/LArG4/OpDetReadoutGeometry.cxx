@@ -19,7 +19,7 @@
 
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
-namespace larg4 {
+namespace amselg4 {
 
   OpDetReadoutGeometry::OpDetReadoutGeometry(G4String OpDetSensitiveName, const G4String name) :
     G4VUserParallelWorld(name)

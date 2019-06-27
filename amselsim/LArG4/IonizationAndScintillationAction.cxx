@@ -14,7 +14,7 @@
 
 #include <algorithm>
 
-namespace larg4 {
+namespace amselg4 {
 
   //----------------------------------------------------------------------------
   // Constructor.
@@ -33,9 +33,9 @@ namespace larg4 {
   // scintillation photons using the IonizationAndScintillation singleton.
   void IonizationAndScintillationAction::SteppingAction(const G4Step* step)
   {
-    larg4::IonizationAndScintillation::Instance()->Reset(step);
+    amselg4::IonizationAndScintillation::Instance()->Reset(step);
 
     return;
   }
 
-} // namespace LArG4
+} // namespace AmSelG4

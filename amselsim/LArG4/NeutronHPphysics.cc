@@ -37,8 +37,8 @@
 // Register this physics constructor so that we can use the name "NeutronHP" to
 // load it in a FHiCL custom physics list. See the section "Using Custom
 // Physics Modules" on the web page
-// http://cdcvs.fnal.gov/redmine/projects/larsoft/wiki/LArG4 for more details.
-larg4::CustomPhysicsFactory<NeutronHPphysics> dummy_factory("NeutronHP");
+// http://cdcvs.fnal.gov/redmine/projects/larsoft/wiki/AmSelG4 for more details.
+amselg4::CustomPhysicsFactory<NeutronHPphysics> dummy_factory("NeutronHP");
 
 // Thermal neutron physics is enabled by default
 // (important for low-energy neutron interactions!)

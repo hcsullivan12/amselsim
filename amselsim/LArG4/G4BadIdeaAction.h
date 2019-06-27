@@ -8,14 +8,14 @@
 /// \author  brebel@fnal.gov
 ////////////////////////////////////////////////////////////////////////
 
-/// This class implements the LArG4::UserAction interface in order to
+/// This class implements the AmSelG4::UserAction interface in order to
 /// try to side step known bugs in version 4.9.4.p02 of Geant4
 //
 /// It uses multiple inheritance: it inherits from G4Base::UserAction,
 /// in order to take advantage of Geant4's user hooks
 
-#ifndef LArG4_G4BADIDEAACTION_H
-#define LArG4_G4BADIDEAACTION_H
+#ifndef AmSelG4_G4BADIDEAACTION_H
+#define AmSelG4_G4BADIDEAACTION_H
 
 #include "nutools/G4Base/UserAction.h"
 
@@ -27,7 +27,7 @@
 // Forward declarations.
 class G4Step;
 
-namespace larg4 {
+namespace amselg4 {
 
   class G4BadIdeaAction : public g4b::UserAction
   {
@@ -47,6 +47,6 @@ namespace larg4 {
 
   };
 
-} // namespace LArG4
+} // namespace AmSelG4
 
-#endif // LArG4_G4BADIDEAACTION_H
+#endif // AmSelG4_G4BADIDEAACTION_H

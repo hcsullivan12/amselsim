@@ -1,7 +1,7 @@
-# Geant4 macro file for controlling Geant4 operations in LArG4.
+# Geant4 macro file for controlling Geant4 operations in AmSelG4.
 
 # Place any G4 commands in this file.  Don't include /run/initialize
-# or /run/beamOn; that's handled by LArG4_module.cc.
+# or /run/beamOn; that's handled by AmSelG4_module.cc.
 
 # Sets some verbose levels.  Note that these lines can be commented
 # out if you don't need the Geant4 status information.

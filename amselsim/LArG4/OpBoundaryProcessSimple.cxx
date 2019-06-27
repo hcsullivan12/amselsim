@@ -62,7 +62,7 @@
 
 
 
-namespace larg4 {
+namespace amselg4 {
 
   //Constructor
 
@@ -106,8 +106,8 @@ namespace larg4 {
   {
 
     // Note - these have to be loaded here, since this object
-    // is constructed before LArG4, and hence before the
-    // LArG4 parameters are read from config
+    // is constructed before AmSelG4, and hence before the
+    // AmSelG4 parameters are read from config
 
     fTheStatus = Undefined;
     aParticleChange.Initialize(aTrack);

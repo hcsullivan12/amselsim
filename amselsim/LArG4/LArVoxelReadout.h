@@ -22,7 +22,7 @@
 ///
 /// This class works differently, by accumulating the information in
 /// its internal sim::LArVoxelList.  See LArVoxelListAction for how
-/// this information is made available to the main LArG4 module.
+/// this information is made available to the main AmSelG4 module.
 ///
 /// Why define a parallel geometry?  Here are some reasons:
 ///
@@ -39,8 +39,8 @@
 ///   readouts, so this mechanism is relatively easy to extend for
 ///   each type of readout.
 
-#ifndef LArG4_LArVoxelReadout_h
-#define LArG4_LArVoxelReadout_h
+#ifndef AmSelG4_LArVoxelReadout_h
+#define AmSelG4_LArVoxelReadout_h
 
 #include <stdint.h>
 #include <vector>
@@ -50,8 +50,9 @@
 #include "Geant4/G4PVPlacement.hh"
 #include "Geant4/globals.hh"
 
+#include "amselsim/Geometry/AmSelGeometryService.h"
+
 #include "lardataobj/Simulation/SimChannel.h"
-#include "larcore/Geometry/Geometry.h"
 #include "larcorealg/Geometry/TPCGeo.h"
 #include "larsim/Simulation/LArG4Parameters.h"
 #include "amselsim/LArG4/IonizationAndScintillation.h"
@@ -65,7 +66,7 @@ class G4TouchableHistory;
 class G4Step;
 namespace CLHEP { class HEPRandomEngine; }
 
-namespace larg4 {
+namespace amselg4 {
 
   /// Simple structure holding a TPC and cryostat number
   struct TPCID_t {
@@ -123,7 +124,7 @@ namespace larg4 {
    * transportation of the ensuing ionisation electrons to the readout channels:
    *
    * 1. the number of ionisation electrons is read from the current
-   *   `larg4::IonizationAndScintillation` instance
+   *   `amselg4::IonizationAndScintillation` instance
    * 2. space charge displacement is optionally applied
    * 3. lifetime correction is applied
    * 4. charge is split in small electron clusters
@@ -325,8 +326,8 @@ namespace larg4 {
     double                                    fOffPlaneMargin = 0.0;
 
     std::vector<std::vector<ChannelMap_t>>    fChannelMaps; ///< Maps of cryostat, tpc to channel data
-    art::ServiceHandle<geo::Geometry const>         fGeoHandle;  ///< Handle to the Geometry service
-    art::ServiceHandle<sim::LArG4Parameters const>  fLgpHandle;  ///< Handle to the LArG4 parameters service
+    art::ServiceHandle<amselgeo::AmSelGeometryService const> fGeoHandle;
+    art::ServiceHandle<sim::LArG4Parameters const>  fLgpHandle;  ///< Handle to the AmSelG4 parameters service
     unsigned int                              fTPC;        ///< which TPC this LArVoxelReadout corresponds to
     unsigned int                              fCstat;      ///< and in which cryostat (if bSingleTPC is true)
     bool                                      bSingleTPC;  ///< true if this readout is associated with a single TPC
@@ -345,4 +346,4 @@ namespace larg4 {
 
 }
 
-#endif // LArG4_LArVoxelReadout_h
+#endif // AmSelG4_LArVoxelReadout_h

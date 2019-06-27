@@ -5,16 +5,16 @@
 /// \author  seligman@nevis.columbia.edu
 ////////////////////////////////////////////////////////////////////////
 
-/// This class implements the LArG4::UserAction interface in order to
+/// This class implements the AmSelG4::UserAction interface in order to
 /// accumulate a list of particles modeled by Geant4.
 //
-/// It uses multiple inheritance: it inherits from LArG4::UserAction,
+/// It uses multiple inheritance: it inherits from AmSelG4::UserAction,
 /// in order to take advantage of Geant4's user hooks; it also
 /// inherits from cfg::Observer, because it accesses a parameter from
 /// an XML configuration file.
 
-#ifndef LArG4_ParticleListAction_h
-#define LArG4_ParticleListAction_h
+#ifndef AmSelG4_ParticleListAction_h
+#define AmSelG4_ParticleListAction_h
 
 #include "larcorealg/CoreUtils/ParticleFilters.h" // util::PositionInVolumeFilter
 #include "lardataobj/Simulation/sim.h" // sim::GeneratorIndex_t, ...
@@ -38,7 +38,7 @@ namespace sim {
   class ParticleList;
 }
 
-namespace larg4 {
+namespace amselg4 {
 
   class ParticleListAction : public g4b::UserAction
   {
@@ -147,6 +147,6 @@ namespace larg4 {
 
   };
 
-} // namespace LArG4
+} // namespace AmSelG4
 
-#endif // LArG4_ParticleListAction_h
+#endif // AmSelG4_ParticleListAction_h

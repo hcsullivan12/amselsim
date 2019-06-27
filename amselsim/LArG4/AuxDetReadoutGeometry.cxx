@@ -31,7 +31,7 @@
 
 #include <cmath>
 
-namespace larg4 {
+namespace amselg4 {
 
   // Constructor and destructor.
   AuxDetReadoutGeometry::AuxDetReadoutGeometry(const G4String name)
@@ -87,10 +87,10 @@ namespace larg4 {
 
       size_t adNum = 0;
       size_t svNum = 0;
-      fGeo->FindAuxDetSensitiveAtPosition(worldPos, adNum, svNum);
-      //  N.B. This name is expected by code in LArG4:
+      //fGeo->FindAuxDetSensitiveAtPosition(worldPos, adNum, svNum);
+      //  N.B. This name is expected by code in AmSelG4:
       std::string SDName = "AuxDetSD_AuxDet" + std::to_string(adNum) + "_" + std::to_string(svNum);
-      AuxDetReadout* adReadout = new larg4::AuxDetReadout(SDName, adNum, svNum);
+      AuxDetReadout* adReadout = new amselg4::AuxDetReadout(SDName, adNum, svNum);
 
       MF_LOG_DEBUG("AuxDetReadoutGeometry") << "found" << path[depth]->GetName()
 					 << ", number " << adNum << ":" << svNum;
@@ -133,7 +133,7 @@ namespace larg4 {
 
     G4LogicalVolume* LogicalVolumeAtDepth = path[depth]->GetLogicalVolume();
 
-    std::string volName(path[depth]->GetName());
+    /*std::string volName(path[depth]->GetName());
     if( volName.find("volAuxDet") != std::string::npos ){
 
       // find world coordinate of the AuxDet origin in cm
@@ -142,10 +142,10 @@ namespace larg4 {
       double worldPos[3] = { world.x() / CLHEP::cm, world.y() / CLHEP::cm, world.z() / CLHEP::cm };
 
       unsigned int adNum;
-      fGeo->PositionToAuxDet(worldPos, adNum);
-      //  N.B. This name is expected by code in LArG4:
+      //fGeo->PositionToAuxDet(worldPos, adNum);
+      //  N.B. This name is expected by code in AmSelG4:
       std::string SDName = "AuxDetSD_AuxDet" + std::to_string(adNum) + "_0";
-      AuxDetReadout* adReadout = new larg4::AuxDetReadout(SDName, adNum, 0);
+      AuxDetReadout* adReadout = new amselg4::AuxDetReadout(SDName, adNum, 0);
 
       MF_LOG_DEBUG("AuxDetReadoutGeometry") << "found" << path[depth]->GetName()
 					 << ", number " << adNum << ":0";
@@ -155,7 +155,8 @@ namespace larg4 {
       LogicalVolumeAtDepth->SetSensitiveDetector(adReadout);
       ++fNumSensitiveVol;
       return;
-    }
+    }*/
+return;
 
     // Explore the next layer down -- unless it is a very deep geometry,
     // recursion should end before exception is thrown.
@@ -181,4 +182,4 @@ namespace larg4 {
   }
 
 
-} // namespace larg4
+} // namespace amselg4
