@@ -498,7 +498,6 @@ namespace amselg4 {
       G4VPhysicalVolume* d = logicalVolume->GetDaughter(i);
 
     //  MF_LOG_DEBUG("LArVoxelReadoutGeometry") << d->GetName() << ":" << mother->GetName();
-      std::cout << logicalVolume->GetName() << " " << d->GetName() << " " << daughterName << std::endl;
       if(d->GetName().contains(daughterName)){
 
         /*// check that this cryostat is the requested one using fCryostat

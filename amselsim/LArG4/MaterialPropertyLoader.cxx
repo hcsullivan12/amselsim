@@ -304,7 +304,7 @@ namespace amselg4 {
 
 
     // scalar properties
-
+    std::cout << "\n\n\n" << LarProp->ScintYield(true) << "\n\n\n";
     SetMaterialConstProperty("LAr", "SCINTILLATIONYIELD",  LarProp->ScintYield(true),       1/CLHEP::MeV ); // true = scaled down by prescale in larproperties
     SetMaterialConstProperty("LAr", "RESOLUTIONSCALE",     LarProp->ScintResolutionScale(), 1);
     SetMaterialConstProperty("LAr", "FASTTIMECONSTANT",    LarProp->ScintFastTimeConst(),   CLHEP::ns);

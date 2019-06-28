@@ -7,7 +7,7 @@
     <position name="TPCvolTPCActive0_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
     <rotation name="Cryostat_rot" unit="degree" x="0.0" y="0.0" z="0.0"/>
     <position name="CryostatvolTPC0_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
-    <position name="volCryostat_pos" unit="cm" x="0.0" y="0.0" z="-50"/>
+    <position name="volCryostat_pos" unit="cm" x="0.0" y="0.0" z="50"/>
     <rotation name="volCryostat_rot" unit="degree" x="0" y="0" z="0"/>
     <rotation name="noRotate" unit="degree" x="0" y="0" z="0"/>
     <rotation name="r90aboutX" unit="degree" x="90" y="0" z="0"/>

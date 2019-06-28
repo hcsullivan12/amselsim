@@ -458,7 +458,6 @@ namespace amselg4 {
     MPL->GetPropertiesFromServices();
     MPL->UpdateGeometry(G4LogicalVolumeStore::GetInstance());
 
-    std::cout << "HERE\n";
     // Tell the detector about the parallel LAr voxel geometry.
     std::vector<G4VUserParallelWorld*> pworlds;
     // create the ionization and scintillation calculator;

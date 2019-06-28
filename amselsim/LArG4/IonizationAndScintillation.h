@@ -37,7 +37,9 @@ namespace amselg4 {
     double VisibleEnergyDeposit()       const { return fISCalc->VisibleEnergyDeposit();       }
     double NumberIonizationElectrons()  const { return fISCalc->NumberIonizationElectrons();  }
     double NumberScintillationPhotons() const { return fISCalc->NumberScintillationPhotons(); }
-    double StepSizeLimit()              const { return fISCalc->StepSizeLimit();              }
+    double StepSizeLimit()              const { return fISCalc->StepSizeLimit();              } 
+    std::vector<G4ThreeVector> const& StepPoints() { return fISCalc->StepPoints(); }
+    std::vector<size_t> const&        StepScint()  { return fISCalc->StepScint(); }
 
   private:
 

@@ -228,6 +228,11 @@ namespace amselg4{
 				       << " step length: "   << step->GetStepLength()/CLHEP::cm;
 
 
+
+    // Log the position of this step and the number of photons
+    fStepPointVec.push_back(step->GetPreStepPoint()->GetPosition());
+    fStepScintVec.push_back(fNumScintPhotons); 
+
     return;
   }
 

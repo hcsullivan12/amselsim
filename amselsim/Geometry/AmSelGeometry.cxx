@@ -27,20 +27,19 @@ void AmSelGeometry::Initialize()
   TGeoManager::Import(fGDML.c_str());
 
   // Initialize detector properties
-  auto topNode = gGeoManager->GetTopNode();
-  auto vc      = topNode->GetVolume();
-  for (int i = 0; i < vc->GetNdaughters(); i++)
+  TObjArray* volumes = gGeoManager->GetListOfVolumes();
+  int nvols = volumes->GetEntries();
+  for (int i = 0; i < nvols; i++)
   {
-    if(strncmp(vc->GetNode(i)->GetName(), "volTPCActive", 12) != 0) continue;
+    TGeoVolume* vol = (TGeoVolume*)volumes->At(i);
+    std::cout << vol->GetName() << std::endl;
+    if(strncmp(vol->GetName(), "volTPCActive", 12) != 0) continue;
   
-    auto volNode = vc->GetNode(i);
-    TGeoVolume* vca = volNode->GetVolume();
+    fDetHalfHeight = ((TGeoBBox*)vol->GetShape())->GetDX(); 
+    fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
+    fDetLength     = ((TGeoBBox*)vol->GetShape())->GetDZ(); 
 
-    if (!vca) throw cet::exception("AmSelGeometry") << "volTPCActive not found!\n";
-
-    fDetHalfHeight = ((TGeoBBox*)vca->GetShape())->GetDX(); 
-    fDetHalfWidth  = ((TGeoBBox*)vca->GetShape())->GetDY(); 
-    fDetLength     = ((TGeoBBox*)vca->GetShape())->GetDZ(); 
+    std::cout << "\n\n\nHEYYYYY  " << fDetLength << "\n\n\n";
     fLArTPCVolName = "volTPCActive";
   }
 }
