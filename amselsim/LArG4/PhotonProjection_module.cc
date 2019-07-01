@@ -27,6 +27,8 @@
 #include "amselsim/LArG4/IonizationAndScintillation.h"
 #include "amselsim/Geometry/AmSelGeometryService.h"
 
+#include "TTree.h"
+
 namespace amselg4 
 {
 
@@ -50,27 +52,43 @@ public:
   // Selected optional functions.
   void beginJob() override;
   void endJob() override;
+  void reconfigure(fhicl::ParameterSet const& p);
+  void resetVars();
 
 private:
 
-  TH2F* hHitZY;
   CLHEP::HepRandomEngine& fEngine;
+  TTree* fTree;
+
+  ULong64_t fNScint;
+  ULong64_t fNHits;
+  ULong64_t fNPixels;
+  float     fPixelSpacing;
+
+  // Since most pixels will not see any light and because we will
+  // have a large number of pxels, only store those which see light.
+  // We will do this by storing the pixel ID assuming some pixelization scheme.
+  std::vector<UShort_t> fPixelID;
+  std::vector<UShort_t> fPixelNHits;
 };
 
 
 PhotonProjection::PhotonProjection(fhicl::ParameterSet const& p)
   : EDAnalyzer{p},
-    hHitZY(0),
     fEngine(art::ServiceHandle<rndm::NuRandomService>{}
                 ->createEngine(*this, "HepJamesRandom", "propagation", p, "PropagationSeed"))
 
 {
-  // Call appropriate consumes<>() for any products to be retrieved by this module.
+  //this->reconfigure(p);
+}
+
+void PhotonProjection::reconfigure(fhicl::ParameterSet const& p)
+{
 }
 
 void PhotonProjection::analyze(art::Event const& e)
 {
-  ResetVars();
+  resetVars();
 
   std::cout << "////////////////////////////////////////////////\n"
             << "Starting photon projection...\n";
@@ -118,25 +136,42 @@ void PhotonProjection::analyze(art::Event const& e)
           projPos.y() <= -1*detHalfWidth || projPos.y() >= detHalfWidth) continue;
 
       // This hit the readout plane
-      //hHitZY->Fill(projPos.z(), projPos.y());
       nHit++;
+     
+     // std::vector<float> point = {projPos.z(), projPos.y()};
+      //auto nearestPixelId = geom->NearestPixelID(point); 
     }
   }
   std::cout << "Number of photons incident on plane: " << nHit << std::endl;
   std::cout << "////////////////////////////////////////////////\n";
+
+  fTree->Fill();
 }
 
-
+void PhotonProjection::resetVars()
+{
+  fNScint = 0;
+  fNHits = 0;
+  fPixelID.clear();
+  fPixelNHits.clear();
+}
 
 void PhotonProjection::beginJob()
 {
-  // make the histograms
-  art::ServiceHandle<art::TFileService const> tfs;
-  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
-  double detHalfWidth  = geom->DetHalfWidth();
-  double detLength     = geom->DetLength();
+  art::ServiceHandle<art::TFileService> tfs;
+  fTree = tfs->make<TTree>("anatree","analysis tree");
 
-  hHitZY = tfs->make<TH2F>("hitYZ", "Photon Hits on YZ plane", 100, 0, detLength, 100, -1*detHalfWidth-20, detHalfWidth+20);
+  fTree->Branch("nScint",       &fNScint,       "nScint/l");
+  fTree->Branch("nHits",        &fNHits,        "nHits/l");
+  fTree->Branch("nPixels",      &fNPixels,      "nPixels/l");
+  fTree->Branch("pixelSpacing", &fPixelSpacing, "pixelSpacing/D");
+  fTree->Branch("pixelIDs" ,    &fPixelID    );
+  fTree->Branch("pixelHits" ,   &fPixelNHits );
+
+  // How many pixels are we dealing with here?
+  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
+  fPixelSpacing = geom->PixelSpacing();
+  fNPixels      = geom->NPixels();
 }
 
 void PhotonProjection::endJob()

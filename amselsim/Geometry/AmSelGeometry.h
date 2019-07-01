@@ -31,6 +31,9 @@ class AmSelGeometry
     double DetHalfHeight() const { return fDetHalfHeight; }
     double DetHalfWidth() const  { return fDetHalfWidth; }
     double DetLength() const     { return fDetLength; }
+    float  PixelSpacing() const  { return fPixelSpacing; }
+    ULong64_t NPixels() const { return fNPixels; }
+    ULong64_t NearestPixelID(const std::vector<double>& point) const;
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
     std::string VolumeName(geo::Point_t const& point) const;
     std::string VolumeName(TVector3 const& point) const
@@ -50,7 +53,9 @@ class AmSelGeometry
     double fDetHalfHeight;
     double fDetHalfWidth;
     double fDetLength;
-
+    float  fPixelSpacing;
+    ULong64_t fNPixels;
+    TGeoVolume* fPixelPlane;
 
 }; // class AmSelGeometry
 

@@ -14,7 +14,10 @@ AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset)
  : fGDML(pset.get< std::string >("GDML")),
    fTemperature(pset.get< double >("Temperature", 90.7)),
    fEfield(pset.get<double>("Efield", 0.5)),
-   fElectronLifetime(pset.get<double>("ElectronLifetime")) 
+   fElectronLifetime(pset.get<double>("ElectronLifetime")),
+   fPixelSpacing(pset.get<float>("PixelSpacing")),
+   fNPixels(0),
+   fPixelPlane(0)
 {
   Initialize();
 }
@@ -29,19 +32,60 @@ void AmSelGeometry::Initialize()
   // Initialize detector properties
   TObjArray* volumes = gGeoManager->GetListOfVolumes();
   int nvols = volumes->GetEntries();
+  ULong_t maxId = 0;
+  std::string volPixelPad("volPixelPad");
+  std::string volPixelPlane("volPixelPlane");
+  std::string volLArActive("volLArActive");
   for (int i = 0; i < nvols; i++)
   {
     TGeoVolume* vol = (TGeoVolume*)volumes->At(i);
-    std::cout << vol->GetName() << std::endl;
-    if(strncmp(vol->GetName(), "volTPCActive", 12) != 0) continue;
-  
-    fDetHalfHeight = ((TGeoBBox*)vol->GetShape())->GetDX(); 
-    fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
-    fDetLength     = ((TGeoBBox*)vol->GetShape())->GetDZ(); 
 
-    std::cout << "\n\n\nHEYYYYY  " << fDetLength << "\n\n\n";
-    fLArTPCVolName = "volTPCActive";
+    if (std::string(vol->GetName()).find(volPixelPlane) != std::string::npos)
+    {
+      std::cout << "\n\nHEEYYYY\n\n\n";
+      auto tempVol = vol->GetNode(0)->GetVolume();
+      auto b = ((TGeoBBox*)vol->GetShape())->GetOrigin();
+      auto m = vol->GetNode(0)->GetMatrix();
+      auto t = m->GetTranslation();
+      Double_t d[3];
+      m->LocalToMaster(t, d);
+      std::cout << t[0] << " " << t[1] << " " << t[2] << std::endl;
+      std::cout << d[0] << " " << d[1] << " " << d[2] << std::endl;
+      std::cout << b[0] << " " << b[1] << " " << b[2] << std::endl;
+    }
+
+
+    if (std::string(vol->GetName()).find(volPixelPlane) != std::string::npos)
+    {
+      fPixelPlane = vol;
+      TObjArray* nodes = fPixelPlane->GetNodes();
+      fNPixels = nodes->GetEntries();
+    }
+    if (std::string(vol->GetName()).find(volLArActive) != std::string::npos)
+    { 
+      fDetHalfHeight = ((TGeoBBox*)vol->GetShape())->GetDX(); 
+      fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
+      fDetLength     = 2*((TGeoBBox*)vol->GetShape())->GetDZ(); 
+
+      fLArTPCVolName = volLArActive;
+    }
   }
+
+  if (fLArTPCVolName.find(volLArActive) == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
+
+  if (!fPixelPlane) throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane!\n";
+
+  // Not sure about this, but let's do it anyway...
+  //TObjArray* nodes = fPixelPlane->GetNodes();
+  /*for (int i = 0; i < nodes->GetEntries(); i++)
+  {
+    TGeoMatrix* matrix = nodes->At(i)->GetMatrix();
+    auto t = matrix->GetTranslation();
+    std::cout << 
+  }*/
+
+  mf::LogInfo("AmSelGeometry") << "Initialized geomertry:"
+                               << "\nNpixels = " << fNPixels;
 }
 
 double AmSelGeometry::Density(double temperature) const
@@ -50,6 +94,11 @@ double AmSelGeometry::Density(double temperature) const
   if(temperature == 0.) temperature = fTemperature; //Temperature();
   double density = -0.00615*temperature + 1.928;
   return density;
+}
+
+ULong64_t AmSelGeometry::NearestPixelID(const std::vector<double>& point) const
+{
+  return 1;
 }
 
 std::string AmSelGeometry::VolumeName(geo::Point_t const& point) const
