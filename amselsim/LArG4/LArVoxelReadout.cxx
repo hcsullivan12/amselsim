@@ -107,12 +107,11 @@ namespace amselg4 {
   {
     // for c2: larp is unused
     //auto const * larp = lar::providerFrom<detinfo::LArPropertiesService>();
-    amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
-    //auto const * detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
-    fElectronLifetime      = geom->ElectronLifetime();
+    auto const * detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
+    fElectronLifetime      = detprop->ElectronLifetime();
     for (int i = 0; i<3; ++i)
-      fDriftVelocity[i]    = geom->DriftVelocity(geom->Efield(),
-						 geom->Temperature())/1000.;
+      fDriftVelocity[i]    = detprop->DriftVelocity(detprop->Efield(),
+				      		    detprop->Temperature())/1000.;
 
     fElectronClusterSize   = fLgpHandle->ElectronClusterSize();
     fMinNumberOfElCluster  = fLgpHandle->MinNumberOfElCluster();
@@ -122,7 +121,7 @@ namespace amselg4 {
     fSkipWireSignalInTPCs  = fLgpHandle->SkipWireSignalInTPCs();
 
     MF_LOG_DEBUG("LArVoxelReadout")  << " e lifetime: "        << fElectronLifetime
-                                  << "\n Temperature: "     << geom->Temperature()
+                                  << "\n Temperature: "     << detprop->Temperature()
                                   << "\n Drift velocity: "  << fDriftVelocity[0]
                                   <<" "<<fDriftVelocity[1]<<" "<<fDriftVelocity[2];
 

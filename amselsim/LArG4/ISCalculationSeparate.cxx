@@ -40,10 +40,10 @@ namespace amselg4{
   {
     art::ServiceHandle<sim::LArG4Parameters const> lgpHandle;
     const detinfo::LArProperties* larp = lar::providerFrom<detinfo::LArPropertiesService>();
-    amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider(); 
+    const detinfo::DetectorProperties* detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
 
-    double density       = geom->Density(geom->Temperature());
-    fEfield              = geom->Efield();
+    double density       = detprop->Density(detprop->Temperature());
+    fEfield              = detprop->Efield();
     fScintByParticleType = larp->ScintByParticleType();
     fGeVToElectrons      = lgpHandle->GeVToElectrons();
 

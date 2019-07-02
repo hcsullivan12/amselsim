@@ -72,11 +72,6 @@ class AmSelGeometry : public DetectorGeometry
     size_t NTPC() const { return 1; }
     size_t NAuxDets() const { return 0; }
     size_t NSensitiveVolume() const { return 1; }
-    double Density(double temperature) const;
-    double Efield() const { return fEfield; }
-    double Temperature() const { return fTemperature; }
-    double ElectronLifetime() const { return fElectronLifetime; }
-    double DriftVelocity(double efield, double temperature) const;
     double DetHalfHeight() const { return fDetHalfHeight; }
     double DetHalfWidth() const  { return fDetHalfWidth; }
     double DetLength() const     { return fDetLength; }

@@ -3,11 +3,7 @@ BEGIN_PROLOG
 
 amselsim_geo:
 {
- Name:     "amsel"
- GDML:     "srcs/amselsim/amselsim/Geometry/gdml/amsel.gdml"
- ROOT:     "srcs/amselsim/amselsim/Geometry/gdml/amsel.gdml"
- 
- ElectronLifetime: 1600
+ GDML:     "amsel.gdml" 
  PixelSpacing: 0.4
 }
 
