@@ -54,6 +54,8 @@ AmSelGeometry::ValidateConfiguration(
 //--------------------------------------------------------------------
 void AmSelGeometry::Configure(Configuration_t const& config) 
 {
+  fGDML = config.GDML;
+  fPixelSpacing = config.PixelSpacing;
 }
 
 //--------------------------------------------------------------------

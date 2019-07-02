@@ -35,9 +35,16 @@ class AmSelGeometry : public DetectorGeometry
       using Name = fhicl::Name;
       using Comment = fhicl::Comment;
 
-      fhicl::Atom<double      > Electronlifetime         {
-        Name("Electronlifetime"        ),
-        Comment("electron lifetime in liquid argon [us]")
+      fhicl::Atom<std::string> GDML         
+      {
+        Name("GDML"),
+        Comment("Name of GDML file for AmSel geometry")
+      };
+
+      fhicl::Atom<double> PixelSpacing
+      {
+        Name("PixelSpacing"),
+        Comment("Pixel spacing")
       };
     };
 
@@ -89,9 +96,6 @@ class AmSelGeometry : public DetectorGeometry
 
     std::string fGDML;
     std::string fLArTPCVolName;
-    double fTemperature;
-    double fEfield;
-    double fElectronLifetime;
     double fDetHalfHeight;
     double fDetHalfWidth;
     double fDetLength;
