@@ -132,7 +132,7 @@ namespace ldp{
 	  fhicl::make_ParameterSet(reinterpret_cast<char const *>(sqlite3_column_text(stmt, 0)), ps);
 	  // Is this a DetectorPropertiesService parameter set?
 
-	  bool psok = isDetectorPropertiesServiceLArIAT(ps);
+	  bool psok = isDetectorPropertiesServiceAmSel(ps);
 	  if(psok) {
 
 	    // Check NumberTimeSamples
@@ -183,7 +183,7 @@ namespace ldp{
   //--------------------------------------------------------------------
   //  Determine whether a parameter set is a DetectorPropertiesService configuration.
   
-  bool DetectorPropertiesServiceAmSel::isDetectorPropertiesServiceLArIAT
+  bool DetectorPropertiesServiceAmSel::isDetectorPropertiesServiceAmSel
     (const fhicl::ParameterSet& ps) const
   {
     // This method uses heuristics to determine whether the parameter

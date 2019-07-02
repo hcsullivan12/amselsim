@@ -57,7 +57,7 @@ namespace ldp{
         };
         fhicl::Atom<bool        > GetElectronlifetimeFromDB {
           Name("GetElectronlifetimeFromDB"),
-          Comment("option to get electron lifetime from LArIAT conditions database")
+          Comment("option to get electron lifetime from AmSel conditions database")
         };
         fhicl::Atom<std::string        > ElectronlifetimeTag {
           Name("ElectronlifetimeTag"),

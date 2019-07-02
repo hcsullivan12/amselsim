@@ -8,7 +8,6 @@ amselsim_geo:
  ROOT:     "srcs/amselsim/amselsim/Geometry/gdml/amsel.gdml"
  
  ElectronLifetime: 1600
- 
  PixelSpacing: 0.4
 }
 

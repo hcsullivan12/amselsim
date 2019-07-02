@@ -108,7 +108,7 @@ namespace ldp{
     std::string tableName = "elifetime";
     nutools::dbi::Table tbl;
     
-    tbl.SetDetector("LArIAT");
+    tbl.SetDetector("AmSel");
     tbl.SetTableName(tableName);
     tbl.SetTableType(nutools::dbi::kConditionsTable);
     tbl.SetDataTypeMask(nutools::dbi::kDataOnly);
@@ -504,7 +504,7 @@ namespace ldp{
   void DetectorPropertiesAmSel::CheckIfConfigured() const
   {
     if (!fGeo) throw cet::exception(__FUNCTION__) << "Geometry is uninitialized!";
-    if (!fLP) throw cet::exception(__FUNCTION__) << "LArPropertiesLArIAT is uninitialized!";
+    if (!fLP) throw cet::exception(__FUNCTION__) << "LArPropertiesAmSel is uninitialized!";
     if (!fClocks) throw cet::exception(__FUNCTION__) << "DetectorClocks is uninitialized!";
   }
 
