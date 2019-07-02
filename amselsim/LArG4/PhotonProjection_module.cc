@@ -16,6 +16,7 @@
 #include "canvas/Utilities/InputTag.h"
 #include "fhiclcpp/ParameterSet.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
+#include "larsim/MCCheater/ParticleInventoryService.h"
 
 #include "art_root_io/TFileService.h"
 
@@ -64,6 +65,7 @@ private:
   ULong64_t fNHits;
   ULong64_t fNPixels;
   float     fPixelSpacing;
+  float     fPrimX0;
 
   // Since most pixels will not see any light and because we will
   // have a large number of pxels, only store those which see light.
@@ -145,6 +147,19 @@ void PhotonProjection::analyze(art::Event const& e)
   std::cout << "Number of photons incident on plane: " << nHit << std::endl;
   std::cout << "////////////////////////////////////////////////\n";
 
+  // Now fill some info on primary
+  art::ServiceHandle<cheat::ParticleInventoryService> pi_serv;
+  const sim::ParticleList& plist = pi_serv->ParticleList();
+
+  for (size_t p = 0; p < plist.size(); p++)
+  {
+    auto part = plist.Particle(p);
+
+    if (part->Process() != "primary") continue;
+
+    fPrimX0 = part->Vx();
+  }
+
   fTree->Fill();
 }
 
@@ -152,6 +167,7 @@ void PhotonProjection::resetVars()
 {
   fNScint = 0;
   fNHits = 0;
+  fPrimX0 = -99999;
   fPixelID.clear();
   fPixelNHits.clear();
 }
@@ -165,8 +181,9 @@ void PhotonProjection::beginJob()
   fTree->Branch("nHits",        &fNHits,        "nHits/l");
   fTree->Branch("nPixels",      &fNPixels,      "nPixels/l");
   fTree->Branch("pixelSpacing", &fPixelSpacing, "pixelSpacing/D");
-  fTree->Branch("pixelIDs" ,    &fPixelID    );
-  fTree->Branch("pixelHits" ,   &fPixelNHits );
+  fTree->Branch("primX0", &fPrimX0, "primX0/D");
+  //fTree->Branch("pixelIDs" ,    &fPixelID    );
+  //fTree->Branch("pixelHits" ,   &fPixelNHits );
 
   // How many pixels are we dealing with here?
   amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
