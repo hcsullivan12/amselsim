@@ -5,7 +5,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "amselsim/Services/DetectorPropertiesServiceAmSel.h"
-#include "amselsim/Geometry/AmSelGeometry.h"
+#include "amselsim/Geometry/AmSelGeometryService.h"
 
 // LArSoft includes
 #include "lardata/DetectorInfoServices/LArPropertiesService.h"
@@ -35,7 +35,7 @@ namespace ldp{
     
     fProp = std::make_unique<ldp::DetectorPropertiesAmSel>(pset,
       lar::extractProviders<
-      amselgeo::AmSelGeometry, 
+      amselgeo::AmSelGeometryService, 
       detinfo::LArPropertiesService,
       detinfo::DetectorClocksService
       >(),
@@ -62,7 +62,7 @@ namespace ldp{
   }
 
   //-------------------------------------------------------------
-  void DetectorPropertiesServiceAmSel::preProcessEvent(const art::Event& evt)
+  void DetectorPropertiesServiceAmSel::preProcessEvent(const art::Event& evt, art::ScheduleContext)
   {
     // Make sure TPC Clock is updated with TimeService (though in principle it shouldn't change
     fProp->UpdateClocks(lar::providerFrom<detinfo::DetectorClocksService>());

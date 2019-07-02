@@ -1,7 +1,6 @@
 art_make_library( LIBRARY_NAME amselsim_Geometry
                   SOURCE AmSelGeometry.cxx
-                  LIBRARIES larcorealg_Geometry
-                            ${MF_MESSAGELOGGER}
+                  LIBRARIES ${MF_MESSAGELOGGER}
                             ${MF_UTILITIES}
                             ${FHICLCPP}
                             ${ROOT_BASIC_LIB_LIST} 

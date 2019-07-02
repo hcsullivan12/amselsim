@@ -2,6 +2,7 @@
 #include "AmSelGeometry.h"
 
 #include "messagefacility/MessageLogger/MessageLogger.h"
+#include "larcorealg/CoreUtils/ProviderUtil.h" // lar::IgnorableProviderConfigKeys()
 
 #include "TGeoManager.h"
 #include "TGeoBBox.h"
@@ -10,7 +11,9 @@
 namespace amselgeo
 {
 
-AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset)
+//--------------------------------------------------------------------
+AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset,
+                             std::set<std::string> const& ignore_params)
  : fGDML(pset.get< std::string >("GDML")),
    fTemperature(pset.get< double >("Temperature", 90.7)),
    fEfield(pset.get<double>("Efield", 0.5)),
@@ -19,12 +22,41 @@ AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset)
    fNPixels(0),
    fPixelPlane(0)
 {
+  ValidateAndConfigure(pset, ignore_params);
   Initialize();
 }
 
+//--------------------------------------------------------------------
 AmSelGeometry::~AmSelGeometry()
 {}
 
+//--------------------------------------------------------------------
+void AmSelGeometry::ValidateAndConfigure(
+    fhicl::ParameterSet const& p,
+    std::set<std::string> const& ignore_params /* = {} */) 
+{
+  Configure(ValidateConfiguration(p, ignore_params));
+}
+
+//--------------------------------------------------------------------
+AmSelGeometry::Configuration_t
+AmSelGeometry::ValidateConfiguration(
+    fhicl::ParameterSet const& p,
+    std::set<std::string> const& ignore_params /* = {} */) 
+{
+  std::set<std::string> ignorable_keys = lar::IgnorableProviderConfigKeys();
+  ignorable_keys.insert(ignore_params.begin(), ignore_params.end());
+  // parses and validates the parameter set:
+  fhicl::Table<Configuration_t> config_table { p, ignorable_keys };
+  return std::move(config_table());
+}
+
+//--------------------------------------------------------------------
+void AmSelGeometry::Configure(Configuration_t const& config) 
+{
+}
+
+//--------------------------------------------------------------------
 void AmSelGeometry::Initialize()
 {
   TGeoManager::Import(fGDML.c_str());
@@ -32,7 +64,7 @@ void AmSelGeometry::Initialize()
   // Initialize detector properties
   TObjArray* volumes = gGeoManager->GetListOfVolumes();
   int nvols = volumes->GetEntries();
-  ULong_t maxId = 0;
+  ULong4_t maxId = 0;
   std::string volPixelPad("volPixelPad");
   std::string volPixelPlane("volPixelPlane");
   std::string volLArActive("volLArActive");
@@ -88,6 +120,7 @@ void AmSelGeometry::Initialize()
                                << "\nNpixels = " << fNPixels;
 }
 
+//--------------------------------------------------------------------
 double AmSelGeometry::Density(double temperature) const
 {
   // Default temperature use internal value.
@@ -96,11 +129,13 @@ double AmSelGeometry::Density(double temperature) const
   return density;
 }
 
-ULong64_t AmSelGeometry::NearestPixelID(const std::vector<double>& point) const
+//--------------------------------------------------------------------
+ULong8_t AmSelGeometry::NearestPixelID(const std::vector<double>& point) const
 {
   return 1;
 }
 
+//--------------------------------------------------------------------
 std::string AmSelGeometry::VolumeName(geo::Point_t const& point) const
 {
   // check that the given point is in the World volume at least
@@ -126,8 +161,7 @@ std::string AmSelGeometry::VolumeName(geo::Point_t const& point) const
   return gGeoManager->FindNode(point.X(), point.Y(), point.Z())->GetName();
 }
 
-
-
+//--------------------------------------------------------------------
 double AmSelGeometry::DriftVelocity(double efield, double temperature) const 
 {
   // Drift Velocity as a function of Electric Field and LAr Temperature

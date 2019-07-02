@@ -508,4 +508,22 @@ namespace ldp{
     if (!fClocks) throw cet::exception(__FUNCTION__) << "DetectorClocks is uninitialized!";
   }
 
+  //--------------------------------------------------------------------
+  double DetectorPropertiesAmSel::GetXTicksOffset(int p, int t, int c) const
+  {
+    return fXTicksOffsets.at(c).at(t).at(p);
+  }
+
+  //--------------------------------------------------------------------
+  double DetectorPropertiesAmSel::GetXTicksCoefficient() const
+  {
+    return fXTicksCoefficient;
+  }
+
+  //--------------------------------------------------------------------
+  double DetectorPropertiesAmSel::GetXTicksCoefficient(int t, int c) const
+  {
+    return fXTicksCoefficient * fDriftDirection.at(c).at(t);
+  }
+
 } // namespace

@@ -8,46 +8,21 @@
 #include "particleinventoryservice.fcl"
 #include "seedservice.fcl"
 #include "amselsim_geometry.fcl"
-#include "detectorproperties.fcl"
 #include "spacecharge.fcl"
+#include "amselsim_detproperties.fcl"
 
 BEGIN_PROLOG
 
 amselsim_singlep: @local::standard_singlep
 amselsim_largeant: @local::amselsim_largeant
 
-amselsim_detproperties:
-{
-  service_provider: "DetectorPropertiesServiceAmSel"
-
-  Temperature:        90.7  
-  Efield:             [0.5,0.700,0.890]  
-  Electronlifetime:   1600
-
-  ElectronsToADC:    6.8906513e-3 # 1fC = 43.008 ADC counts for MicroBooNE  
-  NumberTimeSamples: 3072
-  TimeOffsetU:       -50
-  TimeOffsetV:       -52. 
-  TimeOffsetZ:       0.
-  ReadOutWindowSize: 3072
-  InheritNumberTimeSamples: false
-  SamplingRate:      128  
-
-  SternheimerA:     0.1956  # Ar Sternheimer parameter a.
-  SternheimerK:     3.0000  # Ar Sternheimer parameter k.
-  SternheimerX0:    0.2000  # Ar Sternheimer parameter x0.
-  SternheimerX1:    3.0000  # Ar Sternheimer parameter x0.
-  SternheimerCbar:  5.2146  # Ar Sternheimer parameter Cbar.
-}
-
 amselsim_simulation_services:
 {
  LArG4Parameters:              @local::standard_largeantparameters
  LArVoxelCalculator:           @local::standard_larvoxelcalculator
  MagneticField:                @local::no_mag_larsoft
- #ExptGeoHelperInterface:       @local::amselsim_geometry_helper
  AmSelGeometryService:         @local::amselsim_geo
- #DetectorPropertiesService:    @local::amselsim_detproperties
+ DetectorPropertiesService:    @local::amselsim_detproperties
  LArPropertiesService:         @local::standard_properties
  DetectorClocksService:        @local::standard_detectorclocks
  #BackTrackerService:           @local::standard_backtrackerservice
@@ -56,6 +31,7 @@ amselsim_simulation_services:
  SpaceCharge:                  @local::standard_spacecharge
 }
 
+# We don't want to do any propagation yet, and keep all scintillation
 amselsim_simulation_services.LArG4Parameters.NoElectronPropagation: true
 amselsim_simulation_services.LArG4Parameters.NoPhotonPropagation: true
 amselsim_simulation_services.LArPropertiesService.ScintPreScale: 1.0

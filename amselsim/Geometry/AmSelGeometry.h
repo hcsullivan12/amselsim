@@ -2,19 +2,61 @@
 #ifndef AMSELGEO_AMSELGEOMETRY_H
 #define AMSELGEO_AMSELGEOMETRY_H
 
+// framework libraries
 #include "fhiclcpp/ParameterSet.h"
-#include "larcore/Geometry/Geometry.h"
+#include "fhiclcpp/types/Sequence.h"
+#include "fhiclcpp/types/Table.h"
+#include "fhiclcpp/types/Atom.h"
+#include "fhiclcpp/types/OptionalAtom.h"
+
+// LArSoft includes
+#include "larcore/Geometry/Geometry.h" // Point_t
+
+// amselsim includes
+#include "amselsim/Geometry/DetectorGeometry.h"
+
+// C++ includes
+#include <set>
 
 namespace amselgeo
 {
+  using UShort2_t = unsigned short;
+  using ULong4_t = unsigned long;
+  using ULong8_t = unsigned long long;
 
 /// Configuration parameter documentation goes here
-class AmSelGeometry 
+class AmSelGeometry : public DetectorGeometry
 {
   public:
+
+    /// Structure for configuration parameters
+    struct Configuration_t 
+    {
+      using Name = fhicl::Name;
+      using Comment = fhicl::Comment;
+
+      fhicl::Atom<double      > Electronlifetime         {
+        Name("Electronlifetime"        ),
+        Comment("electron lifetime in liquid argon [us]")
+      };
+    };
+
     /// Constructor: reads the configuration from a parameter set
-    AmSelGeometry(fhicl::ParameterSet const& pset);
+    AmSelGeometry(fhicl::ParameterSet const& pset,
+                  std::set<std::string> const& ignore_params = {});
     ~AmSelGeometry();
+
+    /// Method to validate parameter set
+    void ValidateAndConfigure(
+        fhicl::ParameterSet const& p,
+        std::set<std::string> const& ignore_params = {});
+
+    Configuration_t ValidateConfiguration(
+        fhicl::ParameterSet const& p,
+        std::set<std::string> const& ignore_params = {});
+
+    /// Extracts the relevant configuration from the specified object
+    void Configure(Configuration_t const& config);        
 
     std::string GDMLFile() const { return fGDML; }
     std::string OpDetGeoName() const { return "opDetector"; }
@@ -32,8 +74,8 @@ class AmSelGeometry
     double DetHalfWidth() const  { return fDetHalfWidth; }
     double DetLength() const     { return fDetLength; }
     float  PixelSpacing() const  { return fPixelSpacing; }
-    ULong64_t NPixels() const { return fNPixels; }
-    ULong64_t NearestPixelID(const std::vector<double>& point) const;
+    ULong8_t NPixels() const { return fNPixels; }
+    ULong8_t NearestPixelID(const std::vector<double>& point) const;
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
     std::string VolumeName(geo::Point_t const& point) const;
     std::string VolumeName(TVector3 const& point) const
@@ -54,7 +96,7 @@ class AmSelGeometry
     double fDetHalfWidth;
     double fDetLength;
     float  fPixelSpacing;
-    ULong64_t fNPixels;
+    ULong8_t fNPixels;
     TGeoVolume* fPixelPlane;
 
 }; // class AmSelGeometry
