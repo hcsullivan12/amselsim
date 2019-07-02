@@ -524,7 +524,8 @@ namespace amselg4 {
 
   }
 
-  void AmSelG4::beginRun(art::Run& run){
+  void AmSelG4::beginRun(art::Run& run)
+  {
     // prepare the filter object (null if no filtering)
 
     std::set<std::string> volnameset(fKeepParticlesInVolumes.begin(), fKeepParticlesInVolumes.end());
@@ -538,50 +539,11 @@ namespace amselg4 {
 
     // if we don't have favourite volumes, don't even bother creating a filter
     if (vol_names.empty()) return {};
+
+    // The default setting for LArG4 is an empty set of volume names.
+    // This means we default to keeping particles from all geometries,
+    // so we normally do not run the code that was below here. 
     return {};
-/*
-    //auto const& geom = *art::ServiceHandle<geo::Geometry const>();
-    const amselgeo::AmSelGeometry* geom = lar::providerFrom<amselgeo::AmSelGeometryService>();
-
-   std::vector<std::vector<TGeoNode const*>> node_paths
-      = geom->FindAllVolumePaths(vol_names);
-
-    // collection of interesting volumes
-    util::PositionInVolumeFilter::AllVolumeInfo_t GeoVolumePairs;
-    GeoVolumePairs.reserve(node_paths.size()); // because we are obsessed
-
-    //for each interesting volume, follow the node path and collect
-    //total rotations and translations
-    for (size_t iVolume = 0; iVolume < node_paths.size(); ++iVolume) {
-      std::vector<TGeoNode const*> path = node_paths[iVolume];
-
-      TGeoTranslation* pTransl = new TGeoTranslation(0.,0.,0.);
-      TGeoRotation* pRot = new TGeoRotation();
-      for (TGeoNode const* node: path) {
-        TGeoTranslation thistranslate(*node->GetMatrix());
-        TGeoRotation thisrotate(*node->GetMatrix());
-        pTransl->Add(&thistranslate);
-        *pRot=*pRot * thisrotate;
-      }
-
-      //for some reason, pRot and pTransl don't have tr and rot bits set correctly
-      //make new translations and rotations so bits are set correctly
-      TGeoTranslation* pTransl2 = new TGeoTranslation(pTransl->GetTranslation()[0],
-                                                        pTransl->GetTranslation()[1],
-                                                      pTransl->GetTranslation()[2]);
-      double phi=0.,theta=0.,psi=0.;
-      pRot->GetAngles(phi,theta,psi);
-      TGeoRotation* pRot2 = new TGeoRotation();
-      pRot2->SetAngles(phi,theta,psi);
-
-      TGeoCombiTrans* pTransf = new TGeoCombiTrans(*pTransl2,*pRot2);
-
-      GeoVolumePairs.emplace_back(node_paths[iVolume].back()->GetVolume(), pTransf);
-
-    }
-
-    return std::make_unique<util::PositionInVolumeFilter>(std::move(GeoVolumePairs));
-  */
   } // CreateParticleVolumeFilter()
 
 
@@ -610,8 +572,6 @@ namespace amselg4 {
 
     // Fetch the lists of LAr voxels and particles.
     art::ServiceHandle<sim::LArG4Parameters const> lgp;
-    //art::ServiceHandle<geo::Geometry const> geom;
-    //const amselgeo::AmSelGeometry* geom = lar::providerFrom<amselgeo::AmSelGeometryService>();
     amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
 
     // Clear the detected photon table
@@ -703,10 +663,10 @@ namespace amselg4 {
     OpDetSensitiveDetector *theOpDetDet = dynamic_cast<OpDetSensitiveDetector*>(sdManager->FindSensitiveDetector("OpDetSensitiveDetector"));
 
     // Store the contents of the detected photon table
-    //
     if(theOpDetDet){
 
-      if(!lgp->NoPhotonPropagation()){
+      if(!lgp->NoPhotonPropagation())
+      {
 
         for (int Reflected = 0; Reflected <= 1; Reflected++) {
           if (Reflected && ! fStoreReflected)
@@ -746,7 +706,7 @@ namespace amselg4 {
       } //end if no photon propagation
 
       if(lgp->FillSimEnergyDeposits())
-        {
+      {
           auto const& edepMap = OpDetPhotonTable::Instance()->GetSimEnergyDeposits();
           for(auto const& edepCol : edepMap){
             if(boost::contains(edepCol.first,"TPCActive"))
@@ -756,12 +716,12 @@ namespace amselg4 {
               edepCol_Other->insert(edepCol_Other->end(),
                                     edepCol.second.begin(),edepCol.second.end());
           }
-        }
+      }
     }//end if theOpDetDet
 
 
     if(!lgp->NoElectronPropagation())
-      {
+    {
 
         // only put the sim::SimChannels into the event once, not once for every
         // MCTruth in the event
@@ -856,13 +816,14 @@ namespace amselg4 {
         for (LArVoxelReadout* larVoxelReadout: ReadoutList){
           larVoxelReadout->ClearSimChannels();
         }
-      }//endif electron prop
+    }//endif electron prop
 
     // only put the sim::AuxDetSimChannels into the event once, not once for every
     // MCTruth in the event
 
     adCol->reserve(geom->NAuxDets());
-    for(unsigned int a = 0; a < geom->NAuxDets(); ++a){
+    for(unsigned int a = 0; a < geom->NAuxDets(); ++a)
+    {
 
       // there should always be at least one senstive volume because
       // we make one for the full aux det if none are specified in the

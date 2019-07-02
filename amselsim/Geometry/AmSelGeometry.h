@@ -67,7 +67,7 @@ class AmSelGeometry : public DetectorGeometry
 
     std::string GDMLFile() const { return fGDML; }
     std::string OpDetGeoName() const { return "opDetector"; }
-    size_t NOpDets() const { return 1; }
+    size_t NOpDets() const { return 0; }
     size_t Ncryostats() const { return 1; }
     size_t NTPC() const { return 1; }
     size_t NAuxDets() const { return 0; }

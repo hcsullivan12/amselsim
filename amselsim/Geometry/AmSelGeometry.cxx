@@ -67,41 +67,29 @@ void AmSelGeometry::Initialize()
 
   // Reset the gdml path which now contains the full path
   fGDML = GDMLFilePath;
-  TGeoManager::Import(GDMLFilePath.c_str());
 
-  // Initialize detector properties
+  // Load the geometry from the gdml file
+  if (gGeoManager) TGeoManager::UnlockGeometry();
+  TGeoManager::Import(fGDMLPath.c_str());
+  gGeoManager->LockGeometry();
+
+  // Initialize high level information
+  // Let's loop over our volumes, since we could potentially have 
+  // a large number of pixels
   TObjArray* volumes = gGeoManager->GetListOfVolumes();
-  int nvols = volumes->GetEntries();
+  int nVols = volumes->GetEntries();
   ULong4_t maxId = 0;
-  std::string volPixelPad("volPixelPad");
-  std::string volPixelPlane("volPixelPlane");
-  std::string volLArActive("volLArActive");
-  for (int i = 0; i < nvols; i++)
+  for (size_t iVol = 0; iVol < nVols; iVol++)
   {
-    TGeoVolume* vol = (TGeoVolume*)volumes->At(i);
+    TGeoVolume* vol = (TGeoVolume*)volumes->At(iVol);
 
-    if (std::string(vol->GetName()).find(volPixelPlane) != std::string::npos)
-    {
-      std::cout << "\n\nHEEYYYY\n\n\n";
-      auto tempVol = vol->GetNode(0)->GetVolume();
-      auto b = ((TGeoBBox*)vol->GetShape())->GetOrigin();
-      auto m = vol->GetNode(0)->GetMatrix();
-      auto t = m->GetTranslation();
-      Double_t d[3];
-      m->LocalToMaster(t, d);
-      std::cout << t[0] << " " << t[1] << " " << t[2] << std::endl;
-      std::cout << d[0] << " " << d[1] << " " << d[2] << std::endl;
-      std::cout << b[0] << " " << b[1] << " " << b[2] << std::endl;
-    }
-
-
-    if (std::string(vol->GetName()).find(volPixelPlane) != std::string::npos)
+    if (std::string(vol->GetName()) == "volPixelPlane")
     {
       fPixelPlane = vol;
       TObjArray* nodes = fPixelPlane->GetNodes();
       fNPixels = nodes->GetEntries();
     }
-    if (std::string(vol->GetName()).find(volLArActive) != std::string::npos)
+    if (std::string(vol->GetName()) == "volLArActive")
     { 
       fDetHalfHeight = ((TGeoBBox*)vol->GetShape())->GetDX(); 
       fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
@@ -110,21 +98,22 @@ void AmSelGeometry::Initialize()
       fLArTPCVolName = volLArActive;
     }
   }
+  if (fLArTPCVolName.find("volLArActive") == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
+  if (!fPixelPlane)                                             throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
 
-  if (fLArTPCVolName.find(volLArActive) == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
 
-  if (!fPixelPlane) throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane!\n";
-
-  // Not sure about this, but let's do it anyway...
-  //TObjArray* nodes = fPixelPlane->GetNodes();
-  /*for (int i = 0; i < nodes->GetEntries(); i++)
+  // Now let's try to load our pixels...
+  TObjArray* pixelNodes = fPixelPlane->GetNodes();
+  for (int i = 0; i < fNPixels; i++)
   {
-    TGeoMatrix* matrix = nodes->At(i)->GetMatrix();
-    auto t = matrix->GetTranslation();
-    std::cout << 
-  }*/
+    auto o = nodes->At(i)->GetShape()->GetOrigin();
+    cout << o[0] << " " << o[1] << " " << o[2] << "\n";
+    //TGeoMatrix* matrix = nodes->At(i)->GetMatrix();
+    //auto t = matrix->GetTranslation();
+    //std::cout << 
+  }
 
-  mf::LogInfo("AmSelGeometry") << "Initialized geomertry:"
+  mf::LogInfo("AmSelGeometry") << "Initialized geometry:"
                                << "\nNpixels = " << fNPixels;
 }
 
