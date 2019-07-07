@@ -1,3 +1,9 @@
+//////////////////////////////////////////////////////////////////////
+/// \file  AmSelGeometry.h
+/// \brief Interface to AmSel geometry information.
+///
+/// \author  hsulliva@fnal.gov
+//////////////////////////////////////////////////////////////////////
 
 #ifndef AMSELGEO_AMSELGEOMETRY_H
 #define AMSELGEO_AMSELGEOMETRY_H
@@ -65,7 +71,7 @@ class AmSelGeometry : public DetectorGeometry
     /// Extracts the relevant configuration from the specified object
     void Configure(Configuration_t const& config);        
 
-    std::string GDMLFile() const { return fGDML; }
+    std::string GDMLFile() const { return fGDMLPath; }
     std::string OpDetGeoName() const { return "opDetector"; }
     size_t NOpDets() const { return 0; }
     size_t Ncryostats() const { return 1; }
@@ -89,15 +95,16 @@ class AmSelGeometry : public DetectorGeometry
   private:
     void Initialize();
 
-    std::string fGDML;
+    std::string fGDMLPath;
     std::string fLArTPCVolName;
     double fDetHalfHeight;
     double fDetHalfWidth;
     double fDetLength;
     float  fPixelSpacing;
+    std::vector<float> fPixelLimitsY;
+    std::vector<float> fPixelLimitsZ;
     ULong8_t fNPixels;
     TGeoVolume* fPixelPlane;
-
 }; // class AmSelGeometry
 
 }

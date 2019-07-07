@@ -24,7 +24,7 @@ class AmSelGeometryService
  
   private:
     std::unique_ptr<AmSelGeometry> fProvider; ///< owned provider
-    std::string fGDML;
+    std::string fGDMLPath;
 
 }; // class AmSelGeometryService
 

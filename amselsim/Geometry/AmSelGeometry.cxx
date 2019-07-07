@@ -1,5 +1,11 @@
+//////////////////////////////////////////////////////////////////////
+/// \file  AmSelGeometry.cxx
+/// \brief Interface to AmSel geometry information.
+///
+/// \author  hsulliva@fnal.gov
+//////////////////////////////////////////////////////////////////////
 
-#include "AmSelGeometry.h"
+#include "amselsim/Geometry/AmSelGeometry.h"
 
 #include "messagefacility/MessageLogger/MessageLogger.h"
 #include "larcorealg/CoreUtils/ProviderUtil.h" // lar::IgnorableProviderConfigKeys()
@@ -49,7 +55,7 @@ AmSelGeometry::ValidateConfiguration(
 //--------------------------------------------------------------------
 void AmSelGeometry::Configure(Configuration_t const& config) 
 {
-  fGDML = config.GDML();
+  fGDMLPath = config.GDML();
   fPixelSpacing = config.PixelSpacing();
 }
 
@@ -59,14 +65,14 @@ void AmSelGeometry::Initialize()
   // We first need to validate the GDML file path
   cet::search_path sp("FW_SEARCH_PATH");
   std::string GDMLFilePath;
-  if( !sp.find_file(fGDML, GDMLFilePath) ) 
+  if( !sp.find_file(fGDMLPath, GDMLFilePath) ) 
   {
     throw cet::exception("AmSelGeometry")
-      << "Can't find geometry file '" << fGDML << "'!\n";
+      << "Can't find geometry file '" << fGDMLPath << "'!\n";
   }
 
   // Reset the gdml path which now contains the full path
-  fGDML = GDMLFilePath;
+  fGDMLPath = GDMLFilePath;
 
   // Load the geometry from the gdml file
   if (gGeoManager) TGeoManager::UnlockGeometry();
@@ -77,7 +83,7 @@ void AmSelGeometry::Initialize()
   // Let's loop over our volumes, since we could potentially have 
   // a large number of pixels
   TObjArray* volumes = gGeoManager->GetListOfVolumes();
-  int nVols = volumes->GetEntries();
+  size_t nVols = volumes->GetEntries();
   ULong4_t maxId = 0;
   for (size_t iVol = 0; iVol < nVols; iVol++)
   {
@@ -95,28 +101,44 @@ void AmSelGeometry::Initialize()
       fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
       fDetLength     = 2*((TGeoBBox*)vol->GetShape())->GetDZ(); 
 
-      fLArTPCVolName = volLArActive;
+      fLArTPCVolName = "volLArActive";
     }
   }
   if (fLArTPCVolName.find("volLArActive") == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
   if (!fPixelPlane)                                             throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
 
 
-  // Now let's try to load our pixels...
-  TObjArray* pixelNodes = fPixelPlane->GetNodes();
-  for (int i = 0; i < fNPixels; i++)
+  // Now let's load our pixels
+  float zMin = std::numeric_limits<float>::max();
+  float zMax = std::numeric_limits<float>::min();
+  float yMin = std::numeric_limits<float>::max();
+  float yMax = std::numeric_limits<float>::min();
+  for (ULong8_t i = 0; i < fNPixels; i++)
   {
-    auto o = nodes->At(i)->GetShape()->GetOrigin();
-    cout << o[0] << " " << o[1] << " " << o[2] << "\n";
-    //TGeoMatrix* matrix = nodes->At(i)->GetMatrix();
-    //auto t = matrix->GetTranslation();
-    //std::cout << 
+    TGeoNode* pixelNode = fPixelPlane->GetNode(i);
+    auto o = ((TGeoBBox*)pixelNode->GetVolume()->GetShape())->GetOrigin();
+    Double_t m[3];
+    pixelNode->LocalToMaster(o,m);
+
+    yMin = m[1] < yMin ? m[1] : yMin;
+    yMax = m[1] > yMax ? m[1] : yMax;
+
+    zMin = m[2] < zMin ? m[2] : zMin;
+    zMax = m[2] > zMax ? m[2] : zMax;
   }
 
-  mf::LogInfo("AmSelGeometry") << "Initialized geometry:"
-                               << "\nNpixels = " << fNPixels;
+
+  // For now, add the half length to these to convert to world coordinates
+  fPixelLimitsY.push_back(yMin); fPixelLimitsY.push_back(yMax);
+  fPixelLimitsZ.push_back(zMin+fDetLength*0.5); fPixelLimitsZ.push_back(zMax+fDetLength*0.5);
+
+  mf::LogInfo("AmSelGeometry")<<"Initialized geometry:"
+                              <<"\nNpixels = "<<fNPixels
+                              <<"\nz limits = ["<<fPixelLimitsZ[0]<<", "<<fPixelLimitsZ[1]<<"]"
+                              <<"\ny limits = ["<<fPixelLimitsY[0]<<", "<<fPixelLimitsY[1]<<"]";
 }
 
+//--------------------------------------------------------------------
 ULong8_t AmSelGeometry::NearestPixelID(const std::vector<double>& point) const
 {
   return 1;
