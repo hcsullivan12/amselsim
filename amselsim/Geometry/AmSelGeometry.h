@@ -94,7 +94,7 @@ class AmSelGeometry : public DetectorGeometry
 
   private:
     void Initialize();
-    void LookAtNode(const TGeoNode* currentNode)
+    void LookAtNode(const TGeoNode* currentNode);
 
     std::string fGDMLPath;
     std::string fLArTPCVolName;

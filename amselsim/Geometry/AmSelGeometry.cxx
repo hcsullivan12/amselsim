@@ -2,6 +2,8 @@
 /// \file  AmSelGeometry.cxx
 /// \brief Interface to AmSel geometry information.
 ///
+/// \todo Change world_vol to volWorld 
+///
 /// \author  hsulliva@fnal.gov
 //////////////////////////////////////////////////////////////////////
 
@@ -100,7 +102,7 @@ void AmSelGeometry::LookAtNode(const TGeoNode* currentNode)
   if (volName.find("volPixelPad") != std::string::npos) return;
   if (volName == "volPixelPlane")
   {
-    fPixelPlane = nodeVolume;
+    fPixelPlane = nodeVol;
     TObjArray* pixelNodes = fPixelPlane->GetNodes();
     fNPixels = pixelNodes->GetEntries();
 
@@ -109,16 +111,17 @@ void AmSelGeometry::LookAtNode(const TGeoNode* currentNode)
   }
   if (volName == "volLArActive")
   { 
-    fDetHalfHeight = ((TGeoBBox*)vol->GetShape())->GetDX(); 
-    fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
-    fDetLength     = 2*((TGeoBBox*)vol->GetShape())->GetDZ(); 
+    fDetHalfHeight = ((TGeoBBox*)nodeVol->GetShape())->GetDX(); 
+    fDetHalfWidth  = ((TGeoBBox*)nodeVol->GetShape())->GetDY(); 
+    fDetLength     = 2*((TGeoBBox*)nodeVol->GetShape())->GetDZ(); 
   
     fLArTPCVolName = "volLArActive";
   }  
 
   // Check the nodes
   TObjArray* nodes = currentNode->GetNodes();
-  for (size_t iN = 0; iN < nodes->GetEntries(); iN++) LookAtNode(nodes->At(iN));
+  if (!nodes) return;
+  for (int iN = 0; iN < nodes->GetEntries(); iN++) LookAtNode(nodeVol->GetNode(iN));
 }
 
 
