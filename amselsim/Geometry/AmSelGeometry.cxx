@@ -4,10 +4,10 @@
 ///
 /// There is a question of how to handle pixels. For even small active
 /// volumes, the number of pixels is 10s of 1000s. Therefore, there 
-/// are two options allowed. The user has the option to load a GDML
-/// file containing all pixel pads or a GDML file containing the minimum
+/// are two options. The user has the option to load a GDML file 
+/// containing all pixel pads or a GDML file containing the minimum
 /// information necessary to assume a pixelization scheme. The latter
-/// is assumed to be a file '*simple.gdml'. 
+/// is assumed to be a file '*_simple.gdml'. 
 /// 
 /// \author  hsulliva@fnal.gov
 //////////////////////////////////////////////////////////////////////
@@ -104,9 +104,6 @@ void AmSelGeometry::Initialize()
 
   // Load simplified geometry
   if (fIsSimpleGeometry) LoadSimpleGeometry();
-
-  for (const auto& np : fNodePaths) std::cout << np << std::endl;
-
   mf::LogInfo("AmSelGeometry")<<"Initialized geometry with " << fNPixels << " pixels\n";
 }
 
@@ -155,7 +152,16 @@ void AmSelGeometry::LoadSimpleGeometry()
   TObjArray* pixelNodes = fPixelPlane->GetNodes();
   for (int iP = 0; iP < pixelNodes->GetEntries(); iP++)
   {
+    // Need the path to this pixel
     TGeoNode* currentNode = fPixelPlane->GetNode(iP); 
+    auto currentNodePath = std::find(fNodePaths.begin(), fNodePaths.end(), [](std::string const& path) return path == currentNode->GetName(););
+    if (currentNodePath == fNodePaths.end()) throw cet::exception("AmSelGeometry") << "Couldn't find pixel named " << currentNode->GetName() << "\n";
+
+    gGeoManager->cd(*currentNodePath);
+    Double_t m[3];
+    auto o = ((TGeoBBox*)currentNode->GetVolume()->GetShape())->GetOrigin();
+    gGeoManager->LocalToMaster(o,m);
+    std::cout << m[0] << " " << m[1] << " " << m[2] << std::endl;
   }
 }
 
