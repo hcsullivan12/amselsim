@@ -1,9 +1,8 @@
 ////////////////////////////////////////////////////////////////////////
-// DetectorGeometryService.h
+// \file DetectorGeometryService.h
+// \brief Pure virtual service interface for Geometry functions
 //
-// Pure virtual service interface for Geometry functions
-//
-//  hsulliva@fnal.gov
+// \author hsulliva@fnal.gov
 //
 ////////////////////////////////////////////////////////////////////////
 #ifndef DETECTORGEOMETRYSERVICE_H

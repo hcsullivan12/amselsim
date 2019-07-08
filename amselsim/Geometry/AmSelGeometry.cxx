@@ -115,7 +115,17 @@ void AmSelGeometry::Initialize()
   float yMax = std::numeric_limits<float>::min();
   for (ULong8_t i = 0; i < fNPixels; i++)
   {
-    TGeoNode* pixelNode = fPixelPlane->GetNode(i);
+    TGeoNode*   pixelNode = fPixelPlane->GetNode(i);
+    TGeoVolume  pixelVol  = pixelNode->GetVolume();
+    std::string pixelName = std::string(pixelVol->GetName()); 
+
+    // Get the pixel ID
+    size_t iD(0);
+    for (; iD < pixelName.size(); iD++) {if(std::isdigit(pixelName[iD])) break;}
+    size_t pixelID = std::stoi(pixelName.substr(iD));
+    std::cout << pixelName << " " << pixelID << std::endl;
+
+
     auto o = ((TGeoBBox*)pixelNode->GetVolume()->GetShape())->GetOrigin();
     Double_t m[3];
     pixelNode->LocalToMaster(o,m);

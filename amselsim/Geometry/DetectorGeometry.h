@@ -1,11 +1,11 @@
 ////////////////////////////////////////////////////////////////////////
 // \file DetectorGeometry.h
-//
-// \brief pure virtual base interface for detector geometry
+// \brief Pure virtual base interface for detector geometry
 //
 // \author hsulliva@fnal.gov
 //
 ////////////////////////////////////////////////////////////////////////
+
 #ifndef AMSELGEO_DETECTORGEOMETRY_H
 #define AMSELGEO_DETECTORGEOMETRY_H
 

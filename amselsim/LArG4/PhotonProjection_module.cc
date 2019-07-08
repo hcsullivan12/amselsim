@@ -1,11 +1,10 @@
-////////////////////////////////////////////////////////////////////////
-// Class:       PhotonProjection
-// Plugin Type: analyzer (art v3_02_06)
-// File:        PhotonProjection_module.cc
-//
-// Generated at Thu Jun 27 20:57:04 2019 by Hunter Sullivan using cetskelgen
-// from cetlib version v3_07_02.
-////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+/// \file PhotonProjection_module.cc
+/// \brief Analyzer module that projects scintillation light 
+///        onto the readout plane.
+/// 
+/// \author H. Sullivan (hsulliva@fnal.gov)
+///////////////////////////////////////////////////////////////
 
 #include "art/Framework/Core/EDAnalyzer.h"
 #include "art/Framework/Core/ModuleMacros.h"

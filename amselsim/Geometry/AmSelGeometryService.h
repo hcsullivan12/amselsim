@@ -1,4 +1,9 @@
-
+//////////////////////////////////////////////////////////////////////
+/// \file  AmSelGeometryService.h
+/// \brief Service for AmSel geometry information.
+///
+/// \author  hsulliva@fnal.gov
+//////////////////////////////////////////////////////////////////////
 
 #ifndef AMSELGEO_AMSELGEOMETRYSERVICE_H
 #define AMSELGEO_AMSELGEOMETRYSERVICE_H
