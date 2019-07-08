@@ -83,8 +83,8 @@ class AmSelGeometry : public DetectorGeometry
     double DetLength() const     { return fDetLength; }
     float  PixelSpacing() const  { return fPixelSpacing; }
     ULong8_t NPixels() const { return fNPixels; }
-    ULong8_t NearestPixelID(geo::Point_t const& point) const;
-    ULong8_t NearestPixelID(TVector3 const& point) const
+    int NearestPixelID(geo::Point_t const& point) const;
+    int NearestPixelID(TVector3 const& point) const
       { return NearestPixelID(geo::vect::toPoint(point)); }
     
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
@@ -97,8 +97,10 @@ class AmSelGeometry : public DetectorGeometry
 
   private:
     void Initialize();
-    void LookAtNode(const TGeoNode* currentNode);
+    void LookAtNode(TGeoNode const* currentNode, std::string const& currentPath);
+    void LoadSimpleGeometry();
 
+    std::vector<std::string> fNodePaths;
     std::string fGDMLPath;
     std::string fLArTPCVolName;
     double fDetHalfHeight;
@@ -107,6 +109,7 @@ class AmSelGeometry : public DetectorGeometry
     float  fPixelSpacing;
     ULong8_t fNPixels;
     TGeoVolume* fPixelPlane;
+    bool fIsSimpleGeometry;
 }; // class AmSelGeometry
 
 }

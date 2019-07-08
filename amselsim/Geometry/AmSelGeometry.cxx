@@ -2,6 +2,13 @@
 /// \file  AmSelGeometry.cxx
 /// \brief Interface to AmSel geometry information.
 ///
+/// There is a question of how to handle pixels. For even small active
+/// volumes, the number of pixels is 10s of 1000s. Therefore, there 
+/// are two options allowed. The user has the option to load a GDML
+/// file containing all pixel pads or a GDML file containing the minimum
+/// information necessary to assume a pixelization scheme. The latter
+/// is assumed to be a file '*simple.gdml'. 
+/// 
 /// \author  hsulliva@fnal.gov
 //////////////////////////////////////////////////////////////////////
 
@@ -21,7 +28,8 @@ namespace amselgeo
 AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset,
                              std::set<std::string> const& ignore_params)
  : fNPixels(0),
-   fPixelPlane(0)
+   fPixelPlane(0),
+   fIsSimpleGeometry(false)
 {
   ValidateAndConfigure(pset, ignore_params);
   Initialize();
@@ -55,8 +63,14 @@ AmSelGeometry::ValidateConfiguration(
 //--------------------------------------------------------------------
 void AmSelGeometry::Configure(Configuration_t const& config) 
 {
-  fGDMLPath = config.GDML();
-  fPixelSpacing = config.PixelSpacing();
+  fGDMLPath     = config.GDML();
+
+  // Look to see if this is GDML with simplified pixels
+  if (fGDMLPath.find("simple") != std::string::npos) 
+  {
+    fIsSimpleGeometry = true; 
+    fPixelSpacing = config.PixelSpacing();
+  }
 }
 
 //--------------------------------------------------------------------
@@ -80,16 +94,24 @@ void AmSelGeometry::Initialize()
   gGeoManager->LockGeometry();
 
   TGeoNode* topNode = gGeoManager->GetTopNode();
-  LookAtNode(topNode);
-
+  // Create new path
+  std::string path = topNode->GetName();
+  fNodePaths.push_back(path);
+  LookAtNode(topNode, path);
+ 
   if (fLArTPCVolName.find("volLArActive") == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
   if (!fPixelPlane)                                             throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
+
+  // Load simplified geometry
+  if (fIsSimpleGeometry) LoadSimpleGeometry();
+
+  for (const auto& np : fNodePaths) std::cout << np << std::endl;
 
   mf::LogInfo("AmSelGeometry")<<"Initialized geometry with " << fNPixels << " pixels\n";
 }
 
 //--------------------------------------------------------------------
-void AmSelGeometry::LookAtNode(const TGeoNode* currentNode) 
+void AmSelGeometry::LookAtNode(TGeoNode const* currentNode, std::string const& currentPath) 
 {
   // Get the volume of this node
   TGeoVolume* nodeVol = currentNode->GetVolume();
@@ -99,12 +121,8 @@ void AmSelGeometry::LookAtNode(const TGeoNode* currentNode)
   if (volName.find("volPixelPad") != std::string::npos) return;
   if (volName == "volPixelPlane")
   {
-    fPixelPlane = nodeVol;
-    TObjArray* pixelNodes = fPixelPlane->GetNodes();
-    fNPixels = pixelNodes->GetEntries();
-
-    // We have everything we need
-    return;
+    fPixelPlane = nodeVol; 
+    fNPixels = fPixelPlane->GetNodes()->GetEntries();
   }
   if (volName == "volLArActive")
   { 
@@ -115,25 +133,37 @@ void AmSelGeometry::LookAtNode(const TGeoNode* currentNode)
     fLArTPCVolName = "volLArActive";
   }  
 
-  // Check the nodes
+  // Check nodes
   TObjArray* nodes = currentNode->GetNodes();
   if (!nodes) return;
-  for (int iN = 0; iN < nodes->GetEntries(); iN++) LookAtNode(nodeVol->GetNode(iN));
+  for (int iN = 0; iN < nodes->GetEntries(); iN++) 
+  {
+    std::string nextNodePath = currentPath+"/"+nodeVol->GetNode(iN)->GetName();
+    fNodePaths.push_back(nextNodePath);   
+    LookAtNode(nodeVol->GetNode(iN), nextNodePath);
+  }
 }
 
 
 //--------------------------------------------------------------------
-ULong8_t AmSelGeometry::NearestPixelID(geo::Point_t const& point) const
+void AmSelGeometry::LoadSimpleGeometry()
+{
+  // It is assumed that the gdml file contains the positions of the 
+  // columns and rows for the pixels. The ID will be identified by 
+  // the row/column combination.
+  std::vector<float> y, z;
+  TObjArray* pixelNodes = fPixelPlane->GetNodes();
+  for (int iP = 0; iP < pixelNodes->GetEntries(); iP++)
+  {
+    TGeoNode* currentNode = fPixelPlane->GetNode(iP); 
+  }
+}
+
+//--------------------------------------------------------------------
+int AmSelGeometry::NearestPixelID(geo::Point_t const& point) const
 {
   std::string pixelName = std::string(VolumeName(point));
-  if (pixelName.find("PixelPad") == std::string::npos) 
-  {
-    mf::LogWarning("AmSelGeometry") << "point (" << point.x() << ","
-                                    << point.y() << "," << point.z() << ") "
-                                    << "is not on a pixel pad. Returning "
-                                    << " pixelID 1\n";
-    return 1;
-  }
+  if (pixelName.find("volPixelPad") == std::string::npos) return -1;
 
   // Get the pixel ID
   size_t iD(0);

@@ -62,15 +62,11 @@ private:
 
   ULong64_t fNScint;
   ULong64_t fNHits;
-  ULong64_t fNPixels;
+  int       fNPixels;
   float     fPixelSpacing;
   float     fPrimX0;
-
-  // Since most pixels will not see any light and because we will
-  // have a large number of pxels, only store those which see light.
-  // We will do this by storing the pixel ID assuming some pixelization scheme.
-  std::vector<UShort_t> fPixelID;
-  std::vector<UShort_t> fPixelNHits;
+  std::vector<int> fPixelIdVec;
+  std::vector<int> fPixelCountVec;
 };
 
 
@@ -113,38 +109,57 @@ void PhotonProjection::analyze(art::Event const& e)
   
   std::cout << "Number of steps = " << stepPoints.size() << "\n";
   size_t nHit(0);
+  std::map<int, int> pixelMap;
   for (size_t iStep = 0; iStep < stepPoints.size(); iStep++)
   {
     // convert to cm
-    G4ThreeVector pos = stepPoints[iStep]/CLHEP::cm;
+    G4ThreeVector posTemp = stepPoints[iStep]/CLHEP::cm;
+    TVector3      pos(posTemp.x(), posTemp.y(), posTemp.z());
     size_t        nScint = stepScint[iStep];
     for (size_t iPh = 0; iPh < nScint; iPh++)
     {
       double cosTheta = 2*flat.fire() - 1;
       double sinTheta = std::pow(1-std::pow(cosTheta,2),0.5);
       double phi      = 2*M_PI*flat.fire();
-      G4ThreeVector pHat(sinTheta*std::cos(phi),  sinTheta*std::sin(phi), cosTheta);
+      TVector3 pHat(sinTheta*std::cos(phi),  sinTheta*std::sin(phi), cosTheta);
 
       // No chance...
-      if (pHat.x() >= 0) continue;
+      if (pHat.X() >= 0) continue;
 
       // Project this onto the x = 0 plane
-      double t  = -1*pos.x()/pHat.x();
-      G4ThreeVector projPos = pos + t * pHat;
+      double t  = -1*pos.X()/pHat.X();
+      TVector3 projPos = pos + t * pHat;
 
       // Assuming coordinate system is centered on front face of argon slab (it should be)
-      if (projPos.z() <= 0               || projPos.z() >= detLength ||
-          projPos.y() <= -1*detHalfWidth || projPos.y() >= detHalfWidth) continue;
+      if (projPos.Z() <= 0               || projPos.Z() >= detLength ||
+          projPos.Y() <= -1*detHalfWidth || projPos.Y() >= detHalfWidth) continue;
 
       // This hit the readout plane
       nHit++;
-     
-     // std::vector<float> point = {projPos.z(), projPos.y()};
-      //auto nearestPixelId = geom->NearestPixelID(point); 
+    
+      /// \todo Handle the x coordinate better here 
+      TVector3 point(-0.01, projPos.Y(), projPos.Z());
+      auto nearestPixelId = geom->NearestPixelID(point); 
+      if (nearestPixelId < 0) continue;
+ 
+      // Add this photon to this pixel
+      auto pixelIter = pixelMap.find(nearestPixelId);
+      if (pixelIter != pixelMap.end()) pixelIter->second++;
+      else pixelMap.emplace(nearestPixelId, 1);
     }
   }
+  fNHits = nHit;
   std::cout << "Number of photons incident on plane: " << nHit << std::endl;
   std::cout << "////////////////////////////////////////////////\n";
+
+  // Fill our containers
+  fPixelIdVec.reserve(pixelMap.size());
+  fPixelCountVec.reserve(pixelMap.size());
+  for (const auto& p : pixelMap)
+  {
+    fPixelIdVec.push_back(p.first);
+    fPixelCountVec.push_back(p.second);
+  }
 
   // Now fill some info on primary
   art::ServiceHandle<cheat::ParticleInventoryService> pi_serv;
@@ -153,9 +168,7 @@ void PhotonProjection::analyze(art::Event const& e)
   for (size_t p = 0; p < plist.size(); p++)
   {
     auto part = plist.Particle(p);
-
     if (part->Process() != "primary") continue;
-
     fPrimX0 = part->Vx();
   }
 
@@ -167,8 +180,8 @@ void PhotonProjection::resetVars()
   fNScint = 0;
   fNHits = 0;
   fPrimX0 = -99999;
-  fPixelID.clear();
-  fPixelNHits.clear();
+  fPixelIdVec.clear();
+  fPixelCountVec.clear();
 }
 
 void PhotonProjection::beginJob()
@@ -181,8 +194,8 @@ void PhotonProjection::beginJob()
   fTree->Branch("nPixels",      &fNPixels,      "nPixels/l");
   fTree->Branch("pixelSpacing", &fPixelSpacing, "pixelSpacing/D");
   fTree->Branch("primX0", &fPrimX0, "primX0/D");
-  //fTree->Branch("pixelIDs" ,    &fPixelID    );
-  //fTree->Branch("pixelHits" ,   &fPixelNHits );
+  fTree->Branch("pixelIDs" ,    &fPixelIdVec    );
+  fTree->Branch("pixelHits" ,   &fPixelCountVec );
 
   // How many pixels are we dealing with here?
   amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
