@@ -47,6 +47,12 @@ class AmSelGeometry : public DetectorGeometry
         Comment("Name of GDML file for AmSel geometry")
       };
 
+      fhicl::Atom<bool> UseSimpleGeometry
+      {
+        Name("UseSimpleGeometry"),
+        Comment("Option to simplify the pixel geometry.")
+      };
+
       fhicl::Atom<double> PixelSpacing
       {
         Name("PixelSpacing"),
@@ -101,15 +107,17 @@ class AmSelGeometry : public DetectorGeometry
     void LoadSimpleGeometry();
 
     std::vector<std::string> fNodePaths;
-    std::string fGDMLPath;
-    std::string fLArTPCVolName;
-    double fDetHalfHeight;
-    double fDetHalfWidth;
-    double fDetLength;
-    float  fPixelSpacing;
-    ULong8_t fNPixels;
-    TGeoVolume* fPixelPlane;
-    bool fIsSimpleGeometry;
+    std::vector<float>       fSimpleGeoZ;
+    std::vector<float>       fSimpleGeoY;
+    std::string              fGDMLPath;
+    std::string              fLArTPCVolName;
+    double                   fDetHalfHeight;
+    double                   fDetHalfWidth;
+    double                   fDetLength;
+    float                    fPixelSpacing;
+    ULong8_t                 fNPixels;
+    TGeoVolume*              fPixelPlane;
+    bool                     fUseSimpleGeometry;
 }; // class AmSelGeometry
 
 }
