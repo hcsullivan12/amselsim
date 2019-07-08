@@ -2,8 +2,6 @@
 /// \file  AmSelGeometry.cxx
 /// \brief Interface to AmSel geometry information.
 ///
-/// \todo Change world_vol to volWorld 
-///
 /// \author  hsulliva@fnal.gov
 //////////////////////////////////////////////////////////////////////
 
@@ -87,8 +85,7 @@ void AmSelGeometry::Initialize()
   if (fLArTPCVolName.find("volLArActive") == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
   if (!fPixelPlane)                                             throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
 
-  mf::LogInfo("AmSelGeometry")<<"Initialized geometry:"
-                              <<"\nNpixels = "<<fNPixels;
+  mf::LogInfo("AmSelGeometry")<<"Initialized geometry with " << fNPixels << " pixels\n";
 }
 
 //--------------------------------------------------------------------
@@ -126,23 +123,23 @@ void AmSelGeometry::LookAtNode(const TGeoNode* currentNode)
 
 
 //--------------------------------------------------------------------
-ULong8_t AmSelGeometry::NearestPixelID(const std::vector<double>& point) const
+ULong8_t AmSelGeometry::NearestPixelID(geo::Point_t const& point) const
 {
-  if (point.size() != 3) throw cet::exception("AmSelGeometry") << "Point must be 3D!\n";
+  std::string pixelName = std::string(VolumeName(point));
+  if (pixelName.find("PixelPad") == std::string::npos) 
+  {
+    mf::LogWarning("AmSelGeometry") << "point (" << point.x() << ","
+                                    << point.y() << "," << point.z() << ") "
+                                    << "is not on a pixel pad. Returning "
+                                    << " pixelID 1\n";
+    return 1;
+  }
 
-  TGeoNode* pixelNode = gGeoManager->FindNode(point[0], point[1], point[2]);
-  if (!pixelNode) {mf::LogWarning("AmSelGeometry") << "Pixel node is null! Return 1.\n"; return 1;}
-
-  TGeoVolume* pixelVol  = pixelNode->GetVolume();
-  std::string pixelName = std::string(pixelVol->GetName()); 
   // Get the pixel ID
   size_t iD(0);
   for (; iD < pixelName.size(); iD++) {if(std::isdigit(pixelName[iD])) break;}
-  
+
   return std::stoi(pixelName.substr(iD));
-  //Double_t m[3];
-  //auto o = ((TGeoBBox*)pixelVol->GetShape())->GetOrigin();
-  //pixelNode->LocalToMaster(o,m);
 }
 
 //--------------------------------------------------------------------
@@ -157,13 +154,13 @@ std::string AmSelGeometry::VolumeName(geo::Point_t const& point) const
      std::abs(point.y()) > halfheight ||
      std::abs(point.z()) > halflength
      ){
-    mf::LogWarning("GeometryCoreBadInputPoint") << "point (" << point.x() << ","
-                                              << point.y() << "," << point.z() << ") "
-                                              << "is not inside the world volume "
-                                              << " half width = " << halfwidth
-                                              << " half height = " << halfheight
-                                              << " half length = " << halflength
-                                              << " returning unknown volume name";
+    mf::LogWarning("AmSelGeometry") << "point (" << point.x() << ","
+                                    << point.y() << "," << point.z() << ") "
+                                    << "is not inside the world volume "
+                                    << " half width = " << halfwidth
+                                    << " half height = " << halfheight
+                                    << " half length = " << halflength
+                                    << " returning unknown volume name";
       const std::string unknown("unknownVolume");
       return unknown;
   }

@@ -83,7 +83,10 @@ class AmSelGeometry : public DetectorGeometry
     double DetLength() const     { return fDetLength; }
     float  PixelSpacing() const  { return fPixelSpacing; }
     ULong8_t NPixels() const { return fNPixels; }
-    ULong8_t NearestPixelID(const std::vector<double>& point) const;
+    ULong8_t NearestPixelID(geo::Point_t const& point) const;
+    ULong8_t NearestPixelID(TVector3 const& point) const
+      { return NearestPixelID(geo::vect::toPoint(point)); }
+    
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
     std::string VolumeName(geo::Point_t const& point) const;
     std::string VolumeName(TVector3 const& point) const
