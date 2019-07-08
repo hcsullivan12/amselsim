@@ -79,79 +79,67 @@ void AmSelGeometry::Initialize()
   TGeoManager::Import(fGDMLPath.c_str());
   gGeoManager->LockGeometry();
 
-  // Initialize high level information
-  // Let's loop over our volumes, since we could potentially have 
-  // a large number of pixels
-  TObjArray* volumes = gGeoManager->GetListOfVolumes();
-  size_t nVols = volumes->GetEntries();
-  ULong4_t maxId = 0;
-  for (size_t iVol = 0; iVol < nVols; iVol++)
-  {
-    TGeoVolume* vol = (TGeoVolume*)volumes->At(iVol);
+  TGeoNode* topNode = gGeoManager->GetTopNode();
+  LookAtNode(topNode);
 
-    if (std::string(vol->GetName()) == "volPixelPlane")
-    {
-      fPixelPlane = vol;
-      TObjArray* nodes = fPixelPlane->GetNodes();
-      fNPixels = nodes->GetEntries();
-    }
-    if (std::string(vol->GetName()) == "volLArActive")
-    { 
-      fDetHalfHeight = ((TGeoBBox*)vol->GetShape())->GetDX(); 
-      fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
-      fDetLength     = 2*((TGeoBBox*)vol->GetShape())->GetDZ(); 
-
-      fLArTPCVolName = "volLArActive";
-    }
-  }
   if (fLArTPCVolName.find("volLArActive") == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
   if (!fPixelPlane)                                             throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
 
-
-  // Now let's load our pixels
-  float zMin = std::numeric_limits<float>::max();
-  float zMax = std::numeric_limits<float>::min();
-  float yMin = std::numeric_limits<float>::max();
-  float yMax = std::numeric_limits<float>::min();
-  for (ULong8_t i = 0; i < fNPixels; i++)
-  {
-    TGeoNode*   pixelNode = fPixelPlane->GetNode(i);
-    TGeoVolume  pixelVol  = pixelNode->GetVolume();
-    std::string pixelName = std::string(pixelVol->GetName()); 
-
-    // Get the pixel ID
-    size_t iD(0);
-    for (; iD < pixelName.size(); iD++) {if(std::isdigit(pixelName[iD])) break;}
-    size_t pixelID = std::stoi(pixelName.substr(iD));
-    std::cout << pixelName << " " << pixelID << std::endl;
-
-
-    auto o = ((TGeoBBox*)pixelNode->GetVolume()->GetShape())->GetOrigin();
-    Double_t m[3];
-    pixelNode->LocalToMaster(o,m);
-
-    yMin = m[1] < yMin ? m[1] : yMin;
-    yMax = m[1] > yMax ? m[1] : yMax;
-
-    zMin = m[2] < zMin ? m[2] : zMin;
-    zMax = m[2] > zMax ? m[2] : zMax;
-  }
-
-
-  // For now, add the half length to these to convert to world coordinates
-  fPixelLimitsY.push_back(yMin); fPixelLimitsY.push_back(yMax);
-  fPixelLimitsZ.push_back(zMin+fDetLength*0.5); fPixelLimitsZ.push_back(zMax+fDetLength*0.5);
-
   mf::LogInfo("AmSelGeometry")<<"Initialized geometry:"
-                              <<"\nNpixels = "<<fNPixels
-                              <<"\nz limits = ["<<fPixelLimitsZ[0]<<", "<<fPixelLimitsZ[1]<<"]"
-                              <<"\ny limits = ["<<fPixelLimitsY[0]<<", "<<fPixelLimitsY[1]<<"]";
+                              <<"\nNpixels = "<<fNPixels;
 }
+
+//--------------------------------------------------------------------
+void AmSelGeometry::LookAtNode(const TGeoNode* currentNode) 
+{
+  // Get the volume of this node
+  TGeoVolume* nodeVol = currentNode->GetVolume();
+  std::string volName = std::string(nodeVol->GetName());
+
+  // Leave if this is a pixel
+  if (volName.find("volPixelPad") != std::string::npos) return;
+  if (volName == "volPixelPlane")
+  {
+    fPixelPlane = nodeVolume;
+    TObjArray* pixelNodes = fPixelPlane->GetNodes();
+    fNPixels = pixelNodes->GetEntries();
+
+    // We have everything we need
+    return;
+  }
+  if (volName == "volLArActive")
+  { 
+    fDetHalfHeight = ((TGeoBBox*)vol->GetShape())->GetDX(); 
+    fDetHalfWidth  = ((TGeoBBox*)vol->GetShape())->GetDY(); 
+    fDetLength     = 2*((TGeoBBox*)vol->GetShape())->GetDZ(); 
+  
+    fLArTPCVolName = "volLArActive";
+  }  
+
+  // Check the nodes
+  TObjArray* nodes = currentNode->GetNodes();
+  for (size_t iN = 0; iN < nodes->GetEntries(); iN++) LookAtNode(nodes->At(iN));
+}
+
 
 //--------------------------------------------------------------------
 ULong8_t AmSelGeometry::NearestPixelID(const std::vector<double>& point) const
 {
-  return 1;
+  if (point.size() != 3) throw cet::exception("AmSelGeometry") << "Point must be 3D!\n";
+
+  TGeoNode* pixelNode = gGeoManager->FindNode(point[0], point[1], point[2]);
+  if (!pixelNode) {mf::LogWarning("AmSelGeometry") << "Pixel node is null! Return 1.\n"; return 1;}
+
+  TGeoVolume* pixelVol  = pixelNode->GetVolume();
+  std::string pixelName = std::string(pixelVol->GetName()); 
+  // Get the pixel ID
+  size_t iD(0);
+  for (; iD < pixelName.size(); iD++) {if(std::isdigit(pixelName[iD])) break;}
+  
+  return std::stoi(pixelName.substr(iD));
+  //Double_t m[3];
+  //auto o = ((TGeoBBox*)pixelVol->GetShape())->GetOrigin();
+  //pixelNode->LocalToMaster(o,m);
 }
 
 //--------------------------------------------------------------------

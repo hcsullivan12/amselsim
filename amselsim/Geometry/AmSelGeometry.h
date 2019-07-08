@@ -94,6 +94,7 @@ class AmSelGeometry : public DetectorGeometry
 
   private:
     void Initialize();
+    void LookAtNode(const TGeoNode* currentNode)
 
     std::string fGDMLPath;
     std::string fLArTPCVolName;
@@ -101,8 +102,6 @@ class AmSelGeometry : public DetectorGeometry
     double fDetHalfWidth;
     double fDetLength;
     float  fPixelSpacing;
-    std::vector<float> fPixelLimitsY;
-    std::vector<float> fPixelLimitsZ;
     ULong8_t fNPixels;
     TGeoVolume* fPixelPlane;
 }; // class AmSelGeometry
