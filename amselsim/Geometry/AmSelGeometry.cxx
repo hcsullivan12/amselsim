@@ -21,6 +21,8 @@
 #include "TGeoBBox.h"
 #include "TGeoVolume.h"
 
+#include <algorithm>
+
 namespace amselgeo
 {
 
@@ -154,10 +156,11 @@ void AmSelGeometry::LoadSimpleGeometry()
   {
     // Need the path to this pixel
     TGeoNode* currentNode = fPixelPlane->GetNode(iP); 
-    auto currentNodePath = std::find(fNodePaths.begin(), fNodePaths.end(), [](std::string const& path) return path == currentNode->GetName(););
-    if (currentNodePath == fNodePaths.end()) throw cet::exception("AmSelGeometry") << "Couldn't find pixel named " << currentNode->GetName() << "\n";
+    std::string name      = std::string(currentNode->GetName());
+    auto currentNodePath = std::find_if(fNodePaths.begin(), fNodePaths.end(), [name](std::string const& path) {return path.find(name) != std::string::npos;});
+    if (currentNodePath == fNodePaths.end()) throw cet::exception("AmSelGeometry") << "Couldn't find pixel named " << name << "\n";
 
-    gGeoManager->cd(*currentNodePath);
+    gGeoManager->cd((*currentNodePath).c_str());
     Double_t m[3];
     auto o = ((TGeoBBox*)currentNode->GetVolume()->GetShape())->GetOrigin();
     gGeoManager->LocalToMaster(o,m);

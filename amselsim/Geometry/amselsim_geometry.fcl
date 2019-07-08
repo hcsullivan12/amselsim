@@ -3,8 +3,9 @@ BEGIN_PROLOG
 
 amselsim_geo:
 {
- GDML:     "amsel.gdml" 
- PixelSpacing: 0.4
+ GDML:              "amsel.gdml" 
+ UseSimpleGeometry: true
+ PixelSpacing:      0.4
 }
 
 END_PROLOG

@@ -1,0 +1,4741 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+  <define>
+    <rotation name="PixelPad_rot" unit="degree" x="0" y="90" z="0"/>
+    <position name="PixelPadvolPixel_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <position name="PixelPad1_pos" unit="cm" x="0.0" y="0.0" z="0.2"/>
+    <rotation name="PixelPad1_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad2_pos" unit="cm" x="0.0" y="0.0" z="-0.2"/>
+    <rotation name="PixelPad2_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad3_pos" unit="cm" x="0.0" y="0.0" z="0.6"/>
+    <rotation name="PixelPad3_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad4_pos" unit="cm" x="0.0" y="0.0" z="-0.6"/>
+    <rotation name="PixelPad4_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad5_pos" unit="cm" x="0.0" y="0.0" z="1.0"/>
+    <rotation name="PixelPad5_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad6_pos" unit="cm" x="0.0" y="0.0" z="-1.0"/>
+    <rotation name="PixelPad6_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad7_pos" unit="cm" x="0.0" y="0.0" z="1.4"/>
+    <rotation name="PixelPad7_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad8_pos" unit="cm" x="0.0" y="0.0" z="-1.4"/>
+    <rotation name="PixelPad8_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad9_pos" unit="cm" x="0.0" y="0.0" z="1.8"/>
+    <rotation name="PixelPad9_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad10_pos" unit="cm" x="0.0" y="0.0" z="-1.8"/>
+    <rotation name="PixelPad10_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad11_pos" unit="cm" x="0.0" y="0.0" z="2.2"/>
+    <rotation name="PixelPad11_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad12_pos" unit="cm" x="0.0" y="0.0" z="-2.2"/>
+    <rotation name="PixelPad12_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad13_pos" unit="cm" x="0.0" y="0.0" z="2.6"/>
+    <rotation name="PixelPad13_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad14_pos" unit="cm" x="0.0" y="0.0" z="-2.6"/>
+    <rotation name="PixelPad14_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad15_pos" unit="cm" x="0.0" y="0.0" z="3.0"/>
+    <rotation name="PixelPad15_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad16_pos" unit="cm" x="0.0" y="0.0" z="-3.0"/>
+    <rotation name="PixelPad16_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad17_pos" unit="cm" x="0.0" y="0.0" z="3.4"/>
+    <rotation name="PixelPad17_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad18_pos" unit="cm" x="0.0" y="0.0" z="-3.4"/>
+    <rotation name="PixelPad18_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad19_pos" unit="cm" x="0.0" y="0.0" z="3.8"/>
+    <rotation name="PixelPad19_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad20_pos" unit="cm" x="0.0" y="0.0" z="-3.8"/>
+    <rotation name="PixelPad20_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad21_pos" unit="cm" x="0.0" y="0.0" z="4.2"/>
+    <rotation name="PixelPad21_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad22_pos" unit="cm" x="0.0" y="0.0" z="-4.2"/>
+    <rotation name="PixelPad22_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad23_pos" unit="cm" x="0.0" y="0.0" z="4.6"/>
+    <rotation name="PixelPad23_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad24_pos" unit="cm" x="0.0" y="0.0" z="-4.6"/>
+    <rotation name="PixelPad24_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad25_pos" unit="cm" x="0.0" y="0.0" z="5.0"/>
+    <rotation name="PixelPad25_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad26_pos" unit="cm" x="0.0" y="0.0" z="-5.0"/>
+    <rotation name="PixelPad26_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad27_pos" unit="cm" x="0.0" y="0.0" z="5.4"/>
+    <rotation name="PixelPad27_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad28_pos" unit="cm" x="0.0" y="0.0" z="-5.4"/>
+    <rotation name="PixelPad28_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad29_pos" unit="cm" x="0.0" y="0.0" z="5.8"/>
+    <rotation name="PixelPad29_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad30_pos" unit="cm" x="0.0" y="0.0" z="-5.8"/>
+    <rotation name="PixelPad30_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad31_pos" unit="cm" x="0.0" y="0.0" z="6.2"/>
+    <rotation name="PixelPad31_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad32_pos" unit="cm" x="0.0" y="0.0" z="-6.2"/>
+    <rotation name="PixelPad32_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad33_pos" unit="cm" x="0.0" y="0.0" z="6.6"/>
+    <rotation name="PixelPad33_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad34_pos" unit="cm" x="0.0" y="0.0" z="-6.6"/>
+    <rotation name="PixelPad34_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad35_pos" unit="cm" x="0.0" y="0.0" z="7.0"/>
+    <rotation name="PixelPad35_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad36_pos" unit="cm" x="0.0" y="0.0" z="-7.0"/>
+    <rotation name="PixelPad36_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad37_pos" unit="cm" x="0.0" y="0.0" z="7.4"/>
+    <rotation name="PixelPad37_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad38_pos" unit="cm" x="0.0" y="0.0" z="-7.4"/>
+    <rotation name="PixelPad38_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad39_pos" unit="cm" x="0.0" y="0.0" z="7.8"/>
+    <rotation name="PixelPad39_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad40_pos" unit="cm" x="0.0" y="0.0" z="-7.8"/>
+    <rotation name="PixelPad40_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad41_pos" unit="cm" x="0.0" y="0.0" z="8.2"/>
+    <rotation name="PixelPad41_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad42_pos" unit="cm" x="0.0" y="0.0" z="-8.2"/>
+    <rotation name="PixelPad42_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad43_pos" unit="cm" x="0.0" y="0.0" z="8.6"/>
+    <rotation name="PixelPad43_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad44_pos" unit="cm" x="0.0" y="0.0" z="-8.6"/>
+    <rotation name="PixelPad44_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad45_pos" unit="cm" x="0.0" y="0.0" z="9.0"/>
+    <rotation name="PixelPad45_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad46_pos" unit="cm" x="0.0" y="0.0" z="-9.0"/>
+    <rotation name="PixelPad46_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad47_pos" unit="cm" x="0.0" y="0.0" z="9.4"/>
+    <rotation name="PixelPad47_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad48_pos" unit="cm" x="0.0" y="0.0" z="-9.4"/>
+    <rotation name="PixelPad48_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad49_pos" unit="cm" x="0.0" y="0.0" z="9.8"/>
+    <rotation name="PixelPad49_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad50_pos" unit="cm" x="0.0" y="0.0" z="-9.8"/>
+    <rotation name="PixelPad50_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad51_pos" unit="cm" x="0.0" y="0.0" z="10.2"/>
+    <rotation name="PixelPad51_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad52_pos" unit="cm" x="0.0" y="0.0" z="-10.2"/>
+    <rotation name="PixelPad52_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad53_pos" unit="cm" x="0.0" y="0.0" z="10.6"/>
+    <rotation name="PixelPad53_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad54_pos" unit="cm" x="0.0" y="0.0" z="-10.6"/>
+    <rotation name="PixelPad54_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad55_pos" unit="cm" x="0.0" y="0.0" z="11.0"/>
+    <rotation name="PixelPad55_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad56_pos" unit="cm" x="0.0" y="0.0" z="-11.0"/>
+    <rotation name="PixelPad56_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad57_pos" unit="cm" x="0.0" y="0.0" z="11.4"/>
+    <rotation name="PixelPad57_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad58_pos" unit="cm" x="0.0" y="0.0" z="-11.4"/>
+    <rotation name="PixelPad58_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad59_pos" unit="cm" x="0.0" y="0.0" z="11.8"/>
+    <rotation name="PixelPad59_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad60_pos" unit="cm" x="0.0" y="0.0" z="-11.8"/>
+    <rotation name="PixelPad60_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad61_pos" unit="cm" x="0.0" y="0.0" z="12.2"/>
+    <rotation name="PixelPad61_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad62_pos" unit="cm" x="0.0" y="0.0" z="-12.2"/>
+    <rotation name="PixelPad62_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad63_pos" unit="cm" x="0.0" y="0.0" z="12.6"/>
+    <rotation name="PixelPad63_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad64_pos" unit="cm" x="0.0" y="0.0" z="-12.6"/>
+    <rotation name="PixelPad64_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad65_pos" unit="cm" x="0.0" y="0.0" z="13.0"/>
+    <rotation name="PixelPad65_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad66_pos" unit="cm" x="0.0" y="0.0" z="-13.0"/>
+    <rotation name="PixelPad66_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad67_pos" unit="cm" x="0.0" y="0.0" z="13.4"/>
+    <rotation name="PixelPad67_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad68_pos" unit="cm" x="0.0" y="0.0" z="-13.4"/>
+    <rotation name="PixelPad68_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad69_pos" unit="cm" x="0.0" y="0.0" z="13.8"/>
+    <rotation name="PixelPad69_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad70_pos" unit="cm" x="0.0" y="0.0" z="-13.8"/>
+    <rotation name="PixelPad70_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad71_pos" unit="cm" x="0.0" y="0.0" z="14.2"/>
+    <rotation name="PixelPad71_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad72_pos" unit="cm" x="0.0" y="0.0" z="-14.2"/>
+    <rotation name="PixelPad72_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad73_pos" unit="cm" x="0.0" y="0.0" z="14.6"/>
+    <rotation name="PixelPad73_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad74_pos" unit="cm" x="0.0" y="0.0" z="-14.6"/>
+    <rotation name="PixelPad74_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad75_pos" unit="cm" x="0.0" y="0.0" z="15.0"/>
+    <rotation name="PixelPad75_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad76_pos" unit="cm" x="0.0" y="0.0" z="-15.0"/>
+    <rotation name="PixelPad76_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad77_pos" unit="cm" x="0.0" y="0.0" z="15.4"/>
+    <rotation name="PixelPad77_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad78_pos" unit="cm" x="0.0" y="0.0" z="-15.4"/>
+    <rotation name="PixelPad78_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad79_pos" unit="cm" x="0.0" y="0.0" z="15.8"/>
+    <rotation name="PixelPad79_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad80_pos" unit="cm" x="0.0" y="0.0" z="-15.8"/>
+    <rotation name="PixelPad80_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad81_pos" unit="cm" x="0.0" y="0.0" z="16.2"/>
+    <rotation name="PixelPad81_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad82_pos" unit="cm" x="0.0" y="0.0" z="-16.2"/>
+    <rotation name="PixelPad82_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad83_pos" unit="cm" x="0.0" y="0.0" z="16.6"/>
+    <rotation name="PixelPad83_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad84_pos" unit="cm" x="0.0" y="0.0" z="-16.6"/>
+    <rotation name="PixelPad84_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad85_pos" unit="cm" x="0.0" y="0.0" z="17.0"/>
+    <rotation name="PixelPad85_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad86_pos" unit="cm" x="0.0" y="0.0" z="-17.0"/>
+    <rotation name="PixelPad86_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad87_pos" unit="cm" x="0.0" y="0.0" z="17.4"/>
+    <rotation name="PixelPad87_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad88_pos" unit="cm" x="0.0" y="0.0" z="-17.4"/>
+    <rotation name="PixelPad88_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad89_pos" unit="cm" x="0.0" y="0.0" z="17.8"/>
+    <rotation name="PixelPad89_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad90_pos" unit="cm" x="0.0" y="0.0" z="-17.8"/>
+    <rotation name="PixelPad90_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad91_pos" unit="cm" x="0.0" y="0.0" z="18.2"/>
+    <rotation name="PixelPad91_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad92_pos" unit="cm" x="0.0" y="0.0" z="-18.2"/>
+    <rotation name="PixelPad92_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad93_pos" unit="cm" x="0.0" y="0.0" z="18.6"/>
+    <rotation name="PixelPad93_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad94_pos" unit="cm" x="0.0" y="0.0" z="-18.6"/>
+    <rotation name="PixelPad94_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad95_pos" unit="cm" x="0.0" y="0.0" z="19.0"/>
+    <rotation name="PixelPad95_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad96_pos" unit="cm" x="0.0" y="0.0" z="-19.0"/>
+    <rotation name="PixelPad96_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad97_pos" unit="cm" x="0.0" y="0.0" z="19.4"/>
+    <rotation name="PixelPad97_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad98_pos" unit="cm" x="0.0" y="0.0" z="-19.4"/>
+    <rotation name="PixelPad98_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad99_pos" unit="cm" x="0.0" y="0.0" z="19.8"/>
+    <rotation name="PixelPad99_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad100_pos" unit="cm" x="0.0" y="0.0" z="-19.8"/>
+    <rotation name="PixelPad100_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad101_pos" unit="cm" x="0.0" y="0.0" z="20.2"/>
+    <rotation name="PixelPad101_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad102_pos" unit="cm" x="0.0" y="0.0" z="-20.2"/>
+    <rotation name="PixelPad102_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad103_pos" unit="cm" x="0.0" y="0.0" z="20.6"/>
+    <rotation name="PixelPad103_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad104_pos" unit="cm" x="0.0" y="0.0" z="-20.6"/>
+    <rotation name="PixelPad104_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad105_pos" unit="cm" x="0.0" y="0.0" z="21.0"/>
+    <rotation name="PixelPad105_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad106_pos" unit="cm" x="0.0" y="0.0" z="-21.0"/>
+    <rotation name="PixelPad106_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad107_pos" unit="cm" x="0.0" y="0.0" z="21.4"/>
+    <rotation name="PixelPad107_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad108_pos" unit="cm" x="0.0" y="0.0" z="-21.4"/>
+    <rotation name="PixelPad108_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad109_pos" unit="cm" x="0.0" y="0.0" z="21.8"/>
+    <rotation name="PixelPad109_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad110_pos" unit="cm" x="0.0" y="0.0" z="-21.8"/>
+    <rotation name="PixelPad110_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad111_pos" unit="cm" x="0.0" y="0.0" z="22.2"/>
+    <rotation name="PixelPad111_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad112_pos" unit="cm" x="0.0" y="0.0" z="-22.2"/>
+    <rotation name="PixelPad112_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad113_pos" unit="cm" x="0.0" y="0.0" z="22.6"/>
+    <rotation name="PixelPad113_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad114_pos" unit="cm" x="0.0" y="0.0" z="-22.6"/>
+    <rotation name="PixelPad114_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad115_pos" unit="cm" x="0.0" y="0.0" z="23.0"/>
+    <rotation name="PixelPad115_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad116_pos" unit="cm" x="0.0" y="0.0" z="-23.0"/>
+    <rotation name="PixelPad116_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad117_pos" unit="cm" x="0.0" y="0.0" z="23.4"/>
+    <rotation name="PixelPad117_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad118_pos" unit="cm" x="0.0" y="0.0" z="-23.4"/>
+    <rotation name="PixelPad118_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad119_pos" unit="cm" x="0.0" y="0.0" z="23.8"/>
+    <rotation name="PixelPad119_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad120_pos" unit="cm" x="0.0" y="0.0" z="-23.8"/>
+    <rotation name="PixelPad120_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad121_pos" unit="cm" x="0.0" y="0.0" z="24.2"/>
+    <rotation name="PixelPad121_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad122_pos" unit="cm" x="0.0" y="0.0" z="-24.2"/>
+    <rotation name="PixelPad122_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad123_pos" unit="cm" x="0.0" y="0.0" z="24.6"/>
+    <rotation name="PixelPad123_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad124_pos" unit="cm" x="0.0" y="0.0" z="-24.6"/>
+    <rotation name="PixelPad124_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad125_pos" unit="cm" x="0.0" y="0.0" z="25.0"/>
+    <rotation name="PixelPad125_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad126_pos" unit="cm" x="0.0" y="0.0" z="-25.0"/>
+    <rotation name="PixelPad126_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad127_pos" unit="cm" x="0.0" y="0.0" z="25.4"/>
+    <rotation name="PixelPad127_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad128_pos" unit="cm" x="0.0" y="0.0" z="-25.4"/>
+    <rotation name="PixelPad128_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad129_pos" unit="cm" x="0.0" y="0.0" z="25.8"/>
+    <rotation name="PixelPad129_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad130_pos" unit="cm" x="0.0" y="0.0" z="-25.8"/>
+    <rotation name="PixelPad130_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad131_pos" unit="cm" x="0.0" y="0.0" z="26.2"/>
+    <rotation name="PixelPad131_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad132_pos" unit="cm" x="0.0" y="0.0" z="-26.2"/>
+    <rotation name="PixelPad132_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad133_pos" unit="cm" x="0.0" y="0.0" z="26.6"/>
+    <rotation name="PixelPad133_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad134_pos" unit="cm" x="0.0" y="0.0" z="-26.6"/>
+    <rotation name="PixelPad134_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad135_pos" unit="cm" x="0.0" y="0.0" z="27.0"/>
+    <rotation name="PixelPad135_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad136_pos" unit="cm" x="0.0" y="0.0" z="-27.0"/>
+    <rotation name="PixelPad136_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad137_pos" unit="cm" x="0.0" y="0.0" z="27.4"/>
+    <rotation name="PixelPad137_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad138_pos" unit="cm" x="0.0" y="0.0" z="-27.4"/>
+    <rotation name="PixelPad138_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad139_pos" unit="cm" x="0.0" y="0.0" z="27.8"/>
+    <rotation name="PixelPad139_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad140_pos" unit="cm" x="0.0" y="0.0" z="-27.8"/>
+    <rotation name="PixelPad140_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad141_pos" unit="cm" x="0.0" y="0.0" z="28.2"/>
+    <rotation name="PixelPad141_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad142_pos" unit="cm" x="0.0" y="0.0" z="-28.2"/>
+    <rotation name="PixelPad142_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad143_pos" unit="cm" x="0.0" y="0.0" z="28.6"/>
+    <rotation name="PixelPad143_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad144_pos" unit="cm" x="0.0" y="0.0" z="-28.6"/>
+    <rotation name="PixelPad144_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad145_pos" unit="cm" x="0.0" y="0.0" z="29.0"/>
+    <rotation name="PixelPad145_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad146_pos" unit="cm" x="0.0" y="0.0" z="-29.0"/>
+    <rotation name="PixelPad146_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad147_pos" unit="cm" x="0.0" y="0.0" z="29.4"/>
+    <rotation name="PixelPad147_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad148_pos" unit="cm" x="0.0" y="0.0" z="-29.4"/>
+    <rotation name="PixelPad148_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad149_pos" unit="cm" x="0.0" y="0.0" z="29.8"/>
+    <rotation name="PixelPad149_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad150_pos" unit="cm" x="0.0" y="0.0" z="-29.8"/>
+    <rotation name="PixelPad150_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad151_pos" unit="cm" x="0.0" y="0.0" z="30.2"/>
+    <rotation name="PixelPad151_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad152_pos" unit="cm" x="0.0" y="0.0" z="-30.2"/>
+    <rotation name="PixelPad152_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad153_pos" unit="cm" x="0.0" y="0.0" z="30.6"/>
+    <rotation name="PixelPad153_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad154_pos" unit="cm" x="0.0" y="0.0" z="-30.6"/>
+    <rotation name="PixelPad154_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad155_pos" unit="cm" x="0.0" y="0.0" z="31.0"/>
+    <rotation name="PixelPad155_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad156_pos" unit="cm" x="0.0" y="0.0" z="-31.0"/>
+    <rotation name="PixelPad156_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad157_pos" unit="cm" x="0.0" y="0.0" z="31.4"/>
+    <rotation name="PixelPad157_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad158_pos" unit="cm" x="0.0" y="0.0" z="-31.4"/>
+    <rotation name="PixelPad158_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad159_pos" unit="cm" x="0.0" y="0.0" z="31.8"/>
+    <rotation name="PixelPad159_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad160_pos" unit="cm" x="0.0" y="0.0" z="-31.8"/>
+    <rotation name="PixelPad160_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad161_pos" unit="cm" x="0.0" y="0.0" z="32.2"/>
+    <rotation name="PixelPad161_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad162_pos" unit="cm" x="0.0" y="0.0" z="-32.2"/>
+    <rotation name="PixelPad162_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad163_pos" unit="cm" x="0.0" y="0.0" z="32.6"/>
+    <rotation name="PixelPad163_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad164_pos" unit="cm" x="0.0" y="0.0" z="-32.6"/>
+    <rotation name="PixelPad164_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad165_pos" unit="cm" x="0.0" y="0.0" z="33.0"/>
+    <rotation name="PixelPad165_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad166_pos" unit="cm" x="0.0" y="0.0" z="-33.0"/>
+    <rotation name="PixelPad166_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad167_pos" unit="cm" x="0.0" y="0.0" z="33.4"/>
+    <rotation name="PixelPad167_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad168_pos" unit="cm" x="0.0" y="0.0" z="-33.4"/>
+    <rotation name="PixelPad168_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad169_pos" unit="cm" x="0.0" y="0.0" z="33.8"/>
+    <rotation name="PixelPad169_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad170_pos" unit="cm" x="0.0" y="0.0" z="-33.8"/>
+    <rotation name="PixelPad170_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad171_pos" unit="cm" x="0.0" y="0.0" z="34.2"/>
+    <rotation name="PixelPad171_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad172_pos" unit="cm" x="0.0" y="0.0" z="-34.2"/>
+    <rotation name="PixelPad172_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad173_pos" unit="cm" x="0.0" y="0.0" z="34.6"/>
+    <rotation name="PixelPad173_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad174_pos" unit="cm" x="0.0" y="0.0" z="-34.6"/>
+    <rotation name="PixelPad174_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad175_pos" unit="cm" x="0.0" y="0.0" z="35.0"/>
+    <rotation name="PixelPad175_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad176_pos" unit="cm" x="0.0" y="0.0" z="-35.0"/>
+    <rotation name="PixelPad176_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad177_pos" unit="cm" x="0.0" y="0.0" z="35.4"/>
+    <rotation name="PixelPad177_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad178_pos" unit="cm" x="0.0" y="0.0" z="-35.4"/>
+    <rotation name="PixelPad178_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad179_pos" unit="cm" x="0.0" y="0.0" z="35.8"/>
+    <rotation name="PixelPad179_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad180_pos" unit="cm" x="0.0" y="0.0" z="-35.8"/>
+    <rotation name="PixelPad180_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad181_pos" unit="cm" x="0.0" y="0.0" z="36.2"/>
+    <rotation name="PixelPad181_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad182_pos" unit="cm" x="0.0" y="0.0" z="-36.2"/>
+    <rotation name="PixelPad182_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad183_pos" unit="cm" x="0.0" y="0.0" z="36.6"/>
+    <rotation name="PixelPad183_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad184_pos" unit="cm" x="0.0" y="0.0" z="-36.6"/>
+    <rotation name="PixelPad184_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad185_pos" unit="cm" x="0.0" y="0.0" z="37.0"/>
+    <rotation name="PixelPad185_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad186_pos" unit="cm" x="0.0" y="0.0" z="-37.0"/>
+    <rotation name="PixelPad186_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad187_pos" unit="cm" x="0.0" y="0.0" z="37.4"/>
+    <rotation name="PixelPad187_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad188_pos" unit="cm" x="0.0" y="0.0" z="-37.4"/>
+    <rotation name="PixelPad188_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad189_pos" unit="cm" x="0.0" y="0.0" z="37.8"/>
+    <rotation name="PixelPad189_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad190_pos" unit="cm" x="0.0" y="0.0" z="-37.8"/>
+    <rotation name="PixelPad190_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad191_pos" unit="cm" x="0.0" y="0.0" z="38.2"/>
+    <rotation name="PixelPad191_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad192_pos" unit="cm" x="0.0" y="0.0" z="-38.2"/>
+    <rotation name="PixelPad192_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad193_pos" unit="cm" x="0.0" y="0.0" z="38.6"/>
+    <rotation name="PixelPad193_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad194_pos" unit="cm" x="0.0" y="0.0" z="-38.6"/>
+    <rotation name="PixelPad194_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad195_pos" unit="cm" x="0.0" y="0.0" z="39.0"/>
+    <rotation name="PixelPad195_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad196_pos" unit="cm" x="0.0" y="0.0" z="-39.0"/>
+    <rotation name="PixelPad196_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad197_pos" unit="cm" x="0.0" y="0.0" z="39.4"/>
+    <rotation name="PixelPad197_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad198_pos" unit="cm" x="0.0" y="0.0" z="-39.4"/>
+    <rotation name="PixelPad198_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad199_pos" unit="cm" x="0.0" y="0.0" z="39.8"/>
+    <rotation name="PixelPad199_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad200_pos" unit="cm" x="0.0" y="0.0" z="-39.8"/>
+    <rotation name="PixelPad200_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad201_pos" unit="cm" x="0.0" y="0.0" z="40.2"/>
+    <rotation name="PixelPad201_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad202_pos" unit="cm" x="0.0" y="0.0" z="-40.2"/>
+    <rotation name="PixelPad202_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad203_pos" unit="cm" x="0.0" y="0.0" z="40.6"/>
+    <rotation name="PixelPad203_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad204_pos" unit="cm" x="0.0" y="0.0" z="-40.6"/>
+    <rotation name="PixelPad204_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad205_pos" unit="cm" x="0.0" y="0.0" z="41.0"/>
+    <rotation name="PixelPad205_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad206_pos" unit="cm" x="0.0" y="0.0" z="-41.0"/>
+    <rotation name="PixelPad206_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad207_pos" unit="cm" x="0.0" y="0.0" z="41.4"/>
+    <rotation name="PixelPad207_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad208_pos" unit="cm" x="0.0" y="0.0" z="-41.4"/>
+    <rotation name="PixelPad208_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad209_pos" unit="cm" x="0.0" y="0.0" z="41.8"/>
+    <rotation name="PixelPad209_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad210_pos" unit="cm" x="0.0" y="0.0" z="-41.8"/>
+    <rotation name="PixelPad210_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad211_pos" unit="cm" x="0.0" y="0.0" z="42.2"/>
+    <rotation name="PixelPad211_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad212_pos" unit="cm" x="0.0" y="0.0" z="-42.2"/>
+    <rotation name="PixelPad212_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad213_pos" unit="cm" x="0.0" y="0.0" z="42.6"/>
+    <rotation name="PixelPad213_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad214_pos" unit="cm" x="0.0" y="0.0" z="-42.6"/>
+    <rotation name="PixelPad214_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad215_pos" unit="cm" x="0.0" y="0.0" z="43.0"/>
+    <rotation name="PixelPad215_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad216_pos" unit="cm" x="0.0" y="0.0" z="-43.0"/>
+    <rotation name="PixelPad216_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad217_pos" unit="cm" x="0.0" y="0.0" z="43.4"/>
+    <rotation name="PixelPad217_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad218_pos" unit="cm" x="0.0" y="0.0" z="-43.4"/>
+    <rotation name="PixelPad218_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad219_pos" unit="cm" x="0.0" y="0.0" z="43.8"/>
+    <rotation name="PixelPad219_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad220_pos" unit="cm" x="0.0" y="0.0" z="-43.8"/>
+    <rotation name="PixelPad220_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad221_pos" unit="cm" x="0.0" y="0.0" z="44.2"/>
+    <rotation name="PixelPad221_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad222_pos" unit="cm" x="0.0" y="0.0" z="-44.2"/>
+    <rotation name="PixelPad222_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad223_pos" unit="cm" x="0.0" y="0.0" z="44.6"/>
+    <rotation name="PixelPad223_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad224_pos" unit="cm" x="0.0" y="0.0" z="-44.6"/>
+    <rotation name="PixelPad224_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad225_pos" unit="cm" x="0.0" y="0.0" z="45.0"/>
+    <rotation name="PixelPad225_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad226_pos" unit="cm" x="0.0" y="0.0" z="-45.0"/>
+    <rotation name="PixelPad226_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad227_pos" unit="cm" x="0.0" y="0.0" z="45.4"/>
+    <rotation name="PixelPad227_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad228_pos" unit="cm" x="0.0" y="0.0" z="-45.4"/>
+    <rotation name="PixelPad228_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad229_pos" unit="cm" x="0.0" y="0.0" z="45.8"/>
+    <rotation name="PixelPad229_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad230_pos" unit="cm" x="0.0" y="0.0" z="-45.8"/>
+    <rotation name="PixelPad230_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad231_pos" unit="cm" x="0.0" y="0.0" z="46.2"/>
+    <rotation name="PixelPad231_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad232_pos" unit="cm" x="0.0" y="0.0" z="-46.2"/>
+    <rotation name="PixelPad232_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad233_pos" unit="cm" x="0.0" y="0.0" z="46.6"/>
+    <rotation name="PixelPad233_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad234_pos" unit="cm" x="0.0" y="0.0" z="-46.6"/>
+    <rotation name="PixelPad234_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad235_pos" unit="cm" x="0.0" y="0.0" z="47.0"/>
+    <rotation name="PixelPad235_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad236_pos" unit="cm" x="0.0" y="0.0" z="-47.0"/>
+    <rotation name="PixelPad236_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad237_pos" unit="cm" x="0.0" y="0.0" z="47.4"/>
+    <rotation name="PixelPad237_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad238_pos" unit="cm" x="0.0" y="0.0" z="-47.4"/>
+    <rotation name="PixelPad238_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad239_pos" unit="cm" x="0.0" y="0.0" z="47.8"/>
+    <rotation name="PixelPad239_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad240_pos" unit="cm" x="0.0" y="0.0" z="-47.8"/>
+    <rotation name="PixelPad240_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad241_pos" unit="cm" x="0.0" y="0.0" z="48.2"/>
+    <rotation name="PixelPad241_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad242_pos" unit="cm" x="0.0" y="0.0" z="-48.2"/>
+    <rotation name="PixelPad242_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad243_pos" unit="cm" x="0.0" y="0.0" z="48.6"/>
+    <rotation name="PixelPad243_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad244_pos" unit="cm" x="0.0" y="0.0" z="-48.6"/>
+    <rotation name="PixelPad244_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad245_pos" unit="cm" x="0.0" y="0.0" z="49.0"/>
+    <rotation name="PixelPad245_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad246_pos" unit="cm" x="0.0" y="0.0" z="-49.0"/>
+    <rotation name="PixelPad246_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad247_pos" unit="cm" x="0.0" y="0.0" z="49.4"/>
+    <rotation name="PixelPad247_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad248_pos" unit="cm" x="0.0" y="0.0" z="-49.4"/>
+    <rotation name="PixelPad248_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad249_pos" unit="cm" x="0.0" y="0.2" z="0.0"/>
+    <rotation name="PixelPad249_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad250_pos" unit="cm" x="0.0" y="-0.2" z="0.0"/>
+    <rotation name="PixelPad250_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad251_pos" unit="cm" x="0.0" y="0.6" z="0.0"/>
+    <rotation name="PixelPad251_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad252_pos" unit="cm" x="0.0" y="-0.6" z="0.0"/>
+    <rotation name="PixelPad252_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad253_pos" unit="cm" x="0.0" y="1.0" z="0.0"/>
+    <rotation name="PixelPad253_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad254_pos" unit="cm" x="0.0" y="-1.0" z="0.0"/>
+    <rotation name="PixelPad254_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad255_pos" unit="cm" x="0.0" y="1.4" z="0.0"/>
+    <rotation name="PixelPad255_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad256_pos" unit="cm" x="0.0" y="-1.4" z="0.0"/>
+    <rotation name="PixelPad256_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad257_pos" unit="cm" x="0.0" y="1.8" z="0.0"/>
+    <rotation name="PixelPad257_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad258_pos" unit="cm" x="0.0" y="-1.8" z="0.0"/>
+    <rotation name="PixelPad258_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad259_pos" unit="cm" x="0.0" y="2.2" z="0.0"/>
+    <rotation name="PixelPad259_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad260_pos" unit="cm" x="0.0" y="-2.2" z="0.0"/>
+    <rotation name="PixelPad260_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad261_pos" unit="cm" x="0.0" y="2.6" z="0.0"/>
+    <rotation name="PixelPad261_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad262_pos" unit="cm" x="0.0" y="-2.6" z="0.0"/>
+    <rotation name="PixelPad262_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad263_pos" unit="cm" x="0.0" y="3.0" z="0.0"/>
+    <rotation name="PixelPad263_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad264_pos" unit="cm" x="0.0" y="-3.0" z="0.0"/>
+    <rotation name="PixelPad264_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad265_pos" unit="cm" x="0.0" y="3.4" z="0.0"/>
+    <rotation name="PixelPad265_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad266_pos" unit="cm" x="0.0" y="-3.4" z="0.0"/>
+    <rotation name="PixelPad266_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad267_pos" unit="cm" x="0.0" y="3.8" z="0.0"/>
+    <rotation name="PixelPad267_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad268_pos" unit="cm" x="0.0" y="-3.8" z="0.0"/>
+    <rotation name="PixelPad268_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad269_pos" unit="cm" x="0.0" y="4.2" z="0.0"/>
+    <rotation name="PixelPad269_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad270_pos" unit="cm" x="0.0" y="-4.2" z="0.0"/>
+    <rotation name="PixelPad270_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad271_pos" unit="cm" x="0.0" y="4.6" z="0.0"/>
+    <rotation name="PixelPad271_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad272_pos" unit="cm" x="0.0" y="-4.6" z="0.0"/>
+    <rotation name="PixelPad272_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad273_pos" unit="cm" x="0.0" y="5.0" z="0.0"/>
+    <rotation name="PixelPad273_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad274_pos" unit="cm" x="0.0" y="-5.0" z="0.0"/>
+    <rotation name="PixelPad274_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad275_pos" unit="cm" x="0.0" y="5.4" z="0.0"/>
+    <rotation name="PixelPad275_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad276_pos" unit="cm" x="0.0" y="-5.4" z="0.0"/>
+    <rotation name="PixelPad276_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad277_pos" unit="cm" x="0.0" y="5.8" z="0.0"/>
+    <rotation name="PixelPad277_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad278_pos" unit="cm" x="0.0" y="-5.8" z="0.0"/>
+    <rotation name="PixelPad278_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad279_pos" unit="cm" x="0.0" y="6.2" z="0.0"/>
+    <rotation name="PixelPad279_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad280_pos" unit="cm" x="0.0" y="-6.2" z="0.0"/>
+    <rotation name="PixelPad280_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad281_pos" unit="cm" x="0.0" y="6.6" z="0.0"/>
+    <rotation name="PixelPad281_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad282_pos" unit="cm" x="0.0" y="-6.6" z="0.0"/>
+    <rotation name="PixelPad282_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad283_pos" unit="cm" x="0.0" y="7.0" z="0.0"/>
+    <rotation name="PixelPad283_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad284_pos" unit="cm" x="0.0" y="-7.0" z="0.0"/>
+    <rotation name="PixelPad284_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad285_pos" unit="cm" x="0.0" y="7.4" z="0.0"/>
+    <rotation name="PixelPad285_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad286_pos" unit="cm" x="0.0" y="-7.4" z="0.0"/>
+    <rotation name="PixelPad286_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad287_pos" unit="cm" x="0.0" y="7.8" z="0.0"/>
+    <rotation name="PixelPad287_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad288_pos" unit="cm" x="0.0" y="-7.8" z="0.0"/>
+    <rotation name="PixelPad288_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad289_pos" unit="cm" x="0.0" y="8.2" z="0.0"/>
+    <rotation name="PixelPad289_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad290_pos" unit="cm" x="0.0" y="-8.2" z="0.0"/>
+    <rotation name="PixelPad290_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad291_pos" unit="cm" x="0.0" y="8.6" z="0.0"/>
+    <rotation name="PixelPad291_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad292_pos" unit="cm" x="0.0" y="-8.6" z="0.0"/>
+    <rotation name="PixelPad292_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad293_pos" unit="cm" x="0.0" y="9.0" z="0.0"/>
+    <rotation name="PixelPad293_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad294_pos" unit="cm" x="0.0" y="-9.0" z="0.0"/>
+    <rotation name="PixelPad294_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad295_pos" unit="cm" x="0.0" y="9.4" z="0.0"/>
+    <rotation name="PixelPad295_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad296_pos" unit="cm" x="0.0" y="-9.4" z="0.0"/>
+    <rotation name="PixelPad296_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad297_pos" unit="cm" x="0.0" y="9.8" z="0.0"/>
+    <rotation name="PixelPad297_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad298_pos" unit="cm" x="0.0" y="-9.8" z="0.0"/>
+    <rotation name="PixelPad298_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad299_pos" unit="cm" x="0.0" y="10.2" z="0.0"/>
+    <rotation name="PixelPad299_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad300_pos" unit="cm" x="0.0" y="-10.2" z="0.0"/>
+    <rotation name="PixelPad300_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad301_pos" unit="cm" x="0.0" y="10.6" z="0.0"/>
+    <rotation name="PixelPad301_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad302_pos" unit="cm" x="0.0" y="-10.6" z="0.0"/>
+    <rotation name="PixelPad302_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad303_pos" unit="cm" x="0.0" y="11.0" z="0.0"/>
+    <rotation name="PixelPad303_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad304_pos" unit="cm" x="0.0" y="-11.0" z="0.0"/>
+    <rotation name="PixelPad304_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad305_pos" unit="cm" x="0.0" y="11.4" z="0.0"/>
+    <rotation name="PixelPad305_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad306_pos" unit="cm" x="0.0" y="-11.4" z="0.0"/>
+    <rotation name="PixelPad306_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad307_pos" unit="cm" x="0.0" y="11.8" z="0.0"/>
+    <rotation name="PixelPad307_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad308_pos" unit="cm" x="0.0" y="-11.8" z="0.0"/>
+    <rotation name="PixelPad308_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad309_pos" unit="cm" x="0.0" y="12.2" z="0.0"/>
+    <rotation name="PixelPad309_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad310_pos" unit="cm" x="0.0" y="-12.2" z="0.0"/>
+    <rotation name="PixelPad310_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad311_pos" unit="cm" x="0.0" y="12.6" z="0.0"/>
+    <rotation name="PixelPad311_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad312_pos" unit="cm" x="0.0" y="-12.6" z="0.0"/>
+    <rotation name="PixelPad312_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad313_pos" unit="cm" x="0.0" y="13.0" z="0.0"/>
+    <rotation name="PixelPad313_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad314_pos" unit="cm" x="0.0" y="-13.0" z="0.0"/>
+    <rotation name="PixelPad314_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad315_pos" unit="cm" x="0.0" y="13.4" z="0.0"/>
+    <rotation name="PixelPad315_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad316_pos" unit="cm" x="0.0" y="-13.4" z="0.0"/>
+    <rotation name="PixelPad316_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad317_pos" unit="cm" x="0.0" y="13.8" z="0.0"/>
+    <rotation name="PixelPad317_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad318_pos" unit="cm" x="0.0" y="-13.8" z="0.0"/>
+    <rotation name="PixelPad318_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad319_pos" unit="cm" x="0.0" y="14.2" z="0.0"/>
+    <rotation name="PixelPad319_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad320_pos" unit="cm" x="0.0" y="-14.2" z="0.0"/>
+    <rotation name="PixelPad320_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad321_pos" unit="cm" x="0.0" y="14.6" z="0.0"/>
+    <rotation name="PixelPad321_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad322_pos" unit="cm" x="0.0" y="-14.6" z="0.0"/>
+    <rotation name="PixelPad322_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad323_pos" unit="cm" x="0.0" y="15.0" z="0.0"/>
+    <rotation name="PixelPad323_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad324_pos" unit="cm" x="0.0" y="-15.0" z="0.0"/>
+    <rotation name="PixelPad324_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad325_pos" unit="cm" x="0.0" y="15.4" z="0.0"/>
+    <rotation name="PixelPad325_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad326_pos" unit="cm" x="0.0" y="-15.4" z="0.0"/>
+    <rotation name="PixelPad326_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad327_pos" unit="cm" x="0.0" y="15.8" z="0.0"/>
+    <rotation name="PixelPad327_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad328_pos" unit="cm" x="0.0" y="-15.8" z="0.0"/>
+    <rotation name="PixelPad328_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad329_pos" unit="cm" x="0.0" y="16.2" z="0.0"/>
+    <rotation name="PixelPad329_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad330_pos" unit="cm" x="0.0" y="-16.2" z="0.0"/>
+    <rotation name="PixelPad330_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad331_pos" unit="cm" x="0.0" y="16.6" z="0.0"/>
+    <rotation name="PixelPad331_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad332_pos" unit="cm" x="0.0" y="-16.6" z="0.0"/>
+    <rotation name="PixelPad332_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad333_pos" unit="cm" x="0.0" y="17.0" z="0.0"/>
+    <rotation name="PixelPad333_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad334_pos" unit="cm" x="0.0" y="-17.0" z="0.0"/>
+    <rotation name="PixelPad334_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad335_pos" unit="cm" x="0.0" y="17.4" z="0.0"/>
+    <rotation name="PixelPad335_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad336_pos" unit="cm" x="0.0" y="-17.4" z="0.0"/>
+    <rotation name="PixelPad336_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad337_pos" unit="cm" x="0.0" y="17.8" z="0.0"/>
+    <rotation name="PixelPad337_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad338_pos" unit="cm" x="0.0" y="-17.8" z="0.0"/>
+    <rotation name="PixelPad338_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad339_pos" unit="cm" x="0.0" y="18.2" z="0.0"/>
+    <rotation name="PixelPad339_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad340_pos" unit="cm" x="0.0" y="-18.2" z="0.0"/>
+    <rotation name="PixelPad340_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad341_pos" unit="cm" x="0.0" y="18.6" z="0.0"/>
+    <rotation name="PixelPad341_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad342_pos" unit="cm" x="0.0" y="-18.6" z="0.0"/>
+    <rotation name="PixelPad342_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad343_pos" unit="cm" x="0.0" y="19.0" z="0.0"/>
+    <rotation name="PixelPad343_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad344_pos" unit="cm" x="0.0" y="-19.0" z="0.0"/>
+    <rotation name="PixelPad344_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad345_pos" unit="cm" x="0.0" y="19.4" z="0.0"/>
+    <rotation name="PixelPad345_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="PixelPad346_pos" unit="cm" x="0.0" y="-19.4" z="0.0"/>
+    <rotation name="PixelPad346_rot" unit="degree" x="0" y="0" z="0"/>
+    <rotation name="TPCActive_rot" unit="degree" x="0.0" y="0.0" z="0.0"/>
+    <position name="TPCActivevolLArActive0_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <rotation name="TPC_rot" unit="degree" x="0.0" y="0.0" z="0.0"/>
+    <position name="TPCvolPixelPlane0_pos" unit="cm" x="-25.0" y="0.0" z="0.0"/>
+    <position name="TPCvolTPCActive0_pos" unit="cm" x="0.5" y="0.0" z="0.0"/>
+    <rotation name="Cryostat_rot" unit="degree" x="0.0" y="0.0" z="0.0"/>
+    <position name="CryostatvolTPC0_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <position name="volCryostat_pos" unit="cm" x="24.5" y="0.0" z="50"/>
+    <rotation name="volCryostat_rot" unit="degree" x="0" y="0" z="0"/>
+    <rotation name="noRotate" unit="degree" x="0" y="0" z="0"/>
+    <rotation name="r90aboutX" unit="degree" x="90" y="0" z="0"/>
+    <rotation name="rminus90aboutX" unit="degree" x="-90" y="0" z="0"/>
+    <rotation name="r90aboutY" unit="degree" x="0" y="90" z="0"/>
+    <rotation name="r180aboutY" unit="degree" x="0" y="180" z="0"/>
+    <rotation name="rminus90aboutY" unit="degree" x="0" y="-90" z="0"/>
+    <rotation name="r90aboutZ" unit="degree" x="0" y="0" z="90"/>
+    <rotation name="r90aboutXZ" unit="degree" x="90" y="0" z="90"/>
+    <rotation name="r90aboutYZ" unit="degree" x="0" y="90" z="90"/>
+    <rotation name="r90aboutXminusZ" unit="degree" x="-90" y="0" z="90"/>
+    <rotation name="r90aboutYminusZ" unit="degree" x="0" y="-90" z="90"/>
+    <position name="volDetEnclosure_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <rotation name="volDetEnclosure_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="center"/>
+    <rotation name="identity"/>
+  </define>
+  <materials>
+    <element Z="1" formula="H" name="hydrogen">
+      <atom value="1.00791"/>
+    </element>
+    <element Z="5" formula="B" name="boron">
+      <atom value="10.811"/>
+    </element>
+    <element Z="6" formula="C" name="carbon">
+      <atom value="12.0107"/>
+    </element>
+    <element Z="7" formula="N" name="nitrogen">
+      <atom value="14.0671"/>
+    </element>
+    <element Z="8" formula="O" name="oxygen">
+      <atom value="15.999"/>
+    </element>
+    <element Z="9" formula="F" name="fluorine">
+      <atom value="18.9984"/>
+    </element>
+    <element Z="11" formula="Na" name="sodium">
+      <atom value="22.99"/>
+    </element>
+    <element Z="12" formula="Mg" name="magnesium">
+      <atom value="24.305"/>
+    </element>
+    <element Z="13" formula="Al" name="aluminum">
+      <atom value="26.9815"/>
+    </element>
+    <element Z="14" formula="Si" name="silicon">
+      <atom value="28.0855"/>
+    </element>
+    <element Z="15" formula="P" name="phosphorus">
+      <atom value="30.973"/>
+    </element>
+    <element Z="16" formula="S" name="sulfur">
+      <atom value="32.065"/>
+    </element>
+    <element Z="18" formula="Ar" name="argon">
+      <atom value="39.948"/>
+    </element>
+    <element Z="19" formula="K" name="potassium">
+      <atom value="39.0983"/>
+    </element>
+    <element Z="20" formula="Ca" name="calcium">
+      <atom value="40.078"/>
+    </element>
+    <element Z="22" formula="Ti" name="titanium">
+      <atom value="47.867"/>
+    </element>
+    <element Z="24" formula="Cr" name="chromium">
+      <atom value="51.9961"/>
+    </element>
+    <element Z="25" formula="Mn" name="manganese">
+      <atom value="54.938"/>
+    </element>
+    <element Z="26" formula="Fe" name="iron">
+      <atom value="55.845"/>
+    </element>
+    <element Z="28" formula="Ni" name="nickel">
+      <atom value="58.6934"/>
+    </element>
+    <isotope N="63" Z="29" name="copper63">
+      <atom type="A" value="62.93"/>
+    </isotope>
+    <isotope N="65" Z="29" name="copper65">
+      <atom type="A" value="64.93"/>
+    </isotope>
+    <element name="copper">
+      <fraction n="0.6917" ref="copper63"/>
+      <fraction n="0.3083" ref="copper65"/>
+    </element>
+    <isotope N="64" Z="30" name="zinc64">
+      <atom type="A" value="63.93"/>
+    </isotope>
+    <element name="zinc">
+      <fraction n="1.0" ref="zinc64"/>
+    </element>
+    <element Z="35" formula="Br" name="bromine">
+      <atom value="79.904"/>
+    </element>
+    <element Z="51" formula="Sb" name="antimony">
+      <atom value="121.76"/>
+    </element>
+    <element Z="54" formula="Xe" name="xenon">
+      <atom value="131.293"/>
+    </element>
+    <element Z="82" formula="Pb" name="lead">
+      <atom value="207.2"/>
+    </element>
+    <material formula="" name="SiO2">
+      <D value="2.2"/>
+      <composite n="1" ref="silicon"/>
+      <composite n="2" ref="oxygen"/>
+    </material>
+    <material formula="" name="FeO">
+      <D value="5.745"/>
+      <composite n="1" ref="iron"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="Al2O3">
+      <D value="3.97"/>
+      <composite n="2" ref="aluminum"/>
+      <composite n="3" ref="oxygen"/>
+    </material>
+    <material formula="" name="MgO">
+      <D value="3.58"/>
+      <composite n="1" ref="magnesium"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="CO2">
+      <D value="1.562"/>
+      <composite n="1" ref="carbon"/>
+      <composite n="2" ref="oxygen"/>
+    </material>
+    <material formula="" name="CaO">
+      <D value="3.35"/>
+      <composite n="1" ref="calcium"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="Na2O">
+      <D value="2.27"/>
+      <composite n="2" ref="sodium"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="P2O5">
+      <D value="1.562"/>
+      <composite n="2" ref="phosphorus"/>
+      <composite n="5" ref="oxygen"/>
+    </material>
+    <material formula="" name="TiO2">
+      <D value="4.23"/>
+      <composite n="1" ref="titanium"/>
+      <composite n="2" ref="oxygen"/>
+    </material>
+    <material formula="" name="Fe2O3">
+      <D value="5.24"/>
+      <composite n="2" ref="iron"/>
+      <composite n="3" ref="oxygen"/>
+    </material>
+    <material formula="" name="Rock">
+      <D value="2.82"/>
+      <fraction n="0.5267" ref="SiO2"/>
+      <fraction n="0.1174" ref="FeO"/>
+      <fraction n="0.1025" ref="Al2O3"/>
+      <fraction n="0.0771" ref="oxygen"/>
+      <fraction n="0.0473" ref="MgO"/>
+      <fraction n="0.0422" ref="CO2"/>
+      <fraction n="0.0382" ref="CaO"/>
+      <fraction n="0.024" ref="carbon"/>
+      <fraction n="0.0186" ref="sulfur"/>
+      <fraction n="0.0053" ref="Na2O"/>
+      <fraction n="0.0007" ref="P2O5"/>
+    </material>
+    <material formula="" name="Dirt">
+      <D value="1.7"/>
+      <fraction n="0.438" ref="oxygen"/>
+      <fraction n="0.257" ref="silicon"/>
+      <fraction n="0.222" ref="sodium"/>
+      <fraction n="0.049" ref="aluminum"/>
+      <fraction n="0.019" ref="iron"/>
+      <fraction n="0.015" ref="potassium"/>
+    </material>
+    <material formula="" name="Air">
+      <D value="0.001225"/>
+      <fraction n="0.781154" ref="nitrogen"/>
+      <fraction n="0.209476" ref="oxygen"/>
+      <fraction n="0.00934" ref="argon"/>
+    </material>
+    <material formula="" name="Bakelite">
+      <D value="1.25"/>
+      <fraction n="0.057441" ref="hydrogen"/>
+      <fraction n="0.774591" ref="carbon"/>
+      <fraction n="0.167968" ref="oxygen"/>
+    </material>
+    <material formula="" name="Honeycomb">
+      <D value="0.94"/>
+      <fraction n="0.143711" ref="hydrogen"/>
+      <fraction n="0.856289" ref="carbon"/>
+    </material>
+    <material formula="" name="C3H6">
+      <D value="0.946"/>
+      <composite n="3" ref="carbon"/>
+      <composite n="6" ref="hydrogen"/>
+    </material>
+    <material formula="" name="RadiatorBlend">
+      <D value="0.1586875"/>
+      <fraction n="0.00643297886307" ref="Air"/>
+      <fraction n="0.993567021137" ref="C3H6"/>
+    </material>
+    <material formula="" name="stGas_Xe">
+      <D value="0.00469254464286"/>
+      <fraction n="0.3" ref="CO2"/>
+      <fraction n="0.7" ref="argon"/>
+    </material>
+    <material formula="" name="Water">
+      <D value="1.0"/>
+      <composite n="1" ref="oxygen"/>
+      <composite n="2" ref="hydrogen"/>
+    </material>
+    <material formula="" name="ArgonTarget">
+      <D value="0.2297"/>
+      <composite n="1" ref="argon"/>
+    </material>
+    <material formula="" name="Aluminum">
+      <D value="2.7"/>
+      <composite n="1" ref="aluminum"/>
+    </material>
+    <material formula="" name="Copper">
+      <D value="8.96"/>
+      <composite n="1" ref="copper"/>
+    </material>
+    <material formula="" name="MagnetCoil">
+      <D value="6.94"/>
+      <fraction n="0.964" ref="Copper"/>
+      <fraction n="0.036" ref="Water"/>
+    </material>
+    <material formula="" name="CarbonFiber">
+      <D value="1.6"/>
+      <composite n="1" ref="carbon"/>
+    </material>
+    <material formula="" name="stGas_Ar">
+      <D value="0.00183785714286"/>
+      <fraction n="0.3" ref="CO2"/>
+      <fraction n="0.7" ref="argon"/>
+    </material>
+    <material formula="" name="Kapton">
+      <D value="1.4"/>
+      <composite n="22" ref="carbon"/>
+      <composite n="5" ref="oxygen"/>
+      <composite n="2" ref="nitrogen"/>
+    </material>
+    <material formula="" name="Iron">
+      <D value="7.874"/>
+      <composite n="1" ref="iron"/>
+    </material>
+    <material formula="" name="Graphite">
+      <D value="2.23"/>
+      <composite n="1" ref="carbon"/>
+    </material>
+    <material formula="" name="Calcium">
+      <D value="1.55"/>
+      <composite n="1" ref="calcium"/>
+    </material>
+    <material formula="" name="Steel">
+      <D value="7.93"/>
+      <fraction n="0.7298" ref="iron"/>
+      <fraction n="0.1792" ref="chromium"/>
+      <fraction n="0.09" ref="nickel"/>
+      <fraction n="0.001" ref="carbon"/>
+    </material>
+    <material formula="" name="polycarbonate">
+      <D value="1.2"/>
+      <composite n="16" ref="carbon"/>
+      <composite n="6" ref="hydrogen"/>
+      <composite n="3" ref="oxygen"/>
+    </material>
+    <material formula="" name="sttFrameMix">
+      <D value="0.235"/>
+      <fraction n="0.764705882353" ref="carbon"/>
+      <fraction n="0.235294117647" ref="polycarbonate"/>
+    </material>
+    <material formula="" name="fibrous_glass">
+      <D value="1.0"/>
+      <fraction n="0.6" ref="SiO2"/>
+      <fraction n="0.224" ref="CaO"/>
+      <fraction n="0.118" ref="Al2O3"/>
+      <fraction n="0.034" ref="MgO"/>
+      <fraction n="0.013" ref="TiO2"/>
+      <fraction n="0.01" ref="Na2O"/>
+      <fraction n="0.001" ref="Fe2O3"/>
+    </material>
+    <material formula="" name="CH2FCF3">
+      <D value="0.00425"/>
+      <composite n="2" ref="carbon"/>
+      <composite n="2" ref="hydrogen"/>
+      <composite n="4" ref="fluorine"/>
+    </material>
+    <material formula="" name="C4H10">
+      <D value="0.00251"/>
+      <composite n="4" ref="carbon"/>
+      <composite n="10" ref="hydrogen"/>
+    </material>
+    <material formula="" name="SF6">
+      <D value="0.00617"/>
+      <composite n="4" ref="sulfur"/>
+      <composite n="6" ref="fluorine"/>
+    </material>
+    <material formula="" name="rpcGas">
+      <D value="0.001784"/>
+      <fraction n="0.75" ref="argon"/>
+      <fraction n="0.2" ref="CH2FCF3"/>
+      <fraction n="0.04" ref="C4H10"/>
+      <fraction n="0.01" ref="SF6"/>
+    </material>
+    <material formula="" name="epoxy_resin">
+      <D value="1.125"/>
+      <composite n="38" ref="carbon"/>
+      <composite n="40" ref="hydrogen"/>
+      <composite n="6" ref="oxygen"/>
+    </material>
+    <material formula="" name="SSteel304">
+      <D value="7.9"/>
+      <fraction n="0.0008" ref="carbon"/>
+      <fraction n="0.02" ref="manganese"/>
+      <fraction n="0.00045" ref="phosphorus"/>
+      <fraction n="0.0003" ref="sulfur"/>
+      <fraction n="0.0075" ref="silicon"/>
+      <fraction n="0.18" ref="chromium"/>
+      <fraction n="0.08" ref="nickel"/>
+      <fraction n="0.001" ref="nitrogen"/>
+      <fraction n="0.70995" ref="iron"/>
+    </material>
+    <material formula="" name="CalciumSilicate">
+      <D value="0.6"/>
+      <composite n="1" ref="calcium"/>
+      <composite n="3" ref="oxygen"/>
+      <composite n="1" ref="silicon"/>
+    </material>
+    <material formula="" name="CarbonSteel">
+      <D value="7.9"/>
+      <fraction n="0.003" ref="carbon"/>
+      <fraction n="0.0025" ref="copper"/>
+      <fraction n="0.98" ref="iron"/>
+      <fraction n="0.0103" ref="manganese"/>
+      <fraction n="0.0009" ref="phosphorus"/>
+      <fraction n="0.0028" ref="silicon"/>
+      <fraction n="0.0005" ref="sulfur"/>
+    </material>
+    <material formula="" name="ReifConcrete">
+      <D value="2.5"/>
+      <fraction n="0.6661" ref="CaO"/>
+      <fraction n="0.2345" ref="SiO2"/>
+      <fraction n="0.0445" ref="Al2O3"/>
+      <fraction n="0.0307" ref="Fe2O3"/>
+      <fraction n="0.0242" ref="MgO"/>
+    </material>
+    <material formula="" name="Polyurethane">
+      <D value="0.065"/>
+      <composite n="27" ref="carbon"/>
+      <composite n="36" ref="hydrogen"/>
+      <composite n="2" ref="nitrogen"/>
+      <composite n="10" ref="oxygen"/>
+    </material>
+    <material formula="" name="Epoxy">
+      <D value="1.25"/>
+      <composite n="6" ref="carbon"/>
+      <composite n="6" ref="hydrogen"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="Glass">
+      <D value="2.7"/>
+      <fraction n="0.2743" ref="silicon"/>
+      <fraction n="0.0166" ref="boron"/>
+      <fraction n="0.0207" ref="aluminum"/>
+      <fraction n="0.0449" ref="sodium"/>
+      <fraction n="0.0821" ref="potassium"/>
+      <fraction n="0.0882" ref="zinc"/>
+      <fraction n="0.0292" ref="titanium"/>
+      <fraction n="0.444" ref="oxygen"/>
+    </material>
+    <material formula="" name="FR4">
+      <D value="1.85"/>
+      <fraction n="0.206" ref="Epoxy"/>
+      <fraction n="0.794" ref="Glass"/>
+    </material>
+    <material formula="" name="PVT">
+      <D value="1.023"/>
+      <composite n="9" ref="carbon"/>
+      <composite n="10" ref="hydrogen"/>
+    </material>
+    <material formula="" name="Scintillator">
+      <D value="1.05"/>
+      <fraction n="0.916" ref="carbon"/>
+      <fraction n="0.084" ref="hydrogen"/>
+    </material>
+    <material formula="" name="Oil">
+      <D value="0.8"/>
+      <fraction n="0.916" ref="carbon"/>
+      <fraction n="0.084" ref="hydrogen"/>
+    </material>
+    <material formula="" name="Lead">
+      <D value="11.342"/>
+      <composite n="1" ref="lead"/>
+    </material>
+    <material formula="" name="LAr">
+      <D value="1.4"/>
+      <composite n="1" ref="argon"/>
+    </material>
+    <material formula="" name="GAr">
+      <D value="0.001784"/>
+      <composite n="1" ref="argon"/>
+    </material>
+    <material formula="" name="KLOEEcal">
+      <D value="5.3"/>
+      <fraction n="0.42" ref="Lead"/>
+      <fraction n="0.48" ref="Scintillator"/>
+      <fraction n="0.1" ref="epoxy_resin"/>
+    </material>
+    <material formula="" name="PVF">
+      <D value="1.71"/>
+      <composite n="2" ref="carbon"/>
+      <composite n="3" ref="hydrogen"/>
+      <composite n="1" ref="fluorine"/>
+    </material>
+    <material formula="" name="Kevlar">
+      <D value="1.45"/>
+      <composite n="7" ref="carbon"/>
+      <composite n="5" ref="hydrogen"/>
+      <composite n="1" ref="nitrogen"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="NomexHoneycomb">
+      <D value="0.029"/>
+      <composite n="7" ref="carbon"/>
+      <composite n="5" ref="hydrogen"/>
+      <composite n="1" ref="nitrogen"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="Mylar">
+      <D value="1.39"/>
+      <composite n="10" ref="carbon"/>
+      <composite n="8" ref="hydrogen"/>
+      <composite n="4" ref="oxygen"/>
+    </material>
+    <material formula="" name="KevlarPrepreg">
+      <D value="1.37"/>
+      <fraction n="0.6" ref="Kevlar"/>
+      <fraction n="0.4" ref="epoxy_resin"/>
+    </material>
+    <material formula="" name="Methane">
+      <D value="0.000716"/>
+      <composite n="1" ref="carbon"/>
+      <composite n="4" ref="hydrogen"/>
+    </material>
+    <material formula="" name="Ethane">
+      <D value="0.00134"/>
+      <composite n="2" ref="carbon"/>
+      <composite n="6" ref="hydrogen"/>
+    </material>
+    <material formula="" name="CF4">
+      <D value="0.00393"/>
+      <composite n="1" ref="carbon"/>
+      <composite n="4" ref="fluorine"/>
+    </material>
+    <material formula="" name="CH2F2">
+      <D value="0.00232"/>
+      <composite n="1" ref="carbon"/>
+      <composite n="2" ref="hydrogen"/>
+      <composite n="2" ref="fluorine"/>
+    </material>
+    <material formula="" name="DME">
+      <D value="0.00206"/>
+      <composite n="2" ref="carbon"/>
+      <composite n="6" ref="hydrogen"/>
+      <composite n="1" ref="oxygen"/>
+    </material>
+    <material formula="" name="Nitrogen">
+      <D value="0.000625"/>
+      <composite n="1" ref="nitrogen"/>
+    </material>
+    <material formula="" name="HP_Ar">
+      <D value="0.01784"/>
+      <composite n="1" ref="argon"/>
+    </material>
+    <material formula="" name="HP_ArCO2">
+      <D value="0.01802"/>
+      <fraction n="0.89" ref="HP_Ar"/>
+      <fraction n="0.11" ref="CO2"/>
+    </material>
+    <material formula="" name="HP_ArCH4">
+      <D value="0.01677"/>
+      <fraction n="0.957" ref="HP_Ar"/>
+      <fraction n="0.043" ref="Methane"/>
+    </material>
+    <material formula="" name="HP_ArCF4">
+      <D value="0.01998"/>
+      <fraction n="0.801" ref="HP_Ar"/>
+      <fraction n="0.199" ref="CF4"/>
+    </material>
+    <material formula="" name="NoGas">
+      <D value="1e-25"/>
+      <fraction n="1.0" ref="argon"/>
+    </material>
+  </materials>
+  <solids>
+    <tube aunit="radian" deltaphi="6.28318530718" lunit="cm" name="Pixel" rmax="0.1" rmin="0.0" startphi="0.0" z="1.0"/>
+    <box lunit="cm" name="PixelPad" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPlane" x="1.0" y="40.0" z="100.0"/>
+    <box lunit="cm" name="PixelPad1" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad2" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad3" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad4" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad5" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad6" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad7" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad8" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad9" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad10" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad11" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad12" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad13" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad14" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad15" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad16" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad17" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad18" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad19" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad20" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad21" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad22" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad23" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad24" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad25" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad26" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad27" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad28" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad29" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad30" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad31" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad32" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad33" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad34" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad35" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad36" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad37" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad38" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad39" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad40" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad41" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad42" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad43" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad44" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad45" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad46" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad47" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad48" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad49" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad50" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad51" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad52" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad53" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad54" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad55" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad56" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad57" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad58" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad59" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad60" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad61" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad62" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad63" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad64" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad65" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad66" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad67" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad68" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad69" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad70" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad71" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad72" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad73" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad74" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad75" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad76" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad77" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad78" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad79" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad80" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad81" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad82" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad83" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad84" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad85" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad86" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad87" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad88" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad89" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad90" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad91" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad92" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad93" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad94" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad95" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad96" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad97" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad98" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad99" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad100" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad101" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad102" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad103" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad104" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad105" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad106" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad107" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad108" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad109" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad110" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad111" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad112" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad113" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad114" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad115" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad116" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad117" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad118" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad119" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad120" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad121" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad122" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad123" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad124" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad125" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad126" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad127" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad128" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad129" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad130" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad131" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad132" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad133" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad134" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad135" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad136" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad137" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad138" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad139" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad140" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad141" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad142" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad143" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad144" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad145" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad146" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad147" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad148" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad149" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad150" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad151" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad152" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad153" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad154" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad155" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad156" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad157" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad158" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad159" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad160" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad161" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad162" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad163" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad164" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad165" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad166" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad167" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad168" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad169" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad170" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad171" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad172" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad173" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad174" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad175" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad176" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad177" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad178" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad179" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad180" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad181" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad182" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad183" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad184" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad185" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad186" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad187" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad188" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad189" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad190" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad191" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad192" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad193" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad194" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad195" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad196" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad197" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad198" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad199" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad200" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad201" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad202" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad203" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad204" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad205" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad206" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad207" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad208" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad209" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad210" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad211" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad212" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad213" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad214" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad215" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad216" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad217" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad218" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad219" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad220" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad221" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad222" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad223" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad224" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad225" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad226" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad227" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad228" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad229" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad230" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad231" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad232" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad233" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad234" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad235" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad236" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad237" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad238" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad239" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad240" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad241" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad242" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad243" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad244" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad245" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad246" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad247" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad248" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad249" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad250" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad251" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad252" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad253" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad254" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad255" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad256" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad257" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad258" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad259" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad260" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad261" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad262" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad263" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad264" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad265" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad266" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad267" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad268" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad269" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad270" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad271" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad272" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad273" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad274" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad275" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad276" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad277" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad278" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad279" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad280" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad281" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad282" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad283" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad284" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad285" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad286" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad287" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad288" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad289" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad290" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad291" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad292" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad293" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad294" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad295" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad296" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad297" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad298" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad299" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad300" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad301" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad302" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad303" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad304" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad305" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad306" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad307" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad308" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad309" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad310" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad311" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad312" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad313" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad314" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad315" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad316" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad317" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad318" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad319" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad320" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad321" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad322" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad323" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad324" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad325" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad326" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad327" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad328" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad329" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad330" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad331" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad332" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad333" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad334" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad335" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad336" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad337" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad338" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad339" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad340" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad341" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad342" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad343" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad344" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad345" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="PixelPad346" x="1.0" y="0.4" z="0.4"/>
+    <box lunit="cm" name="LArActive" x="50.0" y="40.0" z="100.0"/>
+    <box lunit="cm" name="TPCActive" x="50.0" y="40.0" z="100.0"/>
+    <box lunit="cm" name="TPC" x="51.0" y="40.0" z="100.0"/>
+    <box lunit="cm" name="Cryostat" x="51.0" y="40.0" z="100.0"/>
+    <box lunit="cm" name="DetEnclosure" x="101.0" y="80.0" z="200.0"/>
+    <box lunit="cm" name="world_shape" x="10000.0" y="10000.0" z="10000.0"/>
+  </solids>
+  <structure>
+    <volume name="volPixelPad1">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad1"/>
+    </volume>
+    <volume name="volPixelPad2">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad2"/>
+    </volume>
+    <volume name="volPixelPad3">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad3"/>
+    </volume>
+    <volume name="volPixelPad4">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad4"/>
+    </volume>
+    <volume name="volPixelPad5">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad5"/>
+    </volume>
+    <volume name="volPixelPad6">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad6"/>
+    </volume>
+    <volume name="volPixelPad7">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad7"/>
+    </volume>
+    <volume name="volPixelPad8">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad8"/>
+    </volume>
+    <volume name="volPixelPad9">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad9"/>
+    </volume>
+    <volume name="volPixelPad10">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad10"/>
+    </volume>
+    <volume name="volPixelPad11">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad11"/>
+    </volume>
+    <volume name="volPixelPad12">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad12"/>
+    </volume>
+    <volume name="volPixelPad13">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad13"/>
+    </volume>
+    <volume name="volPixelPad14">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad14"/>
+    </volume>
+    <volume name="volPixelPad15">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad15"/>
+    </volume>
+    <volume name="volPixelPad16">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad16"/>
+    </volume>
+    <volume name="volPixelPad17">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad17"/>
+    </volume>
+    <volume name="volPixelPad18">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad18"/>
+    </volume>
+    <volume name="volPixelPad19">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad19"/>
+    </volume>
+    <volume name="volPixelPad20">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad20"/>
+    </volume>
+    <volume name="volPixelPad21">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad21"/>
+    </volume>
+    <volume name="volPixelPad22">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad22"/>
+    </volume>
+    <volume name="volPixelPad23">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad23"/>
+    </volume>
+    <volume name="volPixelPad24">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad24"/>
+    </volume>
+    <volume name="volPixelPad25">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad25"/>
+    </volume>
+    <volume name="volPixelPad26">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad26"/>
+    </volume>
+    <volume name="volPixelPad27">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad27"/>
+    </volume>
+    <volume name="volPixelPad28">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad28"/>
+    </volume>
+    <volume name="volPixelPad29">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad29"/>
+    </volume>
+    <volume name="volPixelPad30">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad30"/>
+    </volume>
+    <volume name="volPixelPad31">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad31"/>
+    </volume>
+    <volume name="volPixelPad32">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad32"/>
+    </volume>
+    <volume name="volPixelPad33">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad33"/>
+    </volume>
+    <volume name="volPixelPad34">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad34"/>
+    </volume>
+    <volume name="volPixelPad35">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad35"/>
+    </volume>
+    <volume name="volPixelPad36">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad36"/>
+    </volume>
+    <volume name="volPixelPad37">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad37"/>
+    </volume>
+    <volume name="volPixelPad38">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad38"/>
+    </volume>
+    <volume name="volPixelPad39">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad39"/>
+    </volume>
+    <volume name="volPixelPad40">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad40"/>
+    </volume>
+    <volume name="volPixelPad41">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad41"/>
+    </volume>
+    <volume name="volPixelPad42">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad42"/>
+    </volume>
+    <volume name="volPixelPad43">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad43"/>
+    </volume>
+    <volume name="volPixelPad44">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad44"/>
+    </volume>
+    <volume name="volPixelPad45">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad45"/>
+    </volume>
+    <volume name="volPixelPad46">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad46"/>
+    </volume>
+    <volume name="volPixelPad47">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad47"/>
+    </volume>
+    <volume name="volPixelPad48">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad48"/>
+    </volume>
+    <volume name="volPixelPad49">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad49"/>
+    </volume>
+    <volume name="volPixelPad50">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad50"/>
+    </volume>
+    <volume name="volPixelPad51">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad51"/>
+    </volume>
+    <volume name="volPixelPad52">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad52"/>
+    </volume>
+    <volume name="volPixelPad53">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad53"/>
+    </volume>
+    <volume name="volPixelPad54">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad54"/>
+    </volume>
+    <volume name="volPixelPad55">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad55"/>
+    </volume>
+    <volume name="volPixelPad56">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad56"/>
+    </volume>
+    <volume name="volPixelPad57">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad57"/>
+    </volume>
+    <volume name="volPixelPad58">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad58"/>
+    </volume>
+    <volume name="volPixelPad59">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad59"/>
+    </volume>
+    <volume name="volPixelPad60">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad60"/>
+    </volume>
+    <volume name="volPixelPad61">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad61"/>
+    </volume>
+    <volume name="volPixelPad62">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad62"/>
+    </volume>
+    <volume name="volPixelPad63">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad63"/>
+    </volume>
+    <volume name="volPixelPad64">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad64"/>
+    </volume>
+    <volume name="volPixelPad65">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad65"/>
+    </volume>
+    <volume name="volPixelPad66">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad66"/>
+    </volume>
+    <volume name="volPixelPad67">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad67"/>
+    </volume>
+    <volume name="volPixelPad68">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad68"/>
+    </volume>
+    <volume name="volPixelPad69">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad69"/>
+    </volume>
+    <volume name="volPixelPad70">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad70"/>
+    </volume>
+    <volume name="volPixelPad71">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad71"/>
+    </volume>
+    <volume name="volPixelPad72">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad72"/>
+    </volume>
+    <volume name="volPixelPad73">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad73"/>
+    </volume>
+    <volume name="volPixelPad74">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad74"/>
+    </volume>
+    <volume name="volPixelPad75">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad75"/>
+    </volume>
+    <volume name="volPixelPad76">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad76"/>
+    </volume>
+    <volume name="volPixelPad77">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad77"/>
+    </volume>
+    <volume name="volPixelPad78">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad78"/>
+    </volume>
+    <volume name="volPixelPad79">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad79"/>
+    </volume>
+    <volume name="volPixelPad80">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad80"/>
+    </volume>
+    <volume name="volPixelPad81">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad81"/>
+    </volume>
+    <volume name="volPixelPad82">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad82"/>
+    </volume>
+    <volume name="volPixelPad83">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad83"/>
+    </volume>
+    <volume name="volPixelPad84">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad84"/>
+    </volume>
+    <volume name="volPixelPad85">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad85"/>
+    </volume>
+    <volume name="volPixelPad86">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad86"/>
+    </volume>
+    <volume name="volPixelPad87">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad87"/>
+    </volume>
+    <volume name="volPixelPad88">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad88"/>
+    </volume>
+    <volume name="volPixelPad89">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad89"/>
+    </volume>
+    <volume name="volPixelPad90">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad90"/>
+    </volume>
+    <volume name="volPixelPad91">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad91"/>
+    </volume>
+    <volume name="volPixelPad92">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad92"/>
+    </volume>
+    <volume name="volPixelPad93">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad93"/>
+    </volume>
+    <volume name="volPixelPad94">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad94"/>
+    </volume>
+    <volume name="volPixelPad95">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad95"/>
+    </volume>
+    <volume name="volPixelPad96">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad96"/>
+    </volume>
+    <volume name="volPixelPad97">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad97"/>
+    </volume>
+    <volume name="volPixelPad98">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad98"/>
+    </volume>
+    <volume name="volPixelPad99">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad99"/>
+    </volume>
+    <volume name="volPixelPad100">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad100"/>
+    </volume>
+    <volume name="volPixelPad101">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad101"/>
+    </volume>
+    <volume name="volPixelPad102">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad102"/>
+    </volume>
+    <volume name="volPixelPad103">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad103"/>
+    </volume>
+    <volume name="volPixelPad104">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad104"/>
+    </volume>
+    <volume name="volPixelPad105">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad105"/>
+    </volume>
+    <volume name="volPixelPad106">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad106"/>
+    </volume>
+    <volume name="volPixelPad107">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad107"/>
+    </volume>
+    <volume name="volPixelPad108">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad108"/>
+    </volume>
+    <volume name="volPixelPad109">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad109"/>
+    </volume>
+    <volume name="volPixelPad110">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad110"/>
+    </volume>
+    <volume name="volPixelPad111">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad111"/>
+    </volume>
+    <volume name="volPixelPad112">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad112"/>
+    </volume>
+    <volume name="volPixelPad113">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad113"/>
+    </volume>
+    <volume name="volPixelPad114">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad114"/>
+    </volume>
+    <volume name="volPixelPad115">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad115"/>
+    </volume>
+    <volume name="volPixelPad116">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad116"/>
+    </volume>
+    <volume name="volPixelPad117">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad117"/>
+    </volume>
+    <volume name="volPixelPad118">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad118"/>
+    </volume>
+    <volume name="volPixelPad119">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad119"/>
+    </volume>
+    <volume name="volPixelPad120">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad120"/>
+    </volume>
+    <volume name="volPixelPad121">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad121"/>
+    </volume>
+    <volume name="volPixelPad122">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad122"/>
+    </volume>
+    <volume name="volPixelPad123">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad123"/>
+    </volume>
+    <volume name="volPixelPad124">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad124"/>
+    </volume>
+    <volume name="volPixelPad125">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad125"/>
+    </volume>
+    <volume name="volPixelPad126">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad126"/>
+    </volume>
+    <volume name="volPixelPad127">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad127"/>
+    </volume>
+    <volume name="volPixelPad128">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad128"/>
+    </volume>
+    <volume name="volPixelPad129">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad129"/>
+    </volume>
+    <volume name="volPixelPad130">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad130"/>
+    </volume>
+    <volume name="volPixelPad131">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad131"/>
+    </volume>
+    <volume name="volPixelPad132">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad132"/>
+    </volume>
+    <volume name="volPixelPad133">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad133"/>
+    </volume>
+    <volume name="volPixelPad134">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad134"/>
+    </volume>
+    <volume name="volPixelPad135">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad135"/>
+    </volume>
+    <volume name="volPixelPad136">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad136"/>
+    </volume>
+    <volume name="volPixelPad137">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad137"/>
+    </volume>
+    <volume name="volPixelPad138">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad138"/>
+    </volume>
+    <volume name="volPixelPad139">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad139"/>
+    </volume>
+    <volume name="volPixelPad140">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad140"/>
+    </volume>
+    <volume name="volPixelPad141">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad141"/>
+    </volume>
+    <volume name="volPixelPad142">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad142"/>
+    </volume>
+    <volume name="volPixelPad143">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad143"/>
+    </volume>
+    <volume name="volPixelPad144">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad144"/>
+    </volume>
+    <volume name="volPixelPad145">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad145"/>
+    </volume>
+    <volume name="volPixelPad146">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad146"/>
+    </volume>
+    <volume name="volPixelPad147">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad147"/>
+    </volume>
+    <volume name="volPixelPad148">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad148"/>
+    </volume>
+    <volume name="volPixelPad149">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad149"/>
+    </volume>
+    <volume name="volPixelPad150">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad150"/>
+    </volume>
+    <volume name="volPixelPad151">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad151"/>
+    </volume>
+    <volume name="volPixelPad152">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad152"/>
+    </volume>
+    <volume name="volPixelPad153">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad153"/>
+    </volume>
+    <volume name="volPixelPad154">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad154"/>
+    </volume>
+    <volume name="volPixelPad155">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad155"/>
+    </volume>
+    <volume name="volPixelPad156">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad156"/>
+    </volume>
+    <volume name="volPixelPad157">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad157"/>
+    </volume>
+    <volume name="volPixelPad158">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad158"/>
+    </volume>
+    <volume name="volPixelPad159">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad159"/>
+    </volume>
+    <volume name="volPixelPad160">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad160"/>
+    </volume>
+    <volume name="volPixelPad161">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad161"/>
+    </volume>
+    <volume name="volPixelPad162">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad162"/>
+    </volume>
+    <volume name="volPixelPad163">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad163"/>
+    </volume>
+    <volume name="volPixelPad164">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad164"/>
+    </volume>
+    <volume name="volPixelPad165">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad165"/>
+    </volume>
+    <volume name="volPixelPad166">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad166"/>
+    </volume>
+    <volume name="volPixelPad167">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad167"/>
+    </volume>
+    <volume name="volPixelPad168">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad168"/>
+    </volume>
+    <volume name="volPixelPad169">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad169"/>
+    </volume>
+    <volume name="volPixelPad170">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad170"/>
+    </volume>
+    <volume name="volPixelPad171">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad171"/>
+    </volume>
+    <volume name="volPixelPad172">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad172"/>
+    </volume>
+    <volume name="volPixelPad173">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad173"/>
+    </volume>
+    <volume name="volPixelPad174">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad174"/>
+    </volume>
+    <volume name="volPixelPad175">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad175"/>
+    </volume>
+    <volume name="volPixelPad176">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad176"/>
+    </volume>
+    <volume name="volPixelPad177">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad177"/>
+    </volume>
+    <volume name="volPixelPad178">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad178"/>
+    </volume>
+    <volume name="volPixelPad179">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad179"/>
+    </volume>
+    <volume name="volPixelPad180">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad180"/>
+    </volume>
+    <volume name="volPixelPad181">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad181"/>
+    </volume>
+    <volume name="volPixelPad182">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad182"/>
+    </volume>
+    <volume name="volPixelPad183">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad183"/>
+    </volume>
+    <volume name="volPixelPad184">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad184"/>
+    </volume>
+    <volume name="volPixelPad185">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad185"/>
+    </volume>
+    <volume name="volPixelPad186">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad186"/>
+    </volume>
+    <volume name="volPixelPad187">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad187"/>
+    </volume>
+    <volume name="volPixelPad188">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad188"/>
+    </volume>
+    <volume name="volPixelPad189">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad189"/>
+    </volume>
+    <volume name="volPixelPad190">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad190"/>
+    </volume>
+    <volume name="volPixelPad191">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad191"/>
+    </volume>
+    <volume name="volPixelPad192">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad192"/>
+    </volume>
+    <volume name="volPixelPad193">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad193"/>
+    </volume>
+    <volume name="volPixelPad194">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad194"/>
+    </volume>
+    <volume name="volPixelPad195">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad195"/>
+    </volume>
+    <volume name="volPixelPad196">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad196"/>
+    </volume>
+    <volume name="volPixelPad197">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad197"/>
+    </volume>
+    <volume name="volPixelPad198">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad198"/>
+    </volume>
+    <volume name="volPixelPad199">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad199"/>
+    </volume>
+    <volume name="volPixelPad200">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad200"/>
+    </volume>
+    <volume name="volPixelPad201">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad201"/>
+    </volume>
+    <volume name="volPixelPad202">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad202"/>
+    </volume>
+    <volume name="volPixelPad203">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad203"/>
+    </volume>
+    <volume name="volPixelPad204">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad204"/>
+    </volume>
+    <volume name="volPixelPad205">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad205"/>
+    </volume>
+    <volume name="volPixelPad206">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad206"/>
+    </volume>
+    <volume name="volPixelPad207">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad207"/>
+    </volume>
+    <volume name="volPixelPad208">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad208"/>
+    </volume>
+    <volume name="volPixelPad209">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad209"/>
+    </volume>
+    <volume name="volPixelPad210">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad210"/>
+    </volume>
+    <volume name="volPixelPad211">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad211"/>
+    </volume>
+    <volume name="volPixelPad212">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad212"/>
+    </volume>
+    <volume name="volPixelPad213">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad213"/>
+    </volume>
+    <volume name="volPixelPad214">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad214"/>
+    </volume>
+    <volume name="volPixelPad215">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad215"/>
+    </volume>
+    <volume name="volPixelPad216">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad216"/>
+    </volume>
+    <volume name="volPixelPad217">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad217"/>
+    </volume>
+    <volume name="volPixelPad218">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad218"/>
+    </volume>
+    <volume name="volPixelPad219">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad219"/>
+    </volume>
+    <volume name="volPixelPad220">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad220"/>
+    </volume>
+    <volume name="volPixelPad221">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad221"/>
+    </volume>
+    <volume name="volPixelPad222">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad222"/>
+    </volume>
+    <volume name="volPixelPad223">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad223"/>
+    </volume>
+    <volume name="volPixelPad224">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad224"/>
+    </volume>
+    <volume name="volPixelPad225">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad225"/>
+    </volume>
+    <volume name="volPixelPad226">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad226"/>
+    </volume>
+    <volume name="volPixelPad227">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad227"/>
+    </volume>
+    <volume name="volPixelPad228">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad228"/>
+    </volume>
+    <volume name="volPixelPad229">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad229"/>
+    </volume>
+    <volume name="volPixelPad230">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad230"/>
+    </volume>
+    <volume name="volPixelPad231">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad231"/>
+    </volume>
+    <volume name="volPixelPad232">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad232"/>
+    </volume>
+    <volume name="volPixelPad233">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad233"/>
+    </volume>
+    <volume name="volPixelPad234">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad234"/>
+    </volume>
+    <volume name="volPixelPad235">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad235"/>
+    </volume>
+    <volume name="volPixelPad236">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad236"/>
+    </volume>
+    <volume name="volPixelPad237">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad237"/>
+    </volume>
+    <volume name="volPixelPad238">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad238"/>
+    </volume>
+    <volume name="volPixelPad239">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad239"/>
+    </volume>
+    <volume name="volPixelPad240">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad240"/>
+    </volume>
+    <volume name="volPixelPad241">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad241"/>
+    </volume>
+    <volume name="volPixelPad242">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad242"/>
+    </volume>
+    <volume name="volPixelPad243">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad243"/>
+    </volume>
+    <volume name="volPixelPad244">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad244"/>
+    </volume>
+    <volume name="volPixelPad245">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad245"/>
+    </volume>
+    <volume name="volPixelPad246">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad246"/>
+    </volume>
+    <volume name="volPixelPad247">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad247"/>
+    </volume>
+    <volume name="volPixelPad248">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad248"/>
+    </volume>
+    <volume name="volPixelPad249">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad249"/>
+    </volume>
+    <volume name="volPixelPad250">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad250"/>
+    </volume>
+    <volume name="volPixelPad251">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad251"/>
+    </volume>
+    <volume name="volPixelPad252">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad252"/>
+    </volume>
+    <volume name="volPixelPad253">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad253"/>
+    </volume>
+    <volume name="volPixelPad254">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad254"/>
+    </volume>
+    <volume name="volPixelPad255">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad255"/>
+    </volume>
+    <volume name="volPixelPad256">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad256"/>
+    </volume>
+    <volume name="volPixelPad257">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad257"/>
+    </volume>
+    <volume name="volPixelPad258">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad258"/>
+    </volume>
+    <volume name="volPixelPad259">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad259"/>
+    </volume>
+    <volume name="volPixelPad260">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad260"/>
+    </volume>
+    <volume name="volPixelPad261">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad261"/>
+    </volume>
+    <volume name="volPixelPad262">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad262"/>
+    </volume>
+    <volume name="volPixelPad263">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad263"/>
+    </volume>
+    <volume name="volPixelPad264">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad264"/>
+    </volume>
+    <volume name="volPixelPad265">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad265"/>
+    </volume>
+    <volume name="volPixelPad266">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad266"/>
+    </volume>
+    <volume name="volPixelPad267">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad267"/>
+    </volume>
+    <volume name="volPixelPad268">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad268"/>
+    </volume>
+    <volume name="volPixelPad269">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad269"/>
+    </volume>
+    <volume name="volPixelPad270">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad270"/>
+    </volume>
+    <volume name="volPixelPad271">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad271"/>
+    </volume>
+    <volume name="volPixelPad272">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad272"/>
+    </volume>
+    <volume name="volPixelPad273">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad273"/>
+    </volume>
+    <volume name="volPixelPad274">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad274"/>
+    </volume>
+    <volume name="volPixelPad275">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad275"/>
+    </volume>
+    <volume name="volPixelPad276">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad276"/>
+    </volume>
+    <volume name="volPixelPad277">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad277"/>
+    </volume>
+    <volume name="volPixelPad278">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad278"/>
+    </volume>
+    <volume name="volPixelPad279">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad279"/>
+    </volume>
+    <volume name="volPixelPad280">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad280"/>
+    </volume>
+    <volume name="volPixelPad281">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad281"/>
+    </volume>
+    <volume name="volPixelPad282">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad282"/>
+    </volume>
+    <volume name="volPixelPad283">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad283"/>
+    </volume>
+    <volume name="volPixelPad284">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad284"/>
+    </volume>
+    <volume name="volPixelPad285">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad285"/>
+    </volume>
+    <volume name="volPixelPad286">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad286"/>
+    </volume>
+    <volume name="volPixelPad287">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad287"/>
+    </volume>
+    <volume name="volPixelPad288">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad288"/>
+    </volume>
+    <volume name="volPixelPad289">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad289"/>
+    </volume>
+    <volume name="volPixelPad290">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad290"/>
+    </volume>
+    <volume name="volPixelPad291">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad291"/>
+    </volume>
+    <volume name="volPixelPad292">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad292"/>
+    </volume>
+    <volume name="volPixelPad293">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad293"/>
+    </volume>
+    <volume name="volPixelPad294">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad294"/>
+    </volume>
+    <volume name="volPixelPad295">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad295"/>
+    </volume>
+    <volume name="volPixelPad296">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad296"/>
+    </volume>
+    <volume name="volPixelPad297">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad297"/>
+    </volume>
+    <volume name="volPixelPad298">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad298"/>
+    </volume>
+    <volume name="volPixelPad299">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad299"/>
+    </volume>
+    <volume name="volPixelPad300">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad300"/>
+    </volume>
+    <volume name="volPixelPad301">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad301"/>
+    </volume>
+    <volume name="volPixelPad302">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad302"/>
+    </volume>
+    <volume name="volPixelPad303">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad303"/>
+    </volume>
+    <volume name="volPixelPad304">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad304"/>
+    </volume>
+    <volume name="volPixelPad305">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad305"/>
+    </volume>
+    <volume name="volPixelPad306">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad306"/>
+    </volume>
+    <volume name="volPixelPad307">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad307"/>
+    </volume>
+    <volume name="volPixelPad308">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad308"/>
+    </volume>
+    <volume name="volPixelPad309">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad309"/>
+    </volume>
+    <volume name="volPixelPad310">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad310"/>
+    </volume>
+    <volume name="volPixelPad311">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad311"/>
+    </volume>
+    <volume name="volPixelPad312">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad312"/>
+    </volume>
+    <volume name="volPixelPad313">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad313"/>
+    </volume>
+    <volume name="volPixelPad314">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad314"/>
+    </volume>
+    <volume name="volPixelPad315">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad315"/>
+    </volume>
+    <volume name="volPixelPad316">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad316"/>
+    </volume>
+    <volume name="volPixelPad317">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad317"/>
+    </volume>
+    <volume name="volPixelPad318">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad318"/>
+    </volume>
+    <volume name="volPixelPad319">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad319"/>
+    </volume>
+    <volume name="volPixelPad320">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad320"/>
+    </volume>
+    <volume name="volPixelPad321">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad321"/>
+    </volume>
+    <volume name="volPixelPad322">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad322"/>
+    </volume>
+    <volume name="volPixelPad323">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad323"/>
+    </volume>
+    <volume name="volPixelPad324">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad324"/>
+    </volume>
+    <volume name="volPixelPad325">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad325"/>
+    </volume>
+    <volume name="volPixelPad326">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad326"/>
+    </volume>
+    <volume name="volPixelPad327">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad327"/>
+    </volume>
+    <volume name="volPixelPad328">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad328"/>
+    </volume>
+    <volume name="volPixelPad329">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad329"/>
+    </volume>
+    <volume name="volPixelPad330">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad330"/>
+    </volume>
+    <volume name="volPixelPad331">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad331"/>
+    </volume>
+    <volume name="volPixelPad332">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad332"/>
+    </volume>
+    <volume name="volPixelPad333">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad333"/>
+    </volume>
+    <volume name="volPixelPad334">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad334"/>
+    </volume>
+    <volume name="volPixelPad335">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad335"/>
+    </volume>
+    <volume name="volPixelPad336">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad336"/>
+    </volume>
+    <volume name="volPixelPad337">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad337"/>
+    </volume>
+    <volume name="volPixelPad338">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad338"/>
+    </volume>
+    <volume name="volPixelPad339">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad339"/>
+    </volume>
+    <volume name="volPixelPad340">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad340"/>
+    </volume>
+    <volume name="volPixelPad341">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad341"/>
+    </volume>
+    <volume name="volPixelPad342">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad342"/>
+    </volume>
+    <volume name="volPixelPad343">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad343"/>
+    </volume>
+    <volume name="volPixelPad344">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad344"/>
+    </volume>
+    <volume name="volPixelPad345">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad345"/>
+    </volume>
+    <volume name="volPixelPad346">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPad346"/>
+    </volume>
+    <volume name="volPixelPlane">
+      <materialref ref="FR4"/>
+      <solidref ref="PixelPlane"/>
+      <physvol>
+        <volumeref ref="volPixelPad1"/>
+        <positionref ref="PixelPad1_pos"/>
+        <rotationref ref="PixelPad1_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad2"/>
+        <positionref ref="PixelPad2_pos"/>
+        <rotationref ref="PixelPad2_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad3"/>
+        <positionref ref="PixelPad3_pos"/>
+        <rotationref ref="PixelPad3_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad4"/>
+        <positionref ref="PixelPad4_pos"/>
+        <rotationref ref="PixelPad4_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad5"/>
+        <positionref ref="PixelPad5_pos"/>
+        <rotationref ref="PixelPad5_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad6"/>
+        <positionref ref="PixelPad6_pos"/>
+        <rotationref ref="PixelPad6_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad7"/>
+        <positionref ref="PixelPad7_pos"/>
+        <rotationref ref="PixelPad7_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad8"/>
+        <positionref ref="PixelPad8_pos"/>
+        <rotationref ref="PixelPad8_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad9"/>
+        <positionref ref="PixelPad9_pos"/>
+        <rotationref ref="PixelPad9_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad10"/>
+        <positionref ref="PixelPad10_pos"/>
+        <rotationref ref="PixelPad10_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad11"/>
+        <positionref ref="PixelPad11_pos"/>
+        <rotationref ref="PixelPad11_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad12"/>
+        <positionref ref="PixelPad12_pos"/>
+        <rotationref ref="PixelPad12_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad13"/>
+        <positionref ref="PixelPad13_pos"/>
+        <rotationref ref="PixelPad13_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad14"/>
+        <positionref ref="PixelPad14_pos"/>
+        <rotationref ref="PixelPad14_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad15"/>
+        <positionref ref="PixelPad15_pos"/>
+        <rotationref ref="PixelPad15_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad16"/>
+        <positionref ref="PixelPad16_pos"/>
+        <rotationref ref="PixelPad16_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad17"/>
+        <positionref ref="PixelPad17_pos"/>
+        <rotationref ref="PixelPad17_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad18"/>
+        <positionref ref="PixelPad18_pos"/>
+        <rotationref ref="PixelPad18_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad19"/>
+        <positionref ref="PixelPad19_pos"/>
+        <rotationref ref="PixelPad19_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad20"/>
+        <positionref ref="PixelPad20_pos"/>
+        <rotationref ref="PixelPad20_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad21"/>
+        <positionref ref="PixelPad21_pos"/>
+        <rotationref ref="PixelPad21_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad22"/>
+        <positionref ref="PixelPad22_pos"/>
+        <rotationref ref="PixelPad22_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad23"/>
+        <positionref ref="PixelPad23_pos"/>
+        <rotationref ref="PixelPad23_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad24"/>
+        <positionref ref="PixelPad24_pos"/>
+        <rotationref ref="PixelPad24_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad25"/>
+        <positionref ref="PixelPad25_pos"/>
+        <rotationref ref="PixelPad25_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad26"/>
+        <positionref ref="PixelPad26_pos"/>
+        <rotationref ref="PixelPad26_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad27"/>
+        <positionref ref="PixelPad27_pos"/>
+        <rotationref ref="PixelPad27_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad28"/>
+        <positionref ref="PixelPad28_pos"/>
+        <rotationref ref="PixelPad28_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad29"/>
+        <positionref ref="PixelPad29_pos"/>
+        <rotationref ref="PixelPad29_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad30"/>
+        <positionref ref="PixelPad30_pos"/>
+        <rotationref ref="PixelPad30_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad31"/>
+        <positionref ref="PixelPad31_pos"/>
+        <rotationref ref="PixelPad31_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad32"/>
+        <positionref ref="PixelPad32_pos"/>
+        <rotationref ref="PixelPad32_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad33"/>
+        <positionref ref="PixelPad33_pos"/>
+        <rotationref ref="PixelPad33_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad34"/>
+        <positionref ref="PixelPad34_pos"/>
+        <rotationref ref="PixelPad34_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad35"/>
+        <positionref ref="PixelPad35_pos"/>
+        <rotationref ref="PixelPad35_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad36"/>
+        <positionref ref="PixelPad36_pos"/>
+        <rotationref ref="PixelPad36_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad37"/>
+        <positionref ref="PixelPad37_pos"/>
+        <rotationref ref="PixelPad37_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad38"/>
+        <positionref ref="PixelPad38_pos"/>
+        <rotationref ref="PixelPad38_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad39"/>
+        <positionref ref="PixelPad39_pos"/>
+        <rotationref ref="PixelPad39_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad40"/>
+        <positionref ref="PixelPad40_pos"/>
+        <rotationref ref="PixelPad40_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad41"/>
+        <positionref ref="PixelPad41_pos"/>
+        <rotationref ref="PixelPad41_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad42"/>
+        <positionref ref="PixelPad42_pos"/>
+        <rotationref ref="PixelPad42_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad43"/>
+        <positionref ref="PixelPad43_pos"/>
+        <rotationref ref="PixelPad43_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad44"/>
+        <positionref ref="PixelPad44_pos"/>
+        <rotationref ref="PixelPad44_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad45"/>
+        <positionref ref="PixelPad45_pos"/>
+        <rotationref ref="PixelPad45_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad46"/>
+        <positionref ref="PixelPad46_pos"/>
+        <rotationref ref="PixelPad46_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad47"/>
+        <positionref ref="PixelPad47_pos"/>
+        <rotationref ref="PixelPad47_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad48"/>
+        <positionref ref="PixelPad48_pos"/>
+        <rotationref ref="PixelPad48_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad49"/>
+        <positionref ref="PixelPad49_pos"/>
+        <rotationref ref="PixelPad49_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad50"/>
+        <positionref ref="PixelPad50_pos"/>
+        <rotationref ref="PixelPad50_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad51"/>
+        <positionref ref="PixelPad51_pos"/>
+        <rotationref ref="PixelPad51_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad52"/>
+        <positionref ref="PixelPad52_pos"/>
+        <rotationref ref="PixelPad52_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad53"/>
+        <positionref ref="PixelPad53_pos"/>
+        <rotationref ref="PixelPad53_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad54"/>
+        <positionref ref="PixelPad54_pos"/>
+        <rotationref ref="PixelPad54_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad55"/>
+        <positionref ref="PixelPad55_pos"/>
+        <rotationref ref="PixelPad55_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad56"/>
+        <positionref ref="PixelPad56_pos"/>
+        <rotationref ref="PixelPad56_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad57"/>
+        <positionref ref="PixelPad57_pos"/>
+        <rotationref ref="PixelPad57_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad58"/>
+        <positionref ref="PixelPad58_pos"/>
+        <rotationref ref="PixelPad58_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad59"/>
+        <positionref ref="PixelPad59_pos"/>
+        <rotationref ref="PixelPad59_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad60"/>
+        <positionref ref="PixelPad60_pos"/>
+        <rotationref ref="PixelPad60_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad61"/>
+        <positionref ref="PixelPad61_pos"/>
+        <rotationref ref="PixelPad61_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad62"/>
+        <positionref ref="PixelPad62_pos"/>
+        <rotationref ref="PixelPad62_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad63"/>
+        <positionref ref="PixelPad63_pos"/>
+        <rotationref ref="PixelPad63_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad64"/>
+        <positionref ref="PixelPad64_pos"/>
+        <rotationref ref="PixelPad64_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad65"/>
+        <positionref ref="PixelPad65_pos"/>
+        <rotationref ref="PixelPad65_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad66"/>
+        <positionref ref="PixelPad66_pos"/>
+        <rotationref ref="PixelPad66_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad67"/>
+        <positionref ref="PixelPad67_pos"/>
+        <rotationref ref="PixelPad67_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad68"/>
+        <positionref ref="PixelPad68_pos"/>
+        <rotationref ref="PixelPad68_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad69"/>
+        <positionref ref="PixelPad69_pos"/>
+        <rotationref ref="PixelPad69_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad70"/>
+        <positionref ref="PixelPad70_pos"/>
+        <rotationref ref="PixelPad70_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad71"/>
+        <positionref ref="PixelPad71_pos"/>
+        <rotationref ref="PixelPad71_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad72"/>
+        <positionref ref="PixelPad72_pos"/>
+        <rotationref ref="PixelPad72_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad73"/>
+        <positionref ref="PixelPad73_pos"/>
+        <rotationref ref="PixelPad73_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad74"/>
+        <positionref ref="PixelPad74_pos"/>
+        <rotationref ref="PixelPad74_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad75"/>
+        <positionref ref="PixelPad75_pos"/>
+        <rotationref ref="PixelPad75_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad76"/>
+        <positionref ref="PixelPad76_pos"/>
+        <rotationref ref="PixelPad76_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad77"/>
+        <positionref ref="PixelPad77_pos"/>
+        <rotationref ref="PixelPad77_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad78"/>
+        <positionref ref="PixelPad78_pos"/>
+        <rotationref ref="PixelPad78_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad79"/>
+        <positionref ref="PixelPad79_pos"/>
+        <rotationref ref="PixelPad79_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad80"/>
+        <positionref ref="PixelPad80_pos"/>
+        <rotationref ref="PixelPad80_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad81"/>
+        <positionref ref="PixelPad81_pos"/>
+        <rotationref ref="PixelPad81_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad82"/>
+        <positionref ref="PixelPad82_pos"/>
+        <rotationref ref="PixelPad82_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad83"/>
+        <positionref ref="PixelPad83_pos"/>
+        <rotationref ref="PixelPad83_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad84"/>
+        <positionref ref="PixelPad84_pos"/>
+        <rotationref ref="PixelPad84_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad85"/>
+        <positionref ref="PixelPad85_pos"/>
+        <rotationref ref="PixelPad85_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad86"/>
+        <positionref ref="PixelPad86_pos"/>
+        <rotationref ref="PixelPad86_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad87"/>
+        <positionref ref="PixelPad87_pos"/>
+        <rotationref ref="PixelPad87_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad88"/>
+        <positionref ref="PixelPad88_pos"/>
+        <rotationref ref="PixelPad88_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad89"/>
+        <positionref ref="PixelPad89_pos"/>
+        <rotationref ref="PixelPad89_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad90"/>
+        <positionref ref="PixelPad90_pos"/>
+        <rotationref ref="PixelPad90_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad91"/>
+        <positionref ref="PixelPad91_pos"/>
+        <rotationref ref="PixelPad91_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad92"/>
+        <positionref ref="PixelPad92_pos"/>
+        <rotationref ref="PixelPad92_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad93"/>
+        <positionref ref="PixelPad93_pos"/>
+        <rotationref ref="PixelPad93_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad94"/>
+        <positionref ref="PixelPad94_pos"/>
+        <rotationref ref="PixelPad94_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad95"/>
+        <positionref ref="PixelPad95_pos"/>
+        <rotationref ref="PixelPad95_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad96"/>
+        <positionref ref="PixelPad96_pos"/>
+        <rotationref ref="PixelPad96_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad97"/>
+        <positionref ref="PixelPad97_pos"/>
+        <rotationref ref="PixelPad97_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad98"/>
+        <positionref ref="PixelPad98_pos"/>
+        <rotationref ref="PixelPad98_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad99"/>
+        <positionref ref="PixelPad99_pos"/>
+        <rotationref ref="PixelPad99_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad100"/>
+        <positionref ref="PixelPad100_pos"/>
+        <rotationref ref="PixelPad100_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad101"/>
+        <positionref ref="PixelPad101_pos"/>
+        <rotationref ref="PixelPad101_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad102"/>
+        <positionref ref="PixelPad102_pos"/>
+        <rotationref ref="PixelPad102_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad103"/>
+        <positionref ref="PixelPad103_pos"/>
+        <rotationref ref="PixelPad103_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad104"/>
+        <positionref ref="PixelPad104_pos"/>
+        <rotationref ref="PixelPad104_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad105"/>
+        <positionref ref="PixelPad105_pos"/>
+        <rotationref ref="PixelPad105_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad106"/>
+        <positionref ref="PixelPad106_pos"/>
+        <rotationref ref="PixelPad106_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad107"/>
+        <positionref ref="PixelPad107_pos"/>
+        <rotationref ref="PixelPad107_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad108"/>
+        <positionref ref="PixelPad108_pos"/>
+        <rotationref ref="PixelPad108_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad109"/>
+        <positionref ref="PixelPad109_pos"/>
+        <rotationref ref="PixelPad109_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad110"/>
+        <positionref ref="PixelPad110_pos"/>
+        <rotationref ref="PixelPad110_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad111"/>
+        <positionref ref="PixelPad111_pos"/>
+        <rotationref ref="PixelPad111_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad112"/>
+        <positionref ref="PixelPad112_pos"/>
+        <rotationref ref="PixelPad112_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad113"/>
+        <positionref ref="PixelPad113_pos"/>
+        <rotationref ref="PixelPad113_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad114"/>
+        <positionref ref="PixelPad114_pos"/>
+        <rotationref ref="PixelPad114_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad115"/>
+        <positionref ref="PixelPad115_pos"/>
+        <rotationref ref="PixelPad115_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad116"/>
+        <positionref ref="PixelPad116_pos"/>
+        <rotationref ref="PixelPad116_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad117"/>
+        <positionref ref="PixelPad117_pos"/>
+        <rotationref ref="PixelPad117_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad118"/>
+        <positionref ref="PixelPad118_pos"/>
+        <rotationref ref="PixelPad118_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad119"/>
+        <positionref ref="PixelPad119_pos"/>
+        <rotationref ref="PixelPad119_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad120"/>
+        <positionref ref="PixelPad120_pos"/>
+        <rotationref ref="PixelPad120_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad121"/>
+        <positionref ref="PixelPad121_pos"/>
+        <rotationref ref="PixelPad121_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad122"/>
+        <positionref ref="PixelPad122_pos"/>
+        <rotationref ref="PixelPad122_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad123"/>
+        <positionref ref="PixelPad123_pos"/>
+        <rotationref ref="PixelPad123_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad124"/>
+        <positionref ref="PixelPad124_pos"/>
+        <rotationref ref="PixelPad124_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad125"/>
+        <positionref ref="PixelPad125_pos"/>
+        <rotationref ref="PixelPad125_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad126"/>
+        <positionref ref="PixelPad126_pos"/>
+        <rotationref ref="PixelPad126_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad127"/>
+        <positionref ref="PixelPad127_pos"/>
+        <rotationref ref="PixelPad127_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad128"/>
+        <positionref ref="PixelPad128_pos"/>
+        <rotationref ref="PixelPad128_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad129"/>
+        <positionref ref="PixelPad129_pos"/>
+        <rotationref ref="PixelPad129_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad130"/>
+        <positionref ref="PixelPad130_pos"/>
+        <rotationref ref="PixelPad130_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad131"/>
+        <positionref ref="PixelPad131_pos"/>
+        <rotationref ref="PixelPad131_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad132"/>
+        <positionref ref="PixelPad132_pos"/>
+        <rotationref ref="PixelPad132_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad133"/>
+        <positionref ref="PixelPad133_pos"/>
+        <rotationref ref="PixelPad133_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad134"/>
+        <positionref ref="PixelPad134_pos"/>
+        <rotationref ref="PixelPad134_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad135"/>
+        <positionref ref="PixelPad135_pos"/>
+        <rotationref ref="PixelPad135_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad136"/>
+        <positionref ref="PixelPad136_pos"/>
+        <rotationref ref="PixelPad136_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad137"/>
+        <positionref ref="PixelPad137_pos"/>
+        <rotationref ref="PixelPad137_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad138"/>
+        <positionref ref="PixelPad138_pos"/>
+        <rotationref ref="PixelPad138_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad139"/>
+        <positionref ref="PixelPad139_pos"/>
+        <rotationref ref="PixelPad139_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad140"/>
+        <positionref ref="PixelPad140_pos"/>
+        <rotationref ref="PixelPad140_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad141"/>
+        <positionref ref="PixelPad141_pos"/>
+        <rotationref ref="PixelPad141_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad142"/>
+        <positionref ref="PixelPad142_pos"/>
+        <rotationref ref="PixelPad142_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad143"/>
+        <positionref ref="PixelPad143_pos"/>
+        <rotationref ref="PixelPad143_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad144"/>
+        <positionref ref="PixelPad144_pos"/>
+        <rotationref ref="PixelPad144_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad145"/>
+        <positionref ref="PixelPad145_pos"/>
+        <rotationref ref="PixelPad145_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad146"/>
+        <positionref ref="PixelPad146_pos"/>
+        <rotationref ref="PixelPad146_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad147"/>
+        <positionref ref="PixelPad147_pos"/>
+        <rotationref ref="PixelPad147_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad148"/>
+        <positionref ref="PixelPad148_pos"/>
+        <rotationref ref="PixelPad148_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad149"/>
+        <positionref ref="PixelPad149_pos"/>
+        <rotationref ref="PixelPad149_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad150"/>
+        <positionref ref="PixelPad150_pos"/>
+        <rotationref ref="PixelPad150_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad151"/>
+        <positionref ref="PixelPad151_pos"/>
+        <rotationref ref="PixelPad151_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad152"/>
+        <positionref ref="PixelPad152_pos"/>
+        <rotationref ref="PixelPad152_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad153"/>
+        <positionref ref="PixelPad153_pos"/>
+        <rotationref ref="PixelPad153_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad154"/>
+        <positionref ref="PixelPad154_pos"/>
+        <rotationref ref="PixelPad154_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad155"/>
+        <positionref ref="PixelPad155_pos"/>
+        <rotationref ref="PixelPad155_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad156"/>
+        <positionref ref="PixelPad156_pos"/>
+        <rotationref ref="PixelPad156_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad157"/>
+        <positionref ref="PixelPad157_pos"/>
+        <rotationref ref="PixelPad157_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad158"/>
+        <positionref ref="PixelPad158_pos"/>
+        <rotationref ref="PixelPad158_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad159"/>
+        <positionref ref="PixelPad159_pos"/>
+        <rotationref ref="PixelPad159_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad160"/>
+        <positionref ref="PixelPad160_pos"/>
+        <rotationref ref="PixelPad160_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad161"/>
+        <positionref ref="PixelPad161_pos"/>
+        <rotationref ref="PixelPad161_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad162"/>
+        <positionref ref="PixelPad162_pos"/>
+        <rotationref ref="PixelPad162_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad163"/>
+        <positionref ref="PixelPad163_pos"/>
+        <rotationref ref="PixelPad163_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad164"/>
+        <positionref ref="PixelPad164_pos"/>
+        <rotationref ref="PixelPad164_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad165"/>
+        <positionref ref="PixelPad165_pos"/>
+        <rotationref ref="PixelPad165_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad166"/>
+        <positionref ref="PixelPad166_pos"/>
+        <rotationref ref="PixelPad166_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad167"/>
+        <positionref ref="PixelPad167_pos"/>
+        <rotationref ref="PixelPad167_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad168"/>
+        <positionref ref="PixelPad168_pos"/>
+        <rotationref ref="PixelPad168_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad169"/>
+        <positionref ref="PixelPad169_pos"/>
+        <rotationref ref="PixelPad169_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad170"/>
+        <positionref ref="PixelPad170_pos"/>
+        <rotationref ref="PixelPad170_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad171"/>
+        <positionref ref="PixelPad171_pos"/>
+        <rotationref ref="PixelPad171_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad172"/>
+        <positionref ref="PixelPad172_pos"/>
+        <rotationref ref="PixelPad172_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad173"/>
+        <positionref ref="PixelPad173_pos"/>
+        <rotationref ref="PixelPad173_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad174"/>
+        <positionref ref="PixelPad174_pos"/>
+        <rotationref ref="PixelPad174_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad175"/>
+        <positionref ref="PixelPad175_pos"/>
+        <rotationref ref="PixelPad175_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad176"/>
+        <positionref ref="PixelPad176_pos"/>
+        <rotationref ref="PixelPad176_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad177"/>
+        <positionref ref="PixelPad177_pos"/>
+        <rotationref ref="PixelPad177_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad178"/>
+        <positionref ref="PixelPad178_pos"/>
+        <rotationref ref="PixelPad178_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad179"/>
+        <positionref ref="PixelPad179_pos"/>
+        <rotationref ref="PixelPad179_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad180"/>
+        <positionref ref="PixelPad180_pos"/>
+        <rotationref ref="PixelPad180_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad181"/>
+        <positionref ref="PixelPad181_pos"/>
+        <rotationref ref="PixelPad181_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad182"/>
+        <positionref ref="PixelPad182_pos"/>
+        <rotationref ref="PixelPad182_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad183"/>
+        <positionref ref="PixelPad183_pos"/>
+        <rotationref ref="PixelPad183_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad184"/>
+        <positionref ref="PixelPad184_pos"/>
+        <rotationref ref="PixelPad184_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad185"/>
+        <positionref ref="PixelPad185_pos"/>
+        <rotationref ref="PixelPad185_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad186"/>
+        <positionref ref="PixelPad186_pos"/>
+        <rotationref ref="PixelPad186_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad187"/>
+        <positionref ref="PixelPad187_pos"/>
+        <rotationref ref="PixelPad187_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad188"/>
+        <positionref ref="PixelPad188_pos"/>
+        <rotationref ref="PixelPad188_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad189"/>
+        <positionref ref="PixelPad189_pos"/>
+        <rotationref ref="PixelPad189_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad190"/>
+        <positionref ref="PixelPad190_pos"/>
+        <rotationref ref="PixelPad190_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad191"/>
+        <positionref ref="PixelPad191_pos"/>
+        <rotationref ref="PixelPad191_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad192"/>
+        <positionref ref="PixelPad192_pos"/>
+        <rotationref ref="PixelPad192_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad193"/>
+        <positionref ref="PixelPad193_pos"/>
+        <rotationref ref="PixelPad193_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad194"/>
+        <positionref ref="PixelPad194_pos"/>
+        <rotationref ref="PixelPad194_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad195"/>
+        <positionref ref="PixelPad195_pos"/>
+        <rotationref ref="PixelPad195_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad196"/>
+        <positionref ref="PixelPad196_pos"/>
+        <rotationref ref="PixelPad196_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad197"/>
+        <positionref ref="PixelPad197_pos"/>
+        <rotationref ref="PixelPad197_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad198"/>
+        <positionref ref="PixelPad198_pos"/>
+        <rotationref ref="PixelPad198_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad199"/>
+        <positionref ref="PixelPad199_pos"/>
+        <rotationref ref="PixelPad199_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad200"/>
+        <positionref ref="PixelPad200_pos"/>
+        <rotationref ref="PixelPad200_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad201"/>
+        <positionref ref="PixelPad201_pos"/>
+        <rotationref ref="PixelPad201_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad202"/>
+        <positionref ref="PixelPad202_pos"/>
+        <rotationref ref="PixelPad202_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad203"/>
+        <positionref ref="PixelPad203_pos"/>
+        <rotationref ref="PixelPad203_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad204"/>
+        <positionref ref="PixelPad204_pos"/>
+        <rotationref ref="PixelPad204_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad205"/>
+        <positionref ref="PixelPad205_pos"/>
+        <rotationref ref="PixelPad205_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad206"/>
+        <positionref ref="PixelPad206_pos"/>
+        <rotationref ref="PixelPad206_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad207"/>
+        <positionref ref="PixelPad207_pos"/>
+        <rotationref ref="PixelPad207_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad208"/>
+        <positionref ref="PixelPad208_pos"/>
+        <rotationref ref="PixelPad208_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad209"/>
+        <positionref ref="PixelPad209_pos"/>
+        <rotationref ref="PixelPad209_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad210"/>
+        <positionref ref="PixelPad210_pos"/>
+        <rotationref ref="PixelPad210_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad211"/>
+        <positionref ref="PixelPad211_pos"/>
+        <rotationref ref="PixelPad211_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad212"/>
+        <positionref ref="PixelPad212_pos"/>
+        <rotationref ref="PixelPad212_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad213"/>
+        <positionref ref="PixelPad213_pos"/>
+        <rotationref ref="PixelPad213_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad214"/>
+        <positionref ref="PixelPad214_pos"/>
+        <rotationref ref="PixelPad214_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad215"/>
+        <positionref ref="PixelPad215_pos"/>
+        <rotationref ref="PixelPad215_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad216"/>
+        <positionref ref="PixelPad216_pos"/>
+        <rotationref ref="PixelPad216_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad217"/>
+        <positionref ref="PixelPad217_pos"/>
+        <rotationref ref="PixelPad217_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad218"/>
+        <positionref ref="PixelPad218_pos"/>
+        <rotationref ref="PixelPad218_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad219"/>
+        <positionref ref="PixelPad219_pos"/>
+        <rotationref ref="PixelPad219_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad220"/>
+        <positionref ref="PixelPad220_pos"/>
+        <rotationref ref="PixelPad220_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad221"/>
+        <positionref ref="PixelPad221_pos"/>
+        <rotationref ref="PixelPad221_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad222"/>
+        <positionref ref="PixelPad222_pos"/>
+        <rotationref ref="PixelPad222_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad223"/>
+        <positionref ref="PixelPad223_pos"/>
+        <rotationref ref="PixelPad223_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad224"/>
+        <positionref ref="PixelPad224_pos"/>
+        <rotationref ref="PixelPad224_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad225"/>
+        <positionref ref="PixelPad225_pos"/>
+        <rotationref ref="PixelPad225_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad226"/>
+        <positionref ref="PixelPad226_pos"/>
+        <rotationref ref="PixelPad226_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad227"/>
+        <positionref ref="PixelPad227_pos"/>
+        <rotationref ref="PixelPad227_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad228"/>
+        <positionref ref="PixelPad228_pos"/>
+        <rotationref ref="PixelPad228_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad229"/>
+        <positionref ref="PixelPad229_pos"/>
+        <rotationref ref="PixelPad229_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad230"/>
+        <positionref ref="PixelPad230_pos"/>
+        <rotationref ref="PixelPad230_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad231"/>
+        <positionref ref="PixelPad231_pos"/>
+        <rotationref ref="PixelPad231_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad232"/>
+        <positionref ref="PixelPad232_pos"/>
+        <rotationref ref="PixelPad232_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad233"/>
+        <positionref ref="PixelPad233_pos"/>
+        <rotationref ref="PixelPad233_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad234"/>
+        <positionref ref="PixelPad234_pos"/>
+        <rotationref ref="PixelPad234_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad235"/>
+        <positionref ref="PixelPad235_pos"/>
+        <rotationref ref="PixelPad235_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad236"/>
+        <positionref ref="PixelPad236_pos"/>
+        <rotationref ref="PixelPad236_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad237"/>
+        <positionref ref="PixelPad237_pos"/>
+        <rotationref ref="PixelPad237_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad238"/>
+        <positionref ref="PixelPad238_pos"/>
+        <rotationref ref="PixelPad238_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad239"/>
+        <positionref ref="PixelPad239_pos"/>
+        <rotationref ref="PixelPad239_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad240"/>
+        <positionref ref="PixelPad240_pos"/>
+        <rotationref ref="PixelPad240_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad241"/>
+        <positionref ref="PixelPad241_pos"/>
+        <rotationref ref="PixelPad241_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad242"/>
+        <positionref ref="PixelPad242_pos"/>
+        <rotationref ref="PixelPad242_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad243"/>
+        <positionref ref="PixelPad243_pos"/>
+        <rotationref ref="PixelPad243_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad244"/>
+        <positionref ref="PixelPad244_pos"/>
+        <rotationref ref="PixelPad244_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad245"/>
+        <positionref ref="PixelPad245_pos"/>
+        <rotationref ref="PixelPad245_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad246"/>
+        <positionref ref="PixelPad246_pos"/>
+        <rotationref ref="PixelPad246_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad247"/>
+        <positionref ref="PixelPad247_pos"/>
+        <rotationref ref="PixelPad247_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad248"/>
+        <positionref ref="PixelPad248_pos"/>
+        <rotationref ref="PixelPad248_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad249"/>
+        <positionref ref="PixelPad249_pos"/>
+        <rotationref ref="PixelPad249_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad250"/>
+        <positionref ref="PixelPad250_pos"/>
+        <rotationref ref="PixelPad250_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad251"/>
+        <positionref ref="PixelPad251_pos"/>
+        <rotationref ref="PixelPad251_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad252"/>
+        <positionref ref="PixelPad252_pos"/>
+        <rotationref ref="PixelPad252_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad253"/>
+        <positionref ref="PixelPad253_pos"/>
+        <rotationref ref="PixelPad253_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad254"/>
+        <positionref ref="PixelPad254_pos"/>
+        <rotationref ref="PixelPad254_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad255"/>
+        <positionref ref="PixelPad255_pos"/>
+        <rotationref ref="PixelPad255_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad256"/>
+        <positionref ref="PixelPad256_pos"/>
+        <rotationref ref="PixelPad256_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad257"/>
+        <positionref ref="PixelPad257_pos"/>
+        <rotationref ref="PixelPad257_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad258"/>
+        <positionref ref="PixelPad258_pos"/>
+        <rotationref ref="PixelPad258_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad259"/>
+        <positionref ref="PixelPad259_pos"/>
+        <rotationref ref="PixelPad259_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad260"/>
+        <positionref ref="PixelPad260_pos"/>
+        <rotationref ref="PixelPad260_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad261"/>
+        <positionref ref="PixelPad261_pos"/>
+        <rotationref ref="PixelPad261_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad262"/>
+        <positionref ref="PixelPad262_pos"/>
+        <rotationref ref="PixelPad262_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad263"/>
+        <positionref ref="PixelPad263_pos"/>
+        <rotationref ref="PixelPad263_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad264"/>
+        <positionref ref="PixelPad264_pos"/>
+        <rotationref ref="PixelPad264_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad265"/>
+        <positionref ref="PixelPad265_pos"/>
+        <rotationref ref="PixelPad265_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad266"/>
+        <positionref ref="PixelPad266_pos"/>
+        <rotationref ref="PixelPad266_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad267"/>
+        <positionref ref="PixelPad267_pos"/>
+        <rotationref ref="PixelPad267_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad268"/>
+        <positionref ref="PixelPad268_pos"/>
+        <rotationref ref="PixelPad268_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad269"/>
+        <positionref ref="PixelPad269_pos"/>
+        <rotationref ref="PixelPad269_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad270"/>
+        <positionref ref="PixelPad270_pos"/>
+        <rotationref ref="PixelPad270_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad271"/>
+        <positionref ref="PixelPad271_pos"/>
+        <rotationref ref="PixelPad271_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad272"/>
+        <positionref ref="PixelPad272_pos"/>
+        <rotationref ref="PixelPad272_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad273"/>
+        <positionref ref="PixelPad273_pos"/>
+        <rotationref ref="PixelPad273_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad274"/>
+        <positionref ref="PixelPad274_pos"/>
+        <rotationref ref="PixelPad274_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad275"/>
+        <positionref ref="PixelPad275_pos"/>
+        <rotationref ref="PixelPad275_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad276"/>
+        <positionref ref="PixelPad276_pos"/>
+        <rotationref ref="PixelPad276_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad277"/>
+        <positionref ref="PixelPad277_pos"/>
+        <rotationref ref="PixelPad277_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad278"/>
+        <positionref ref="PixelPad278_pos"/>
+        <rotationref ref="PixelPad278_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad279"/>
+        <positionref ref="PixelPad279_pos"/>
+        <rotationref ref="PixelPad279_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad280"/>
+        <positionref ref="PixelPad280_pos"/>
+        <rotationref ref="PixelPad280_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad281"/>
+        <positionref ref="PixelPad281_pos"/>
+        <rotationref ref="PixelPad281_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad282"/>
+        <positionref ref="PixelPad282_pos"/>
+        <rotationref ref="PixelPad282_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad283"/>
+        <positionref ref="PixelPad283_pos"/>
+        <rotationref ref="PixelPad283_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad284"/>
+        <positionref ref="PixelPad284_pos"/>
+        <rotationref ref="PixelPad284_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad285"/>
+        <positionref ref="PixelPad285_pos"/>
+        <rotationref ref="PixelPad285_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad286"/>
+        <positionref ref="PixelPad286_pos"/>
+        <rotationref ref="PixelPad286_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad287"/>
+        <positionref ref="PixelPad287_pos"/>
+        <rotationref ref="PixelPad287_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad288"/>
+        <positionref ref="PixelPad288_pos"/>
+        <rotationref ref="PixelPad288_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad289"/>
+        <positionref ref="PixelPad289_pos"/>
+        <rotationref ref="PixelPad289_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad290"/>
+        <positionref ref="PixelPad290_pos"/>
+        <rotationref ref="PixelPad290_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad291"/>
+        <positionref ref="PixelPad291_pos"/>
+        <rotationref ref="PixelPad291_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad292"/>
+        <positionref ref="PixelPad292_pos"/>
+        <rotationref ref="PixelPad292_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad293"/>
+        <positionref ref="PixelPad293_pos"/>
+        <rotationref ref="PixelPad293_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad294"/>
+        <positionref ref="PixelPad294_pos"/>
+        <rotationref ref="PixelPad294_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad295"/>
+        <positionref ref="PixelPad295_pos"/>
+        <rotationref ref="PixelPad295_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad296"/>
+        <positionref ref="PixelPad296_pos"/>
+        <rotationref ref="PixelPad296_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad297"/>
+        <positionref ref="PixelPad297_pos"/>
+        <rotationref ref="PixelPad297_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad298"/>
+        <positionref ref="PixelPad298_pos"/>
+        <rotationref ref="PixelPad298_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad299"/>
+        <positionref ref="PixelPad299_pos"/>
+        <rotationref ref="PixelPad299_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad300"/>
+        <positionref ref="PixelPad300_pos"/>
+        <rotationref ref="PixelPad300_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad301"/>
+        <positionref ref="PixelPad301_pos"/>
+        <rotationref ref="PixelPad301_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad302"/>
+        <positionref ref="PixelPad302_pos"/>
+        <rotationref ref="PixelPad302_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad303"/>
+        <positionref ref="PixelPad303_pos"/>
+        <rotationref ref="PixelPad303_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad304"/>
+        <positionref ref="PixelPad304_pos"/>
+        <rotationref ref="PixelPad304_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad305"/>
+        <positionref ref="PixelPad305_pos"/>
+        <rotationref ref="PixelPad305_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad306"/>
+        <positionref ref="PixelPad306_pos"/>
+        <rotationref ref="PixelPad306_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad307"/>
+        <positionref ref="PixelPad307_pos"/>
+        <rotationref ref="PixelPad307_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad308"/>
+        <positionref ref="PixelPad308_pos"/>
+        <rotationref ref="PixelPad308_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad309"/>
+        <positionref ref="PixelPad309_pos"/>
+        <rotationref ref="PixelPad309_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad310"/>
+        <positionref ref="PixelPad310_pos"/>
+        <rotationref ref="PixelPad310_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad311"/>
+        <positionref ref="PixelPad311_pos"/>
+        <rotationref ref="PixelPad311_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad312"/>
+        <positionref ref="PixelPad312_pos"/>
+        <rotationref ref="PixelPad312_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad313"/>
+        <positionref ref="PixelPad313_pos"/>
+        <rotationref ref="PixelPad313_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad314"/>
+        <positionref ref="PixelPad314_pos"/>
+        <rotationref ref="PixelPad314_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad315"/>
+        <positionref ref="PixelPad315_pos"/>
+        <rotationref ref="PixelPad315_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad316"/>
+        <positionref ref="PixelPad316_pos"/>
+        <rotationref ref="PixelPad316_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad317"/>
+        <positionref ref="PixelPad317_pos"/>
+        <rotationref ref="PixelPad317_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad318"/>
+        <positionref ref="PixelPad318_pos"/>
+        <rotationref ref="PixelPad318_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad319"/>
+        <positionref ref="PixelPad319_pos"/>
+        <rotationref ref="PixelPad319_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad320"/>
+        <positionref ref="PixelPad320_pos"/>
+        <rotationref ref="PixelPad320_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad321"/>
+        <positionref ref="PixelPad321_pos"/>
+        <rotationref ref="PixelPad321_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad322"/>
+        <positionref ref="PixelPad322_pos"/>
+        <rotationref ref="PixelPad322_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad323"/>
+        <positionref ref="PixelPad323_pos"/>
+        <rotationref ref="PixelPad323_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad324"/>
+        <positionref ref="PixelPad324_pos"/>
+        <rotationref ref="PixelPad324_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad325"/>
+        <positionref ref="PixelPad325_pos"/>
+        <rotationref ref="PixelPad325_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad326"/>
+        <positionref ref="PixelPad326_pos"/>
+        <rotationref ref="PixelPad326_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad327"/>
+        <positionref ref="PixelPad327_pos"/>
+        <rotationref ref="PixelPad327_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad328"/>
+        <positionref ref="PixelPad328_pos"/>
+        <rotationref ref="PixelPad328_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad329"/>
+        <positionref ref="PixelPad329_pos"/>
+        <rotationref ref="PixelPad329_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad330"/>
+        <positionref ref="PixelPad330_pos"/>
+        <rotationref ref="PixelPad330_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad331"/>
+        <positionref ref="PixelPad331_pos"/>
+        <rotationref ref="PixelPad331_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad332"/>
+        <positionref ref="PixelPad332_pos"/>
+        <rotationref ref="PixelPad332_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad333"/>
+        <positionref ref="PixelPad333_pos"/>
+        <rotationref ref="PixelPad333_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad334"/>
+        <positionref ref="PixelPad334_pos"/>
+        <rotationref ref="PixelPad334_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad335"/>
+        <positionref ref="PixelPad335_pos"/>
+        <rotationref ref="PixelPad335_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad336"/>
+        <positionref ref="PixelPad336_pos"/>
+        <rotationref ref="PixelPad336_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad337"/>
+        <positionref ref="PixelPad337_pos"/>
+        <rotationref ref="PixelPad337_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad338"/>
+        <positionref ref="PixelPad338_pos"/>
+        <rotationref ref="PixelPad338_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad339"/>
+        <positionref ref="PixelPad339_pos"/>
+        <rotationref ref="PixelPad339_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad340"/>
+        <positionref ref="PixelPad340_pos"/>
+        <rotationref ref="PixelPad340_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad341"/>
+        <positionref ref="PixelPad341_pos"/>
+        <rotationref ref="PixelPad341_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad342"/>
+        <positionref ref="PixelPad342_pos"/>
+        <rotationref ref="PixelPad342_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad343"/>
+        <positionref ref="PixelPad343_pos"/>
+        <rotationref ref="PixelPad343_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad344"/>
+        <positionref ref="PixelPad344_pos"/>
+        <rotationref ref="PixelPad344_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad345"/>
+        <positionref ref="PixelPad345_pos"/>
+        <rotationref ref="PixelPad345_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volPixelPad346"/>
+        <positionref ref="PixelPad346_pos"/>
+        <rotationref ref="PixelPad346_rot"/>
+      </physvol>
+    </volume>
+    <volume name="volLArActive">
+      <materialref ref="LAr"/>
+      <solidref ref="LArActive"/>
+    </volume>
+    <volume name="volTPCActive">
+      <materialref ref="LAr"/>
+      <solidref ref="TPCActive"/>
+      <physvol>
+        <volumeref ref="volLArActive"/>
+        <positionref ref="TPCActivevolLArActive0_pos"/>
+        <rotationref ref="TPCActive_rot"/>
+      </physvol>
+    </volume>
+    <volume name="volTPC">
+      <materialref ref="LAr"/>
+      <solidref ref="TPC"/>
+      <physvol>
+        <volumeref ref="volPixelPlane"/>
+        <positionref ref="TPCvolPixelPlane0_pos"/>
+        <rotationref ref="TPC_rot"/>
+      </physvol>
+      <physvol>
+        <volumeref ref="volTPCActive"/>
+        <positionref ref="TPCvolTPCActive0_pos"/>
+        <rotationref ref="TPC_rot"/>
+      </physvol>
+    </volume>
+    <volume name="volCryostat">
+      <materialref ref="LAr"/>
+      <solidref ref="Cryostat"/>
+      <physvol>
+        <volumeref ref="volTPC"/>
+        <positionref ref="CryostatvolTPC0_pos"/>
+        <rotationref ref="Cryostat_rot"/>
+      </physvol>
+    </volume>
+    <volume name="volDetEnclosure">
+      <materialref ref="Air"/>
+      <solidref ref="DetEnclosure"/>
+      <physvol>
+        <volumeref ref="volCryostat"/>
+        <positionref ref="volCryostat_pos"/>
+        <rotationref ref="volCryostat_rot"/>
+      </physvol>
+    </volume>
+    <volume name="volWorld">
+      <materialref ref="Air"/>
+      <solidref ref="world_shape"/>
+      <physvol>
+        <volumeref ref="volDetEnclosure"/>
+        <positionref ref="volDetEnclosure_pos"/>
+        <rotationref ref="volDetEnclosure_rot"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="Default" version="0">
+    <world ref="volWorld"/>
+  </setup>
+</gdml>
