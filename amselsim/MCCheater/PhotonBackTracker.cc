@@ -26,16 +26,17 @@
 //LArSoft
 #include "lardataobj/Simulation/sim.h"
 #include "larsim/Simulation/SimListUtils.h"
-#include "larcorealg/Geometry/GeometryCore.h"
 #include "larcore/CoreUtils/ServiceUtil.h"
 #include "larcore/Geometry/Geometry.h"
+
+#include "amselsim/Geometry/AmSelGeometry.h"
 
 namespace cheat{
 
   //----------------------------------------------------------------
   PhotonBackTracker::PhotonBackTracker(fhiclConfig const& config,
       const cheat::ParticleInventory* partInv,
-      const geo::GeometryCore*        geom)//,
+      const amselgeo::AmSelGeometry*  geom)//,
 //      const detinfo::DetectorClocks*  detClock)
     :fPartInv  (partInv),
     fGeom      (geom),
@@ -51,7 +52,7 @@ namespace cheat{
   //----------------------------------------------------------------
   PhotonBackTracker::PhotonBackTracker( fhicl::ParameterSet const& pSet,
       const cheat::ParticleInventory* partInv,
-      const geo::GeometryCore* geom)//,
+      const amselgeo::AmSelGeometry* geom)//,
 //      const detinfo::DetectorClocks* detClock)
     :fPartInv (partInv),
     fGeom (geom),

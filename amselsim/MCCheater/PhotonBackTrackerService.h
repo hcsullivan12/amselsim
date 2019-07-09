@@ -21,7 +21,6 @@
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
 // LArSoft includes
-#include "larcorealg/Geometry/GeometryCore.h"
 #include "larsim/Simulation/SimListUtils.h"
 #include "larsim/MCCheater/PhotonBackTracker.h"
 //Larsoft Services
@@ -33,6 +32,8 @@
 //#include "lardata/Utilities/AssociationUtil.h"
 #include "lardataobj/RecoBase/OpHit.h"
 //#include "lardataobj/Simulation/sim.h"
+
+#include "amselsim/Geometry/AmSelGeometry.h"
 
 namespace cheat{
   class PhotonBackTrackerService: private PhotonBackTracker

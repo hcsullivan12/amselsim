@@ -27,7 +27,6 @@
 #include "canvas/Persistency/Common/FindOneP.h"
 #include "canvas/Persistency/Common/FindMany.h"
 #include "canvas/Persistency/Common/FindOne.h"
-#include "larcorealg/Geometry/GeometryCore.h"
 #include "larcorealg/CoreUtils/ProviderPack.h"
 #include "lardata/Utilities/AssociationUtil.h"
 #include "lardataalg/DetectorInfo/DetectorClocks.h"
@@ -37,6 +36,7 @@
 #include "lardataobj/Simulation/OpDetBacktrackerRecord.h"
 #include "larsim/MCCheater/ParticleInventory.h"
 
+#include "amselsim/Geometry/AmSelGeometry.h"
 
 
 namespace cheat{
@@ -55,13 +55,13 @@ namespace cheat{
       //----------------------------------------------------------------
       PhotonBackTracker(fhiclConfig const& config,
           const cheat::ParticleInventory* partInv,
-          const geo::GeometryCore* geom);//,
+          const amselgeo::AmSelGeometry* geom);//,
 //          const detinfo::DetectorClocks* detClock);
 
       //----------------------------------------------------------------
       PhotonBackTracker( fhicl::ParameterSet const& pSet,
           const cheat::ParticleInventory* partInv,
-          const geo::GeometryCore* geom);//,
+          const amselgeo::AmSelGeometry* geom);//,
 //          const detinfo::DetectorClocks* detClock);
 
       //----------------------------------------------------------------
@@ -241,7 +241,7 @@ namespace cheat{
 
     private:
       const cheat::ParticleInventory* fPartInv; //The constructor needs to put something in here
-      const geo::GeometryCore* fGeom;
+      const amselgeo::AmSelGeometry* fGeom;
       //      const detinfo::DetectorClocks* fDetClocks;
       const double fDelay;
       const art::InputTag fG4ModuleLabel;

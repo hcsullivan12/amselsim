@@ -15,9 +15,11 @@
 #include "larsim/MCCheater/ParticleInventoryService.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 #include "larcore/Geometry/Geometry.h"
-#include "larcorealg/Geometry/GeometryCore.h"
 #include "lardata/DetectorInfoServices/DetectorClocksService.h"
 #include "larcore/CoreUtils/ServiceUtil.h"
+
+#include "amselsim/Geometry/AmSelGeometry.h"
+#include "amselsim/Geometry/AmSelGeometryService.h"
 
 namespace cheat{
 
@@ -26,7 +28,7 @@ namespace cheat{
     :BackTracker(
         pSet.get<fhicl::ParameterSet>("BackTracker"),
         lar::providerFrom<cheat::ParticleInventoryService>(),
-        lar::providerFrom<geo::Geometry>(),
+        lar::providerFrom<amselgeo::AmSelGeometryService>(),
         lar::providerFrom<detinfo::DetectorClocksService>()
         )
   {
@@ -38,7 +40,7 @@ namespace cheat{
     :BackTracker(
         config.BackTrackerTable(),
         lar::providerFrom<cheat::ParticleInventoryService>(),
-        lar::providerFrom<geo::Geometry>(),
+        lar::providerFrom<amselgeo::AmSelGeometryService>(),
         lar::providerFrom<detinfo::DetectorClocksService>()
         )
   {

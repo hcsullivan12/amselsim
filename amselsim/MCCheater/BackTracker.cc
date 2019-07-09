@@ -17,16 +17,14 @@
 
 #include "larcore/CoreUtils/ServiceUtil.h"
 #include "larcore/Geometry/Geometry.h"
-#include "larcorealg/Geometry/GeometryCore.h"
-#include "larcorealg/Geometry/TPCGeo.h"
-#include "larcorealg/Geometry/WireGeo.h"
 #include "larcoreobj/SimpleTypesAndConstants/geo_types.h"
 
+#include "amselsim/Geometry/AmSelGeometry.h"
 
 namespace cheat{
 
   //-----------------------------------------------------------------------
-  BackTracker::BackTracker(const fhiclConfig& config, const cheat::ParticleInventory* partInv, const geo::GeometryCore* geom, const detinfo::DetectorClocks* detClock )
+  BackTracker::BackTracker(const fhiclConfig& config, const cheat::ParticleInventory* partInv, const amselgeo::AmSelGeometryC* geom, const detinfo::DetectorClocks* detClock )
     :fPartInv  (partInv),
      fGeom     (geom),
      fDetClocks(detClock),
@@ -38,7 +36,7 @@ namespace cheat{
   }
 
   //-----------------------------------------------------------------------
-  BackTracker::BackTracker(const fhicl::ParameterSet& pSet, const cheat::ParticleInventory* partInv, const geo::GeometryCore* geom, const detinfo::DetectorClocks* detClock)
+  BackTracker::BackTracker(const fhicl::ParameterSet& pSet, const cheat::ParticleInventory* partInv, const amselgeo::AmSelGeometryC* geom, const detinfo::DetectorClocks* detClock)
     :fPartInv  (partInv),
      fGeom     (geom),
      fDetClocks(detClock),
@@ -73,27 +71,6 @@ namespace cheat{
       } // end loop over map from sim::SimChannel
     } // end loop over sim::SimChannels
     return ideps;
-  }
-
-
-  //-----------------------------------------------------------------------
-  std::vector<const sim::IDE* >   BackTracker::TrackIdToSimIDEs_Ps (int const& id, const geo::View_t view) const
-  {
-    std::vector<const sim::IDE*> ide_Ps;
-    for(const art::Ptr<sim::SimChannel> sc : fSimChannels){
-      if (fGeom->View(sc->Channel()) != view) continue;
-
-      // loop over the IDEMAP
-      for(const auto & item : sc->TDCIDEMap()){
-
-        // loop over the vector of IDE objects.
-        for(const sim::IDE & ide : item.second){
-          if (abs(ide.trackID) == id) ide_Ps.push_back(&ide);
-        }
-      } // end loop over map from sim::SimChannel
-    } // end loop over sim::SimChannels
-
-    return ide_Ps;
   }
 
 
@@ -504,80 +481,6 @@ namespace cheat{
       for(const auto& ide : ides){eveIds.insert(ide.trackID);}//end ides
     }//End for hits
     return eveIds;
-  }
-
-
-  //This function definitely needs a new implimentation. There must be abetter way than so many loops.
-  std::vector< double> BackTracker::SpacePointHitsToWeightedXYZ(std::vector<art::Ptr<recob::Hit>> const& hits) const {
-    std::vector<double> xyz(3,-99999.9);
-    std::vector< std::vector<std::vector<int>>> numHits (fGeom->Ncryostats());
-    std::vector< std::vector<std::vector<double>>> hitWeight (fGeom->Ncryostats());
-    std::vector< std::vector<std::vector<std::vector<double>>>> hitPos (fGeom->Ncryostats());
-    //Do we need to resize everything...
-    for(size_t c = 0; c < numHits.size(); ++c){
-      numHits[c].resize( fGeom->NTPC(c) );
-      hitWeight[c].resize( fGeom->NTPC(c) );
-      hitPos[c].resize( fGeom->NTPC(c) );
-      for(size_t t = 0; t < numHits[c].size(); ++t){
-        numHits[c][t].resize( fGeom->Nplanes(t, c) );
-        hitWeight[c][t].resize( fGeom->Nplanes(t, c) );
-        hitPos[c][t].resize( fGeom->Nplanes(t, c) );
-      }
-    }
-
-    for(art::PtrVector<recob::Hit>::const_iterator ihit = hits.begin(); ihit != hits.end(); ++ihit) {
-
-      const recob::Hit& hit = **ihit;
-
-      // use the HitToXYZ and Geometry::PositionToTPC
-      // to figure out which drift volume the hit originates from
-      std::vector<double> hitOrigin = this->HitToXYZ(*ihit);
-      unsigned int cstat = 0;
-      unsigned int tpc   = 0;
-      const double worldLoc[3] = {hitOrigin[0], hitOrigin[1], hitOrigin[2]};
-      fGeom->PositionToTPC(worldLoc, tpc, cstat);
-
-      if(hit.WireID().Cryostat == cstat && hit.WireID().TPC == tpc){
-        ++numHits[cstat][tpc][hit.WireID().Plane];
-        hitWeight[cstat][tpc][hit.WireID().Plane] = hit.Integral();
-        hitPos[cstat][tpc][hit.WireID().Plane] = hitOrigin;
-      }
-
-    }
-
-    // loop over the vectors we made and find the average position for the hits
-    // in the future we might take a weighted average
-    int nhits = 0;
-    xyz[0] = 0.;
-    xyz[1] = 0.;
-    xyz[2] = 0.;
-    for(size_t c = 0; c < numHits.size(); ++c){
-      for(size_t t = 0; t < numHits[c].size(); ++t){
-        for(size_t p = 0; p < numHits[c][t].size(); ++p){
-
-          if(numHits[c][t][p] == 1) {
-            ++nhits;
-            xyz[0] += hitPos[c][t][p][0];
-            xyz[1] += hitPos[c][t][p][1];
-            xyz[2] += hitPos[c][t][p][2];
-          }
-
-        } // end loop over planes
-      } // end loop over tpcs
-    } // end loop over cryostats
-
-    // get the average position
-    if(nhits < 1)
-      throw cet::exception("BackTracker") << "No hits to determine originating location from truth\n";
-
-
-    xyz[0] /= nhits;
-    xyz[1] /= nhits;
-    xyz[2] /= nhits;
-
-    // Done.
-    return xyz;
-
   }
 
 

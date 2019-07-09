@@ -15,8 +15,10 @@
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
 // LArSoft includes
-#include "larcorealg/Geometry/GeometryCore.h"
 #include "larsim/Simulation/SimListUtils.h"
+
+#include "amselsim/Geometry/AmSelGeometry.h"
+#include "amselsim/Geometry/AmSelGeometryService.h"
 
 //#include "lardata/Utilities/AssociationUtil.h"
 //#include "lardataobj/Simulation/sim.h"
@@ -28,7 +30,7 @@ namespace cheat{
     :PhotonBackTracker(
         pSet.get<fhicl::ParameterSet>("PhotonBackTracker"),
         lar::providerFrom<cheat::ParticleInventoryService>(),
-        lar::providerFrom<geo::Geometry>()//,
+        lar::providerFrom<amselgeo::AmSelGeometryService>()//,
 //        lar::providerFrom<detinfo::DetectorClocksService>()
         )
   {
@@ -40,7 +42,7 @@ namespace cheat{
     :PhotonBackTracker(
         config.PhotonBackTrackerTable(),
         lar::providerFrom<cheat::ParticleInventoryService>(),
-        lar::providerFrom<geo::Geometry>()//,
+        lar::providerFrom<amselgeo::AmSelGeometryService>()//,
 //        lar::providerFrom<detinfo::DetectorClocksService>()
         )
   {

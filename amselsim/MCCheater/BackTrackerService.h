@@ -20,11 +20,10 @@
 
 //Included Services
 #include "larcore/Geometry/Geometry.h"
-#include "larcorealg/Geometry/GeometryCore.h"
 #include "lardata/DetectorInfoServices/DetectorClocksService.h"
 #include "larsim/MCCheater/ParticleInventory.h"
 
-
+#include "amselsim/Geometry/AmSelGeometry.h"
 
 namespace cheat{
   class BackTrackerService: private BackTracker

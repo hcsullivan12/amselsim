@@ -21,12 +21,13 @@
 #include "fhiclcpp/types/Table.h"
 
 #include "canvas/Persistency/Common/FindManyP.h"
-#include "larcorealg/Geometry/GeometryCore.h"
 #include "larcorealg/CoreUtils/ProviderPack.h"
 #include "lardataalg/DetectorInfo/DetectorClocks.h"
 #include "lardataobj/Simulation/SimChannel.h"
 #include "lardataobj/RecoBase/Hit.h"
 #include "lardataobj/RecoBase/SpacePoint.h"
+
+#include "amselsim/Geometry/AmSelGeometry.h"
 
 /*namespace recob{
   class SpacePoint;
@@ -49,11 +50,11 @@ namespace cheat{
 
       BackTracker(const fhiclConfig& config,
           const cheat::ParticleInventory* partInv,
-          const geo::GeometryCore* geom,
+          const amselgeo::AmSelGeometry* geom,
           const detinfo::DetectorClocks* detClock );
       BackTracker(const fhicl::ParameterSet& pSet,
           const cheat::ParticleInventory* partInv,
-          const geo::GeometryCore* geom,
+          const amselgeo::AmSelGeometry* geom,
           const detinfo::DetectorClocks* detClock );
       //I may need to include this to delete copy of service providers.
       BackTracker(BackTracker const&) = delete;
@@ -153,7 +154,7 @@ namespace cheat{
 
     private:
       const cheat::ParticleInventory* fPartInv; //The constructor needs to put something in here
-      const geo::GeometryCore* fGeom;
+      const amselgeo::AmSelGeometry* fGeom;
       const detinfo::DetectorClocks* fDetClocks;
       const art::InputTag       fG4ModuleLabel;
       const art::InputTag       fHitLabel;
