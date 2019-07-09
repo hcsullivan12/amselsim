@@ -1,18 +1,17 @@
-//////////////////////////////////////////////////////////////////////
-/// \file  AmSelGeometry.cxx
-/// \brief Interface to AmSel geometry information.
-///
-/// There is a question of how to handle pixels. For even small active
-/// volumes, the number of pixels is 10s of 1000s. Therefore, there 
-/// are two options. The user has the option to load a GDML file 
-/// containing all pixel pads or to load a simplified geometry. A
-/// few assumptions are made in the simplified geometry construction.
-///
-/// \todo Change DetHalfHeight to something like DetHalfY
-///       Convert pixel corrdinates to world for simple geo
-///
-/// \author  hsulliva@fnal.gov
-//////////////////////////////////////////////////////////////////////
+/**
+ * @file AmSelGeometry.cxx
+ * @brief Interface to AmSel geometry information.
+ * 
+ * There is a question of how to handle pixels. For even small active
+ * volumes, the number of pixels is 10s of 1000s. Therefore, there 
+ * are two options. The user has the option to load a GDML file 
+ * containing all pixel pads or to load a simplified geometry. A
+ * few assumptions are made in the simplified geometry construction.
+ * 
+ * @todo Convert pixel corrdinates to world for simple geo
+ *  
+ * @author H. Sullivan (hsulliva@fnal.gov)
+ */
 
 #include "amselsim/Geometry/AmSelGeometry.h"
 
@@ -122,12 +121,13 @@ void AmSelGeometry::LookAtNode(TGeoNode const* currentNode, std::string const& c
   }
   if (volName == "volLArActive")
   { 
-    fDetHalfHeight = ((TGeoBBox*)nodeVol->GetShape())->GetDX(); 
-    fDetHalfWidth  = ((TGeoBBox*)nodeVol->GetShape())->GetDY(); 
-    fDetLength     = 2*((TGeoBBox*)nodeVol->GetShape())->GetDZ(); 
-  
+    fDriftLength = 2*((TGeoBBox*)nodeVol->GetShape())->GetDX(); 
+    fDetHalfY    =   ((TGeoBBox*)nodeVol->GetShape())->GetDY(); 
+    fDetLength   = 2*((TGeoBBox*)nodeVol->GetShape())->GetDZ(); 
     fLArTPCVolName = "volLArActive";
   }  
+
+  std::cout << "\n\n" << fDriftLength << " " << fDetHalfY << " " << fDetLength << "\n\n" << std::endl;
 
   // Check nodes
   TObjArray* nodes = currentNode->GetNodes();
@@ -157,8 +157,8 @@ void AmSelGeometry::LoadSimpleGeometry()
     currentZ += fPixelSpacing;
   }
   float currentY = 0.5 * fPixelSpacing;
-  std::cout << fDetHalfWidth << std::endl;
-  while ( (currentY+0.5*fPixelSpacing) < (fDetHalfWidth-edge)) 
+
+  while ( (currentY+0.5*fPixelSpacing) < (fDetHalfY-edge)) 
   {
     fSimpleGeoY.push_back(currentY);
     fSimpleGeoY.push_back(-1 * currentY);

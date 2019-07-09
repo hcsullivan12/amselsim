@@ -1,9 +1,9 @@
-//////////////////////////////////////////////////////////////////////
-/// \file  AmSelGeometry.h
-/// \brief Interface to AmSel geometry information.
-///
-/// \author  hsulliva@fnal.gov
-//////////////////////////////////////////////////////////////////////
+/**
+ * @file AmSelGeometry.h
+ * @brief Interface to AmSel geometry information.
+ * 
+ * @author H. Sullivan (hsulliva@fnal.gov)
+ */
 
 #ifndef AMSELGEO_AMSELGEOMETRY_H
 #define AMSELGEO_AMSELGEOMETRY_H
@@ -77,50 +77,93 @@ class AmSelGeometry : public DetectorGeometry
     /// Extracts the relevant configuration from the specified object
     void Configure(Configuration_t const& config);        
 
-    std::string GDMLFile() const { return fGDMLPath; }
-    std::string OpDetGeoName() const { return "opDetector"; }
-    size_t NOpDets() const { return 0; }
-    size_t Ncryostats() const { return 1; }
-    size_t NTPC() const { return 1; }
-    size_t NAuxDets() const { return 0; }
-    size_t NSensitiveVolume() const { return 1; }
-    double DetHalfHeight() const { return fDetHalfHeight; }
-    double DetHalfWidth() const  { return fDetHalfWidth; }
-    double DetLength() const     { return fDetLength; }
-    float  PixelSpacing() const  { return fPixelSpacing; }
-    ULong8_t NPixels() const { return fNPixels; }
+    std::string GDMLFile()         const { return fGDMLPath;     }
+    std::string OpDetGeoName()     const { return "opDetector";  }
+    size_t      NOpDets()          const { return 0;             }
+    size_t      Ncryostats()       const { return 1;             }
+    size_t      NTPC()             const { return 1;             }
+    size_t      NAuxDets()         const { return 0;             }
+    size_t      NSensitiveVolume() const { return 1;             }
+    double      DetHalfHeight()    const { return fDetHalfY;     }
+    double      DetDriftLength()   const { return fDriftLength;  }
+    double      DetLength()        const { return fDetLength;    }
+    float       PixelSpacing()     const { return fPixelSpacing; }
+    ULong8_t    NPixels()          const { return fNPixels;      }
+
+    /**
+     * @brief Find pixel ID from simplified geometry.
+     * @warning Assumes simple containers are ordered.
+     * 
+     * @param point The point on readout plane
+     * @return int The ID of pixel which contains the point
+     */
     int FindSimpleID(geo::Point_t const& point) const;
     int FindSimpleID(TVector3 const& point) const
       { return FindSimpleID(geo::vect::toPoint(point)); }
+
+    /**
+     * @brief Find nearest pixel ID. Will call FindSimpleID 
+     *        if using simplified geometry. 
+     * 
+     * @param point point The point on readout plane
+     * @return int The ID of pixel which contains the point
+     */
     int NearestPixelID(geo::Point_t const& point) const;
     int NearestPixelID(TVector3 const& point) const
       { return NearestPixelID(geo::vect::toPoint(point)); }
     
+    /// Name of active volume
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
+    
+    /**
+     * @brief Name of volume that contains point
+     * 
+     * @return std::string Volume name 
+     */
     std::string VolumeName(geo::Point_t const& point) const;
     std::string VolumeName(TVector3 const& point) const
       { return VolumeName(geo::vect::toPoint(point)); }
 
-
-
-
   private:
+
+    /**
+     * @brief Initialize the geometry information.
+     * 
+     */
     void Initialize();
+
+    /**
+     * @brief Query a specific node in the geometry
+     * 
+     * @param currentNode The current node 
+     * @param currentPath The full path to the current node
+     */
     void LookAtNode(TGeoNode const* currentNode, std::string const& currentPath);
+
+    /**
+     * @brief Method to construct a simplied pixel geometry component
+     * 
+     * The purpose of this method is to construct a pixel geometry component
+     * from specifying only the pixel spacing. The pixelization scheme constructed
+     * preserves the symmetry of the pixel plane, placing equal amounts of pixels
+     * above/below and left/right of symmetery axes. This reduces overhead and allows 
+     * for a more efficient method to lookup pixel IDs.  
+     * 
+     */
     void LoadSimpleGeometry();
 
-    std::vector<std::string> fNodePaths;
-    std::vector<float>       fSimpleGeoZ;
-    std::vector<float>       fSimpleGeoY;
-    std::string              fGDMLPath;
-    std::string              fLArTPCVolName;
-    double                   fDetHalfHeight;
-    double                   fDetHalfWidth;
-    double                   fDetLength;
-    float                    fPixelSpacing;
-    ULong8_t                 fNPixels;
-    TGeoVolume*              fPixelPlane;
-    bool                     fUseSimpleGeometry;
+    std::vector<std::string> fNodePaths;         ///< Container of full paths to geo nodes
+    std::vector<float>       fSimpleGeoZ;        ///< Ordered container of columns for simplified geometry
+    std::vector<float>       fSimpleGeoY;        ///< Ordered container of rows for simplified geometry
+    std::string              fGDMLPath;          ///< Full path to gdml file
+    std::string              fLArTPCVolName;     ///< 
+    double                   fDetHalfY;          ///< Y half length of readout plane
+    double                   fDriftLength;       ///< Drift length
+    double                   fDetLength;         ///< Length of active volume in beam direction
+    float                    fPixelSpacing;      ///< Pixel spacing for simplified geometry
+    ULong8_t                 fNPixels;           ///< Number of pixels 
+    TGeoVolume*              fPixelPlane;        ///< Pointer to pixel plane volume
+    bool                     fUseSimpleGeometry; ///< Option to use simplified geometry
 }; // class AmSelGeometry
 
 }
