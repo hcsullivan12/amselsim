@@ -22,9 +22,9 @@
 
 // LArSoft includes
 #include "larsim/Simulation/SimListUtils.h"
-#include "larsim/MCCheater/PhotonBackTracker.h"
+#include "amselsim/MCCheater/PhotonBackTracker.h"
 //Larsoft Services
-#include "larsim/MCCheater/ParticleInventoryService.h"
+#include "amselsim/MCCheater/ParticleInventoryService.h"
 #include "larcore/Geometry/Geometry.h"
 #include "lardata/DetectorInfoServices/DetectorClocksService.h"
 

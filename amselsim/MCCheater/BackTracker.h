@@ -14,7 +14,7 @@
 //Includes
 #include <vector>
 
-#include "larsim/MCCheater/ParticleInventory.h"
+#include "amselsim/MCCheater/ParticleInventory.h"
 
 
 #include "fhiclcpp/types/Atom.h"

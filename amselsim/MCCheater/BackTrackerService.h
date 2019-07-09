@@ -11,7 +11,7 @@
 
 #include <vector>
 
-#include "larsim/MCCheater/BackTracker.h"
+#include "amselsim/MCCheater/BackTracker.h"
 #include "fhiclcpp/ParameterSet.h"
 #include "art/Framework/Services/Registry/ActivityRegistry.h"
 #include "art/Framework/Principal/Event.h"
@@ -21,7 +21,7 @@
 //Included Services
 #include "larcore/Geometry/Geometry.h"
 #include "lardata/DetectorInfoServices/DetectorClocksService.h"
-#include "larsim/MCCheater/ParticleInventory.h"
+#include "amselsim/MCCheater/ParticleInventory.h"
 
 #include "amselsim/Geometry/AmSelGeometry.h"
 

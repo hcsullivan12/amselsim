@@ -34,7 +34,7 @@
 #include "lardataobj/RecoBase/OpFlash.h"
 #include "lardataobj/RawData/OpDetWaveform.h"
 #include "lardataobj/Simulation/OpDetBacktrackerRecord.h"
-#include "larsim/MCCheater/ParticleInventory.h"
+#include "amselsim/MCCheater/ParticleInventory.h"
 
 #include "amselsim/Geometry/AmSelGeometry.h"
 

@@ -1,5 +1,5 @@
 cet_make_library(
-  LIBRARY_NAME larsim_MCCheater_ParticleInventory
+  LIBRARY_NAME amselsim_MCCheater_ParticleInventory
   SOURCE ParticleInventory.cc ParticleInventory.tcc
   LIBRARIES
   canvas
@@ -12,13 +12,13 @@ cet_make_library(
   )
 
 cet_make_library(
-  LIBRARY_NAME larsim_MCCheater_PhotonBackTracker
+  LIBRARY_NAME amselsim_MCCheater_PhotonBackTracker
   SOURCE PhotonBackTracker.cc PhotonBackTracker.tcc
   LIBRARIES
   canvas
   lardata_Utilities
   larsim_Simulation
-  larsim_MCCheater_ParticleInventory
+  amselsim_MCCheater_ParticleInventory
   larcorealg_Geometry
   nutools_ParticleNavigation
   lardataobj_Simulation
@@ -27,13 +27,13 @@ cet_make_library(
   )
 
 cet_make_library(
-  LIBRARY_NAME larsim_MCCheater_BackTracker
+  LIBRARY_NAME amselsim_MCCheater_BackTracker
   SOURCE BackTracker.cc BackTracker.tcc
   LIBRARIES
   canvas
   lardata_Utilities
   larsim_Simulation
-  larsim_MCCheater_ParticleInventory
+  amselsim_MCCheater_ParticleInventory
   larcorealg_Geometry
   nutools_ParticleNavigation
   lardataobj_Simulation
@@ -41,7 +41,7 @@ cet_make_library(
   )
 
 simple_plugin(ParticleInventoryService "service"
-  larsim_MCCheater_ParticleInventory
+  amselsim_MCCheater_ParticleInventory
   larsim_Simulation
   lardata_Utilities
   nutools_ParticleNavigation
@@ -51,9 +51,9 @@ simple_plugin(ParticleInventoryService "service"
   )
 
 simple_plugin(PhotonBackTrackerService "service"
-  larsim_MCCheater_PhotonBackTracker
-  larsim_MCCheater_ParticleInventory
-  larsim_MCCheater_ParticleInventoryService_service
+  amselsim_MCCheater_PhotonBackTracker
+  amselsim_MCCheater_ParticleInventory
+  amselsim_MCCheater_ParticleInventoryService_service
   lardata_Utilities
   larsim_Simulation
   nutools_ParticleNavigation
@@ -67,9 +67,9 @@ simple_plugin(PhotonBackTrackerService "service"
   )
 
 simple_plugin(BackTrackerService "service"
-  larsim_MCCheater_BackTracker
-  larsim_MCCheater_ParticleInventory
-  larsim_MCCheater_ParticleInventoryService_service
+  amselsim_MCCheater_BackTracker
+  amselsim_MCCheater_ParticleInventory
+  amselsim_MCCheater_ParticleInventoryService_service
   lardata_Utilities
   larsim_Simulation
   nutools_ParticleNavigation
@@ -82,8 +82,8 @@ simple_plugin(BackTrackerService "service"
   )
 
 simple_plugin(CheckBackTracking "module"
-  larsim_MCCheater_BackTrackerService_service
-  larsim_MCCheater_ParticleInventoryService_service
+  amselsim_MCCheater_BackTrackerService_service
+  amselsim_MCCheater_ParticleInventoryService_service
   lardataobj_RecoBase
   larsim_Simulation
   nutools_ParticleNavigation
@@ -94,8 +94,8 @@ simple_plugin(CheckBackTracking "module"
   )
 
 simple_plugin(RecoCheckAna "module"
-  larsim_MCCheater_BackTrackerService_service
-  larsim_MCCheater_ParticleInventoryService_service
+  amselsim_MCCheater_BackTrackerService_service
+  amselsim_MCCheater_ParticleInventoryService_service
   lardataobj_RecoBase
   larsim_Simulation
   nutools_ParticleNavigation
@@ -111,13 +111,13 @@ simple_plugin(RecoCheckAna "module"
   )
 
 simple_plugin(BackTrackerLoader "module"
-  larsim_MCCheater_BackTrackerService_service
-  larsim_MCCheater_ParticleInventoryService_service
+  amselsim_MCCheater_BackTrackerService_service
+  amselsim_MCCheater_ParticleInventoryService_service
   ${ART_FRAMEWORK_SERVICES_REGISTRY}
   )
 simple_plugin(PhotonBackTrackerLoader "module"
-  larsim_MCCheater_ParticleInventoryService_service
-  larsim_MCCheater_PhotonBackTrackerService_service
+  amselsim_MCCheater_ParticleInventoryService_service
+  amselsim_MCCheater_PhotonBackTrackerService_service
   ${ART_FRAMEWORK_SERVICES_REGISTRY}
   )
 

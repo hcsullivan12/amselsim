@@ -12,7 +12,7 @@
 //Framework includes
 #include "messagefacility/MessageLogger/MessageLogger.h"
 //LArSoft includes
-#include "larsim/MCCheater/ParticleInventory.h"
+#include "amselsim/MCCheater/ParticleInventory.h"
 #include "nutools/ParticleNavigation/EmEveIdCalculator.h"
 #include "nusimdata/SimulationBase/MCParticle.h"
 #include "larsim/Simulation/SimListUtils.h"

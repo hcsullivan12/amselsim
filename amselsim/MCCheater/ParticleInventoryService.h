@@ -13,7 +13,7 @@
 #include "canvas/Persistency/Common/Assns.h"
 
 
-#include "larsim/MCCheater/ParticleInventory.h"
+#include "amselsim/MCCheater/ParticleInventory.h"
 #include "fhiclcpp/ParameterSet.h"
 #include "art/Framework/Principal/Run.h"
 #include "art/Framework/Services/Registry/ActivityRegistry.h"

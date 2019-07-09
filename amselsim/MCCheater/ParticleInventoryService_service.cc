@@ -32,7 +32,7 @@
 #include "art/Framework/Principal/View.h"
 
 //LArSoft includes
-#include "larsim/MCCheater/ParticleInventoryService.h"
+#include "amselsim/MCCheater/ParticleInventoryService.h"
 #include "nutools/ParticleNavigation/EmEveIdCalculator.h"
 #include "nusimdata/SimulationBase/MCParticle.h"
 #include "larsim/Simulation/SimListUtils.h"
