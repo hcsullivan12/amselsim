@@ -152,8 +152,6 @@ void PhotonProjection::analyze(art::Event const& e)
   std::cout << "Number of photons incident on plane: " << nHit << std::endl;
   std::cout << "////////////////////////////////////////////////\n";
 
-  std::cout << "HERE\n";
-
   // Fill our containers
   fPixelIdVec.reserve(pixelMap.size());
   fPixelCountVec.reserve(pixelMap.size());
@@ -163,21 +161,19 @@ void PhotonProjection::analyze(art::Event const& e)
     fPixelCountVec.push_back(p.second);
   }
 
-  std::cout << "HERE1\n";
 
   // Now fill some info on primary
   art::ServiceHandle<cheat::ParticleInventoryService> pi_serv;
   const sim::ParticleList& plist = pi_serv->ParticleList();
+  art::Handle< std::vector<simb::MCParticle> > plistHandle;
+  e.getByLabel("largeant", plistHandle);
 
-  std::cout << "HERE2 " << plist.size() << std::endl;  
 
-  for (size_t p = 0; p < plist.size(); p++)
+  for (size_t p = 0; p < plistHandle->size(); p++)
   {
-    auto part = plist.Particle(p);
-    if (part->Process() != "primary") continue;
-    fPrimX0 = part->Vx();
-
-    std::cout << fPrimX0 << " " << part->EndX() << std::endl;
+    simb::MCParticle part = (*plistHandle)[p];
+    if (part.Process() != "primary") continue;
+    fPrimX0 = part.Vx();
   }
 
   fTree->Fill();
