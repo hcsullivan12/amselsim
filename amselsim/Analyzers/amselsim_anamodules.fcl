@@ -1,0 +1,14 @@
+#include "amselsim_propagationalgs.fcl"
+
+BEGIN_PROLOG
+
+amselsim_ana:
+{
+ module_type:        "AnaTree"
+ G4ModuleLabel:      "largeant"
+ DoPhotonProjection:  true
+ PhotonProjectionAlg: @local::amselsim_photonprojectionalg
+}
+
+
+END_PROLOG

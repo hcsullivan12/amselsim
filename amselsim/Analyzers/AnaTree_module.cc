@@ -15,16 +15,18 @@
 #include "canvas/Persistency/Common/Ptr.h" 
 #include "canvas/Persistency/Common/PtrVector.h" 
 #include "art/Framework/Services/Registry/ServiceHandle.h" 
-#include "art/Framework/Services/Optional/TFileService.h" 
-#include "art/Framework/Services/Optional/TFileDirectory.h"
+#include "art_root_io/TFileService.h" 
+#include "art_root_io/TFileDirectory.h"
 #include "canvas/Persistency/Common/FindOneP.h" 
 #include "canvas/Persistency/Common/FindManyP.h"
 #include "messagefacility/MessageLogger/MessageLogger.h" 
+#include "nurandom/RandomUtils/NuRandomService.h"
 
 // LArSoft includes 
 #include "larcoreobj/SimpleTypesAndConstants/geo_types.h"
 #include "larcoreobj/SimpleTypesAndConstants/RawTypes.h" // raw::ChannelID_t
 #include "lardata/Utilities/AssociationUtil.h"
+#include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
 
 #include "lardataobj/Simulation/SimChannel.h"
 #include "nusimdata/SimulationBase/MCTruth.h"
@@ -36,9 +38,9 @@
 #include "TTree.h"
 
 // amselsim includes
-#inclued "amselsim/PropagationAlgs/PhotonProjectionAlg.h"
+#include "amselsim/PropagationAlgs/PhotonProjectionAlg.h"
 
-namespace namespace
+namespace amselsim
 {
 
 class AnaTree : public art::EDAnalyzer 
@@ -91,9 +93,9 @@ private:
   std::vector<double> EndPy;
   std::vector<double> EndPz;
   std::vector<int>    InteractionPoint;         ///< Geant 4 Primary Trj Point Corresponding to the Interaction
-  std::vector<int>    InteractionPointType;     ///< Geant 4 Primary Interaction Type
+  std::vector<std::string> InteractionPointType;     ///< Geant 4 Primary Interaction Type
 
-  std::vector<int> Process;
+  std::vector<std::string> Process;
   std::vector<int> NumberDaughters;
   std::vector<int> TrackId;
   std::vector<int> Mother;
@@ -131,12 +133,16 @@ private:
   std::string fTreeName;
   std::string fG4ModuleLabel;
   bool        fDoPhotonProjection;
-  PhotonProjectionAlg fProjAlg;
+  PhotonProjectionAlg     fProjAlg;
+  CLHEP::HepRandomEngine& fEngine;
 };
 
 //--------------------------------------------------------------------
 AnaTree::AnaTree(fhicl::ParameterSet const & pset) 
- : EDAnalyzer{p}
+ : EDAnalyzer{pset},
+   fProjAlg(pset.get<fhicl::ParameterSet>("PhotonProjectionAlg")),
+   fEngine(art::ServiceHandle<rndm::NuRandomService>{}
+             ->createEngine(*this, "HepJamesRandom", "propagation", pset, "PropagationSeed"))
 {
   this->reconfigure(pset);
 }
@@ -150,9 +156,7 @@ void AnaTree::reconfigure(fhicl::ParameterSet const & pset)
 {
   fTreeName           = pset.get< std::string >("TreeName", "anatree");
   fG4ModuleLabel      = pset.get< std::string >("G4ModuleLabel", "largeant");
-  fDoPhotonProjection = pset.get< std::string >("DoPhotonProjection", true);
-
-  if (fDoPhotonProjection) fProjAlg.reconfigure(pset);
+  fDoPhotonProjection = pset.get< bool >("DoPhotonProjection", true);
   return;
 }
 
@@ -162,13 +166,11 @@ void AnaTree::analyze(art::Event const & evt)
   // Reset variables
   ResetVars();
 
-  // Geometry Service 
-  art::ServiceHandle<geo::Geometry> geom;
   // Detector properties service 
   auto const* detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
   // MC particle list
   art::Handle< std::vector<simb::MCParticle> > plistHandle;
-  e.getByLabel(fG4ModuleLabel, plistHandle);
+  evt.getByLabel(fG4ModuleLabel, plistHandle);
   auto plist = *plistHandle;
 
   run    = evt.run();
@@ -186,6 +188,9 @@ void AnaTree::analyze(art::Event const & evt)
   // Apply our photon projection alg
   if (fDoPhotonProjection)
   {
+    fProjAlg.doProjection(fEngine);
+    std::map<int, int> const& pixelMap = fProjAlg.GetMap();
+
     pixelIdVec.reserve(pixelMap.size());
     pixelCountVec.reserve(pixelMap.size());
     for (const auto& p : pixelMap)
@@ -226,7 +231,7 @@ void AnaTree::analyze(art::Event const & evt)
 	    if(plist[i].Process()==pri) {primary++;}
 	  }//<---End i loop
     no_primaries    = primary;
-    geant_list_size = plisticle;
+    geant_list_size = geant_particle;
      
     // Looping over all the Geant4 particles 
     int iPrim = 0;
@@ -343,7 +348,7 @@ void AnaTree::analyze(art::Event const & evt)
   	      if(NumberDaughters[i])
   	      {		 
   	        auto thePrimaryDaughterID = plist[i]. Daughter(0); 
-  	        for(unsigned int iD = 0; iD < geant_part.size(); ++iD )
+  	        for(unsigned int iD = 0; iD < plist.size(); ++iD )
   	        {
   	          if(plist[iD].TrackId() == thePrimaryDaughterID) {InteractionPointType.push_back(plist[iD].Process());}
   	        }//<--- End particle loop
@@ -434,8 +439,6 @@ void AnaTree::beginJob()
   fTree->Branch("G4Process",                   &G4Process);
   fTree->Branch("G4FinalProcess",              &G4FinalProcess);  
   fTree->Branch("NTrTrajPts",                  &NTrTrajPts);
-  fTree->Branch("NProtonDaughters",            &NProtonDaughters,"NProtonDaughters/I");
-  fTree->Branch("NNeutronDaughters",           &NNeutronDaughters,"NNeutronDaughters/I");
   fTree->Branch("NDTrTrajPts",                 &NDTrTrajPts);
   fTree->Branch("DTrackId",                    &DTrackId);
   fTree->Branch("DPdgCode",                    &DPdgCode);

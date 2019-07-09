@@ -9,24 +9,26 @@
 #ifndef AMSELSIM_PHOTONPROJECTIONALG_H
 #define AMSELSIM_PHOTONPROJECTIONALG_H
 
+#include "CLHEP/Random/JamesRandom.h"
 #include "fhiclcpp/ParameterSet.h"
-#include "nurandom/RandomUtils/NuRandomService.h"
 
-namespace amselg4 
+namespace amselsim
 {
 
 class PhotonProjectionAlg 
 {
 public:
-  PhotonProjectionAlg();
+  PhotonProjectionAlg(fhicl::ParameterSet const& p);
 
-  void doProjection();
+  void doProjection(CLHEP::HepRandomEngine& engine);
   void reconfigure(fhicl::ParameterSet const& p);
 
+  std::map<int, int> const& GetMap() const { return fPixelMap; }; 
+
 private:
-  CLHEP::HepRandomEngine& fEngine;
-  ULong64_t        fNScint;
-  ULong64_t        fNHits;
+  ULong64_t          fNScint;
+  ULong64_t          fNHits;
+  std::map<int, int> fPixelMap;
 };
 }
 #endif

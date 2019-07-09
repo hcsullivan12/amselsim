@@ -41,12 +41,6 @@ standard_largeant:
 }
 
 
-amselsim_photonprojection:
-{
- module_type:            "PhotonProjection"
-}
-
-
 argoneut_largeant:   @local::standard_largeant
 # The following line is already in largeantmodules_microboone.fcl
 # and so it should not also be included here, for clarity's sake.

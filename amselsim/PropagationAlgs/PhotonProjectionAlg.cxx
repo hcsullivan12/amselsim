@@ -8,11 +8,10 @@
  * @author H. Sullivan (hsulliva@fnal.gov)
  */
 
-#include "CLHEP/Random/JamesRandom.h"
 #include "CLHEP/Random/RandFlat.h"
 
 #include "amselsim/LArG4/IonizationAndScintillation.h"
-#inclued "amselsim/PropagationAlgs/PhotonProjectionAlg.h"
+#include "amselsim/PropagationAlgs/PhotonProjectionAlg.h"
 #include "amselsim/Geometry/AmSelGeometryService.h"
 
 #include "messagefacility/MessageLogger/MessageLogger.h"
@@ -21,12 +20,12 @@ namespace amselsim
 {
 
 //--------------------------------------------------------------------
-PhotonProjectionAlg::PhotonProjectionAlg()
-  : fEngine(art::ServiceHandle<rndm::NuRandomService>{}
-                ->createEngine(*this, "HepJamesRandom", "propagation", p, "PropagationSeed")),
-    fNScint(0),
-    fNHits(0)
-{}
+PhotonProjectionAlg::PhotonProjectionAlg(fhicl::ParameterSet const& p)
+ : fNScint(0),
+   fNHits(0)
+{
+  this->reconfigure(p);
+}
 
 //--------------------------------------------------------------------
 void PhotonProjectionAlg::reconfigure(fhicl::ParameterSet const& p)
@@ -44,28 +43,28 @@ void PhotonProjectionAlg::reconfigure(fhicl::ParameterSet const& p)
  * incident pixels. 
  * 
  */
-void PhotonProjectionAlg::doProjection()
+void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
 {
   std::cout << "////////////////////////////////////////////////\n"
             << "Starting photon projection...\n";
 
   // Get the data from IS action
-  auto stepPoints = IonizationAndScintillation::Instance()->StepPoints();
-  auto stepScint  = IonizationAndScintillation::Instance()->StepScint();
+  auto stepPoints = amselg4::IonizationAndScintillation::Instance()->StepPoints();
+  auto stepScint  = amselg4::IonizationAndScintillation::Instance()->StepScint();
 
   amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
   double detHalfHeight = geom->DetHalfHeight();
   double driftLength   = geom->DetDriftLength();
   double detLength     = geom->DetLength();
  
-  CLHEP::RandFlat flat(fEngine);
+  CLHEP::RandFlat flat(engine);
 
   if (stepPoints.size() != stepScint.size()) throw cet::exception("PhotonProjectionAlg") << "StepPoints and StepScint sizes are different!\n";
   if (!stepPoints.size())                    mf::LogWarning("PhotonProjectionAlg") << "No steps recorded!\n";
   
   std::cout << "Number of steps = " << stepPoints.size() << "\n";
   size_t nHit(0);
-  std::map<int, int> pixelMap;
+  fPixelMap.clear();
   for (size_t iStep = 0; iStep < stepPoints.size(); iStep++)
   {
     // convert to cm
@@ -100,9 +99,9 @@ void PhotonProjectionAlg::doProjection()
       if (nearestPixelId < 0) continue;
  
       // Add this photon to this pixel
-      auto pixelIter = pixelMap.find(nearestPixelId);
-      if (pixelIter != pixelMap.end()) pixelIter->second++;
-      else pixelMap.emplace(nearestPixelId, 1);
+      auto pixelIter = fPixelMap.find(nearestPixelId);
+      if (pixelIter != fPixelMap.end()) pixelIter->second++;
+      else fPixelMap.emplace(nearestPixelId, 1);
     }
   }
   fNHits = nHit;

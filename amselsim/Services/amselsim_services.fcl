@@ -36,5 +36,4 @@ amselsim_simulation_services.LArG4Parameters.NoElectronPropagation: true
 amselsim_simulation_services.LArG4Parameters.NoPhotonPropagation: true
 amselsim_simulation_services.LArPropertiesService.ScintPreScale: 1.0
 
-
 END_PROLOG
