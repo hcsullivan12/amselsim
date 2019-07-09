@@ -1,11 +1,11 @@
 
 BEGIN_PROLOG
 
-amselsim_geo:
+amselsim_geoservice:
 {
- GDML:              "amsel.gdml" 
- UseSimpleGeometry: true
- PixelSpacing:      0.4 # in cm
+  GDML:              "amsel.gdml" 
+  UseSimpleGeometry: true
+  PixelSpacing:      0.4 # in cm
 }
 
 END_PROLOG

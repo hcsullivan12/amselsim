@@ -77,18 +77,19 @@ class AmSelGeometry : public DetectorGeometry
     /// Extracts the relevant configuration from the specified object
     void Configure(Configuration_t const& config);        
 
-    std::string GDMLFile()         const { return fGDMLPath;     }
-    std::string OpDetGeoName()     const { return "opDetector";  }
-    size_t      NOpDets()          const { return 0;             }
-    size_t      Ncryostats()       const { return 1;             }
-    size_t      NTPC()             const { return 1;             }
-    size_t      NAuxDets()         const { return 0;             }
-    size_t      NSensitiveVolume() const { return 1;             }
-    double      DetHalfHeight()    const { return fDetHalfY;     }
-    double      DetDriftLength()   const { return fDriftLength;  }
-    double      DetLength()        const { return fDetLength;    }
-    float       PixelSpacing()     const { return fPixelSpacing; }
-    ULong8_t    NPixels()          const { return fNPixels;      }
+    std::string GDMLFile()         const { return fGDMLPath;            }
+    std::string OpDetGeoName()     const { return "opDetector";         }
+    size_t      NOpDets()          const { return 0;                    }
+    size_t      Ncryostats()       const { return 1;                    }
+    size_t      NTPC()             const { return 1;                    }
+    size_t      NAuxDets()         const { return 0;                    }
+    size_t      NSensitiveVolume() const { return 1;                    }
+    double      DetHalfWidth()     const { return 0.5*DetDriftLength(); }
+    double      DetHalfHeight()    const { return fDetHalfY;            }
+    double      DetDriftLength()   const { return fDriftLength;         }
+    double      DetLength()        const { return fDetLength;           }
+    float       PixelSpacing()     const { return fPixelSpacing;        }
+    ULong8_t    NPixels()          const { return fNPixels;             }
 
     /**
      * @brief Find pixel ID from simplified geometry.

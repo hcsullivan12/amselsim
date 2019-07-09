@@ -1,7 +1,7 @@
 #include "simulationservices.fcl"
 #include "larproperties.fcl"
 #include "detectorclocks.fcl"
-#include "largeantmodules.fcl"
+#include "amselsim_largeantmodules.fcl"
 #include "singles.fcl"
 #include "magfield_larsoft.fcl"
 #include "backtrackerservice.fcl"
@@ -13,15 +13,12 @@
 
 BEGIN_PROLOG
 
-amselsim_singlep: @local::standard_singlep
-amselsim_largeant: @local::amselsim_largeant
-
 amselsim_simulation_services:
 {
  LArG4Parameters:              @local::standard_largeantparameters
  LArVoxelCalculator:           @local::standard_larvoxelcalculator
  MagneticField:                @local::no_mag_larsoft
- AmSelGeometryService:         @local::amselsim_geo
+ AmSelGeometryService:         @local::amselsim_geoservice
  DetectorPropertiesService:    @local::amselsim_detproperties
  LArPropertiesService:         @local::standard_properties
  DetectorClocksService:        @local::standard_detectorclocks
@@ -30,6 +27,9 @@ amselsim_simulation_services:
  NuRandomService:              @local::random_NuRandomService
  SpaceCharge:                  @local::standard_spacecharge
 }
+
+amselsim_singlep: @local::standard_singlep
+amselsim_largeant: @local::amselsim_largeant
 
 # We don't want to do any propagation yet, and keep all scintillation
 amselsim_simulation_services.LArG4Parameters.NoElectronPropagation: true

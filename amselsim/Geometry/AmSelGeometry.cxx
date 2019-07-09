@@ -127,8 +127,6 @@ void AmSelGeometry::LookAtNode(TGeoNode const* currentNode, std::string const& c
     fLArTPCVolName = "volLArActive";
   }  
 
-  std::cout << "\n\n" << fDriftLength << " " << fDetHalfY << " " << fDetLength << "\n\n" << std::endl;
-
   // Check nodes
   TObjArray* nodes = currentNode->GetNodes();
   if (!nodes) return;
