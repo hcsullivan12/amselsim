@@ -89,6 +89,9 @@ class AmSelGeometry : public DetectorGeometry
     double DetLength() const     { return fDetLength; }
     float  PixelSpacing() const  { return fPixelSpacing; }
     ULong8_t NPixels() const { return fNPixels; }
+    int FindSimpleID(geo::Point_t const& point) const;
+    int FindSimpleID(TVector3 const& point) const
+      { return FindSimpleID(geo::vect::toPoint(point)); }
     int NearestPixelID(geo::Point_t const& point) const;
     int NearestPixelID(TVector3 const& point) const
       { return NearestPixelID(geo::vect::toPoint(point)); }
