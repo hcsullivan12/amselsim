@@ -99,7 +99,13 @@ void AmSelGeometry::Initialize()
   if (!fPixelPlane)                                             throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
 
   // Load simplified geometry
-  if (fUseSimpleGeometry) LoadSimpleGeometry();
+  if (fUseSimpleGeometry) 
+  {
+    std::cout <<"\n";
+    mf::LogInfo("AmSelGeometry")<<"Loading simple geometry\n";
+    LoadSimpleGeometry();
+  }
+  std::cout << "\n";
   mf::LogInfo("AmSelGeometry")<<"Initialized geometry with " << fNPixels << " pixels\n";
 }
 
@@ -114,9 +120,10 @@ void AmSelGeometry::LookAtNode(TGeoNode const* currentNode, std::string const& c
   if (volName.find("volPixelPad") != std::string::npos) return;
   if (volName == "volPixelPlane")
   {
-    fPixelPlane = nodeVol; 
-    fNPixels = fPixelPlane->GetNodes()->GetEntries();
-    // Don't look for pixels
+    fPixelPlane = nodeVol;
+    // Try looking for pixels 
+    if (fPixelPlane->GetNodes()) fNPixels = fPixelPlane->GetNodes()->GetEntries();
+    // We're done
     return;
   }
   if (volName == "volLArActive")

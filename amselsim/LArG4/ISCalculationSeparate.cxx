@@ -227,8 +227,6 @@ namespace amselg4{
 				       << fEMSaturation->VisibleEnergyDepositionAtAStep(step)
 				       << " step length: "   << step->GetStepLength()/CLHEP::cm;
 
-
-
     // Log the position of this step and the number of photons
     fStepPointVec.push_back(step->GetPreStepPoint()->GetPosition());
     fStepScintVec.push_back(fNumScintPhotons); 

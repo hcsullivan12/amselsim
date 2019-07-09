@@ -4,11 +4,11 @@
     <rotation name="TPCActive_rot" unit="degree" x="0.0" y="0.0" z="0.0"/>
     <position name="TPCActivevolLArActive0_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
     <rotation name="TPC_rot" unit="degree" x="0.0" y="0.0" z="0.0"/>
-    <position name="TPCvolPixelPlane0_pos" unit="cm" x="-25.0" y="0.0" z="0.0"/>
+    <position name="TPCvolPixelPlane0_pos" unit="cm" x="-100.0" y="0.0" z="0.0"/>
     <position name="TPCvolTPCActive0_pos" unit="cm" x="0.5" y="0.0" z="0.0"/>
     <rotation name="Cryostat_rot" unit="degree" x="0.0" y="0.0" z="0.0"/>
     <position name="CryostatvolTPC0_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
-    <position name="volCryostat_pos" unit="cm" x="24.5" y="0.0" z="50"/>
+    <position name="volCryostat_pos" unit="cm" x="99.5" y="0.0" z="250.0"/>
     <rotation name="volCryostat_rot" unit="degree" x="0" y="0" z="0"/>
     <rotation name="noRotate" unit="degree" x="0" y="0" z="0"/>
     <rotation name="r90aboutX" unit="degree" x="90" y="0" z="0"/>
@@ -511,12 +511,12 @@
     </material>
   </materials>
   <solids>
-    <box lunit="cm" name="PixelPlane" x="1.0" y="40.0" z="100.0"/>
-    <box lunit="cm" name="LArActive" x="50.0" y="40.0" z="100.0"/>
-    <box lunit="cm" name="TPCActive" x="50.0" y="40.0" z="100.0"/>
-    <box lunit="cm" name="TPC" x="51.0" y="40.0" z="100.0"/>
-    <box lunit="cm" name="Cryostat" x="51.0" y="40.0" z="100.0"/>
-    <box lunit="cm" name="DetEnclosure" x="101.0" y="80.0" z="200.0"/>
+    <box lunit="cm" name="PixelPlane" x="1.0" y="200.0" z="500.0"/>
+    <box lunit="cm" name="LArActive" x="200.0" y="200.0" z="500.0"/>
+    <box lunit="cm" name="TPCActive" x="200.0" y="200.0" z="500.0"/>
+    <box lunit="cm" name="TPC" x="201.0" y="200.0" z="500.0"/>
+    <box lunit="cm" name="Cryostat" x="201.0" y="200.0" z="500.0"/>
+    <box lunit="cm" name="DetEnclosure" x="401.0" y="400.0" z="1000.0"/>
     <box lunit="cm" name="world_shape" x="10000.0" y="10000.0" z="10000.0"/>
   </solids>
   <structure>

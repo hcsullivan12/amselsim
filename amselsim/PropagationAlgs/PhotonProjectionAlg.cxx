@@ -16,6 +16,8 @@
 
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
+#include <thread>
+
 namespace amselsim
 {
 
@@ -72,14 +74,17 @@ void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
     TVector3      pos(posTemp.x(), posTemp.y(), posTemp.z());
     size_t        nScint = stepScint[iStep];
     fNScint += nScint;
-    for (size_t iPh = 0; iPh < nScint; iPh++)
+
+    // Only do half since there's no chance for the other half
+    // In this case, limit the range of phi to be [90,270]
+    for (size_t iPh = 0; iPh < 0.5*nScint; iPh++)
     {
       double cosTheta = 2*flat.fire() - 1;
       double sinTheta = std::pow(1-std::pow(cosTheta,2),0.5);
-      double phi      = 2*M_PI*flat.fire();
+      double phi      = M_PI*flat.fire() + 0.5*M_PI;
       TVector3 pHat(sinTheta*std::cos(phi),  sinTheta*std::sin(phi), cosTheta);
 
-      // No chance...
+      // Still check...
       if (pHat.X() >= 0) continue;
 
       // Project this onto the x = 0 plane
@@ -92,16 +97,18 @@ void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
 
       // This hit the readout plane
       nHit++;
-    
+   
+      
       /// \todo Handle the x coordinate better here 
       TVector3 point(-0.01, projPos.Y(), projPos.Z());
       auto nearestPixelId = geom->NearestPixelID(point); 
       if (nearestPixelId < 0) continue;
  
       // Add this photon to this pixel
-      auto pixelIter = fPixelMap.find(nearestPixelId);
-      if (pixelIter != fPixelMap.end()) pixelIter->second++;
-      else fPixelMap.emplace(nearestPixelId, 1);
+      fPixelMap[nearestPixelId]++;
+      //auto pixelIter = fPixelMap.find(nearestPixelId);
+      //if (pixelIter != fPixelMap.end()) pixelIter->second++;
+      //else fPixelMap.emplace(nearestPixelId, 1);
     }
   }
   fNHits = nHit;
