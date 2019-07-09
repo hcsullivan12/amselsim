@@ -151,6 +151,7 @@ void AmSelGeometry::LoadSimpleGeometry()
 {
   fSimpleGeoY.clear();
   fSimpleGeoZ.clear();
+
   // Build a simplified pixelization scheme based on the pixel spacing
   // The pixel placements preserve the symmetry of the pixel plane
   float edge = 0.1*fPixelSpacing;
@@ -175,6 +176,64 @@ void AmSelGeometry::LoadSimpleGeometry()
   // Sorting so that top left hand corner is pixel 1
   std::sort(fSimpleGeoZ.begin(), fSimpleGeoZ.end(), [](float const& l, float const& r) {return l<r;});
   std::sort(fSimpleGeoY.begin(), fSimpleGeoY.end(), [](float const& l, float const& r) {return l>r;});
+
+  // Convert to world coordinates
+  TGeoTranslation transl(0,0,0);
+  std::string planeNodePath = *std::find_if(fNodePaths.begin(), fNodePaths.end(), [](std::string const& s) {return s.find("PixelPlane") != std::string::npos;});
+  std::string currentPath("");
+  size_t slashPos = planeNodePath.find("/");
+  // Loop over this path
+  // Assumes pixel plane has no daughters!
+  while (slashPos != std::string::npos)
+  {
+    currentPath += planeNodePath.substr(0, slashPos+1);
+    planeNodePath.erase(0, slashPos+1);
+
+    gGeoManager->cd(currentPath.c_str());
+    TGeoNode* node = gGeoManager->GetCurrentNode();
+    Double_t m[3];
+    auto o = ((TGeoBBox*)node->GetVolume()->GetShape())->GetOrigin();
+    gGeoManager->LocalToMaster(o,m);
+    TGeoTranslation toAdd(m[0], m[1], m[2]);
+    std::cout << "ADDING\n";
+    toAdd.Print();
+    transl.Add(&toAdd);
+
+    slashPos = planeNodePath.find("/");
+  } 
+  currentPath+=planeNodePath; 
+  transl.Print();
+
+    gGeoManager->cd(currentPath.c_str());
+    TGeoNode* node = gGeoManager->GetCurrentNode();
+    Double_t m[3];
+    auto o = ((TGeoBBox*)node->GetVolume()->GetShape())->GetOrigin();
+    gGeoManager->LocalToMaster(o,m);
+    TGeoTranslation toAdd(m[0], m[1], m[2]);
+    transl = toAdd;
+    toAdd.Print();
+
+/*
+  for (const auto& np : fNodePaths)
+  {
+    std::cout << "NOW " << np << "\n";
+    transl.Print();
+    gGeoManager->cd(np.c_str());
+    TGeoNode* node = gGeoManager->GetCurrentNode();
+    Double_t m[3];
+    auto o = ((TGeoBBox*)node->GetVolume()->GetShape())->GetOrigin();
+    std::cout << o[0] << " " << o[1] << " " << o[2] << std::endl;
+    gGeoManager->LocalToMaster(o,m);
+    TGeoTranslation toAdd(m[0], m[1], m[2]);
+    std::cout << "ToAdd\n";
+    toAdd.Print();
+
+    transl.Add(&toAdd);
+    if (np.find("TPC") != std::string::npos) break;
+  }
+*/
+  std::cout << "\nHERE\n";
+  transl.Print();
 }
 
 //--------------------------------------------------------------------
