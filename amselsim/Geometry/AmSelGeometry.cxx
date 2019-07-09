@@ -8,6 +8,9 @@
 /// containing all pixel pads or to load a simplified geometry. A
 /// few assumptions are made in the simplified geometry construction.
 ///
+/// \todo Change DetHalfHeight to something like DetHalfY
+///       Convert pixel corrdinates to world for simple geo
+///
 /// \author  hsulliva@fnal.gov
 //////////////////////////////////////////////////////////////////////
 
@@ -145,22 +148,24 @@ void AmSelGeometry::LoadSimpleGeometry()
   fSimpleGeoZ.clear();
   // Build a simplified pixelization scheme based on the pixel spacing
   // The pixel placements preserve the symmetry of the pixel plane
+  float edge = 0.1*fPixelSpacing;
   float currentZ = 0.5 * fPixelSpacing;
-  while ( (currentZ+0.5*fPixelSpacing) < 0.5 * fDetLength) 
+  while ( (currentZ+0.5*fPixelSpacing) < 0.5 * (fDetLength-edge)) 
   {
     fSimpleGeoZ.push_back(currentZ);
     fSimpleGeoZ.push_back(-1 * currentZ);
     currentZ += fPixelSpacing;
   }
   float currentY = 0.5 * fPixelSpacing;
-  while ( (currentY+0.5*fPixelSpacing) < fDetHalfHeight) 
+  std::cout << fDetHalfWidth << std::endl;
+  while ( (currentY+0.5*fPixelSpacing) < (fDetHalfWidth-edge)) 
   {
-    fSimpleGeoZ.push_back(currentY);
-    fSimpleGeoZ.push_back(-1 * currentY);
+    fSimpleGeoY.push_back(currentY);
+    fSimpleGeoY.push_back(-1 * currentY);
     currentY += fPixelSpacing;
   }
 
-  fNPixels = fSimplGeoY * fSimpleGeoZ;
+  fNPixels = fSimpleGeoY.size() * fSimpleGeoZ.size();
 
   // Sorting so that top left hand corner is pixel 1
   std::sort(fSimpleGeoZ.begin(), fSimpleGeoZ.end(), [](float const& l, float const& r) {return l<r;});
@@ -184,13 +189,12 @@ int AmSelGeometry::NearestPixelID(geo::Point_t const& point) const
 }
 
 //--------------------------------------------------------------------
+//
+// \warning Assumes containers are already sorted in increasing Z and 
+//          decreasing y.
+//
 int AmSelGeometry::FindSimpleID(geo::Point_t const& point) const
 {
-  //
-  // \warning Assumes containers are already sorted in increasing Z and 
-  //          decreasing y.
-  //
-
   // Find the first column closest to our test point
   float testZ        = point.z();
   auto  highZiter    = std::find_if(fSimpleGeoZ.begin(), fSimpleGeoZ.end(), [testZ](float const& z) {return z > testZ;});
@@ -200,20 +204,12 @@ int AmSelGeometry::FindSimpleID(geo::Point_t const& point) const
 
   // Find the first row closest to our test point
   float testY        = point.y();
-  auto  highYiter    = std::find_if(fSimpleGeoY.begin(), fSimpleGeoY.end(), [testY](float const& y) {return y < testY;});
-  auto  lowYiter     = (highYiter-1) != fSimpleGeoY.begin() ? (highYiter-1) : highYiter;
-  auto  closestYiter = std::abs(*highYiter-testZ) < std::abs(*lowYiter-testZ) ? highYiter : lowYiter;
+  auto  lowYiter     = std::find_if(fSimpleGeoY.begin(), fSimpleGeoY.end(), [testY](float const& y) {return y < testY;});
+  auto  highYiter    = (lowYiter-1) != fSimpleGeoY.begin() ? (lowYiter-1) : lowYiter;
+  auto  closestYiter = std::abs(*highYiter-testY) < std::abs(*lowYiter-testY) ? highYiter : lowYiter;
   size_t row         = std::distance(fSimpleGeoY.begin(), closestYiter)+1; // 1,2,3...
 
-  int id = (row-1) * fSimpleGeoZ.size() + column;
-
-  std::cout << "Test point    = (" << testZ         << ", " << testY         << ")\n"
-            << "Closest pixel = (" << *closestZiter << ", " << *closestYiter << ")\n"
-            << "Z size        =  " << fSimpleGeoZ.size() << "\n"
-            << "Y size        =  " << fSimpleGeoY.size() << "\n"
-            << "ID            =  " << id << std::endl; 
-
-  return id;
+  return (row-1) * fSimpleGeoZ.size() + column;
 }
 
 //--------------------------------------------------------------------

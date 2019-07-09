@@ -5,7 +5,7 @@ amselsim_geo:
 {
  GDML:              "amsel.gdml" 
  UseSimpleGeometry: true
- PixelSpacing:      0.4
+ PixelSpacing:      0.4 # in cm
 }
 
 END_PROLOG

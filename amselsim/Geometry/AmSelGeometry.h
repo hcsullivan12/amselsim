@@ -47,6 +47,12 @@ class AmSelGeometry : public DetectorGeometry
         Comment("Name of GDML file for AmSel geometry")
       };
 
+      fhicl::Atom<bool> UseSimpleGeometry
+      {
+        Name("UseSimpleGeometry"),
+        Comment("Option to simplify the pixel geometry.")
+      };
+
       fhicl::Atom<double> PixelSpacing
       {
         Name("PixelSpacing"),
@@ -83,6 +89,9 @@ class AmSelGeometry : public DetectorGeometry
     double DetLength() const     { return fDetLength; }
     float  PixelSpacing() const  { return fPixelSpacing; }
     ULong8_t NPixels() const { return fNPixels; }
+    int FindSimpleID(geo::Point_t const& point) const;
+    int FindSimpleID(TVector3 const& point) const
+      { return FindSimpleID(geo::vect::toPoint(point)); }
     int NearestPixelID(geo::Point_t const& point) const;
     int NearestPixelID(TVector3 const& point) const
       { return NearestPixelID(geo::vect::toPoint(point)); }
@@ -101,15 +110,17 @@ class AmSelGeometry : public DetectorGeometry
     void LoadSimpleGeometry();
 
     std::vector<std::string> fNodePaths;
-    std::string fGDMLPath;
-    std::string fLArTPCVolName;
-    double fDetHalfHeight;
-    double fDetHalfWidth;
-    double fDetLength;
-    float  fPixelSpacing;
-    ULong8_t fNPixels;
-    TGeoVolume* fPixelPlane;
-    bool fIsSimpleGeometry;
+    std::vector<float>       fSimpleGeoZ;
+    std::vector<float>       fSimpleGeoY;
+    std::string              fGDMLPath;
+    std::string              fLArTPCVolName;
+    double                   fDetHalfHeight;
+    double                   fDetHalfWidth;
+    double                   fDetLength;
+    float                    fPixelSpacing;
+    ULong8_t                 fNPixels;
+    TGeoVolume*              fPixelPlane;
+    bool                     fUseSimpleGeometry;
 }; // class AmSelGeometry
 
 }
