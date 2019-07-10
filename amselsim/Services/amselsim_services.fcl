@@ -18,7 +18,7 @@ amselsim_simulation_services:
  LArG4Parameters:              @local::standard_largeantparameters
  LArVoxelCalculator:           @local::standard_larvoxelcalculator
  MagneticField:                @local::no_mag_larsoft
- AmSelGeometryService:         @local::amselsim_geoservice
+ DetectorGeometryService:      @local::amselsim_geoservice
  DetectorPropertiesService:    @local::amselsim_detproperties
  LArPropertiesService:         @local::standard_properties
  DetectorClocksService:        @local::standard_detectorclocks

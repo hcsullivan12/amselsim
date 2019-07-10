@@ -39,7 +39,7 @@ namespace ldp{
   
   //--------------------------------------------------------------------
   DetectorPropertiesAmSel::DetectorPropertiesAmSel(fhicl::ParameterSet const& pset,
-					 const amselgeo::AmSelGeometry* geo,
+					 const amselgeo::DetectorGeometry* geo,
 					 const detinfo::LArProperties* lp,
 					 const detinfo::DetectorClocks* c,
 					 std::set<std::string> ignore_params /* = {} */
@@ -62,7 +62,7 @@ namespace ldp{
 					 std::set<std::string> ignore_params /* = {} */
 					 ):
     DetectorPropertiesAmSel(pset,
-      providers.get<amselgeo::AmSelGeometry>(),
+      providers.get<amselgeo::DetectorGeometry>(),
       providers.get<detinfo::LArProperties>(),
       providers.get<detinfo::DetectorClocks>(),
       ignore_params
@@ -219,7 +219,7 @@ namespace ldp{
   //------------------------------------------------------------------------------------//
   void DetectorPropertiesAmSel::Setup(providers_type providers) {
     
-    SetGeometry(providers.get<amselgeo::AmSelGeometry>());
+    SetGeometry(providers.get<amselgeo::DetectorGeometry>());
     SetLArProperties(providers.get<detinfo::LArProperties>());
     SetDetectorClocks(providers.get<detinfo::DetectorClocks>());
     

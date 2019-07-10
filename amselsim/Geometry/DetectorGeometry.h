@@ -11,6 +11,8 @@
 
 #include "fhiclcpp/ParameterSet.h"
 
+#include "TVector3.h"
+
 #include <stdexcept> // std::runtime_error()
 
 
@@ -26,11 +28,21 @@ namespace amselgeo{
       DetectorGeometry& operator = (DetectorGeometry &&) = delete;
       virtual ~DetectorGeometry() = default;
 
-      // If we wanted to completely refactor how geometry is handled,
-      // the functions to define here would high level, e.g. NCryos,
-      // NTPCs
-
-      //virtual double Efield(unsigned int planegap=0) const = 0;
+      virtual double      DetHalfWidth() const = 0;
+      virtual double      DetDriftLength() const = 0;
+      virtual double      DetHalfHeight() const = 0;
+      virtual double      DetLength()    const = 0;
+      virtual std::string GetLArTPCVolumeName() const = 0;
+      virtual std::string VolumeName(TVector3 const& point) const = 0;
+      virtual std::string GDMLFile() const = 0;
+      virtual std::string OpDetGeoName() const = 0;
+      virtual size_t      Ncryostats() const = 0;
+      virtual size_t      NTPC() const = 0;
+      virtual size_t      NOpDets() const = 0;
+      virtual size_t      NAuxDets() const = 0;
+      virtual size_t      NSensitiveVolume() const = 0;
+      virtual int         NReadoutNodes() const = 0;
+      virtual int         NearestReadoutNodeID(TVector3 const& point) const = 0;
 
     protected:
       DetectorGeometry() = default;

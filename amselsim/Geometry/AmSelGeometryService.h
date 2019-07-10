@@ -9,6 +9,7 @@
 #define AMSELGEO_AMSELGEOMETRYSERVICE_H
 
 #include "amselsim/Geometry/AmSelGeometry.h"
+#include "amselsim/Geometry/DetectorGeometryService.h"
 
 #include "fhiclcpp/ParameterSet.h"
 #include "art/Framework/Services/Registry/ServiceMacros.h"
@@ -16,7 +17,7 @@
 namespace amselgeo 
 {
 
-class AmSelGeometryService 
+class AmSelGeometryService : public DetectorGeometryService
 {
   public:
     using provider_type = AmSelGeometry; ///< type of the service provider
@@ -25,7 +26,11 @@ class AmSelGeometryService
     AmSelGeometryService(fhicl::ParameterSet const&, art::ActivityRegistry&);
 
     /// Return a pointer to a (constant) detector properties provider
-    provider_type const* provider() const { return fProvider.get(); }
+   // provider_type const* provider() const { return fProvider.get(); }
+    virtual const provider_type* provider() const override { return fProvider.get();}
+    
+    virtual void   reconfigure(fhicl::ParameterSet const& pset) override;
+
  
   private:
     std::unique_ptr<AmSelGeometry> fProvider; ///< owned provider
@@ -34,6 +39,6 @@ class AmSelGeometryService
 }; // class AmSelGeometryService
 
 }
-DECLARE_ART_SERVICE(amselgeo::AmSelGeometryService, LEGACY)
+DECLARE_ART_SERVICE_INTERFACE_IMPL(amselgeo::AmSelGeometryService, amselgeo::DetectorGeometryService, LEGACY)
 
 #endif

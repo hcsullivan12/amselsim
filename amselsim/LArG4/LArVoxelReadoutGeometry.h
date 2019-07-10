@@ -68,7 +68,7 @@ namespace amselg4 {
 					std::string&       daughterName,
 					unsigned int       expectedNum);
 
-    art::ServiceHandle<amselgeo::AmSelGeometryService const> fGeo;
+    art::ServiceHandle<amselgeo::DetectorGeometryService const> fGeo;
     std::unique_ptr<G4UserLimits>     fStepLimit; ///< G4 doesn't handle memory management,
                                                   ///< so we have to
 

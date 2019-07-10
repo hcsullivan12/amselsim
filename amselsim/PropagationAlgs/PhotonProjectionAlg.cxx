@@ -12,7 +12,7 @@
 
 #include "amselsim/LArG4/IonizationAndScintillation.h"
 #include "amselsim/PropagationAlgs/PhotonProjectionAlg.h"
-#include "amselsim/Geometry/AmSelGeometryService.h"
+#include "amselsim/Geometry/DetectorGeometryService.h"
 
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
@@ -54,7 +54,8 @@ void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
   auto stepPoints = amselg4::IonizationAndScintillation::Instance()->StepPoints();
   auto stepScint  = amselg4::IonizationAndScintillation::Instance()->StepScint();
 
-  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
+//  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
+  auto const * geom = lar::providerFrom<amselgeo::DetectorGeometryService>();
   double detHalfHeight = geom->DetHalfHeight();
   double driftLength   = geom->DetDriftLength();
   double detLength     = geom->DetLength();
@@ -101,7 +102,7 @@ void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
       
       /// \todo Handle the x coordinate better here 
       TVector3 point(-0.01, projPos.Y(), projPos.Z());
-      auto nearestPixelId = geom->NearestPixelID(point); 
+      auto nearestPixelId = geom->NearestReadoutNodeID(point); 
       if (nearestPixelId < 0) continue;
  
       // Add this photon to this pixel

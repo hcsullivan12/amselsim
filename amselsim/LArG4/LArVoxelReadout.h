@@ -326,7 +326,7 @@ namespace amselg4 {
     double                                    fOffPlaneMargin = 0.0;
 
     std::vector<std::vector<ChannelMap_t>>    fChannelMaps; ///< Maps of cryostat, tpc to channel data
-    art::ServiceHandle<amselgeo::AmSelGeometryService const> fGeoHandle;
+    art::ServiceHandle<amselgeo::DetectorGeometryService const> fGeoHandle;
     art::ServiceHandle<sim::LArG4Parameters const>  fLgpHandle;  ///< Handle to the AmSelG4 parameters service
     unsigned int                              fTPC;        ///< which TPC this LArVoxelReadout corresponds to
     unsigned int                              fCstat;      ///< and in which cryostat (if bSingleTPC is true)

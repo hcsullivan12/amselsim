@@ -23,6 +23,9 @@
 namespace amselgeo
 {
 
+AmSelGeometry::AmSelGeometry()
+{}
+
 //--------------------------------------------------------------------
 AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset,
                              std::set<std::string> const& ignore_params)
@@ -33,10 +36,6 @@ AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset,
   ValidateAndConfigure(pset, ignore_params);
   Initialize();
 }
-
-//--------------------------------------------------------------------
-AmSelGeometry::~AmSelGeometry()
-{}
 
 //--------------------------------------------------------------------
 void AmSelGeometry::ValidateAndConfigure(

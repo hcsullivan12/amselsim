@@ -3,6 +3,7 @@ BEGIN_PROLOG
 
 amselsim_geoservice:
 {
+  service_provider:  "AmSelGeometryService"
   GDML:              "amsel_nopixels.gdml" 
   UseSimpleGeometry: true
   PixelSpacing:      0.4 # in cm

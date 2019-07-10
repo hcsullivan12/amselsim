@@ -18,8 +18,6 @@
 ///
 /// - Pass the truth information to the DetSim branch of the FMWK event.
 
-#include "amselsim/Geometry/AmSelGeometryService.h"
-
 #include "nutools/G4Base/G4Helper.h"
 #include "nutools/G4Base/ConvertMCTruthToG4.h"
 
@@ -442,9 +440,7 @@ namespace amselg4 {
   //----------------------------------------------------------------------
   void AmSelG4::beginJob()
   {
-    amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
-    //const amselgeo::AmSelGeometry* geom = lar::providerFrom<amselgeo::AmSelGeometryService>();
-    //art::ServiceHandle<amselgeo::AmSelGeometry const> geom;
+    auto const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
 
     fG4Help = new g4b::G4Helper(fG4MacroPath, fG4PhysListName);
     if(fCheckOverlaps) fG4Help->SetOverlapCheck(true);
@@ -572,7 +568,7 @@ namespace amselg4 {
 
     // Fetch the lists of LAr voxels and particles.
     art::ServiceHandle<sim::LArG4Parameters const> lgp;
-    amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::AmSelGeometryService>()->provider();
+    auto const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
 
     // Clear the detected photon table
     OpDetPhotonTable::Instance()->ClearTable(geom->NOpDets());

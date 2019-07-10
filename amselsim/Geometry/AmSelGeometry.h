@@ -60,10 +60,12 @@ class AmSelGeometry : public DetectorGeometry
       };
     };
 
+    AmSelGeometry();
     /// Constructor: reads the configuration from a parameter set
     AmSelGeometry(fhicl::ParameterSet const& pset,
                   std::set<std::string> const& ignore_params = {});
-    ~AmSelGeometry();
+    AmSelGeometry(AmSelGeometry const&) = delete;
+    virtual ~AmSelGeometry() = default;
 
     /// Method to validate parameter set
     void ValidateAndConfigure(
@@ -89,7 +91,8 @@ class AmSelGeometry : public DetectorGeometry
     double      DetDriftLength()   const { return fDriftLength;         }
     double      DetLength()        const { return fDetLength;           }
     float       PixelSpacing()     const { return fPixelSpacing;        }
-    ULong8_t    NPixels()          const { return fNPixels;             }
+    int         NPixels()          const { return fNPixels;             }
+    int         NReadoutNodes()    const { return NPixels();            }
 
     /**
      * @brief Find pixel ID from simplified geometry.
@@ -112,7 +115,10 @@ class AmSelGeometry : public DetectorGeometry
     int NearestPixelID(geo::Point_t const& point) const;
     int NearestPixelID(TVector3 const& point) const
       { return NearestPixelID(geo::vect::toPoint(point)); }
-    
+   
+    int NearestReadoutNodeID(TVector3 const& point) const
+      { return NearestPixelID(point); }
+ 
     /// Name of active volume
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
     

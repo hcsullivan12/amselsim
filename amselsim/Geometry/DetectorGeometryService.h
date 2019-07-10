@@ -23,7 +23,7 @@ namespace amselgeo{
       virtual ~DetectorGeometryService() = default;
 
       virtual void   reconfigure(fhicl::ParameterSet const& pset) = 0;
-      virtual const  amselgeo::DetectorGeometryService* provider() const = 0;
+      virtual const  amselgeo::DetectorGeometry* provider() const = 0;
 
     }; 
 } 
