@@ -16,8 +16,6 @@
 
 #include <stdexcept> // std::runtime_error()
 
-#inclued "amselsim/Geometry/TPCGeo.h"
-
 ///General LArSoft Utilities
 namespace geo{
 
@@ -47,13 +45,17 @@ namespace geo{
       virtual size_t      NSensitiveVolume() const = 0;
       virtual int         NReadoutNodes() const = 0;
       virtual int         NearestReadoutNodeID(TVector3 const& point) const = 0;
+      virtual int         NearestChannel(double* xyz, 
+                                         size_t const& p, 
+                                         size_t const& tpc,
+                                         size_t const& cryo) const = 0;
       virtual double      TotalMass(std::string const& vol) const = 0;
       virtual TGeoManager* ROOTGeoManager() const = 0; 
 
-      virtual const double* PlaneLocation(size_t const& p) const = 0;
+      virtual const std::vector<double> PlaneLocation(size_t const& p) const = 0;
       virtual int           DriftDirection() const = 0;
-      virtual int           NPlanes() const = 0;
-      virtual double        PlanePitch(size_t const& p1=0, size_t& p2=1) const = 0;
+      virtual size_t        Nplanes() const = 0;
+      virtual double        PlanePitch(size_t const& p1=0, size_t const& p2=1) const = 0;
 
     protected:
       DetectorGeometry() = default;

@@ -380,9 +380,9 @@ namespace amselg4 {
       /// \todo think about effects of drift between planes
       double XDrift = std::abs(stepMidPoint.x()/CLHEP::cm - fGeoHandle->provider()->PlaneLocation(0)[0]);
 
-      if (fGeoHandle->provider()->DriftDirection() == geo::kNegX)
+      if (fGeoHandle->provider()->DriftDirection() == -1)// geo::kNegX)
 	XDrift = stepMidPoint.x()/CLHEP::cm - fGeoHandle->provider()->PlaneLocation(0)[0];
-      else if (fGeoHandle->provider()->DriftDirection() == geo::kPosX)
+      else if (fGeoHandle->provider()->DriftDirection() == 1) //geo::kPosX)
 	XDrift = fGeoHandle->provider()->PlaneLocation(0)[0] - stepMidPoint.x()/CLHEP::cm;
 
       if(XDrift < 0.) return;
@@ -515,14 +515,20 @@ namespace amselg4 {
               // Currently, if that is the case the code will proceed, find the
               // point is off plane, emit a warning and skip the deposition.
               //
-              auto const landingPos
-                = RecoverOffPlaneDeposit({ xyz1[0], xyz1[1], xyz1[2] }, plane);
-              xyz1[0] = landingPos.X();
-              xyz1[1] = landingPos.Y();
-              xyz1[2] = landingPos.Z();
+              //auto const landingPos
+              //  = RecoverOffPlaneDeposit({ xyz1[0], xyz1[1], xyz1[2] }, plane);
+              //xyz1[0] = landingPos.X();
+              //xyz1[1] = landingPos.Y();
+              //xyz1[2] = landingPos.Z();
 
             } // if charge lands off plane
             uint32_t channel = fGeoHandle->provider()->NearestChannel(xyz1, p, tpc, cryostat);
+
+            //
+            // @warning In our case, if the charge is too far away from some pixel,
+            //          we return -1 here
+            //
+            if (channel < 0) return;
 
             /// \todo check on what happens if we allow the tdc value to be
             /// \todo beyond the end of the expected number of ticks

@@ -230,7 +230,16 @@ int AmSelGeometry::FindSimpleID(geo::Point_t const& point) const
   auto  closestYiter = std::abs(*highYiter-testY) < std::abs(*lowYiter-testY) ? highYiter : lowYiter;
   size_t row         = std::distance(fSimpleGeoY.begin(), closestYiter)+1; // 1,2,3...
 
-  return (row-1) * fSimpleGeoZ.size() + column;
+  //
+  // @todo Handle this better
+  //
+
+  // If the distance is greater than some threshold, return -1
+  double diffZ = testZ - *closestZiter;
+  double diffY = testY - *closestYiter;
+  if (std::sqrt(diffZ*diffZ+diffY*diffY) > 2*fPixelSpacing) return -1;
+
+  return ((row-1) * fSimpleGeoZ.size() + column) - 1; // 0,1,2...
 }
 
 //--------------------------------------------------------------------

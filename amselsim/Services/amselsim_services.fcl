@@ -32,8 +32,10 @@ amselsim_singlep: @local::standard_singlep
 amselsim_largeant: @local::amselsim_largeant
 
 # We don't want to do any propagation yet, and keep all scintillation
-amselsim_simulation_services.LArG4Parameters.NoElectronPropagation: true
+amselsim_simulation_services.LArG4Parameters.NoElectronPropagation: false
+amselsim_simulation_services.LArG4Parameters.OffPlaneMargin: 0
 amselsim_simulation_services.LArG4Parameters.NoPhotonPropagation: true
 amselsim_simulation_services.LArPropertiesService.ScintPreScale: 1.0
+
 
 END_PROLOG

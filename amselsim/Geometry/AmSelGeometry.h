@@ -102,15 +102,11 @@ class AmSelGeometry : public geo::DetectorGeometry
     int         NPixels()          const { return fNPixels;             }
     int         NReadoutNodes()    const { return NPixels();            }
 
-    const double* PlaneLocation(size_t const& p) const { return {0.0, 0.0, 0.0}; }
+    const std::vector<double> PlaneLocation(size_t const& p) const { return std::vector<double>(3, 0); }
 
-    enum {
-      kNegX = -1,
-      kPosX = 1
-    }
     int           DriftDirection() const { return -1; }
-    int           NPlanes() const { return 1; };
-    double        PlanePitch(size_t const& p1=0, size_t& p2=1) const { return 0.; };
+    size_t        Nplanes() const { return 1; };
+    double        PlanePitch(size_t const& p1=0, size_t const& p2=1) const { return 0.; };
 
     double      TotalMass(std::string const& vol) const 
       { TGeoVolume *gvol = gGeoManager->FindVolumeFast(vol.c_str());
@@ -145,6 +141,13 @@ class AmSelGeometry : public geo::DetectorGeometry
    
     int NearestReadoutNodeID(TVector3 const& point) const
       { return NearestPixelID(point); }
+
+    int NearestChannel(double* xyz, 
+                       size_t const& p, 
+                       size_t const& tpc,
+                       size_t const& cryo) const 
+      { return NearestPixelID(TVector3(xyz[0], xyz[1], xyz[2])); };
+
  
     /// Name of active volume
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }

@@ -759,6 +759,7 @@ namespace amselg4 {
                                             << "' is not a LArVoxelReadout object\n";
           }
 
+
           LArVoxelReadout::ChannelMap_t &channels = larVoxelReadout->GetSimChannelMap(c, t);
           if (!channels.empty())
           {
