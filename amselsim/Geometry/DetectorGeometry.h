@@ -44,6 +44,7 @@ namespace geo{
       virtual size_t      NAuxDets() const = 0;
       virtual size_t      NSensitiveVolume() const = 0;
       virtual int         NReadoutNodes() const = 0;
+      virtual size_t      Nchannels() const = 0;
       virtual int         NearestReadoutNodeID(TVector3 const& point) const = 0;
       virtual int         NearestChannel(double* xyz, 
                                          size_t const& p, 

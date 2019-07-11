@@ -101,6 +101,7 @@ class AmSelGeometry : public geo::DetectorGeometry
     float       PixelSpacing()     const { return fPixelSpacing;        }
     int         NPixels()          const { return fNPixels;             }
     int         NReadoutNodes()    const { return NPixels();            }
+    size_t      Nchannels()        const { return NPixels();            }
 
     const std::vector<double> PlaneLocation(size_t const& p) const { return std::vector<double>(3, 0); }
 

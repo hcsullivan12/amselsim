@@ -32,7 +32,6 @@ extern "C" {
 #include "lardata/DetectorInfoServices/LArPropertiesService.h"
 #include "lardata/DetectorInfoServices/DetectorClocksService.h"
 #include "lardata/DetectorInfoServices/DetectorClocksServiceStandard.h" // special (see below)
-#include "Utilities/SignalShapingServiceT1034.h"
 #include "lardataobj/Simulation/sim.h"
 #include "lardataobj/Simulation/SimChannel.h"
 #include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
@@ -46,6 +45,8 @@ extern "C" {
 #include "TRandom.h"
 #include "CLHEP/Random/RandFlat.h"
 #include "CLHEP/Random/RandGaussQ.h"
+
+#include "amselsim/Geometry/DetectorGeometryService.h"
 
 ///Detector simulation of raw signals on pixels
 namespace detsim {
