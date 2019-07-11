@@ -440,20 +440,17 @@ namespace amselg4 {
   //----------------------------------------------------------------------
   void AmSelG4::beginJob()
   {
-    auto const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
+    auto const* geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
 
     fG4Help = new g4b::G4Helper(fG4MacroPath, fG4PhysListName);
     if(fCheckOverlaps) fG4Help->SetOverlapCheck(true);
     fG4Help->ConstructDetector(geom->GDMLFile());
-
     // Intialize G4 physics and primary generator action
     fG4Help->InitPhysics();
-
     // Get the logical volume store and assign material properties
     amselg4::MaterialPropertyLoader* MPL = new amselg4::MaterialPropertyLoader();
     MPL->GetPropertiesFromServices();
     MPL->UpdateGeometry(G4LogicalVolumeStore::GetInstance());
-
     // Tell the detector about the parallel LAr voxel geometry.
     std::vector<G4VUserParallelWorld*> pworlds;
     // create the ionization and scintillation calculator;
@@ -477,7 +474,6 @@ namespace amselg4 {
     // moved up
     // Intialize G4 physics and primary generator action
        fG4Help->InitPhysics();
-
     // Use the UserActionManager to handle all the Geant4 user hooks.
     g4b::UserActionManager* uaManager = g4b::UserActionManager::Instance();
 
@@ -498,24 +494,20 @@ namespace amselg4 {
     // the Reset for each G4Step within the G4SensitiveVolumes
     //amselg4::IonizationAndScintillationAction *iasa = new amselg4::IonizationAndScintillationAction();
     //uaManager->AddAndAdoptAction(iasa);
-
     // User-action class for accumulating particles and trajectories
     // produced in the detector.
     fparticleListAction = new amselg4::ParticleListAction(lgp->ParticleKineticEnergyCut(),
                                                         lgp->StoreTrajectories(),
                                                         lgp->KeepEMShowerDaughters());
     uaManager->AddAndAdoptAction(fparticleListAction);
-
     // UserActionManager is now configured so continue G4 initialization
     fG4Help->SetUserAction();
-
     // With an enormous detector with lots of rock ala LAr34 (nee LAr20)
     // we need to be smarter about stacking.
     if (fSmartStacking>0){
       G4UserStackingAction* stacking_action = new LArStackingAction(fSmartStacking);
       fG4Help->GetRunManager()->SetUserAction(stacking_action);
     }
-
 
 
   }
@@ -545,6 +537,7 @@ namespace amselg4 {
 
   void AmSelG4::produce(art::Event& evt)
   {
+    std::cout << "\nIN PRODUCE\n";
     MF_LOG_DEBUG("AmSelG4") << "produce()";
 
     // loop over the lists and put the particles and voxels into the event as collections
@@ -568,7 +561,7 @@ namespace amselg4 {
 
     // Fetch the lists of LAr voxels and particles.
     art::ServiceHandle<sim::LArG4Parameters const> lgp;
-    auto const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
+    auto const* geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
 
     // Clear the detected photon table
     OpDetPhotonTable::Instance()->ClearTable(geom->NOpDets());
@@ -601,9 +594,11 @@ namespace amselg4 {
 
         MF_LOG_DEBUG("AmSelG4") << *(mct.get());
 
+    std::cout << "\nHERE1\n";
         // The following tells Geant4 to track the particles in this interaction.
         fG4Help->G4Run(mct);
 
+    std::cout << "\nHERE1\n";
         // receive the particle list
         sim::ParticleList particleList = fparticleListAction->YieldList();
 

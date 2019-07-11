@@ -67,7 +67,7 @@ G4ClassificationOfNewTrack
 LArStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 {
   G4ClassificationOfNewTrack classification = fWaiting;
-  auto const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
+  auto const* geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
   TString volName(InsideTPC(aTrack));
   Double_t buffer = 500; // Keep muNucl neutrals within 5m (for now) of larTPC.
 
@@ -170,7 +170,7 @@ LArStackingAction::ClassifyNewTrack(const G4Track * aTrack)
 
 std::string LArStackingAction::InsideTPC(const G4Track * aTrack)
 {
-  auto const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
+  auto const* geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
   const G4ThreeVector tr4Pos = aTrack->GetPosition();
 
   // G4 returns positions in mm, have to convert to cm for LArSoft coordinate systems

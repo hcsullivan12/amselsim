@@ -87,43 +87,11 @@
     <element Z="28" formula="Ni" name="nickel">
       <atom value="58.6934"/>
     </element>
-    <isotope N="64" Z="30" name="zinc64">
-      <atom type="A" value="63.93"/>
-    </isotope>
-    <element name="zinc">
-      <fraction n="1.0" ref="zinc64"/>
-    </element>
     <material formula="" name="Air">
       <D value="0.001225"/>
       <fraction n="0.781154" ref="nitrogen"/>
       <fraction n="0.209476" ref="oxygen"/>
       <fraction n="0.00934" ref="argon"/>
-    </material>
-    <material formula="" name="ArgonTarget">
-      <D value="0.2297"/>
-      <composite n="1" ref="argon"/>
-    </material>
-    <material formula="" name="Epoxy">
-      <D value="1.25"/>
-      <composite n="6" ref="carbon"/>
-      <composite n="6" ref="hydrogen"/>
-      <composite n="1" ref="oxygen"/>
-    </material>
-    <material formula="" name="Glass">
-      <D value="2.7"/>
-      <fraction n="0.2743" ref="silicon"/>
-      <fraction n="0.0166" ref="boron"/>
-      <fraction n="0.0207" ref="aluminum"/>
-      <fraction n="0.0449" ref="sodium"/>
-      <fraction n="0.0821" ref="potassium"/>
-      <fraction n="0.0882" ref="zinc"/>
-      <fraction n="0.0292" ref="titanium"/>
-      <fraction n="0.444" ref="oxygen"/>
-    </material>
-    <material formula="" name="FR4">
-      <D value="1.85"/>
-      <fraction n="0.206" ref="Epoxy"/>
-      <fraction n="0.794" ref="Glass"/>
     </material>
     <material formula="" name="LAr">
       <D value="1.4"/>
@@ -132,10 +100,6 @@
     <material formula="" name="GAr">
       <D value="0.001784"/>
       <composite n="1" ref="argon"/>
-    </material>
-    <material formula="" name="NoGas">
-      <D value="1e-25"/>
-      <fraction n="1.0" ref="argon"/>
     </material>
   </materials>
   <solids>
@@ -149,7 +113,7 @@
   </solids>
   <structure>
     <volume name="volPixelPlane">
-      <materialref ref="FR4"/>
+      <materialref ref="Air"/>
       <solidref ref="PixelPlane"/>
     </volume>
     <volume name="volLArActive">

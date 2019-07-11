@@ -29,7 +29,8 @@ AmSelGeometry::AmSelGeometry()
 //--------------------------------------------------------------------
 AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset,
                              std::set<std::string> const& ignore_params)
- : fNPixels(0),
+ : fDetectorName("none"),
+   fNPixels(0),
    fPixelPlane(0),
    fUseSimpleGeometry(false)
 {
@@ -61,9 +62,13 @@ AmSelGeometry::ValidateConfiguration(
 //--------------------------------------------------------------------
 void AmSelGeometry::Configure(Configuration_t const& config) 
 {
+  fDetectorName      = config.DetectorName();
   fGDMLPath          = config.GDML();
   fUseSimpleGeometry = config.UseSimpleGeometry(); 
   fPixelSpacing      = config.PixelSpacing();
+
+  std::transform(fDetectorName.begin(), fDetectorName.end(),
+      fDetectorName.begin(), ::tolower);
 }
 
 //--------------------------------------------------------------------

@@ -31,7 +31,7 @@ namespace amselgeo
   using ULong8_t = unsigned long long;
 
 /// Configuration parameter documentation goes here
-class AmSelGeometry : public DetectorGeometry
+class AmSelGeometry : public geo::DetectorGeometry
 {
   public:
 
@@ -40,6 +40,12 @@ class AmSelGeometry : public DetectorGeometry
     {
       using Name = fhicl::Name;
       using Comment = fhicl::Comment;
+
+      fhicl::Atom<std::string> DetectorName
+      {
+        Name("Name"),
+        Comment("Name of detector")
+      };
 
       fhicl::Atom<std::string> GDML         
       {
@@ -80,7 +86,9 @@ class AmSelGeometry : public DetectorGeometry
     void Configure(Configuration_t const& config);        
 
     std::string GDMLFile()         const { return fGDMLPath;            }
+    std::string ROOTFile()         const { return GDMLFile();           }
     std::string OpDetGeoName()     const { return "opDetector";         }
+    std::string DetectorName()     const { return fDetectorName;        }
     size_t      NOpDets()          const { return 0;                    }
     size_t      Ncryostats()       const { return 1;                    }
     size_t      NTPC()             const { return 1;                    }
@@ -93,6 +101,15 @@ class AmSelGeometry : public DetectorGeometry
     float       PixelSpacing()     const { return fPixelSpacing;        }
     int         NPixels()          const { return fNPixels;             }
     int         NReadoutNodes()    const { return NPixels();            }
+
+    double      TotalMass(std::string const& vol) const 
+      { TGeoVolume *gvol = gGeoManager->FindVolumeFast(vol.c_str());
+        if (gvol) return gvol->Weight();
+        throw cet::exception("DetectorGeometry") << "could not find specified volume '"
+                                                 << vol
+                                                 << " 'to determine total mass\n";
+      }
+         
 
     /**
      * @brief Find pixel ID from simplified geometry.
@@ -164,6 +181,7 @@ class AmSelGeometry : public DetectorGeometry
     std::vector<float>       fSimpleGeoY;        ///< Ordered container of rows for simplified geometry
     std::string              fGDMLPath;          ///< Full path to gdml file
     std::string              fLArTPCVolName;     ///< 
+    std::string              fDetectorName;      ///<
     double                   fDetHalfY;          ///< Y half length of readout plane
     double                   fDriftLength;       ///< Drift length
     double                   fDetLength;         ///< Length of active volume in beam direction

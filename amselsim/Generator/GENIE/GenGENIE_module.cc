@@ -43,11 +43,13 @@
 #include "nusimdata/SimulationBase/MCFlux.h"
 #include "nusimdata/SimulationBase/GTruth.h"
 #include "lardataobj/Simulation/BeamGateInfo.h"
-#include "larcore/Geometry/Geometry.h"
 #include "larcoreobj/SummaryData/RunData.h"
 #include "larcoreobj/SummaryData/POTSummary.h"
 #include "nugen/EventGeneratorBase/GENIE/GENIEHelper.h"
 #include "lardata/Utilities/AssociationUtil.h"
+
+
+#include "amselsim/Geometry/DetectorGeometryService.h"
 
 ///Event Generation using GENIE, cosmics or single particles
 namespace evgen {
@@ -64,7 +66,7 @@ namespace evgen {
    * GENIEHelper, interface to GENIE provided by nutools, creates a TRandom
    * that GENIE can use. It initializes it with a random seed read from
    * *RandomSeed* configuration parameter. This and all the other parameters
-   * are inherited from the art module (that is, `GENIEGen`) configuration.
+   * are inherited from the art module (that is, `GenGENIE`) configuration.
    * LArSoft meddles with this mechanism to provide support for the standard
    * "Seed" parameter and NuRandomService service.
    *
@@ -82,10 +84,10 @@ namespace evgen {
    * fetched from `NuRandomService` (if available), with the behaviour in
 	* lar::util::FetchRandomSeed().
    */
-  class GENIEGen : public art::EDProducer {
+  class GenGENIE : public art::EDProducer {
   public:
-    explicit GENIEGen(fhicl::ParameterSet const &pset);
-    virtual ~GENIEGen();
+    explicit GenGENIE(fhicl::ParameterSet const &pset);
+    virtual ~GenGENIE();
 
     void produce(art::Event& evt);
     void beginJob();
@@ -150,7 +152,7 @@ namespace evgen {
 namespace evgen{
 
   //____________________________________________________________________________
-  GENIEGen::GENIEGen(fhicl::ParameterSet const& pset)
+  GenGENIE::GenGENIE(fhicl::ParameterSet const& pset)
     : EDProducer{pset}
     , fGENIEHelp(0)
     , fDefinedVtxHistRange (pset.get< bool >("DefinedVtxHistRange"))
@@ -185,7 +187,7 @@ namespace evgen{
 
       fBeamType = ::sim::kUnknown;
 
-    art::ServiceHandle<geo::Geometry const> geo;
+    auto const * geo = lar::providerFrom<geo::DetectorGeometryService>();
 
     signed int temp_seed; // the seed read by GENIEHelper is a signed integer...
     fhicl::ParameterSet GENIEconfig(pset);
@@ -211,7 +213,7 @@ namespace evgen{
   }
 
   //____________________________________________________________________________
-  GENIEGen::~GENIEGen()
+  GenGENIE::~GenGENIE()
   {
     if(fGENIEHelp) delete fGENIEHelp;
     fStopwatch.Stop();
@@ -219,7 +221,7 @@ namespace evgen{
   }
 
   //____________________________________________________________________________
-  void GENIEGen::beginJob(){
+  void GenGENIE::beginJob(){
     fGENIEHelp->Initialize();
 
     fPrevTotPOT = 0.;
@@ -266,7 +268,8 @@ namespace evgen{
     fDeltaE = tfs->make<TH1F>("fDeltaE", ";#Delta E_{#nu} (GeV);", 200, -1., 1.);
     fECons  = tfs->make<TH1F>("fECons", ";#Delta E(#nu,lepton);", 500, -5., 5.);
 
-    art::ServiceHandle<geo::Geometry const> geo;
+    auto const * geo = lar::providerFrom<geo::DetectorGeometryService>();
+
     double x = 2.1*geo->DetHalfWidth();
     double y = 2.1*geo->DetHalfHeight();
     double z = 2.*geo->DetLength();
@@ -298,14 +301,14 @@ namespace evgen{
   }
 
   //____________________________________________________________________________
-  void GENIEGen::beginRun(art::Run& run)
+  void GenGENIE::beginRun(art::Run& run)
   {
-    art::ServiceHandle<geo::Geometry const> geo;
+    auto const * geo = lar::providerFrom<geo::DetectorGeometryService>();
     run.put(std::make_unique<sumdata::RunData>(geo->DetectorName()));
   }
 
   //____________________________________________________________________________
-  void GENIEGen::beginSubRun(art::SubRun& sr)
+  void GenGENIE::beginSubRun(art::SubRun& sr)
   {
 
     fPrevTotPOT = fGENIEHelp->TotalExposure();
@@ -315,7 +318,7 @@ namespace evgen{
   }
 
   //____________________________________________________________________________
-  void GENIEGen::endSubRun(art::SubRun& sr)
+  void GenGENIE::endSubRun(art::SubRun& sr)
   {
 
     auto p = std::make_unique<sumdata::POTSummary>();
@@ -329,7 +332,7 @@ namespace evgen{
   }
 
   //____________________________________________________________________________
-  void GENIEGen::produce(art::Event& evt)
+  void GenGENIE::produce(art::Event& evt)
   {
     std::unique_ptr< std::vector<simb::MCTruth> > truthcol  (new std::vector<simb::MCTruth>);
     std::unique_ptr< std::vector<simb::MCFlux>  > fluxcol   (new std::vector<simb::MCFlux >);
@@ -382,7 +385,7 @@ namespace evgen{
 
       // check to see if we are to pass empty spills
       if(truthcol->size() < 1 && fPassEmptySpills){
-	MF_LOG_DEBUG("GENIEGen") << "no events made for this spill but "
+	MF_LOG_DEBUG("GenGENIE") << "no events made for this spill but "
 			      << "passing it on and ending the event anyway";
 	break;
       }
@@ -407,7 +410,7 @@ namespace evgen{
   }
 
   //......................................................................
-  std::string GENIEGen::ParticleStatus(int StatusCode)
+  std::string GenGENIE::ParticleStatus(int StatusCode)
   {
     int code = StatusCode;
     std::string ParticleStatusName;
@@ -454,7 +457,7 @@ namespace evgen{
   }
 
   //......................................................................
-  std::string GENIEGen::ReactionChannel(int ccnc,int mode)
+  std::string GenGENIE::ReactionChannel(int ccnc,int mode)
   {
     std::string ReactionChannelName=" ";
 
@@ -478,7 +481,7 @@ namespace evgen{
   }
 
   //......................................................................
-  void GENIEGen::FillHistograms(simb::MCTruth mc)
+  void GenGENIE::FillHistograms(simb::MCTruth mc)
   {
     // Decide which histograms to put the spectrum in
     int id = -1;
@@ -594,6 +597,6 @@ namespace evgen{
 
 namespace evgen{
 
-  DEFINE_ART_MODULE(GENIEGen)
+  DEFINE_ART_MODULE(GenGENIE)
 
 }

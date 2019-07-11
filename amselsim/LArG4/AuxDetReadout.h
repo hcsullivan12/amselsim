@@ -75,7 +75,7 @@ namespace amselg4 {
     sim::AuxDetSimChannel const GetAuxDetSimChannel() const { return fAuxDetSimChannel; };
 
   private:
-    art::ServiceHandle<amselgeo::DetectorGeometryService const> fGeo;
+    art::ServiceHandle<geo::DetectorGeometryService const> fGeo;
     uint32_t                          fAuxDet;           ///< which AuxDet this AuxDetReadout corresponds to
     uint32_t                          fAuxDetSensitive;  ///< which sensitive volume of the AuxDet this AuxDetReadout corresponds to
     sim::AuxDetSimChannel             fAuxDetSimChannel; ///< Contains the sim::AuxDetSimChannel for this AuxDet

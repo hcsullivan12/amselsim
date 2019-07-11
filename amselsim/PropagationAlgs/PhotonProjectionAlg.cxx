@@ -54,8 +54,8 @@ void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
   auto stepPoints = amselg4::IonizationAndScintillation::Instance()->StepPoints();
   auto stepScint  = amselg4::IonizationAndScintillation::Instance()->StepScint();
 
-//  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<amselgeo::DetectorGeometryService>()->provider();
-  auto const * geom = lar::providerFrom<amselgeo::DetectorGeometryService>();
+//  amselgeo::AmSelGeometry const* geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
+  auto const * geom = lar::providerFrom<geo::DetectorGeometryService>();
   double detHalfHeight = geom->DetHalfHeight();
   double driftLength   = geom->DetDriftLength();
   double detLength     = geom->DetLength();

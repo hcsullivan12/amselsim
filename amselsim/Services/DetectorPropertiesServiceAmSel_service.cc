@@ -35,7 +35,7 @@ namespace ldp{
     
     fProp = std::make_unique<ldp::DetectorPropertiesAmSel>(pset,
       lar::extractProviders<
-      amselgeo::DetectorGeometryService, 
+      geo::DetectorGeometryService, 
       detinfo::LArPropertiesService,
       detinfo::DetectorClocksService
       >(),

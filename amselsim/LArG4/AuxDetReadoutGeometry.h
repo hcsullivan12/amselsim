@@ -57,7 +57,7 @@ namespace amselg4 {
 				    unsigned int depth,
 				    G4Transform3D DepthToWorld);
 
-    art::ServiceHandle<amselgeo::DetectorGeometryService const> fGeo;
+    art::ServiceHandle<geo::DetectorGeometryService const> fGeo;
     uint32_t                          fNumSensitiveVol; ///< number of sensitive volumes
 
   };

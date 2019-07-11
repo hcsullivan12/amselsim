@@ -22,5 +22,5 @@ void AmSelGeometryService::reconfigure(fhicl::ParameterSet const& pset)
 
 }
 }
-DEFINE_ART_SERVICE_INTERFACE_IMPL(amselgeo::AmSelGeometryService, amselgeo::DetectorGeometryService)
+DEFINE_ART_SERVICE_INTERFACE_IMPL(amselgeo::AmSelGeometryService, geo::DetectorGeometryService)
 

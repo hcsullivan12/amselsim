@@ -6,18 +6,19 @@
 //
 ////////////////////////////////////////////////////////////////////////
 
-#ifndef AMSELGEO_DETECTORGEOMETRY_H
-#define AMSELGEO_DETECTORGEOMETRY_H
+#ifndef GEO_DETECTORGEOMETRY_H
+#define GEO_DETECTORGEOMETRY_H
 
 #include "fhiclcpp/ParameterSet.h"
 
 #include "TVector3.h"
+#include "TGeoManager.h"
 
 #include <stdexcept> // std::runtime_error()
 
 
 ///General LArSoft Utilities
-namespace amselgeo{
+namespace geo{
 
   class DetectorGeometry {
     public:
@@ -35,7 +36,9 @@ namespace amselgeo{
       virtual std::string GetLArTPCVolumeName() const = 0;
       virtual std::string VolumeName(TVector3 const& point) const = 0;
       virtual std::string GDMLFile() const = 0;
+      virtual std::string ROOTFile() const = 0;
       virtual std::string OpDetGeoName() const = 0;
+      virtual std::string DetectorName() const = 0;
       virtual size_t      Ncryostats() const = 0;
       virtual size_t      NTPC() const = 0;
       virtual size_t      NOpDets() const = 0;
@@ -43,6 +46,8 @@ namespace amselgeo{
       virtual size_t      NSensitiveVolume() const = 0;
       virtual int         NReadoutNodes() const = 0;
       virtual int         NearestReadoutNodeID(TVector3 const& point) const = 0;
+      virtual double      TotalMass(std::string const& vol) const = 0;
+      TGeoManager*        ROOTGeoManager() const { return gGeoManager; } 
 
     protected:
       DetectorGeometry() = default;
@@ -50,4 +55,4 @@ namespace amselgeo{
     }; // class DetectorGeometry
 } //namespace detinfo
 
-#endif // AMSELGEO_DETECTORGEOMETRY_H
+#endif // GEO_DETECTORGEOMETRY_H

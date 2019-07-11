@@ -34,7 +34,7 @@ namespace ldp{
     public:
       /// List of service providers we depend on
       using providers_type = lar::ProviderPack<
-        amselgeo::DetectorGeometry,
+        geo::DetectorGeometry,
         detinfo::LArProperties,
         detinfo::DetectorClocks
         >;
@@ -117,7 +117,7 @@ namespace ldp{
  
       DetectorPropertiesAmSel();
       DetectorPropertiesAmSel(fhicl::ParameterSet const& pset, 
-			 const amselgeo::DetectorGeometry* geo,
+			 const geo::DetectorGeometry* geo,
 			 const detinfo::LArProperties* lp,
 			 const detinfo::DetectorClocks* c,
 			 std::set<std::string> ignore_params = {}
@@ -184,7 +184,7 @@ namespace ldp{
        */
       void Setup(providers_type providers);
         
-      void SetGeometry(const amselgeo::DetectorGeometry* g) { fGeo = g; }
+      void SetGeometry(const geo::DetectorGeometry* g) { fGeo = g; }
       void SetLArProperties(const detinfo::LArProperties* lp) { fLP = lp; }
       void SetDetectorClocks(const detinfo::DetectorClocks* clks) { fClocks = clks; }
 
@@ -298,7 +298,7 @@ namespace ldp{
       // in principle could be replaced by a single providerpacl_type.
       const detinfo::LArProperties* fLP;
       const detinfo::DetectorClocks* fClocks;
-      const amselgeo::DetectorGeometry* fGeo;
+      const geo::DetectorGeometry* fGeo;
 
       bool  fGetElectronlifetimeFromDB;
       std::string fElectronlifetimeTag;

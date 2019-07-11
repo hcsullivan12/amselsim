@@ -17,7 +17,7 @@
 namespace amselgeo 
 {
 
-class AmSelGeometryService : public DetectorGeometryService
+class AmSelGeometryService : public geo::DetectorGeometryService
 {
   public:
     using provider_type = AmSelGeometry; ///< type of the service provider
@@ -39,6 +39,6 @@ class AmSelGeometryService : public DetectorGeometryService
 }; // class AmSelGeometryService
 
 }
-DECLARE_ART_SERVICE_INTERFACE_IMPL(amselgeo::AmSelGeometryService, amselgeo::DetectorGeometryService, LEGACY)
+DECLARE_ART_SERVICE_INTERFACE_IMPL(amselgeo::AmSelGeometryService, geo::DetectorGeometryService, LEGACY)
 
 #endif
