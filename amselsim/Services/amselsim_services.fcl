@@ -23,7 +23,7 @@ amselsim_simulation_services:
  LArPropertiesService:         @local::standard_properties
  DetectorClocksService:        @local::standard_detectorclocks
  #BackTrackerService:           @local::standard_backtrackerservice
- ParticleInventoryService:     @local::standard_particleinventoryservice
+ #ParticleInventoryService:     @local::standard_particleinventoryservice
  NuRandomService:              @local::random_NuRandomService
  SpaceCharge:                  @local::standard_spacecharge
 }

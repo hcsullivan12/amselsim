@@ -297,7 +297,7 @@ namespace evgen{
     	fVertexXZ = tfs->make<TH2F>("fVertexXZ", ";z (cm);x (cm)", zdiv, fVtxPosHistRange[4], fVtxPosHistRange[5], xdiv,     fVtxPosHistRange[0], fVtxPosHistRange[1]);
     	fVertexYZ = tfs->make<TH2F>("fVertexYZ", ";z (cm);y (cm)", zdiv, fVtxPosHistRange[4], fVtxPosHistRange[5], ydiv,     fVtxPosHistRange[2], fVtxPosHistRange[3]);
     }
-
+  std::cout << "\n\n\nsadasdfasdfasdfasd\n\n";
   }
 
   //____________________________________________________________________________
@@ -334,6 +334,7 @@ namespace evgen{
   //____________________________________________________________________________
   void GenGENIE::produce(art::Event& evt)
   {
+    std::cout << "\n\nHERER5\n\n";
     std::unique_ptr< std::vector<simb::MCTruth> > truthcol  (new std::vector<simb::MCTruth>);
     std::unique_ptr< std::vector<simb::MCFlux>  > fluxcol   (new std::vector<simb::MCFlux >);
     std::unique_ptr< std::vector<simb::GTruth>  > gtruthcol (new std::vector<simb::GTruth >);
