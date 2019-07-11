@@ -102,6 +102,16 @@ class AmSelGeometry : public geo::DetectorGeometry
     int         NPixels()          const { return fNPixels;             }
     int         NReadoutNodes()    const { return NPixels();            }
 
+    const double* PlaneLocation(size_t const& p) const { return {0.0, 0.0, 0.0}; }
+
+    enum {
+      kNegX = -1,
+      kPosX = 1
+    }
+    int           DriftDirection() const { return -1; }
+    int           NPlanes() const { return 1; };
+    double        PlanePitch(size_t const& p1=0, size_t& p2=1) const { return 0.; };
+
     double      TotalMass(std::string const& vol) const 
       { TGeoVolume *gvol = gGeoManager->FindVolumeFast(vol.c_str());
         if (gvol) return gvol->Weight();

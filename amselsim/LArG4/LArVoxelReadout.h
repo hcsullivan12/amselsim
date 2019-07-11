@@ -53,7 +53,6 @@
 #include "amselsim/Geometry/AmSelGeometryService.h"
 
 #include "lardataobj/Simulation/SimChannel.h"
-#include "larcorealg/Geometry/TPCGeo.h"
 #include "larsim/Simulation/LArG4Parameters.h"
 #include "amselsim/LArG4/IonizationAndScintillation.h"
 #include "lardata/DetectorInfoServices/LArPropertiesService.h"

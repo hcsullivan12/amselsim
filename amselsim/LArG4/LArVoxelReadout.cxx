@@ -370,19 +370,20 @@ namespace amselg4 {
 
     // Already know which TPC we're in because we have been told
 
- /*   try{
-      const geo::TPCGeo &tpcg = fGeoHandle->provider()->TPC(tpc, cryostat);
+    try{
+      // @todo add TPC structures
+      //const geo::TPCGeo &tpcg = fGeoHandle->provider()->TPC(tpc, cryostat);
 
       // X drift distance - the drift direction can be either in
       // the positive or negative direction, so use std::abs
 
       /// \todo think about effects of drift between planes
-      double XDrift = std::abs(stepMidPoint.x()/CLHEP::cm - tpcg.PlaneLocation(0)[0]);
-      //std::cout<<tpcg.DriftDirection()<<std::endl;
-      if (tpcg.DriftDirection() == geo::kNegX)
-	XDrift = stepMidPoint.x()/CLHEP::cm - tpcg.PlaneLocation(0)[0];
-      else if (tpcg.DriftDirection() == geo::kPosX)
-	XDrift = tpcg.PlaneLocation(0)[0] - stepMidPoint.x()/CLHEP::cm;
+      double XDrift = std::abs(stepMidPoint.x()/CLHEP::cm - fGeoHandle->provider()->PlaneLocation(0)[0]);
+
+      if (fGeoHandle->provider()->DriftDirection() == geo::kNegX)
+	XDrift = stepMidPoint.x()/CLHEP::cm - fGeoHandle->provider()->PlaneLocation(0)[0];
+      else if (fGeoHandle->provider()->DriftDirection() == geo::kPosX)
+	XDrift = fGeoHandle->provider()->PlaneLocation(0)[0] - stepMidPoint.x()/CLHEP::cm;
 
       if(XDrift < 0.) return;
 
@@ -406,9 +407,9 @@ namespace amselg4 {
       if (XDrift < 0.) XDrift = 0.;
 
       TDrift = XDrift * RecipDriftVel[0];
-      if (tpcg.Nplanes() == 2){// special case for ArgoNeuT (plane 0 is the second wire plane)
-        TDrift = ((XDrift - tpcg.PlanePitch(0,1)) * RecipDriftVel[0]
-                  + tpcg.PlanePitch(0,1) * RecipDriftVel[1]);
+      if (fGeoHandle->provider()->Nplanes() == 2){// special case for ArgoNeuT (plane 0 is the second wire plane)
+        TDrift = ((XDrift - fGeoHandle->provider()->PlanePitch(0,1)) * RecipDriftVel[0]
+                  + fGeoHandle->provider()->PlanePitch(0,1) * RecipDriftVel[1]);
       }
 
       const double lifetimecorrection = TMath::Exp(TDrift / LifetimeCorr_const);
@@ -479,14 +480,16 @@ namespace amselg4 {
       }
 
       // make a collection of electrons for each plane
-      for(size_t p = 0; p < tpcg.Nplanes(); ++p){
+      for(size_t p = 0; p < fGeoHandle->provider()->Nplanes(); ++p){
 
-        geo::PlaneGeo const& plane = tpcg.Plane(p);
+        // @todo make plane structure
+        //geo::PlaneGeo const& plane = tpcg.Plane(p);
 
-        double Plane0Pitch = tpcg.Plane0Pitch(p);
-
+        //double Plane0Pitch = fGeoHandle->provider()->Plane0Pitch(p);
+        double Plane0Pitch = 0;
+        
         // "-" sign is because Plane0Pitch output is positive. Andrzej
-        xyz1[0] = tpcg.PlaneLocation(0)[0] - Plane0Pitch;
+        xyz1[0] = fGeoHandle->provider()->PlaneLocation(0)[0] - Plane0Pitch;
 
         // Drift nClus electron clusters to the induction plane
         for(int k = 0; k < nClus; ++k){
@@ -495,7 +498,7 @@ namespace amselg4 {
           // Take into account different Efields between planes
           // Also take into account special case for ArgoNeuT where Nplanes = 2.
           for (size_t ip = 0; ip<p; ++ip){
-            TDiff += tpcg.PlanePitch(ip,ip+1) * RecipDriftVel[tpcg.Nplanes()==3?ip+1:ip+2];
+            TDiff += fGeoHandle->provider()->PlanePitch(ip,ip+1) * RecipDriftVel[fGeoHandle->provider()->Nplanes()==3?ip+1:ip+2];
           }
           xyz1[1] = YDiff[k];
           xyz1[2] = ZDiff[k];
@@ -572,7 +575,7 @@ namespace amselg4 {
     catch(cet::exception &e){
       MF_LOG_DEBUG("LArVoxelReadout") << "step cannot be found in a TPC\n"
                                         << e;
-    }*/
+    }
 
     return;
   }
