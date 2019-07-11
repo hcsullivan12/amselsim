@@ -343,8 +343,11 @@ namespace evgen{
     std::unique_ptr< std::vector<sim::BeamGateInfo> > gateCollection(new std::vector<sim::BeamGateInfo>);
 
     while(truthcol->size() < 1){
+
+    std::cout << "\n\nHERER6\n\n";
       while(!fGENIEHelp->Stop()){
 
+    std::cout << "\n\nHERER7\n\n";
 	simb::MCTruth truth;
 	simb::MCFlux  flux;
 	simb::GTruth  gTruth;
@@ -355,6 +358,7 @@ namespace evgen{
 	// would never see anyway.
 	if(fGENIEHelp->Sample(truth, flux, gTruth)){
 
+    std::cout << "\n\nHERER8\n\n";
 	  truthcol ->push_back(truth);
 	  fluxcol  ->push_back(flux);
 	  gtruthcol->push_back(gTruth);
@@ -380,8 +384,10 @@ namespace evgen{
 	    sim::dump::DumpGTruth(log, gTruth);
 	  } // if
 
+    std::cout << "\n\nHERER9\n\n";
 	}// end if genie was able to make an event
 
+    std::cout << "\n\nHERER10\n\n";
       }// end event generation loop
 
       // check to see if we are to pass empty spills
@@ -407,6 +413,7 @@ namespace evgen{
     evt.put(std::move(tgtassn));
     evt.put(std::move(gateCollection));
 
+    std::cout << "\n\nHERER10\n\n";
     return;
   }
 

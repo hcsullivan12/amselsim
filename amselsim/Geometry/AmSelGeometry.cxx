@@ -189,6 +189,9 @@ void AmSelGeometry::LoadSimpleGeometry()
 
   for (auto& z : fSimpleGeoZ) z+=transl[2];
   for (auto& y : fSimpleGeoY) y+=transl[1];
+
+  std::cout << "\n\n sadsaf " << fNodePaths[0] << std::endl;
+  gGeoManager->cd(fNodePaths[0].c_str());
 }
 
 //--------------------------------------------------------------------

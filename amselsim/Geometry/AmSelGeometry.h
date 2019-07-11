@@ -138,6 +138,8 @@ class AmSelGeometry : public geo::DetectorGeometry
  
     /// Name of active volume
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
+
+    TGeoManager* ROOTGeoManager() const { return gGeoManager; }
     
     /**
      * @brief Name of volume that contains point

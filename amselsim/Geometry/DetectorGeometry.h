@@ -47,7 +47,7 @@ namespace geo{
       virtual int         NReadoutNodes() const = 0;
       virtual int         NearestReadoutNodeID(TVector3 const& point) const = 0;
       virtual double      TotalMass(std::string const& vol) const = 0;
-      TGeoManager*        ROOTGeoManager() const { return gGeoManager; } 
+      virtual TGeoManager* ROOTGeoManager() const = 0; 
 
     protected:
       DetectorGeometry() = default;
