@@ -1,14 +1,10 @@
-////////////////////////////////////////////////////////////////////////
-// $Id: SimWireT1034.cxx,v 1.22 2010/04/23 20:30:53 seligman Exp $
-//
-// SimWireT1034 class designed to simulate signal on a wire in the TPC
-//
-// katori@fnal.gov
-//
-// - Revised to use sim::RawDigit instead of rawdata::RawDigit, and to
-// - save the electron clusters associated with each digit.
-// - ported from the MicroBooNE class by A.Szelc
-////////////////////////////////////////////////////////////////////////
+/**
+ * @file SimPixel_module.cc
+ * @brief Class designed to simulate signal on a pixel in the TPC
+ * 
+ * @author H. Sullivan (hsulliva@fnal.gov)
+ */
+
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -16,22 +12,19 @@
 #include <fstream>
 #include <bitset>
 #include <iostream>
-
 extern "C" {
 #include <sys/types.h>
 #include <sys/stat.h>
 }
-
 #include "art/Framework/Core/ModuleMacros.h"
 #include "art/Framework/Core/EDProducer.h"
 #include "art/Framework/Principal/Event.h"
 #include "art/Framework/Principal/Handle.h"
 #include "art/Framework/Services/Registry/ServiceHandle.h"
-#include "art/Framework/Services/Optional/TFileService.h"
-#include "art/Framework/Services/Optional/TFileDirectory.h"
+#include "art_root_io/TFileService.h"
+#include "art_root_io/TFileDirectory.h"
 #include "fhiclcpp/ParameterSet.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
-
 #include "lardata/Utilities/LArFFT.h"
 #include "lardataobj/RawData/RawDigit.h"
 #include "lardataobj/RawData/raw.h"
@@ -40,7 +33,6 @@ extern "C" {
 #include "lardata/DetectorInfoServices/DetectorClocksService.h"
 #include "lardata/DetectorInfoServices/DetectorClocksServiceStandard.h" // special (see below)
 #include "Utilities/SignalShapingServiceT1034.h"
-#include "larcore/Geometry/Geometry.h"
 #include "lardataobj/Simulation/sim.h"
 #include "lardataobj/Simulation/SimChannel.h"
 #include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
@@ -52,35 +44,30 @@ extern "C" {
 #include "TH1D.h"
 #include "TFile.h"
 #include "TRandom.h"
-
 #include "CLHEP/Random/RandFlat.h"
 #include "CLHEP/Random/RandGaussQ.h"
 
-///Detector simulation of raw signals on wires
+///Detector simulation of raw signals on pixels
 namespace detsim {
-
-  // Base class for creation of raw signals on wires. 
-  class SimWireT1034 : public art::EDProducer {
+  // Base class for creation of raw signals on pixels. 
+  class SimPixel : public art::EDProducer {
     
   public:
         
-    explicit SimWireT1034(fhicl::ParameterSet const& pset); 
-    virtual ~SimWireT1034();
+    explicit SimPixel(fhicl::ParameterSet const& pset); 
+    virtual ~SimPixel();
     
     // read/write access to event
     void produce (art::Event& evt);
     void beginJob();
     void endJob();
     void reconfigure(fhicl::ParameterSet const& p);
-
   private:
-
     void GenNoiseInTime(std::vector<float> &noise);
     void GenNoiseInFreq(std::vector<float> &noise);
-
+    CLHEP::HepRandomEngine& fEngine; ///< reference to art-managed random-number engine
     std::string            fDriftEModuleLabel;///< module making the ionization electrons
     raw::Compress_t        fCompression;      ///< compression type to use
-
     double                 fNoiseFact;        ///< noise scale factor (ADC RMS for gaussian noise)
     double                 fNoiseWidth;       ///< exponential noise width (kHz) 
     double                 fNoiseRand;        ///< fraction of random "wiggle" in noise in freq. spectrum
@@ -98,7 +85,6 @@ namespace detsim {
     std::string fNoiseFileFname; 
     std::string fNoiseHistoName; 
     TH1D*             fNoiseHist;             ///< distribution of noise counts
-
     std::string fTrigModName;                 ///< Trigger data product producer name
     //define max ADC value - if one wishes this can
     //be made a fcl parameter but not likely to ever change
@@ -106,193 +92,160 @@ namespace detsim {
     
     ::detinfo::ElecClock fClock; ///< TPC electronics clock
     
-  }; // class SimWireT1034
+  }; // class SimPixel
   
-  DEFINE_ART_MODULE(SimWireT1034)
+  DEFINE_ART_MODULE(SimPixel)
 
   //-------------------------------------------------
-  SimWireT1034::SimWireT1034(fhicl::ParameterSet const& pset)
+  SimPixel::SimPixel(fhicl::ParameterSet const& pset)
+  : EDProducer(pset)
+    // get the random number seed, use a random default if not specified
+    // in the configuration file.
+    , fEngine{createEngine(pset.get< unsigned int >("Seed", sim::GetRandomNumberSeed()))}
   {
     this->reconfigure(pset);
-
     produces< std::vector<raw::RawDigit>   >();
-
     fCompression = raw::kNone;
     TString compression(pset.get< std::string >("CompressionType"));
     if(compression.Contains("Huffman",TString::kIgnoreCase)) fCompression = raw::kHuffman;    
-
-    // get the random number seed, use a random default if not specified    
-    // in the configuration file.  
-    unsigned int seed = pset.get< unsigned int >("Seed", sim::GetRandomNumberSeed());
-
-    createEngine(seed);
   }
 
   //-------------------------------------------------
-  SimWireT1034::~SimWireT1034()
+  SimPixel::~SimPixel()
   {
     delete fNoiseHist;
   }
 
   //-------------------------------------------------
-  void SimWireT1034::reconfigure(fhicl::ParameterSet const& p) 
+  void SimPixel::reconfigure(fhicl::ParameterSet const &p)
   {
-    fDriftEModuleLabel= p.get< std::string         >("DriftEModuleLabel");
-    fNoiseFact        = p.get< double              >("NoiseFact");
-    fNoiseWidth       = p.get< double              >("NoiseWidth");
-    fNoiseRand        = p.get< double              >("NoiseRand");
-    fLowCutoff        = p.get< double              >("LowCutoff");
-    fGetNoiseFromHisto= p.get< bool                >("GetNoiseFromHisto");
-    fGenNoiseInTime   = p.get< bool                >("GenNoiseInTime");
-    fGenNoise         = p.get< bool                >("GenNoise");
-    fCollectionPed    = p.get< float               >("CollectionPed");
-    fInductionPed     = p.get< float               >("InductionPed");
-    fBaselineRMS      = p.get< float               >("BaselineRMS");
+    fDriftEModuleLabel = p.get<std::string>("DriftEModuleLabel");
+    fNoiseFact = p.get<double>("NoiseFact");
+    fNoiseWidth = p.get<double>("NoiseWidth");
+    fNoiseRand = p.get<double>("NoiseRand");
+    fLowCutoff = p.get<double>("LowCutoff");
+    fGetNoiseFromHisto = p.get<bool>("GetNoiseFromHisto");
+    fGenNoiseInTime = p.get<bool>("GenNoiseInTime");
+    fGenNoise = p.get<bool>("GenNoise");
+    fCollectionPed = p.get<float>("CollectionPed");
+    fInductionPed = p.get<float>("InductionPed");
+    fBaselineRMS = p.get<float>("BaselineRMS");
+    fTrigModName = p.get<std::string>("TrigModName");
 
-    fTrigModName      = p.get< std::string         >("TrigModName");
-    
-    if(fGetNoiseFromHisto)
-      {
-      fNoiseHistoName= p.get< std::string         >("NoiseHistoName"); 
-    
+    if (fGetNoiseFromHisto)
+    {
+      fNoiseHistoName = p.get<std::string>("NoiseHistoName");
+
       cet::search_path sp("FW_SEARCH_PATH");
       sp.find_file(p.get<std::string>("NoiseFileFname"), fNoiseFileFname);
-    
-      TFile * in=new TFile(fNoiseFileFname.c_str(),"READ");
-      TH1D * temp=(TH1D *)in->Get(fNoiseHistoName.c_str());
-      
-      if(temp!=NULL)
+
+      TFile *in = new TFile(fNoiseFileFname.c_str(), "READ");
+      TH1D *temp = (TH1D *)in->Get(fNoiseHistoName.c_str());
+
+      if (temp != NULL)
       {
-	fNoiseHist=new TH1D(fNoiseHistoName.c_str(),fNoiseHistoName.c_str(),temp->GetNbinsX(),0,temp->GetNbinsX());
-	temp->Copy(*fNoiseHist);
+        fNoiseHist = new TH1D(fNoiseHistoName.c_str(), fNoiseHistoName.c_str(), temp->GetNbinsX(), 0, temp->GetNbinsX());
+        temp->Copy(*fNoiseHist);
       }
       else
-	throw cet::exception("SimWireT1034") << " Could not find noise histogram in Root file\n";
+        throw cet::exception("SimPixel") << " Could not find noise histogram in Root file\n";
       in->Close();
-    
-      }
+    }
     //detector properties information
-    auto const* detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
-    fNTimeSamples  = detprop->NumberTimeSamples();
+    auto const *detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
+    fNTimeSamples = detprop->NumberTimeSamples();
 
- 
-    
     return;
   }
 
   //-------------------------------------------------
-  void SimWireT1034::beginJob() 
+  void SimPixel::beginJob() 
   { 
-
     // get access to the TFile service
     art::ServiceHandle<art::TFileService> tfs;
-
     fNoiseDist  = tfs->make<TH1D>("Noise", ";Noise  (ADC);", 1000,   -10., 10.);
-
     art::ServiceHandle<util::LArFFT> fFFT;
     fNTicks = fFFT->FFTSize();
-
    if ( fNTicks%2 != 0 ) 
-      LOG_DEBUG("SimWireT1034") << "Warning: FFTSize not a power of 2. "
-				     << "May cause issues in (de)convolution.\n";
-
+      MF_LOG_DEBUG("SimPixel") << "Warning: FFTSize not a power of 2. "
+                                     << "May cause issues in (de)convolution.\n";
     if ( fNTimeSamples > fNTicks ) 
-      mf::LogError("SimWireT1034") << "Cannot have number of readout samples "
-					<< "greater than FFTSize!";
+      mf::LogError("SimPixel") << "Cannot have number of readout samples "
+                                        << "greater than FFTSize!";
     
     return;
-
   }
 
   //-------------------------------------------------
-  void SimWireT1034::endJob() 
+  void SimPixel::endJob() 
   {}
 
-  void SimWireT1034::produce(art::Event& evt)
+  void SimPixel::produce(art::Event& evt)
   {
     
     // the following code is non-portable;
     // it requires a specific implementation of DetectorClocksService.
     art::ServiceHandle<detinfo::DetectorClocksServiceStandard> tss;
     // In case trigger simulation is run in the same job...
-    tss->preProcessEvent(evt);
-
+    //FIXME: you should never call preProcessEvent
+    tss->preProcessEvent(evt, art::ScheduleContext::invalid());
     auto const* ts = lar::providerFrom<detinfo::DetectorClocksService>();
 
     // get the geometry to be able to figure out signal types and chan -> plane mappings
-    art::ServiceHandle<geo::Geometry> geo;
-    //unsigned int signalSize = fNTicks;
+    auto const* geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
 
+    //unsigned int signalSize = fNTicks;
     std::vector<const sim::SimChannel*> chanHandle;
     evt.getView(fDriftEModuleLabel,chanHandle);
-
-    //Get fIndShape and fColShape from SignalShapingService, on the fly
-    art::ServiceHandle<util::SignalShapingServiceT1034> sss;
-
-    // make a vector of const sim::SimChannel* that has same number
-    // of entries as the number of channels in the detector
-    // and set the entries for the channels that have signal on them
-    // using the chanHandle
     
-    
-    std::vector<const sim::SimChannel*> channels(geo->Nchannels(),nullptr);
+    std::vector<const sim::SimChannel*> channels(geom->Nchannels(),nullptr);
     for(size_t c = 0; c < chanHandle.size(); ++c){
       channels.at(chanHandle.at(c)->Channel()) = chanHandle.at(c);
     }
     
-    const auto NChannels = geo->Nchannels();
-
+    const auto NChannels = geom->Nchannels();
     // vectors for working
     std::vector<short>    adcvec(fNTicks, 0);
     std::vector<double>   chargeWork(fNTicks,0.);
-
    
     
     // make a unique_ptr of sim::SimDigits that allows ownership of the produced
     // digits to be transferred to the art::Event after the put statement below
     std::unique_ptr< std::vector<raw::RawDigit>> digcol(new std::vector<raw::RawDigit>);
     digcol->reserve(NChannels);
-
     unsigned int chan = 0; 
     art::ServiceHandle<util::LArFFT> fFFT;
 
-    //LOOP OVER ALL CHANNELS
+    // Loop over channels
     std::map<int,double>::iterator mapIter;      
-    for(chan = 0; chan < geo->Nchannels(); chan++) {
-
+    for(chan = 0; chan < geom->Nchannels(); chan++) 
+    {
       // get the sim::SimChannel for this channel
       const sim::SimChannel* sc = channels.at(chan);
       std::fill(chargeWork.begin(), chargeWork.end(), 0.);
-	  
-      if( sc ){
-
-	// loop over the tdcs and grab the number of electrons for each
-	for(int t = 0; t < (int)(chargeWork.size()); ++t) {
-
-	  int tdc = ts->TPCTick2TDC(t);
-
-	  
-	  // continue if tdc < 0
-	  if( tdc < 0 ) continue;
-
-	  chargeWork.at(t) = sc->Charge(tdc);
-
-		  
-	  
-	}
-
+          
+      if( sc )
+      {
+        // loop over the tdcs and grab the number of electrons for each
+        for(int t = 0; t < (int)(chargeWork.size()); ++t) 
+        {
+          int tdc = ts->TPCTick2TDC(t);
+          
+          // continue if tdc < 0
+          if( tdc < 0 ) continue;
+          chargeWork.at(t) = sc->Charge(tdc);
+        }
         // Convolve charge with appropriate response function 
-	sss->Convolute(chan,chargeWork);
-
+        //Convolute(chan,chargeWork);
       }
       
-      //Generate Noise:
+      /*//Generate Noise:
       std::vector<float> noisetmp(fNTicks,0.);
       if (fGenNoise){
-	if (fGenNoiseInTime)
-	  GenNoiseInTime(noisetmp);
-	else
-	  GenNoiseInFreq(noisetmp);
+        if (fGenNoiseInTime)
+          GenNoiseInTime(noisetmp);
+        else
+          GenNoiseInFreq(noisetmp);
       }
 
       //Pedestal determination
@@ -303,37 +256,31 @@ namespace detsim {
       else if (sigtype == geo::kCollection)
         ped_mean = fCollectionPed;
       //slight variation on ped on order of RMS of baselien variation
-      art::ServiceHandle<art::RandomNumberGenerator> rng;
-      CLHEP::HepRandomEngine &engine = rng->getEngine();
-      CLHEP::RandGaussQ rGaussPed(engine, 0.0, fBaselineRMS);
-      ped_mean += rGaussPed.fire();
+      CLHEP::RandGaussQ rGaussPed(fEngine, 0.0, fBaselineRMS);
+      ped_mean += rGaussPed.fire();*/
       
-      for(unsigned int i = 0; i < fNTicks; ++i){
- 	float adcval = noisetmp.at(i) + chargeWork.at(i) + ped_mean;
-	
-	
-
-	//Add Noise to NoiseDist Histogram
-	if (i%100==0)
-	  fNoiseDist->Fill(noisetmp.at(i));
-
-	//allow for ADC saturation
-	if ( adcval > adcsaturation )
-	  adcval = adcsaturation;
-	//don't allow for "negative" saturation
-	if ( adcval < 0 )
-	  adcval = 0;
-
-	
-    // as of v04_13_00 of LArSoft, the event display no longer takes the
-    // pedestal value from the RawDigit and uses an interface to a database instead
-    // that doesn't really work for LArIAT, so pre-pedestal subtract the data
-    // and keep the pedestal value for reference in the RawDigit
-    //adcvec.at(i) = (unsigned short)(adcval);
-    adcvec.at(i) = (unsigned short)(adcval - ped_mean);
-
+      for(unsigned int i = 0; i < fNTicks; ++i)
+      {
+         //float adcval = noisetmp.at(i) + chargeWork.at(i) + ped_mean;
+        
+        
+        /*//Add Noise to NoiseDist Histogram
+        if (i%100==0)
+          fNoiseDist->Fill(noisetmp.at(i));
+        //allow for ADC saturation
+        if ( adcval > adcsaturation )
+          adcval = adcsaturation;
+        //don't allow for "negative" saturation
+        if ( adcval < 0 )
+          adcval = 0;*/
+        
+        // as of v04_13_00 of LArSoft, the event display no longer takes the
+        // pedestal value from the RawDigit and uses an interface to a database instead
+        // that doesn't really work for LArIAT, so pre-pedestal subtract the data
+        // and keep the pedestal value for reference in the RawDigit
+        adcvec.at(i) = chargeWork.at(i); //(unsigned short)(adcval - ped_mean);
       }// end loop over signal size
-
+      
       // resize the adcvec to be the correct number of time samples, 
       // just drop the extra samples
       //adcvec.resize(fNTimeSamples);
@@ -346,23 +293,17 @@ namespace detsim {
       
       // add this digit to the collection
       raw::RawDigit rd(chan,fNTicks,adcvec,fCompression);// fNTimeSamples, adcvec, fCompression);
-      rd.SetPedestal(ped_mean);
+      rd.SetPedestal(0);//ped_mean);
       digcol->push_back(rd);
-
     }// end loop over channels      
-
     evt.put(std::move(digcol));
     return;
   }
   
   //-------------------------------------------------                                                                                                 
-  void SimWireT1034::GenNoiseInTime(std::vector<float> &noise)
+  void SimPixel::GenNoiseInTime(std::vector<float> &noise)
   {
-    //ART random number service                                                                                                                       
-    art::ServiceHandle<art::RandomNumberGenerator> rng;
-    CLHEP::HepRandomEngine &engine = rng->getEngine();
-    CLHEP::RandGaussQ rGauss(engine, 0.0, fNoiseFact);
-
+    CLHEP::RandGaussQ rGauss(fEngine, 0.0, fNoiseFact);
     //In this case fNoiseFact is a value in ADC counts
     //It is going to be the Noise RMS
     //loop over all bins in "noise" vector
@@ -373,53 +314,46 @@ namespace detsim {
 
 
   //-------------------------------------------------
-  void SimWireT1034::GenNoiseInFreq(std::vector<float> &noise)
+  void SimPixel::GenNoiseInFreq(std::vector<float> &noise)
   {
-    art::ServiceHandle<art::RandomNumberGenerator> rng;
-    CLHEP::HepRandomEngine &engine = rng->getEngine();
-    CLHEP::RandFlat flat(engine,-1,1);
-
+    CLHEP::RandFlat flat(fEngine,-1,1);
     if(noise.size() != fNTicks)
-      throw cet::exception("SimWireT1034")
-	<< "\033[93m"
-	<< "Frequency noise vector length must match fNTicks (FFT size)"
-	<< " ... " << noise.size() << " != " << fNTicks
-	<< "\033[00m"
-	<< std::endl;
-
+      throw cet::exception("SimPixel")
+        << "\033[93m"
+        << "Frequency noise vector length must match fNTicks (FFT size)"
+        << " ... " << noise.size() << " != " << fNTicks
+        << "\033[00m"
+        << std::endl;
     // noise in frequency space
     std::vector<TComplex> noiseFrequency(fNTicks/2+1, 0.);
-
     double pval = 0.; 
     double lofilter = 0.;
     double phase = 0.;
     double rnd[2] = {0.};
-
     // width of frequencyBin in kHz
     double binWidth = 1.0/(fNTicks*fSampleRate*1.0e-6);
-
     for(size_t i=0; i< fNTicks/2+1; ++i){
       // exponential noise spectrum 
       flat.fireArray(2,rnd,0,1);
       //if not from histo or in time --> then hardcoded freq. spectrum
       if( !fGetNoiseFromHisto )
-	{
-	  pval = fNoiseFact*exp(-(double)i*binWidth/fNoiseWidth);
-	  // low frequency cutoff     
-	  lofilter = 1.0/(1.0+exp(-(i-fLowCutoff/binWidth)/0.5));
-	  // randomize 10%
-	  
-	  pval *= lofilter*((1-fNoiseRand)+2*fNoiseRand*rnd[0]);
-	}
+        {
+          pval = fNoiseFact*exp(-(double)i*binWidth/fNoiseWidth);
+          // low frequency cutoff     
+          lofilter = 1.0/(1.0+exp(-(i-fLowCutoff/binWidth)/0.5));
+          // randomize 10%
+          
+          pval *= lofilter*((1-fNoiseRand)+2*fNoiseRand*rnd[0]);
+        }
       
       
       else
-	{
-	  
-	  pval = fNoiseHist->GetBinContent(i)*((1-fNoiseRand)+2*fNoiseRand*rnd[0])*fNoiseFact; 
-	  //mf::LogInfo("SimWireT1034")  << " pval: " << pval;
-	//  std::cout << " noise " << i << " " << pval << " " << fNoiseHist->GetBinContent(i) << std::endl;
-	}
+        {
+          
+          pval = fNoiseHist->GetBinContent(i)*((1-fNoiseRand)+2*fNoiseRand*rnd[0])*fNoiseFact; 
+          //mf::LogInfo("SimPixel")  << " pval: " << pval;
+        //  std::cout << " noise " << i << " " << pval << " " << fNoiseHist->GetBinContent(i) << std::endl;
+        }
       
       phase = rnd[1]*2.*TMath::Pi();
       TComplex tc(pval*cos(phase),pval*sin(phase));
@@ -427,7 +361,7 @@ namespace detsim {
     }
     
     
-    // mf::LogInfo("SimWireT1034") << "filled noise freq";
+    // mf::LogInfo("SimPixel") << "filled noise freq";
     
     // inverse FFT MCSignal
     art::ServiceHandle<util::LArFFT> fFFT;
@@ -441,7 +375,4 @@ namespace detsim {
     for(unsigned int i = 0; i < noise.size(); ++i) noise.at(i) *= 1.*fNTicks;
     
   }
-  
-  
 }
-  
