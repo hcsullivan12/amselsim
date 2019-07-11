@@ -75,6 +75,21 @@ private:
   int    no_primaries;			///< Number of primary Geant4 particles in the event
   int    geant_list_size;		///< Number of Geant4 particles tracked
   double primary_p;				  ///< Primary particle momentum
+
+  // Neutrino information
+  std::vector<int> nu_pdg;
+  std::vector<int> nu_ndau;
+  std::vector<int> nu_ccnc;
+  std::vector<int> nu_mode;
+  std::vector<int> nu_inttype;
+  std::vector<double> nu_MidPosX;
+  std::vector<double> nu_MidPosY;
+  std::vector<double> nu_MidPosZ;
+  std::vector<double> nu_MidPx;
+  std::vector<double> nu_MidPy;
+  std::vector<double> nu_MidPz;
+
+  // Other particle information
   std::vector<int>    PDG;
   std::vector<double> StartPointx; 
   std::vector<double> StartPointy;
@@ -132,6 +147,7 @@ private:
 
   std::string fTreeName;
   std::string fG4ModuleLabel;
+  std::string fGenieModuleLabel;
   bool        fDoPhotonProjection;
   PhotonProjectionAlg     fProjAlg;
   CLHEP::HepRandomEngine& fEngine;
@@ -156,6 +172,7 @@ void AnaTree::reconfigure(fhicl::ParameterSet const & pset)
 {
   fTreeName           = pset.get< std::string >("TreeName", "anatree");
   fG4ModuleLabel      = pset.get< std::string >("G4ModuleLabel", "largeant");
+  fGenieModuleLabel   = pset.get< std::string >("GenieModuleLabel", "generator");
   fDoPhotonProjection = pset.get< bool >("DoPhotonProjection", true);
   return;
 }
@@ -168,10 +185,16 @@ void AnaTree::analyze(art::Event const & evt)
 
   // Detector properties service 
   auto const* detprop = lar::providerFrom<detinfo::DetectorPropertiesService>();
+
   // MC particle list
   art::Handle< std::vector<simb::MCParticle> > plistHandle;
   evt.getByLabel(fG4ModuleLabel, plistHandle);
   auto plist = *plistHandle;
+
+  // MC truth 
+  art::Handle< std::vector<simb::MCTruth> > tlistHandle;
+  evt.getByLabel(fGenieModuleLabel, tlistHandle);
+  auto tlist = *tlistHandle;
 
   run    = evt.run();
   subrun = evt.subRun();
@@ -215,6 +238,32 @@ void AnaTree::analyze(art::Event const & evt)
   //
   if(!isdata)
   {   
+    // Fill neutrino information
+    if (tlist.size() > 1) throw cet::exception("AnaTree") << "MCTruth list greater than 1\n";
+    for (size_t iT = 0; iT < tlist.size(); iT++)
+    {
+      simb::MCNeutrino nu   = tlist[iT].GetNeutrino();
+      simb::MCParticle mcnu = nu.Nu(); 
+    
+      nu_pdg.push_back(mcnu.PdgCode());
+      nu_ndau.push_back(mcnu.NumberDaughters());
+      nu_ccnc.push_back(nu.CCNC());
+      nu_mode.push_back(nu.Mode());
+      nu_inttype.push_back(nu.InteractionType());
+
+      simb::MCTrajectory truetraj = mcnu.Trajectory();
+      size_t iNuPt(0);
+      for (auto itTraj = truetraj.begin(); itTraj != truetraj.end(); ++itTraj, iNuPt++)
+  	  {
+        nu_MidPosX.push_back(truetraj.X(iNuPt));
+        nu_MidPosY.push_back(truetraj.Y(iNuPt));
+        nu_MidPosZ.push_back(truetraj.Z(iNuPt));
+        nu_MidPx.push_back(truetraj.Px(iNuPt));
+        nu_MidPy.push_back(truetraj.Py(iNuPt));
+        nu_MidPz.push_back(truetraj.Pz(iNuPt));
+  	  }//<--End loop on true trajectory points
+    }//<-- End loop over truth information
+      
     // Setting a string for process type 
     std::string pri("primary");
     std::string hadElastic("hadElastic");
@@ -459,6 +508,17 @@ void AnaTree::beginJob()
   fTree->Branch("nReadoutIncPhotons", &nReadoutIncPhotons, "nReadoutIncPhotons/l");
   fTree->Branch("pixelIDs" ,    &pixelIdVec    );
   fTree->Branch("pixelHits" ,   &pixelCountVec );
+  fTree->Branch("nu_pdg",     &nu_pdg        );
+  fTree->Branch("nu_ndau",    &nu_ndau       );
+  fTree->Branch("nu_ccnc",    &nu_ccnc       );
+  fTree->Branch("nu_mode",    &nu_mode       );
+  fTree->Branch("nu_inttype", &nu_inttype    );
+  fTree->Branch("nu_MidPosX", &nu_MidPosX );
+  fTree->Branch("nu_MidPosY", &nu_MidPosY );
+  fTree->Branch("nu_MidPosZ", &nu_MidPosZ );
+  fTree->Branch("nu_MidPx",   &nu_MidPx   );
+  fTree->Branch("nu_MidPy",   &nu_MidPy   );
+  fTree->Branch("nu_MidPz; ", &nu_MidPz   );
 }
 
 //--------------------------------------------------------------------
@@ -506,6 +566,18 @@ void AnaTree::ResetVars()
   DStartP.clear();
   pixelIdVec.clear();
   pixelCountVec.clear();
+  nu_pdg.clear();
+  nu_ndau.clear();
+  nu_ccnc.clear();
+  nu_mode.clear();
+  nu_inttype.clear();
+  nu_MidPosX.clear();
+  nu_MidPosY.clear();
+  nu_MidPosZ.clear();
+  nu_MidPx.clear();
+  nu_MidPy.clear();
+  nu_MidPz.clear();
+
 
   nPrimScint = 0;        
   nReadoutIncPhotons = 0;

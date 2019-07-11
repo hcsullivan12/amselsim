@@ -297,7 +297,6 @@ namespace evgen{
     	fVertexXZ = tfs->make<TH2F>("fVertexXZ", ";z (cm);x (cm)", zdiv, fVtxPosHistRange[4], fVtxPosHistRange[5], xdiv,     fVtxPosHistRange[0], fVtxPosHistRange[1]);
     	fVertexYZ = tfs->make<TH2F>("fVertexYZ", ";z (cm);y (cm)", zdiv, fVtxPosHistRange[4], fVtxPosHistRange[5], ydiv,     fVtxPosHistRange[2], fVtxPosHistRange[3]);
     }
-  std::cout << "\n\n\nsadasdfasdfasdfasd\n\n";
   }
 
   //____________________________________________________________________________
@@ -334,7 +333,6 @@ namespace evgen{
   //____________________________________________________________________________
   void GenGENIE::produce(art::Event& evt)
   {
-    std::cout << "\n\nHERER5\n\n";
     std::unique_ptr< std::vector<simb::MCTruth> > truthcol  (new std::vector<simb::MCTruth>);
     std::unique_ptr< std::vector<simb::MCFlux>  > fluxcol   (new std::vector<simb::MCFlux >);
     std::unique_ptr< std::vector<simb::GTruth>  > gtruthcol (new std::vector<simb::GTruth >);
@@ -344,10 +342,8 @@ namespace evgen{
 
     while(truthcol->size() < 1){
 
-    std::cout << "\n\nHERER6\n\n";
       while(!fGENIEHelp->Stop()){
 
-    std::cout << "\n\nHERER7\n\n";
 	simb::MCTruth truth;
 	simb::MCFlux  flux;
 	simb::GTruth  gTruth;
@@ -358,7 +354,6 @@ namespace evgen{
 	// would never see anyway.
 	if(fGENIEHelp->Sample(truth, flux, gTruth)){
 
-    std::cout << "\n\nHERER8\n\n";
 	  truthcol ->push_back(truth);
 	  fluxcol  ->push_back(flux);
 	  gtruthcol->push_back(gTruth);
@@ -384,10 +379,8 @@ namespace evgen{
 	    sim::dump::DumpGTruth(log, gTruth);
 	  } // if
 
-    std::cout << "\n\nHERER9\n\n";
 	}// end if genie was able to make an event
 
-    std::cout << "\n\nHERER10\n\n";
       }// end event generation loop
 
       // check to see if we are to pass empty spills
@@ -413,7 +406,6 @@ namespace evgen{
     evt.put(std::move(tgtassn));
     evt.put(std::move(gateCollection));
 
-    std::cout << "\n\nHERER10\n\n";
     return;
   }
 

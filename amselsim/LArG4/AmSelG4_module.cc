@@ -537,7 +537,6 @@ namespace amselg4 {
 
   void AmSelG4::produce(art::Event& evt)
   {
-    std::cout << "\nIN PRODUCE\n";
     MF_LOG_DEBUG("AmSelG4") << "produce()";
 
     // loop over the lists and put the particles and voxels into the event as collections
@@ -594,11 +593,9 @@ namespace amselg4 {
 
         MF_LOG_DEBUG("AmSelG4") << *(mct.get());
 
-    std::cout << "\nHERE1\n";
         // The following tells Geant4 to track the particles in this interaction.
         fG4Help->G4Run(mct);
 
-    std::cout << "\nHERE1\n";
         // receive the particle list
         sim::ParticleList particleList = fparticleListAction->YieldList();
 
