@@ -7,6 +7,8 @@ art_make(LIB_LIBRARIES amselsim_Geometry
                           larevt_Filters
                           lardataobj_Simulation
                           amselsim_Geometry
+                          amselsim_Services
+                          amselsim_Services_AmSelSignalShapingService_service
                           lardataobj_RecoBase
 			  lardataobj_RawData
                           lardata_ArtDataHelper

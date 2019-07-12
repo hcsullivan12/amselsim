@@ -25,6 +25,7 @@
 #include "nurandom/RandomUtils/NuRandomService.h"
 
 #include "amselsim/Geometry/DetectorGeometryService.h"
+#include "amselsim/Services/AmSelSignalShapingService.h"
 
 #include "CLHEP/Random/RandGaussQ.h"
 
@@ -91,8 +92,7 @@ void SimQPix::produce(art::Event& e)
   auto const *detprop = art::ServiceHandle<detinfo::DetectorPropertiesService const>{}->provider();
   auto const *ts      = lar::providerFrom<detinfo::DetectorClocksService>();
   auto const *geom    = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
-//  auto const *sss     = art::ServiceHandle<util::AmSelSignalShapingService>()->provider();
-
+  art::ServiceHandle<util::AmSelSignalShapingService> sss;
   art::ServiceHandle<util::LArFFT> fft;
   auto nTicks = fft->FFTSize();
 
@@ -133,7 +133,7 @@ void SimQPix::produce(art::Event& e)
     }
 
     // Convolve charge with appropriate response function
-    //sss->Convolute(channel, chargeWork);
+    sss->Convolute(chargeWork);
 
     // Generate noise
     //std::vector<float> noisetmp(nTicks,0.);

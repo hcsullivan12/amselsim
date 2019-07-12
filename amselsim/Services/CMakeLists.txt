@@ -1,6 +1,7 @@
 cet_enable_asserts()
 
 cet_make(         LIBRARIES lardata_Utilities
+                            lardata_Utilities_LArFFT_service
                             ${ART_FRAMEWORK_CORE}
                             ${ART_FRAMEWORK_PRINCIPAL}
                             ${ART_FRAMEWORK_SERVICES_REGISTRY}
@@ -32,6 +33,7 @@ simple_plugin( DetectorPropertiesServiceAmSel  "service"
 
 simple_plugin( AmSelSignalShapingService  "service"
                amselsim_Services
+               lardata_Utilities_LArFFT_service
 )
 
 
