@@ -17,6 +17,16 @@
 #include "fhiclcpp/ParameterSet.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
+#include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
+#include "amselsim/Geometry/DetectorGeometryService.h"
+#include "lardataalg/DetectorInfo/DetectorClocks.h"
+#include "lardata/DetectorInfoServices/DetectorClocksService.h"
+
+#include "lardataobj/Simulation/SimChannel.h"
+
+namespace amselsim
+{
+
 class SimQPix;
 
 
@@ -37,83 +47,71 @@ public:
 
   // Selected optional functions.
   void beginJob() override;
-  void beginRun(art::Run const& r) override;
-  void beginSubRun(art::SubRun const& sr) override;
   void endJob() override;
-  void endRun(art::Run const& r) override;
-  void endSubRun(art::SubRun const& sr) override;
-  void respondToCloseInputFile(art::FileBlock const& fb) override;
-  void respondToCloseOutputFiles(art::FileBlock const& fb) override;
-  void respondToOpenInputFile(art::FileBlock const& fb) override;
-  void respondToOpenOutputFiles(art::FileBlock const& fb) override;
+
 
 private:
 
   // Declare member data here.
+  std::string fDriftEModuleLabel = "largeant";
 
 };
 
-
+//--------------------------------------------------------------------
 SimQPix::SimQPix(fhicl::ParameterSet const& p)
-  : EDAnalyzer{p}  // ,
-  // More initializers here.
+  : EDAnalyzer{p} 
 {
-  // Call appropriate consumes<>() for any products to be retrieved by this module.
+
 }
 
-void SimQPix::analyze(art::Event const& e)
+//--------------------------------------------------------------------
+void SimQPix::analyze(art::Event const &e)
 {
-  // Implementation of required member function here.
+   auto const *detprop = art::ServiceHandle<detinfo::DetectorPropertiesService const>{}->provider();
+
+  // In case trigger simulation is run in the same job...
+  //FIXME: you should never call preProcessEvent
+  auto const *ts = lar::providerFrom<detinfo::DetectorClocksService>();
+
+  // get the geometry to be able to figure out signal types and chan -> plane mappings
+  auto const *geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
+
+  //unsigned int signalSize = fNTicks;
+  art::Handle< std::vector<sim::SimChannel> > SimListHandle;
+  std::vector<art::Ptr<sim::SimChannel> > Simlist;
+  if(e.getByLabel("largeant", SimListHandle))
+     { art::fill_ptr_vector(Simlist, SimListHandle); }
+  
+  const auto NChannels = geom->Nchannels();
+
+  // Loop over channels
+  for (int iCh = 0; iCh < (int)Simlist.size(); iCh++)
+  {
+    float totalQ(0);
+    const auto& TDCIDEs = Simlist.at(iCh)->TDCIDEMap(); 
+    for (const auto& TDCinfo : TDCIDEs)
+    {
+      //std::cout << TDCinfo.first << " " << detprop->ConvertTDCToTicks(TDCinfo.first) << std::endl;
+      for (const auto& ide : TDCinfo.second)
+      {
+        totalQ += ide.numElectrons;
+      }
+    }
+  } // end loop over channels
 }
 
+//--------------------------------------------------------------------
 void SimQPix::beginJob()
 {
   // Implementation of optional member function here.
 }
 
-void SimQPix::beginRun(art::Run const& r)
-{
-  // Implementation of optional member function here.
-}
-
-void SimQPix::beginSubRun(art::SubRun const& sr)
-{
-  // Implementation of optional member function here.
-}
-
+//--------------------------------------------------------------------
 void SimQPix::endJob()
 {
   // Implementation of optional member function here.
 }
 
-void SimQPix::endRun(art::Run const& r)
-{
-  // Implementation of optional member function here.
-}
-
-void SimQPix::endSubRun(art::SubRun const& sr)
-{
-  // Implementation of optional member function here.
-}
-
-void SimQPix::respondToCloseInputFile(art::FileBlock const& fb)
-{
-  // Implementation of optional member function here.
-}
-
-void SimQPix::respondToCloseOutputFiles(art::FileBlock const& fb)
-{
-  // Implementation of optional member function here.
-}
-
-void SimQPix::respondToOpenInputFile(art::FileBlock const& fb)
-{
-  // Implementation of optional member function here.
-}
-
-void SimQPix::respondToOpenOutputFiles(art::FileBlock const& fb)
-{
-  // Implementation of optional member function here.
-}
 
 DEFINE_ART_MODULE(SimQPix)
+}

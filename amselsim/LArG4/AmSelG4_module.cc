@@ -771,7 +771,7 @@ namespace amselg4 {
           for (auto ch_pair : channels)
           {
             sim::SimChannel &sc = ch_pair.second;
-
+	    
             // push sc onto scCol but only if we haven't already put something in scCol for this channel.
             // if we have, then merge the ionization deposits.  Skip the check if we only have one TPC
 

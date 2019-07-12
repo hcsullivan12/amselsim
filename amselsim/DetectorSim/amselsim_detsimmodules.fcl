@@ -4,23 +4,8 @@ BEGIN_PROLOG
 
 amselsim_simpixel:
 {
- module_type:        "SimPixel"
- TrigModName:        "triggersim"
- DriftEModuleLabel:  "largeant"
- NoiseFact:          0.135        # Noise Scale to use with histogram
- NoiseWidth:         62.4         # Exponential Noise width (kHz)
- NoiseRand:          0.1          # frac of randomness of noise freq-spec
- LowCutoff:          7.5          # Low frequency filter cutoff (kHz)
- CompressionType:    "none"       # could also be none		
- GenNoise:           true         # gen noise...if false function not called
- GetNoiseFromHisto:  true
- GenNoiseInTime:     false
- CollectionPed:      400          # ADC baseline for coll plane
- InductionPed:       2048         # ADC baseline for ind plane
- BaselineRMS:        0.3          # ADC baseline fluctuation within channel
- NoiseFileFname:     "LArIAT_noise.root"
- NoiseHistoName:     "NoiseFreq"    
-
+ module_type:        "SimQPix"
+ DriftEModuleLabel:  "largeant" 
 }
 
 END_PROLOG
