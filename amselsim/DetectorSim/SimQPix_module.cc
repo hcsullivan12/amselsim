@@ -1,13 +1,11 @@
-////////////////////////////////////////////////////////////////////////
-// Class:       SimQPix
-// Plugin Type: analyzer (art v3_02_06)
-// File:        SimQPix_module.cc
-//
-// Generated at Thu Jul 11 17:08:14 2019 by Hunter Sullivan using cetskelgen
-// from cetlib version v3_07_02.
-////////////////////////////////////////////////////////////////////////
+/**
+ * @file SimQPix_module.cc
+ * @brief Module to simulate signal for QPix electronics
+ * 
+ * @author H. Sullivan (hsulliva@fnal.gov)
+ */
 
-#include "art/Framework/Core/EDAnalyzer.h"
+#include "art/Framework/Core/EDProducer.h"
 #include "art/Framework/Core/ModuleMacros.h"
 #include "art/Framework/Principal/Event.h"
 #include "art/Framework/Principal/Handle.h"
@@ -17,20 +15,28 @@
 #include "fhiclcpp/ParameterSet.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
 
+#include "lardata/Utilities/LArFFT.h"
+#include "lardataobj/RawData/RawDigit.h"
+#include "lardataobj/RawData/raw.h"
 #include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
-#include "amselsim/Geometry/DetectorGeometryService.h"
-#include "lardataalg/DetectorInfo/DetectorClocks.h"
 #include "lardata/DetectorInfoServices/DetectorClocksService.h"
-
+#include "lardata/DetectorInfoServices/DetectorClocksServiceStandard.h"
 #include "lardataobj/Simulation/SimChannel.h"
+#include "nurandom/RandomUtils/NuRandomService.h"
 
-namespace amselsim
+#include "amselsim/Geometry/DetectorGeometryService.h"
+
+#include "CLHEP/Random/RandGaussQ.h"
+
+#include <memory>
+
+namespace qpixsim
 {
 
 class SimQPix;
 
 
-class SimQPix : public art::EDAnalyzer {
+class SimQPix : public art::EDProducer {
 public:
   explicit SimQPix(fhicl::ParameterSet const& p);
   // The compiler-generated destructor is fine for non-base
@@ -43,61 +49,120 @@ public:
   SimQPix& operator=(SimQPix&&) = delete;
 
   // Required functions.
-  void analyze(art::Event const& e) override;
+  void produce(art::Event& e) override;
 
   // Selected optional functions.
   void beginJob() override;
   void endJob() override;
+  void reconfigure(fhicl::ParameterSet const& p);
 
+  void GenNoiseInTime(std::vector<float> &noise);
 
 private:
 
-  // Declare member data here.
-  std::string fDriftEModuleLabel = "largeant";
-
+  CLHEP::HepRandomEngine& fEngine; ///< reference to art-managed random-number engine
+  float                   fNoiseMean;
+  float                   fNoiseSigma;
 };
 
 //--------------------------------------------------------------------
 SimQPix::SimQPix(fhicl::ParameterSet const& p)
-  : EDAnalyzer{p} 
+  : EDProducer{p}
+   , fEngine(art::ServiceHandle<rndm::NuRandomService>{}
+                ->createEngine(*this, "HepJamesRandom", "propagation", p, "PropagationSeed"))  
 {
+  this->reconfigure(p);
 
+  produces< std::vector<raw::RawDigit>   >();
+  //produces< std::vector<recob::Wire> >(fSpillName);
+  //produces<art::Assns<raw::RawDigit, recob::Wire>>(fSpillName);
 }
 
 //--------------------------------------------------------------------
-void SimQPix::analyze(art::Event const &e)
+void SimQPix::reconfigure(fhicl::ParameterSet const& p)
 {
-   auto const *detprop = art::ServiceHandle<detinfo::DetectorPropertiesService const>{}->provider();
+  fNoiseMean = p.get< double >("NoiseMean");
+  fNoiseSigma = p.get< double >("NoiseSigma");
+}
 
-  // In case trigger simulation is run in the same job...
-  //FIXME: you should never call preProcessEvent
-  auto const *ts = lar::providerFrom<detinfo::DetectorClocksService>();
+//--------------------------------------------------------------------
+void SimQPix::produce(art::Event& e)
+{
+  auto const *detprop = art::ServiceHandle<detinfo::DetectorPropertiesService const>{}->provider();
+  auto const *ts      = lar::providerFrom<detinfo::DetectorClocksService>();
+  auto const *geom    = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
+//  auto const *sss     = art::ServiceHandle<util::AmSelSignalShapingService>()->provider();
 
-  // get the geometry to be able to figure out signal types and chan -> plane mappings
-  auto const *geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
+  art::ServiceHandle<util::LArFFT> fft;
+  auto nTicks = fft->FFTSize();
 
-  //unsigned int signalSize = fNTicks;
-  art::Handle< std::vector<sim::SimChannel> > SimListHandle;
-  std::vector<art::Ptr<sim::SimChannel> > Simlist;
-  if(e.getByLabel("largeant", SimListHandle))
-     { art::fill_ptr_vector(Simlist, SimListHandle); }
-  
+  art::Handle<std::vector<sim::SimChannel>> SimListHandle;
+  std::vector<art::Ptr<sim::SimChannel>> Simlist;
+  if (e.getByLabel("largeant", SimListHandle))
+  {
+    art::fill_ptr_vector(Simlist, SimListHandle);
+  }
+
   const auto NChannels = geom->Nchannels();
+
+  // Containers for storing signals
+  std::vector<short> adcvec(nTicks, 0);
+  std::vector<float> chargeWork(nTicks,0.);
+
+  // Make our collections
+  std::unique_ptr< std::vector<raw::RawDigit>> digcol(new std::vector<raw::RawDigit>);
+  digcol->reserve(NChannels);
 
   // Loop over channels
   for (int iCh = 0; iCh < (int)Simlist.size(); iCh++)
   {
-    float totalQ(0);
+    auto channel = Simlist.at(iCh)->Channel();
+
+    // Clear out our containers
+    std::fill(chargeWork.begin(), chargeWork.end(), 0.);
+
     const auto& TDCIDEs = Simlist.at(iCh)->TDCIDEMap(); 
     for (const auto& TDCinfo : TDCIDEs)
     {
+      auto tick = detprop->ConvertTDCToTicks(TDCinfo.first);
+      float totalQ(0);
       //std::cout << TDCinfo.first << " " << detprop->ConvertTDCToTicks(TDCinfo.first) << std::endl;
-      for (const auto& ide : TDCinfo.second)
-      {
-        totalQ += ide.numElectrons;
-      }
+      for (const auto& ide : TDCinfo.second) totalQ += ide.numElectrons;
+
+      chargeWork[tick] = totalQ;
     }
+
+    // Convolve charge with appropriate response function
+  //  sss->Convolute(channel, chargeWork);
+
+    // Generate noise
+    //std::vector<float> noisetmp(nTicks,0.);
+    //GenNoiseInTime(noisetmp);
+
+    //for (size_t i = 0; i < nTicks; ++i)
+    //{
+    //  float adcval = noisetmp[i] + chargeWork[i];
+    //  adcvec[i] = (unsigned short)(adcval);
+    //} // end loop over signal size
+
+    //raw::Compress(adcvec, fCompression); 
+      
+    // add this digit to the collection
+    raw::RawDigit rd(channel,nTicks,adcvec,raw::kNone);// fNTimeSamples, adcvec, fCompression);
+    rd.SetPedestal(0);
+    digcol->push_back(rd);
   } // end loop over channels
+
+  e.put(std::move(digcol));
+  return;
+
+}
+
+//--------------------------------------------------------------------                                                                                                 
+void SimQPix::GenNoiseInTime(std::vector<float> &noise)
+{
+  CLHEP::RandGaussQ rGauss(fEngine,fNoiseMean,fNoiseSigma);
+  for (unsigned int i=0; i<noise.size(); i++) noise[i] = rGauss.fire();
 }
 
 //--------------------------------------------------------------------

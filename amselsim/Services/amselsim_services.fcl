@@ -10,6 +10,7 @@
 #include "amselsim_geometry.fcl"
 #include "spacecharge.fcl"
 #include "amselsim_detproperties.fcl"
+#include "larfft.fcl"
 
 BEGIN_PROLOG
 
@@ -22,6 +23,7 @@ amselsim_simulation_services:
  DetectorPropertiesService:    @local::amselsim_detproperties
  LArPropertiesService:         @local::standard_properties
  DetectorClocksService:        @local::standard_detectorclocks
+ LArFFT:                       @local::standard_larfft
  #BackTrackerService:           @local::standard_backtrackerservice
  #ParticleInventoryService:     @local::standard_particleinventoryservice
  NuRandomService:              @local::random_NuRandomService
@@ -40,6 +42,7 @@ amselsim_simulation_services.LArPropertiesService.ScintPreScale: 1.0
 amselsim_simulation_services.DetectorClocksService.ClockSpeedTPC: 2.0
 amselsim_simulation_services.DetectorClocksService.FramePeriod: 409.6
 
+amselsim_simulation_services.LArFFT.FFTSize: 0
 
 
 END_PROLOG

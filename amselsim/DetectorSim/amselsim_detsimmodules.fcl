@@ -6,6 +6,8 @@ amselsim_simpixel:
 {
  module_type:        "SimQPix"
  DriftEModuleLabel:  "largeant" 
+ NoiseMean:          0.0
+ NoiseSigma:         5.0
 }
 
 END_PROLOG
