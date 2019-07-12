@@ -37,5 +37,9 @@ amselsim_simulation_services.LArG4Parameters.OffPlaneMargin: 0
 amselsim_simulation_services.LArG4Parameters.NoPhotonPropagation: true
 amselsim_simulation_services.LArPropertiesService.ScintPreScale: 1.0
 
+amselsim_simulation_services.DetectorClocksService.ClockSpeedTPC: 2.0
+amselsim_simulation_services.DetectorClocksService.FramePeriod: 409.6
+
+
 
 END_PROLOG

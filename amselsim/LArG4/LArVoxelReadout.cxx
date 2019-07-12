@@ -534,7 +534,6 @@ namespace amselg4 {
             /// \todo beyond the end of the expected number of ticks
             // Add potential decay/capture/etc delay effect, simTime.
             unsigned int tdc = fClock.Ticks(ts->G4ToElecTime(TDiff + simTime));
-
             // Add electrons produced by each cluster to the map
             DepositsToStore[channel][tdc].add(nEnDiff[k], nElDiff[k]);
           }
@@ -545,6 +544,7 @@ namespace amselg4 {
           }
         } // end loop over clusters
       } // end loop over planes
+
 
       // Now store them in SimChannels
       ChannelMap_t& ChannelDataMap = fChannelMaps[cryostat][tpc];
