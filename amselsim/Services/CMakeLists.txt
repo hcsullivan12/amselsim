@@ -30,6 +30,11 @@ simple_plugin( DetectorPropertiesServiceAmSel  "service"
                ${Boost_SYSTEM_LIBRARY}
 )
 
+simple_plugin( AmSelSignalShapingService  "service"
+               amselsim_Services
+)
+
+
 install_headers()
 install_fhicl()
 install_source()

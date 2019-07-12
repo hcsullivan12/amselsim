@@ -29,4 +29,9 @@ amselsim_detproperties:
   SternheimerCbar:  5.2146  # Ar Sternheimer parameter Cbar.
 }
 
+amselsim_signalshapingservice:
+{
+  
+}
+
 END_PROLOG

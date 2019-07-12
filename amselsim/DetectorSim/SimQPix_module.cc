@@ -133,7 +133,7 @@ void SimQPix::produce(art::Event& e)
     }
 
     // Convolve charge with appropriate response function
-  //  sss->Convolute(channel, chargeWork);
+    //sss->Convolute(channel, chargeWork);
 
     // Generate noise
     //std::vector<float> noisetmp(nTicks,0.);

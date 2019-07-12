@@ -24,6 +24,7 @@ amselsim_simulation_services:
  LArPropertiesService:         @local::standard_properties
  DetectorClocksService:        @local::standard_detectorclocks
  LArFFT:                       @local::standard_larfft
+ AmSelSignalShapingService:    @local::amselsim_signalshapingservice
  #BackTrackerService:           @local::standard_backtrackerservice
  #ParticleInventoryService:     @local::standard_particleinventoryservice
  NuRandomService:              @local::random_NuRandomService
