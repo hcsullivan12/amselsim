@@ -89,6 +89,10 @@ private:
   std::vector<double> nu_MidPy;
   std::vector<double> nu_MidPz;
 
+  std::vector<int> ideChannels;
+  std::vector<std::vector<float>> ideTicks;
+  std::vector<std::vector<float>> ideEls;
+
   // Other particle information
   std::vector<int>    PDG;
   std::vector<double> StartPointx; 
@@ -196,6 +200,13 @@ void AnaTree::analyze(art::Event const & evt)
   evt.getByLabel(fGenieModuleLabel, tlistHandle);
   auto tlist = *tlistHandle;
 
+  //unsigned int signalSize = fNTicks;
+  art::Handle< std::vector<sim::SimChannel> > SimListHandle;
+  std::vector<art::Ptr<sim::SimChannel> > Simlist;
+  if(evt.getByLabel("largeant", SimListHandle))
+       { art::fill_ptr_vector(Simlist, SimListHandle); }
+
+
   run    = evt.run();
   subrun = evt.subRun();
   event  = evt.id().event();
@@ -237,7 +248,32 @@ void AnaTree::analyze(art::Event const & evt)
   // Filling MCTruth information
   //
   if(!isdata)
-  {   
+  {
+    // Loop over channels
+    int maxCh(0);
+    for (int iCh = 0; iCh < (int)Simlist.size(); iCh++)
+    {
+      float totalQ(0);
+      const auto& TDCIDEs = Simlist.at(iCh)->TDCIDEMap(); 
+      
+      ideChannels.push_back(Simlist.at(iCh)->Channel());
+      std::vector<float> ides_t, ides_el;
+      for (const auto& TDCinfo : TDCIDEs)
+      {
+        ides_t.push_back(TDCinfo.first);
+        float charge(0); 
+        for (const auto& ide : TDCinfo.second)
+        {
+          charge += ide.numElectrons;
+        }
+        ides_el.push_back(charge); 
+      }
+      if (ides_t.size() != ides_el.size()) throw cet::exception("AnaTree") << "Check IDE sizes\n"; 
+      
+      ideTicks.push_back(ides_t);
+      ideEls.push_back(ides_el);
+    } 
+   
     // Fill neutrino information
     if (tlist.size() > 1) throw cet::exception("AnaTree") << "MCTruth list greater than 1\n";
     for (size_t iT = 0; iT < tlist.size(); iT++)
@@ -518,7 +554,10 @@ void AnaTree::beginJob()
   fTree->Branch("nu_MidPosZ", &nu_MidPosZ );
   fTree->Branch("nu_MidPx",   &nu_MidPx   );
   fTree->Branch("nu_MidPy",   &nu_MidPy   );
-  fTree->Branch("nu_MidPz; ", &nu_MidPz   );
+  fTree->Branch("nu_MidPz",   &nu_MidPz   );
+  fTree->Branch("ideChannels", &ideChannels);
+  fTree->Branch("ideTicks", &ideTicks);
+  fTree->Branch("ideEls", &ideEls);
 }
 
 //--------------------------------------------------------------------
@@ -577,7 +616,9 @@ void AnaTree::ResetVars()
   nu_MidPx.clear();
   nu_MidPy.clear();
   nu_MidPz.clear();
-
+  ideChannels.clear();
+  ideTicks.clear();
+  ideEls.clear();
 
   nPrimScint = 0;        
   nReadoutIncPhotons = 0;
