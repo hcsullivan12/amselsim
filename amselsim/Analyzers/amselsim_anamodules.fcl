@@ -10,5 +10,9 @@ amselsim_ana:
  PhotonProjectionAlg: @local::amselsim_photonprojectionalg
 }
 
+amselsim_viewsignal:
+{
+  module_type:    "ViewSignal"
+}
 
 END_PROLOG

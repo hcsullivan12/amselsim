@@ -3,6 +3,7 @@ art_make(LIB_LIBRARIES
                           amselsim_Geometry
                           amselsim_LArG4
                           nusimdata_SimulationBase
+                          lardataobj_RawData
                           ${ART_FRAMEWORK_CORE}
                           ${ART_FRAMEWORK_PRINCIPAL}
                           ${ART_FRAMEWORK_SERVICES_REGISTRY}

@@ -136,16 +136,16 @@ void SimQPix::produce(art::Event& e)
     sss->Convolute(chargeWork);
 
     // Generate noise
-    //std::vector<float> noisetmp(nTicks,0.);
-    //GenNoiseInTime(noisetmp);
+    std::vector<float> noisetmp(nTicks,0.);
+    GenNoiseInTime(noisetmp);
 
-    //for (size_t i = 0; i < nTicks; ++i)
-    //{
-    //  float adcval = noisetmp[i] + chargeWork[i];
-    //  adcvec[i] = (unsigned short)(adcval);
-    //} // end loop over signal size
+    for (int i = 0; i < nTicks; ++i)
+    {
+      float adcval = noisetmp[i] + chargeWork[i];
+      adcvec[i] = (unsigned short)(adcval);
+    } // end loop over signal size
 
-    //raw::Compress(adcvec, fCompression); 
+    raw::Compress(adcvec, raw::kNone); 
       
     // add this digit to the collection
     raw::RawDigit rd(channel,nTicks,adcvec,raw::kNone);// fNTimeSamples, adcvec, fCompression);
