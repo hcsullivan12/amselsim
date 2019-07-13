@@ -33,6 +33,8 @@
 #include "TF1.h"
 #include "TH1D.h"
 
+#include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
+
 namespace util {
   class AmSelSignalShapingService {
   public:
@@ -46,8 +48,8 @@ namespace util {
     // Update configuration parameters.
 
     void reconfigure(const fhicl::ParameterSet& pset);
-
     const util::SignalShaping& SignalShaping() const;
+    double ElectronsToCurrent(double const& el) const;
 
     // Do convolution calcution (for simulation).
     template <class T> void Convolute(std::vector<T>& func) const;
@@ -75,7 +77,8 @@ namespace util {
 //----------------------------------------------------------------------
 // Do convolution.
 template <class T> inline void util::AmSelSignalShapingService::Convolute(std::vector<T>& func) const
-{
+{ 
+  for (auto& s : func) s = ElectronsToCurrent(s);
   SignalShaping().Convolute(func);
 }
 

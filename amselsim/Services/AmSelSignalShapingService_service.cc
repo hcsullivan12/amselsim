@@ -67,6 +67,17 @@ void util::AmSelSignalShapingService::init()
 }
 
 //----------------------------------------------------------------------
+double util::AmSelSignalShapingService::ElectronsToCurrent(double const& el) const
+{
+  auto const *detprop = art::ServiceHandle<detinfo::DetectorPropertiesService const>{}->provider();
+  // Convert and scale to pA
+  // Sampling rate in ns
+  // qConv = 1.6e-19 * 1e12 * 1e9
+  double qConv = 160.;
+  return el*qConv/detprop->SamplingRate();
+}
+
+//----------------------------------------------------------------------
 void util::AmSelSignalShapingService::SetElectResponse()
 {
   art::ServiceHandle<util::LArFFT> fft;

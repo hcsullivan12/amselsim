@@ -161,7 +161,12 @@ void SimQPix::produce(art::Event& e)
 //--------------------------------------------------------------------                                                                                                 
 void SimQPix::GenNoiseInTime(std::vector<float> &noise)
 {
-  CLHEP::RandGaussQ rGauss(fEngine,fNoiseMean,fNoiseSigma);
+  // Convert to pA
+  art::ServiceHandle<util::AmSelSignalShapingService> sss;
+  auto m = sss->ElectronsToCurrent(fNoiseMean);
+  auto s = sss->ElectronsToCurrent(fNoiseSigma);
+  std::cout << s << std::endl;
+  CLHEP::RandGaussQ rGauss(fEngine,m,s);
   for (unsigned int i=0; i<noise.size(); i++) noise[i] = rGauss.fire();
 }
 
