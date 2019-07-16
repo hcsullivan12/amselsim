@@ -206,6 +206,17 @@ void AmSelGeometry::LoadSimpleGeometry()
 }
 
 //--------------------------------------------------------------------
+void AmSelGeometry::GetOpDetCenter(double* xyz) const
+{
+  std::string planeNodePath = *std::find_if(fNodePaths.begin(), fNodePaths.end(), [](std::string const& s) {return s.find("PixelPlane") != std::string::npos;}); 
+  gGeoManager->cd(planeNodePath.c_str());
+  TGeoNode* node = gGeoManager->GetCurrentNode();
+  auto o = ((TGeoBBox*)node->GetVolume()->GetShape())->GetOrigin();
+  gGeoManager->LocalToMaster(o,xyz);
+  gGeoManager->cd(fNodePaths[0].c_str()); 
+}
+
+//--------------------------------------------------------------------
 int AmSelGeometry::NearestPixelID(geo::Point_t const& point) const
 {
   // Check for simplified geometry

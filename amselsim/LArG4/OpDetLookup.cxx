@@ -13,10 +13,8 @@
 
 #include "amselsim/LArG4/OpDetLookup.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
-#include "larcore/Geometry/Geometry.h"
-#include "larcorealg/Geometry/CryostatGeo.h"
-#include "larcorealg/Geometry/OpDetGeo.h"
 
+#include "amselsim/Geometry/DetectorGeometryService.h"
 
 namespace amselg4 {
   OpDetLookup * TheOpDetLookup;
@@ -54,7 +52,7 @@ namespace amselg4 {
 
   int OpDetLookup::FindClosestOpDet(G4VPhysicalVolume* vol, double& distance)
   {
-    art::ServiceHandle<geo::Geometry const> geom;
+    auto const* geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
     int    OpDetCount = 0;
 
     double MinDistance = UINT_MAX;
@@ -62,7 +60,8 @@ namespace amselg4 {
 
     for(size_t o=0; o!=geom->NOpDets(); o++) {
       double xyz[3];
-      geom->OpDetGeoFromOpDet(o).GetCenter(xyz);
+      //geom->OpDetGeoFromOpDet(o).GetCenter(xyz);
+      geom->GetOpDetCenter(xyz);
 
       CLHEP::Hep3Vector DetPos(xyz[0],xyz[1],xyz[2]);
       CLHEP::Hep3Vector ThisVolPos = vol->GetTranslation();

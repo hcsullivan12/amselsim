@@ -34,13 +34,12 @@ amselsim_simulation_services:
 amselsim_singlep: @local::standard_singlep
 amselsim_largeant: @local::amselsim_largeant
 
-# We don't want to do any propagation yet, and keep all scintillation
 amselsim_simulation_services.LArG4Parameters.NoElectronPropagation: false
 amselsim_simulation_services.LArG4Parameters.OffPlaneMargin: 0
-amselsim_simulation_services.LArG4Parameters.NoPhotonPropagation: false
+amselsim_simulation_services.LArG4Parameters.NoPhotonPropagation: true
 amselsim_simulation_services.LArPropertiesService.ScintPreScale: 1.0
-amselsim_simulation_services.LArPropertiesService.UseLitePhotons: false
-amselsim_simulation_services.LArPropertiesService.StoreReflected: false
+amselsim_simulation_services.LArG4Parameters.UseLitePhotons: false
+amselsim_simulation_services.LArG4Parameters.StoreReflected: false
 
 amselsim_simulation_services.DetectorClocksService.ClockSpeedTPC: 50
 #amselsim_simulation_services.DetectorClocksService.FramePeriod: 409.6

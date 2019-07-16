@@ -91,7 +91,7 @@ class AmSelGeometry : public geo::DetectorGeometry
     std::string OpDetGeoName()     const { return fOpDetVolName;        }
     std::string DetectorName()     const { return fDetectorName;        }
     size_t      NOpDets()          const { return fNOpDets;             }
-    size_t      Ncryostats()       const { return fNCyro;               }
+    size_t      Ncryostats()       const { return fNCryo;               }
     size_t      NTPC()             const { return fNTpc;                }
     size_t      NAuxDets()         const { return 0;                    }
     size_t      NSensitiveVolume() const { return 1;                    }
@@ -155,6 +155,8 @@ class AmSelGeometry : public geo::DetectorGeometry
     std::string GetLArTPCVolumeName() const { return fLArTPCVolName; }
 
     TGeoManager* ROOTGeoManager() const { return gGeoManager; }
+
+    void GetOpDetCenter(double* xyz) const;
     
     /**
      * @brief Name of volume that contains point
@@ -197,16 +199,18 @@ class AmSelGeometry : public geo::DetectorGeometry
     std::vector<float>       fSimpleGeoZ;        ///< Ordered container of columns for simplified geometry
     std::vector<float>       fSimpleGeoY;        ///< Ordered container of rows for simplified geometry
     std::string              fGDMLPath;          ///< Full path to gdml file
+    std::string              fDetectorName;      ///<
     std::string              fLArTPCVolName;     ///< 
     std::string              fOpDetVolName;      ///< 
-    std::string              fDetectorName;      ///<
+    ULong8_t                 fNPixels;           ///< Number of pixels 
+    TGeoVolume*              fPixelPlane;        ///< Pointer to pixel plane volume
     size_t                   fNOpDets;           ///<
+    size_t                   fNCryo;             ///<
+    size_t                   fNTpc;              ///<
     double                   fDetHalfY;          ///< Y half length of readout plane
     double                   fDriftLength;       ///< Drift length
     double                   fDetLength;         ///< Length of active volume in beam direction
     float                    fPixelSpacing;      ///< Pixel spacing for simplified geometry
-    ULong8_t                 fNPixels;           ///< Number of pixels 
-    TGeoVolume*              fPixelPlane;        ///< Pointer to pixel plane volume
     bool                     fUseSimpleGeometry; ///< Option to use simplified geometry
 }; // class AmSelGeometry
 
