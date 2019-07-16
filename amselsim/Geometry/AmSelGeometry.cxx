@@ -30,8 +30,13 @@ AmSelGeometry::AmSelGeometry()
 AmSelGeometry::AmSelGeometry(fhicl::ParameterSet const& pset,
                              std::set<std::string> const& ignore_params)
  : fDetectorName("none"),
+   fLArTPCVolName("none"),
+   fOpDetVolName("none"),
    fNPixels(0),
    fPixelPlane(0),
+   fNOpDets(0),
+   fNCryo(1),
+   fNTpc(1),
    fUseSimpleGeometry(false)
 {
   ValidateAndConfigure(pset, ignore_params);
@@ -97,8 +102,10 @@ void AmSelGeometry::Initialize()
   fNodePaths.push_back(path);
   LookAtNode(topNode, path);
  
-  if (fLArTPCVolName.find("volLArActive") == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
-  if (!fPixelPlane)                                             throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
+  // Force the gdml to have the optical and active volumes 
+  if (fOpDetVolName.find("volOpDetSensitive") == std::string::npos) throw cet::exception("AmSelGeometry") << "Couldn't find optical detector volume!\n";
+  if (fLArTPCVolName.find("volLArActive") == std::string::npos)     throw cet::exception("AmSelGeometry") << "Couldn't find LAr active volume!\n";
+  if (!fPixelPlane)                                                 throw cet::exception("AmSelGeometry") << "Couldn't find pixel plane volume!\n";
 
   // Load simplified geometry
   if (fUseSimpleGeometry) 
@@ -120,6 +127,11 @@ void AmSelGeometry::LookAtNode(TGeoNode const* currentNode, std::string const& c
 
   // Leave if this is a pixel
   if (volName.find("volPixelPad") != std::string::npos) return;
+  if (volName == "volOpDetSensitive") 
+  {
+    fNOpDets++;
+    fOpDetVolName = "volOpDetSensitive";
+  }
   if (volName == "volPixelPlane")
   {
     fPixelPlane = nodeVol;

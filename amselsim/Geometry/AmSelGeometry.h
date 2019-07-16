@@ -64,6 +64,7 @@ class AmSelGeometry : public geo::DetectorGeometry
         Name("PixelSpacing"),
         Comment("Pixel spacing")
       };
+      
     };
 
     AmSelGeometry();
@@ -87,11 +88,11 @@ class AmSelGeometry : public geo::DetectorGeometry
 
     std::string GDMLFile()         const { return fGDMLPath;            }
     std::string ROOTFile()         const { return GDMLFile();           }
-    std::string OpDetGeoName()     const { return "opDetector";         }
+    std::string OpDetGeoName()     const { return fOpDetVolName;        }
     std::string DetectorName()     const { return fDetectorName;        }
-    size_t      NOpDets()          const { return 0;                    }
-    size_t      Ncryostats()       const { return 1;                    }
-    size_t      NTPC()             const { return 1;                    }
+    size_t      NOpDets()          const { return fNOpDets;             }
+    size_t      Ncryostats()       const { return fNCyro;               }
+    size_t      NTPC()             const { return fNTpc;                }
     size_t      NAuxDets()         const { return 0;                    }
     size_t      NSensitiveVolume() const { return 1;                    }
     double      DetHalfWidth()     const { return 0.5*DetDriftLength(); }
@@ -197,7 +198,9 @@ class AmSelGeometry : public geo::DetectorGeometry
     std::vector<float>       fSimpleGeoY;        ///< Ordered container of rows for simplified geometry
     std::string              fGDMLPath;          ///< Full path to gdml file
     std::string              fLArTPCVolName;     ///< 
+    std::string              fOpDetVolName;      ///< 
     std::string              fDetectorName;      ///<
+    size_t                   fNOpDets;           ///<
     double                   fDetHalfY;          ///< Y half length of readout plane
     double                   fDriftLength;       ///< Drift length
     double                   fDetLength;         ///< Length of active volume in beam direction

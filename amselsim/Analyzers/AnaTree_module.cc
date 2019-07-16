@@ -200,11 +200,15 @@ void AnaTree::analyze(art::Event const & evt)
   evt.getByLabel(fGenieModuleLabel, tlistHandle);
   auto tlist = *tlistHandle;
 
-  //unsigned int signalSize = fNTicks;
+  // Sim channels
   art::Handle< std::vector<sim::SimChannel> > SimListHandle;
   std::vector<art::Ptr<sim::SimChannel> > Simlist;
-  if(evt.getByLabel("largeant", SimListHandle))
+  if(evt.getByLabel(fG4ModuleLabel, SimListHandle))
        { art::fill_ptr_vector(Simlist, SimListHandle); }
+  art::Handle< std::vector<sim::SimChannel> > SimPhotonListHandle;
+  std::vector<art::Ptr<sim::SimChannel> > SimPhotonlist;
+  if(evt.getByLabel(fG4ModuleLabel, SimPhotonListHandle))
+       { art::fill_ptr_vector(SimPhotonlist, SimPhotonListHandle); }       
 
 
   run    = evt.run();
@@ -218,6 +222,8 @@ void AnaTree::analyze(art::Event const & evt)
             << ", Evt = "       << event    << std::endl;
   std::cout<<"========================================="<<std::endl;
   std::cout<<std::endl;
+
+  std::cout << "SimPhotonlist size = " << SimPhotonlist.size() << std::endl;
 
   // Apply our photon projection alg
   if (fDoPhotonProjection)
