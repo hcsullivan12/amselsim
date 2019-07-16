@@ -9,7 +9,7 @@ amselsim_simpixel:
  DeltaQ:             5000  # electrons
  ResetT:             20    # ns
  NoiseMean:          0.0
- NoiseSigma:         300   # electrons
+ NoiseSigma:         2     
 }
 
 END_PROLOG

@@ -11,16 +11,16 @@ amselsim_detproperties:
 
   Temperature:        90.7  
   Efield:             [0.5, 0.0, 0.0]  # kv/cm
-  Electronlifetime:   1600
+  Electronlifetime:   6800
 
   ElectronsToADC:    6.8906513e-3 # 1fC = 43.008 ADC counts for MicroBooNE  
-  NumberTimeSamples: 3530
+  NumberTimeSamples: 110000
   TimeOffsetU:       0
   TimeOffsetV:       0. 
   TimeOffsetZ:       0.
-  ReadOutWindowSize: 3530
+  ReadOutWindowSize: 110000
   InheritNumberTimeSamples: false
-  SamplingRate:      -625 
+  SamplingRate:      -20 
 
   SternheimerA:     0.1956  # Ar Sternheimer parameter a.
   SternheimerK:     3.0000  # Ar Sternheimer parameter k.

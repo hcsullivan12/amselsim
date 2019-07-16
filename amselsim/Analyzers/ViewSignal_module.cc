@@ -91,35 +91,45 @@ void ViewSignal::analyze(art::Event const& e)
     raw::Uncompress(digitVec->ADCs(), rawadc, digitVec->Compression());
 
     float sum(0);
-    for (int iBin = 1; iBin <= dataSize; iBin++) sum += rawadc[iBin];
-    if (sum > max) {max = sum; maxCh = rdIter;}
-  }
-
-  art::Ptr<raw::RawDigit> digitVec(digitVecHandle, maxCh);
-  auto channel = digitVec->Channel();
-  auto dataSize = digitVec->Samples();
-
-  for (int iCh = 0; iCh < (int)Simlist.size(); iCh++)
-  {
-    if (Simlist.at(iCh)->Channel() != channel) continue;
-    std::cout << "HERE\n";
-    const auto& TDCIDEs = Simlist.at(iCh)->TDCIDEMap();
-    for (const auto& TDCinfo : TDCIDEs)
+    for (int iBin = 0; iBin < dataSize; iBin++) 
     {
-      auto tick = detprop->ConvertTDCToTicks(TDCinfo.first);
-      for (const auto& ide : TDCinfo.second) hRawCharge->SetBinContent(tick+1, hRawCharge->GetBinContent(tick)+ide.numElectrons);
+      if (rawadc[iBin] > 1) {std::cout << rawadc[iBin] << std::endl;sum += rawadc[iBin];}
+      if (sum > max) {max = sum; maxCh = rdIter;}
     }
   }
 
+  art::Ptr<raw::RawDigit> digitVec(digitVecHandle, maxCh);
+  auto dataSize = digitVec->Samples();
+
+  std::cout << dataSize << std::endl;
   raw::Uncompress(digitVec->ADCs(), rawadc, digitVec->Compression());
-  for (int i = 1; i <= dataSize; i++) {hRawWaveform->SetBinContent(i, rawadc[i-1]);}
+  for (int i = 1; i <= dataSize; i++) {std::cout << rawadc[i-1] << std::endl; hRawWaveform->SetBinContent(i, rawadc[i-1]);}
+
+  maxCh = 0;
+  max = 0;
+  for ( int iCh = 0; iCh < (int)Simlist.size(); iCh++)
+  {
+    const auto& TDCIDEs = Simlist.at(iCh)->TDCIDEMap();
+    if (TDCIDEs.size() > max) {max = TDCIDEs.size(); maxCh=iCh;}
+  }
+
+  const auto& TDCIDEs = Simlist.at(maxCh)->TDCIDEMap();
+  for (const auto& TDCinfo : TDCIDEs)
+  {
+    auto tick = detprop->ConvertTDCToTicks(TDCinfo.first);
+    for (const auto& ide : TDCinfo.second) 
+    {
+      auto content = hRawCharge->GetBinContent(tick+1);
+      hRawCharge->SetBinContent(tick+1, content+ide.numElectrons);
+    }
+  }  
 }
 
 void ViewSignal::beginJob()
 {
   art::ServiceHandle<art::TFileService> tfs;
-  hRawWaveform = tfs->make<TH1F>("Raw", "Raw", 4096, 0, 4096);
-  hRawCharge   = tfs->make<TH1F>("RawCharge", "Raw Charge", 4096, 0, 4096);
+  hRawWaveform = tfs->make<TH1F>("Raw", "Raw", 110000, 0, 110000);
+  hRawCharge   = tfs->make<TH1F>("RawCharge", "Raw Charge", 110000, 0, 110000);
 }
 
 void ViewSignal::endJob()

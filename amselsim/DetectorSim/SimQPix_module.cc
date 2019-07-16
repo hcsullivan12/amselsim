@@ -14,6 +14,8 @@
 #include "canvas/Utilities/InputTag.h"
 #include "fhiclcpp/ParameterSet.h"
 #include "messagefacility/MessageLogger/MessageLogger.h"
+#include "art_root_io/TFileService.h"
+#include "art_root_io/TFileDirectory.h"
 
 #include "lardata/Utilities/LArFFT.h"
 #include "lardataobj/RawData/RawDigit.h"
@@ -64,6 +66,10 @@ private:
   CLHEP::HepRandomEngine& fEngine; ///< reference to art-managed random-number engine
   float                   fNoiseMean;
   float                   fNoiseSigma;
+
+  TH1F* hRawWaveform = nullptr;
+  TH1F* hRawCharge   = nullptr;
+
 };
 
 //--------------------------------------------------------------------
@@ -113,6 +119,25 @@ void SimQPix::produce(art::Event& e)
   std::unique_ptr< std::vector<raw::RawDigit>> digcol(new std::vector<raw::RawDigit>);
   digcol->reserve(NChannels);
 
+  // Find the most active sim channel for plotting
+  int    maxCh(0);
+  size_t max(0);
+  for ( int iCh = 0; iCh < (int)Simlist.size(); iCh++)
+  {
+    const auto& TDCIDEs = Simlist.at(iCh)->TDCIDEMap();
+    if (TDCIDEs.size() > max) {max = TDCIDEs.size(); maxCh=iCh;}
+  }
+  const auto& TDCIDEs = Simlist.at(maxCh)->TDCIDEMap();
+  for (const auto& TDCinfo : TDCIDEs)
+  {
+    auto tick = detprop->ConvertTDCToTicks(TDCinfo.first);
+    for (const auto& ide : TDCinfo.second) 
+    {
+      auto content = hRawCharge->GetBinContent(tick+1);
+      hRawCharge->SetBinContent(tick+1, content+ide.numElectrons);
+    }
+  } 
+
   // Loop over channels
   for (int iCh = 0; iCh < (int)Simlist.size(); iCh++)
   {
@@ -121,27 +146,38 @@ void SimQPix::produce(art::Event& e)
     // Clear out our containers
     std::fill(chargeWork.begin(), chargeWork.end(), 0.);
 
+    float totalQ(0);
     const auto& TDCIDEs = Simlist.at(iCh)->TDCIDEMap(); 
     for (const auto& TDCinfo : TDCIDEs)
     {
       auto tick = detprop->ConvertTDCToTicks(TDCinfo.first);
-      float totalQ(0);
+      float currentQ(0);
       //std::cout << TDCinfo.first << " " << detprop->ConvertTDCToTicks(TDCinfo.first) << std::endl;
-      for (const auto& ide : TDCinfo.second) totalQ += ide.numElectrons;
+      for (const auto& ide : TDCinfo.second) currentQ += ide.numElectrons;
 
-      chargeWork[tick] = totalQ;
+      chargeWork[tick] = currentQ;
+      totalQ += currentQ;
     }
 
     // Convolve charge with appropriate response function
     sss->Convolute(chargeWork);
-
+    // Normalize to totalQ
+    double integral(0);
+    double sr = detprop->SamplingRate();
+    double conv = 1.6e2; // to pC
+    for (const auto& s : chargeWork) integral += s*sr;
+    for (auto& s : chargeWork) s = (totalQ*conv/integral)*s;
+    //std::cout << integral << " " << totalQ*conv/integral << std::endl;
+ 
     // Generate noise
     std::vector<float> noisetmp(nTicks,0.);
     GenNoiseInTime(noisetmp);
 
     for (int i = 0; i < nTicks; ++i)
     {
+      //std::cout << noisetmp[i] << " " << chargeWork[i] << std::endl;
       float adcval = noisetmp[i] + chargeWork[i];
+      if (iCh==maxCh) hRawWaveform->SetBinContent(i, adcval);
       adcvec[i] = (unsigned short)(adcval);
     } // end loop over signal size
 
@@ -161,19 +197,16 @@ void SimQPix::produce(art::Event& e)
 //--------------------------------------------------------------------                                                                                                 
 void SimQPix::GenNoiseInTime(std::vector<float> &noise)
 {
-  // Convert to pA
-  art::ServiceHandle<util::AmSelSignalShapingService> sss;
-  auto m = sss->ElectronsToCurrent(fNoiseMean);
-  auto s = sss->ElectronsToCurrent(fNoiseSigma);
-  std::cout << s << std::endl;
-  CLHEP::RandGaussQ rGauss(fEngine,m,s);
+  CLHEP::RandGaussQ rGauss(fEngine,fNoiseMean,fNoiseSigma);
   for (unsigned int i=0; i<noise.size(); i++) noise[i] = rGauss.fire();
 }
 
 //--------------------------------------------------------------------
 void SimQPix::beginJob()
 {
-  // Implementation of optional member function here.
+  art::ServiceHandle<art::TFileService> tfs;
+  hRawWaveform = tfs->make<TH1F>("Raw", "Raw", 110000, 0, 110000);
+  hRawCharge   = tfs->make<TH1F>("RawCharge", "Raw Charge", 110000, 0, 110000);
 }
 
 //--------------------------------------------------------------------

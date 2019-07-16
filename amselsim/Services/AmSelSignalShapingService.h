@@ -78,7 +78,6 @@ namespace util {
 // Do convolution.
 template <class T> inline void util::AmSelSignalShapingService::Convolute(std::vector<T>& func) const
 { 
-  for (auto& s : func) s = ElectronsToCurrent(s);
   SignalShaping().Convolute(func);
 }
 
