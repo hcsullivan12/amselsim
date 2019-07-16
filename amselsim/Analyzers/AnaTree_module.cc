@@ -205,11 +205,6 @@ void AnaTree::analyze(art::Event const & evt)
   std::vector<art::Ptr<sim::SimChannel> > Simlist;
   if(evt.getByLabel(fG4ModuleLabel, SimListHandle))
        { art::fill_ptr_vector(Simlist, SimListHandle); }
-  art::Handle< std::vector<sim::SimChannel> > SimPhotonListHandle;
-  std::vector<art::Ptr<sim::SimChannel> > SimPhotonlist;
-  if(evt.getByLabel(fG4ModuleLabel, SimPhotonListHandle))
-       { art::fill_ptr_vector(SimPhotonlist, SimPhotonListHandle); }       
-
 
   run    = evt.run();
   subrun = evt.subRun();
@@ -222,8 +217,6 @@ void AnaTree::analyze(art::Event const & evt)
             << ", Evt = "       << event    << std::endl;
   std::cout<<"========================================="<<std::endl;
   std::cout<<std::endl;
-
-  std::cout << "SimPhotonlist size = " << SimPhotonlist.size() << std::endl;
 
   // Apply our photon projection alg
   if (fDoPhotonProjection)
@@ -238,6 +231,7 @@ void AnaTree::analyze(art::Event const & evt)
       pixelIdVec.push_back(p.first);
       pixelCountVec.push_back(p.second);
     }
+    fProjAlg.reset();
   }
 
   // Electric Field 

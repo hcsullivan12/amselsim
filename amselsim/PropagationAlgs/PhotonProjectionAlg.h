@@ -22,6 +22,7 @@ public:
 
   void doProjection(CLHEP::HepRandomEngine& engine);
   void reconfigure(fhicl::ParameterSet const& p);
+  void reset() { fPixelMap.clear(); fNScint=0; fNHits=0; }
 
   std::map<int, int> const& GetMap() const { return fPixelMap; }; 
 
