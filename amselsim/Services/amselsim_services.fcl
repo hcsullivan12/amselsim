@@ -1,0 +1,52 @@
+#include "simulationservices.fcl"
+#include "larproperties.fcl"
+#include "detectorclocks.fcl"
+#include "amselsim_largeantmodules.fcl"
+#include "singles.fcl"
+#include "magfield_larsoft.fcl"
+#include "backtrackerservice.fcl"
+#include "particleinventoryservice.fcl"
+#include "seedservice.fcl"
+#include "amselsim_geometry.fcl"
+#include "spacecharge.fcl"
+#include "amselsim_detproperties.fcl"
+#include "larfft.fcl"
+
+BEGIN_PROLOG
+
+amselsim_simulation_services:
+{
+ LArG4Parameters:              @local::standard_largeantparameters
+ LArVoxelCalculator:           @local::standard_larvoxelcalculator
+ MagneticField:                @local::no_mag_larsoft
+ DetectorGeometryService:      @local::amselsim_geoservice
+ DetectorPropertiesService:    @local::amselsim_detproperties
+ LArPropertiesService:         @local::standard_properties
+ DetectorClocksService:        @local::standard_detectorclocks
+ LArFFT:                       @local::standard_larfft
+ AmSelSignalShapingService:    @local::amselsim_signalshapingservice
+ #BackTrackerService:           @local::standard_backtrackerservice
+ #ParticleInventoryService:     @local::standard_particleinventoryservice
+ NuRandomService:              @local::random_NuRandomService
+ SpaceCharge:                  @local::standard_spacecharge
+}
+
+amselsim_singlep: @local::standard_singlep
+amselsim_largeant: @local::amselsim_largeant
+
+amselsim_simulation_services.LArG4Parameters.NoElectronPropagation: false
+amselsim_simulation_services.LArG4Parameters.OffPlaneMargin: 0
+amselsim_simulation_services.LArG4Parameters.NoPhotonPropagation: true
+amselsim_simulation_services.LArG4Parameters.UseLitePhotons: false
+amselsim_simulation_services.LArG4Parameters.StoreReflected: false
+
+amselsim_simulation_services.LArPropertiesService.ScintPreScale: 1.0
+amselsim_simulation_services.LArPropertiesService.ScintByParticleType: true
+
+amselsim_simulation_services.DetectorClocksService.ClockSpeedTPC: 50
+#amselsim_simulation_services.DetectorClocksService.FramePeriod: 409.6
+
+amselsim_simulation_services.LArFFT.FFTSize: 0
+
+
+END_PROLOG

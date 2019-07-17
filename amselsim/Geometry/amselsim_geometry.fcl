@@ -1,0 +1,13 @@
+
+BEGIN_PROLOG
+
+amselsim_geoservice:
+{
+  service_provider:  "AmSelGeometryService"
+  Name:              "amsel"
+  GDML:              "amsel_forgenie.gdml" #"amsel_nopixels.gdml" 
+  UseSimpleGeometry: true
+  PixelSpacing:      0.4 # in cm
+}
+
+END_PROLOG

@@ -1,0 +1,37 @@
+#include "detectorproperties.fcl"
+
+BEGIN_PROLOG
+
+amselsim_detproperties:
+{
+  service_provider: "DetectorPropertiesServiceAmSel"
+  GetElectronlifetimeFromDB: false
+  ElectronlifetimeTag:       ""  
+  UseDatabaseForMC:          false
+
+  Temperature:        90.7  
+  Efield:             [0.5, 0.0, 0.0]  # kv/cm
+  Electronlifetime:   6800
+
+  ElectronsToADC:    6.8906513e-3 # 1fC = 43.008 ADC counts for MicroBooNE  
+  NumberTimeSamples: 110000
+  TimeOffsetU:       0
+  TimeOffsetV:       0. 
+  TimeOffsetZ:       0.
+  ReadOutWindowSize: 110000
+  InheritNumberTimeSamples: false
+  SamplingRate:      -20 
+
+  SternheimerA:     0.1956  # Ar Sternheimer parameter a.
+  SternheimerK:     3.0000  # Ar Sternheimer parameter k.
+  SternheimerX0:    0.2000  # Ar Sternheimer parameter x0.
+  SternheimerX1:    3.0000  # Ar Sternheimer parameter x0.
+  SternheimerCbar:  5.2146  # Ar Sternheimer parameter Cbar.
+}
+
+amselsim_signalshapingservice:
+{
+  
+}
+
+END_PROLOG
