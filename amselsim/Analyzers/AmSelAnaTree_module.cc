@@ -152,8 +152,7 @@ private:
   std::string fTreeName;
   std::string fG4ModuleLabel;
   std::string fGenieModuleLabel;
-  bool        fDoPhotonProjection;
-  PhotonProjectionAlg     fProjAlg;
+  std::string fPhotProjModuleLabel;
   CLHEP::HepRandomEngine& fEngine;
 };
 
@@ -174,10 +173,10 @@ AmSelAnaTree::~AmSelAnaTree()
 //--------------------------------------------------------------------
 void AmSelAnaTree::reconfigure(fhicl::ParameterSet const & pset)
 {
-  fTreeName           = pset.get< std::string >("TreeName", "anatree");
-  fG4ModuleLabel      = pset.get< std::string >("G4ModuleLabel", "largeant");
-  fGenieModuleLabel   = pset.get< std::string >("GenieModuleLabel", "generator");
-  fDoPhotonProjection = pset.get< bool >("DoPhotonProjection", true);
+  fTreeName            = pset.get< std::string >("TreeName", "anatree");
+  fG4ModuleLabel       = pset.get< std::string >("G4ModuleLabel", "largeant");
+  fGenieModuleLabel    = pset.get< std::string >("GenieModuleLabel", "generator");
+  fPhotProjModuleLabel = pset.get< std::string >("PhotPropModuleLabel", "photprop");
   return;
 }
 
@@ -206,6 +205,10 @@ void AmSelAnaTree::analyze(art::Event const & evt)
   if(evt.getByLabel(fG4ModuleLabel, SimListHandle))
        { art::fill_ptr_vector(Simlist, SimListHandle); }
 
+  // Phot prop
+  art::Handle< std::map<int, int> > pixelPhotMapHandle;
+  evt.getByLabel(fPhotProjModuleLabel, pixelPhotMapHandle);
+
   run    = evt.run();
   subrun = evt.subRun();
   event  = evt.id().event();
@@ -218,23 +221,15 @@ void AmSelAnaTree::analyze(art::Event const & evt)
   std::cout<<"========================================="<<std::endl;
   std::cout<<std::endl;
 
-  // Apply our photon projection alg
-  if (fDoPhotonProjection)
+  // Fill photon projection information 
+  pixelIdVec.reserve(pixelPhotMapHandle->size());
+  pixelCountVec.reserve(pixelPhotMapHandle->size());
+  nReadoutIncPhotons = 0;
+  for (const auto& p : pixelPhotMapHandle)
   {
-    fProjAlg.doProjection(fEngine);
-    std::map<int, int> const& pixelMap = fProjAlg.GetMap();
-
-    pixelIdVec.reserve(pixelMap.size());
-    pixelCountVec.reserve(pixelMap.size());
-    for (const auto& p : pixelMap)
-    {
-      pixelIdVec.push_back(p.first);
-      pixelCountVec.push_back(p.second);
-    }
-
-    nReadoutIncPhotons = fProjAlg.NumIncidentPhotons();
-    nPrimScint         = fProjAlg.NumScintPhotons();
-    fProjAlg.reset();
+    pixelIdVec.push_back(p.first);
+    pixelCountVec.push_back(p.second);
+    nReadoutIncPhotons += p.second;
   }
 
   // Electric Field 

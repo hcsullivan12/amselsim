@@ -12,4 +12,9 @@ amselsim_simpixel:
  NoiseSigma:         2     
 }
 
+amselsim_photonprojection:
+{
+ module_type:        "PhotonProjection"
+}
+
 END_PROLOG

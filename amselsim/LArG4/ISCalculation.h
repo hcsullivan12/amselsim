@@ -28,8 +28,8 @@ namespace amselg4{
    double       	        NumberIonizationElectrons()  const { return fNumIonElectrons; }
    double       	        NumberScintillationPhotons() const { return fNumScintPhotons; }
    double       	        VisibleEnergyDeposit()       const { return fVisibleEnergyDeposition; }
-  std::vector<G4ThreeVector> const& StepPoints() { return fStepPointVec; }
-  std::vector<size_t> const&        StepScint()  { return fStepScintVec; }
+   std::vector<G4ThreeVector> const& StepPoints() { return fStepPointVec; }
+   std::vector<int> const&           StepScint()  { return fStepScintVec; }
 
    //Method to get electric field
    double EFieldAtStep(double fEfield, const G4Step* step) const; //value of field with any corrections for this step
@@ -41,7 +41,7 @@ namespace amselg4{
    double fNumScintPhotons; ///< number of scintillation photons for this step
    double fVisibleEnergyDeposition; ///Scalling factor for energy to photons
    std::vector<G4ThreeVector> fStepPointVec;
-   std::vector<size_t>        fStepScintVec;
+   std::vector<int>           fStepScintVec;
 
  };
 }

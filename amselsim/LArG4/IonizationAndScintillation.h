@@ -39,7 +39,7 @@ namespace amselg4 {
     double NumberScintillationPhotons() const { return fISCalc->NumberScintillationPhotons(); }
     double StepSizeLimit()              const { return fISCalc->StepSizeLimit();              } 
     std::vector<G4ThreeVector> const& StepPoints() { return fISCalc->StepPoints(); }
-    std::vector<size_t> const&        StepScint()  { return fISCalc->StepScint(); }
+    std::vector<int> const&           StepScint()  { return fISCalc->StepScint(); }
 
   private:
 

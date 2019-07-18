@@ -4,10 +4,10 @@ BEGIN_PROLOG
 
 amselsim_ana:
 {
- module_type:        "AmSelAnaTree"
- G4ModuleLabel:      "largeant"
- DoPhotonProjection:  true
- PhotonProjectionAlg: @local::amselsim_photonprojectionalg
+ module_type:          "AmSelAnaTree"
+ G4ModuleLabel:        "largeant"
+ GenieModuleLabel:     "generator"
+ PhotProjModuleLabel:  "photproj"
 }
 
 amselsim_viewsignal:
