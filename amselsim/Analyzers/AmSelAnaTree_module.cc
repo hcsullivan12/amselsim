@@ -402,8 +402,8 @@ void AmSelAnaTree::analyze(art::Event const & evt)
   	    NTrTrajPts.push_back(plist[i].NumberTrajectoryPoints());
         std::vector<double> midx;  std::vector<double> midy;  std::vector<double> midz;
         std::vector<double> midpx; std::vector<double> midpy; std::vector<double> midpz;
-  std::cout << truetraj.X(0) << std::endl; 
-  	    int iPrimPt = 0;	   
+  	    
+            int iPrimPt = 0;	   
   	    for(auto itTraj = truetraj.begin(); itTraj != truetraj.end(); ++itTraj)
   	    {
           // Pushing back vars 

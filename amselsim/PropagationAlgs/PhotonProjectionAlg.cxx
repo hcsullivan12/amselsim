@@ -63,10 +63,6 @@ void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
   double detHalfHeight = geom->DetHalfHeight();
   double detLength     = geom->DetLength();
  
-  art::ServiceHandle<art::TFileService> tfs;
-  TH2F* hHitsYvsZ = tfs->make<TH2F>("hHitsYvsZ", "Hits in yz plane", 1250, 0, detLength, 500, -detHalfHeight, detHalfHeight);
-
-
   CLHEP::RandFlat flat(engine);
 
   if (stepPoints.size() != stepScint.size()) throw cet::exception("PhotonProjectionAlg") << "StepPoints and StepScint sizes are different!\n";
@@ -101,19 +97,16 @@ void PhotonProjectionAlg::doProjection(CLHEP::HepRandomEngine& engine)
       double t  = -1*pos.X()/pHat.X();
       TVector3 projPos = pos + t * pHat;
 
-      // Assuming coordinate system is centered on front face of argon slab (it should be)
+      // Assuming coordinate system is centered in y
       if (projPos.Z() <= 0                || projPos.Z() >= detLength ||
           projPos.Y() <= -1*detHalfHeight || projPos.Y() >= detHalfHeight) continue;
 
       // This hit the readout plane
       nHit++;
   
-      hHitsYvsZ->Fill(projPos.Z(), projPos.Y()); 
-      
       /// \todo Handle the x coordinate better here 
       TVector3 point(-0.01, projPos.Y(), projPos.Z());
       auto nearestPixelId = geom->NearestReadoutNodeID(point); 
-      //std::cout << "PixelID = " << nearestPixelId << std::endl;
       if (nearestPixelId < 0) continue;
  
       // Add this photon to this pixel
