@@ -8,6 +8,7 @@ art_make(LIB_LIBRARIES amselsim_Geometry
                           lardataobj_Simulation
                           amselsim_Geometry
                           amselsim_Services
+                          amselsim_LArG4
                           amselsim_Services_AmSelSignalShapingService_service
                           lardataobj_RecoBase
 			  lardataobj_RawData

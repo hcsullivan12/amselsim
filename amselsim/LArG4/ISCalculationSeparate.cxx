@@ -201,7 +201,6 @@ namespace amselg4{
 						      << "minimum that ELECTRONSCINTILLATIONYIELD is "
 						      << "set by the user\n";
 
-      std::cout << "SCINT = " << scintYield << std::endl;
       fNumScintPhotons =  scintYield * fEnergyDeposit;
     }
     else if(fEMSaturation){

@@ -23,8 +23,12 @@
 #include "nurandom/RandomUtils/NuRandomService.h"
 
 #include "amselsim/Geometry/DetectorGeometryService.h"
+#include "amselsim/LArG4/IonizationAndScintillation.h"
 
-#include "CLHEP/Random/RandGaussQ.h"
+#include "TH1.h"
+
+#include "CLHEP/Random/JamesRandom.h"
+#include "CLHEP/Random/RandFlat.h"
 
 #include <memory>
 
@@ -108,7 +112,7 @@ void PhotonProjection::produce(art::Event& e)
   
   std::cout << "Number of steps = " << stepPoints.size() << "\n";
 
-  int totHit(0);
+  int totHits(0);
   int totScint(0);
   photcol->clear();
   for (size_t iStep = 0; iStep < stepPoints.size(); iStep++)
@@ -141,7 +145,7 @@ void PhotonProjection::produce(art::Event& e)
           projPos.Y() <= -1*detHalfHeight || projPos.Y() >= detHalfHeight) continue;
 
       // This hit the readout plane
-      totHit++;
+      totHits++;
   
       /// \todo Handle the x coordinate better here 
       TVector3 point(-0.01, projPos.Y(), projPos.Z());
@@ -171,9 +175,9 @@ void PhotonProjection::beginJob()
 {
   art::ServiceHandle<art::TFileService> tfs;
   // In 10s of 1000s
-  hTotScint = tfs->make<TH1F>("hTotScint", "Total amount of scintillation", 1000, 0, 10000);
+  hTotScint = tfs->make<TH1I>("hTotScint", "Total amount of scintillation", 1000, 0, 10000);
   hTotScint->GetXaxis()->SetTitle("nScint x 10^{4}");
-  hTotHits  = tfs->make<TH1F>("hTotHits", "Total amount of scintillation incident on readout plane", 1000, 0, 10000);
+  hTotHits  = tfs->make<TH1I>("hTotHits", "Total amount of scintillation incident on readout plane", 1000, 0, 10000);
   hTotHits->GetXaxis()->SetTitle("nHits x 10^{4}");
 }
 

@@ -159,7 +159,6 @@ private:
 //--------------------------------------------------------------------
 AmSelAnaTree::AmSelAnaTree(fhicl::ParameterSet const & pset) 
  : EDAnalyzer{pset},
-   fProjAlg(pset.get<fhicl::ParameterSet>("PhotonProjectionAlg")),
    fEngine(art::ServiceHandle<rndm::NuRandomService>{}
              ->createEngine(*this, "HepJamesRandom", "propagation", pset, "PropagationSeed"))
 {
@@ -176,7 +175,7 @@ void AmSelAnaTree::reconfigure(fhicl::ParameterSet const & pset)
   fTreeName            = pset.get< std::string >("TreeName", "anatree");
   fG4ModuleLabel       = pset.get< std::string >("G4ModuleLabel", "largeant");
   fGenieModuleLabel    = pset.get< std::string >("GenieModuleLabel", "generator");
-  fPhotProjModuleLabel = pset.get< std::string >("PhotPropModuleLabel", "photprop");
+  fPhotProjModuleLabel = pset.get< std::string >("PhotProjModuleLabel", "photproj");
   return;
 }
 
@@ -206,8 +205,8 @@ void AmSelAnaTree::analyze(art::Event const & evt)
        { art::fill_ptr_vector(Simlist, SimListHandle); }
 
   // Phot prop
-  art::Handle< std::map<int, int> > pixelPhotMapHandle;
-  evt.getByLabel(fPhotProjModuleLabel, pixelPhotMapHandle);
+  art::Handle< std::map<int, int> > ppMapHandle;
+  evt.getByLabel(fPhotProjModuleLabel, ppMapHandle);
 
   run    = evt.run();
   subrun = evt.subRun();
@@ -222,10 +221,10 @@ void AmSelAnaTree::analyze(art::Event const & evt)
   std::cout<<std::endl;
 
   // Fill photon projection information 
-  pixelIdVec.reserve(pixelPhotMapHandle->size());
-  pixelCountVec.reserve(pixelPhotMapHandle->size());
+  pixelIdVec.reserve(ppMapHandle->size());
+  pixelCountVec.reserve(ppMapHandle->size());
   nReadoutIncPhotons = 0;
-  for (const auto& p : pixelPhotMapHandle)
+  for (const auto& p : *ppMapHandle)
   {
     pixelIdVec.push_back(p.first);
     pixelCountVec.push_back(p.second);
