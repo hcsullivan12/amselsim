@@ -95,6 +95,7 @@ void SimQPix::reconfigure(fhicl::ParameterSet const& p)
 //--------------------------------------------------------------------
 void SimQPix::produce(art::Event& e)
 {
+  std::cout << "HERE3\n";
   auto const *detprop = art::ServiceHandle<detinfo::DetectorPropertiesService const>{}->provider();
   auto const *ts      = lar::providerFrom<detinfo::DetectorClocksService>();
   auto const *geom    = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
@@ -165,9 +166,12 @@ void SimQPix::produce(art::Event& e)
     double integral(0);
     double sr = detprop->SamplingRate();
     double conv = 1.6e2; // to pC
-    for (const auto& s : chargeWork) integral += s*sr;
-    for (auto& s : chargeWork) s = (totalQ*conv/integral)*s;
-    //std::cout << integral << " " << totalQ*conv/integral << std::endl;
+    for (const auto& s : chargeWork) integral += s;
+    for (auto& s : chargeWork) 
+    {
+      s = (totalQ/integral)*s;
+      //std::cout << totalQ << " " << integral << " " << totalQ/integral << " " << s << std::endl;
+    }
  
     // Generate noise
     std::vector<float> noisetmp(nTicks,0.);
@@ -189,6 +193,8 @@ void SimQPix::produce(art::Event& e)
     digcol->push_back(rd);
   } // end loop over channels
 
+
+  std::cout << "HERE1\n";
   e.put(std::move(digcol));
   return;
 

@@ -29,6 +29,7 @@
 #include "lardata/DetectorInfoServices/DetectorPropertiesService.h"
 
 #include "lardataobj/Simulation/SimChannel.h"
+#include "lardataobj/Simulation/SimPhotons.h"
 #include "nusimdata/SimulationBase/MCTruth.h"
 
 // ROOT includes 
@@ -38,7 +39,7 @@
 #include "TTree.h"
 
 // amselsim includes
-#include "amselsim/PropagationAlgs/PhotonProjectionAlg.h"
+#include "amselsim/Geometry/DetectorGeometryService.h"
 
 namespace amselsim
 {
@@ -144,8 +145,8 @@ private:
 
   // Scintillation information
   // @todo Confirm nPrimScint
-  ULong64_t nPrimScint;           ///< Number of scintillation photons produced by primary track 
-  ULong64_t nReadoutIncPhotons;   ///< Number of scintillation photons incident on readout plane
+  int nPrimScint;           ///< Number of scintillation photons produced by primary track 
+  int nReadoutIncPhotons;   ///< Number of scintillation photons incident on readout plane
   std::vector<int> pixelIdVec;    ///< Container of the pixel IDs which detected > 0 photons
   std::vector<int> pixelCountVec; ///< Container of the counts for each pixel ID
 
@@ -204,9 +205,11 @@ void AmSelAnaTree::analyze(art::Event const & evt)
   if(evt.getByLabel(fG4ModuleLabel, SimListHandle))
        { art::fill_ptr_vector(Simlist, SimListHandle); }
 
-  // Phot prop
-  art::Handle< std::map<int, int> > ppMapHandle;
-  evt.getByLabel(fPhotProjModuleLabel, ppMapHandle);
+  // Sim photons
+  art::Handle< std::vector<sim::SimPhotons> > SimPhotHandle;
+  std::vector<art::Ptr<sim::SimPhotons> > SimPhotlist;
+  if(evt.getByLabel(fG4ModuleLabel, SimPhotHandle))
+       { art::fill_ptr_vector(SimPhotlist, SimPhotHandle); }
 
   run    = evt.run();
   subrun = evt.subRun();
@@ -220,15 +223,31 @@ void AmSelAnaTree::analyze(art::Event const & evt)
   std::cout<<"========================================="<<std::endl;
   std::cout<<std::endl;
 
-  // Fill photon projection information 
-  pixelIdVec.reserve(ppMapHandle->size());
-  pixelCountVec.reserve(ppMapHandle->size());
+  // Fill photon information
+  // @note We should only have one opdet 
+  auto const *geom = art::ServiceHandle<geo::DetectorGeometryService>()->provider();
   nReadoutIncPhotons = 0;
-  for (const auto& p : *ppMapHandle)
+  for (int opCh = 0; opCh < (int)SimPhotlist.size(); opCh++)
   {
-    pixelIdVec.push_back(p.first);
-    pixelCountVec.push_back(p.second);
-    nReadoutIncPhotons += p.second;
+    std::map<int, int> pixelHits;
+
+    double xyz[3];
+    geom->GetOpDetCenter(xyz);
+    for (const auto& p : *SimPhotlist.at(opCh))
+    {
+      auto posf = p.FinalLocalPosition;
+      TVector3 globalPos( xyz[0]+posf.X(), xyz[1]+posf.Y(), xyz[2]+posf.Z() );
+      int pixelId = geom->NearestReadoutNodeID(globalPos);
+      if (pixelId < 0) std::cout << "\nUh Oh! Got pixel Id < 0!\n";
+      pixelHits[pixelId]++;
+    }
+
+    for (const auto& p : pixelHits)
+    {
+      pixelIdVec.push_back(p.first);
+      pixelCountVec.push_back(p.second);
+    }
+    nReadoutIncPhotons = (int)SimPhotlist.at(opCh)->size();
   }
 
   // Electric Field 
@@ -538,7 +557,7 @@ void AmSelAnaTree::beginJob()
   fTree->Branch("InteractionPoint",            &InteractionPoint);
   fTree->Branch("InteractionPointType",        &InteractionPointType);
   fTree->Branch("nPrimScint",         &nPrimScint,         "nPrimScint/l");
-  fTree->Branch("nReadoutIncPhotons", &nReadoutIncPhotons, "nReadoutIncPhotons/l");
+  fTree->Branch("nReadoutIncPhotons", &nReadoutIncPhotons, "nReadoutIncPhotons/I");
   fTree->Branch("pixelIDs" ,    &pixelIdVec    );
   fTree->Branch("pixelHits" ,   &pixelCountVec );
   fTree->Branch("nu_pdg",     &nu_pdg        );

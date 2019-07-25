@@ -88,7 +88,7 @@ void util::AmSelSignalShapingService::SetElectResponse()
 
   // Let's take our response function to be gaussian
   TF1 g("electgaus", "gaus");
-  g.SetParameters(1.0, 0.0, 2.0);
+  g.SetParameters(1.0, 0.0, 100.0);
   float time = -3*g.GetParameter(2);
 
   for (size_t i = 0; i < fElectResponse.size(); i++)
